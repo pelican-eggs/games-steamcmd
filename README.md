@@ -107,6 +107,9 @@ This is a collection of servers that use SteamCMD to install.
 
 [Frozen Flame](frozen_flame)
 
+## Garry's Mod Reworked
+[Garry's Mod Reworked](gmod_rework)
+
 ## Ground Branch
 
 [Ground Branch](ground_branch)

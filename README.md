@@ -107,6 +107,10 @@ This is a collection of servers that use SteamCMD to install.
 
 [Fistful of Frags](fof)
 
+## Foundry
+
+[Foundry](foundry)
+
 ## Frozen Flame
 
 [Frozen Flame](frozen_flame)
@@ -373,4 +377,5 @@ This is a collection of servers that use SteamCMD to install.
 [VEIN](vein)
 
 ## Wurm Unlimited
+
 [Wurm Unlimited](wurm_unlimited/)

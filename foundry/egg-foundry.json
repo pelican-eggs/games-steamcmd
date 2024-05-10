@@ -34,7 +34,7 @@
             "name": "[SERVER] Steam Query Port",
             "description": "Sets the network port used by the Steam server browser to query information about the game. This is only used if the server is set to public.",
             "env_variable": "QUERY_PORT",
-            "default_value": "",
+            "default_value": "27015",
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|integer|between:1024,65536",

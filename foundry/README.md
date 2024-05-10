@@ -8,6 +8,7 @@ Build a factory optimized to perfection or an artistic masterpiece in an infinit
 
 Steam: https://store.steampowered.com/app/983870/FOUNDRY/
 Homepage: https://www.paradoxinteractive.com/games/foundry/about
+More server info: https://dedicated.foundry-game.com/
 
 ### Author & Contributers
 | Name        | Github Profile  | Buy me a Coffee |
@@ -17,10 +18,10 @@ Homepage: https://www.paradoxinteractive.com/games/foundry/about
 
 ### Server Ports
 
-Sons of the Forest requires up to 2 ports. You can choose every port you want.
+Foundry requires up to 2 ports. You can choose every port you want.
 
 | Port    | default       |
 |---------|---------------|
-| Game    |     7777     |
+| Game    |     3724     |
 | Query     |     27015     |
 

@@ -1,8 +1,5 @@
 # V Rising
 
-***NOTE: Server version currently marked as Early Access by the V Rising developers. Your mileage may vary as updates are released.***
-___
-
 ### Authors / Contributors
 
 <!-- prettier-ignore-start -->
@@ -41,10 +38,11 @@ ___
 
 ### Egg Capabilities
 
-- Currently runs the Windows build of the server via Wine. This egg will be updated when a proper, native Linux server binary is released.
+- Currently runs the Windows build of the server via Wine. This egg will be updated once a proper, native Linux server binary is released.
 - Configurable to automatically check for server updates on start via SteamCMD. Forcing validation is also configurable.
-- All `ServerHostSettings.json` settings can be automatically configured via Startup variables.
+- All [formally recognized](https://github.com/StunlockStudios/vrising-dedicated-server-instructions/blob/master/1.0.x/INSTRUCTIONS.md#server-host-settings) `ServerHostSettings.json` settings can be automatically configured via Startup variables.
   - This includes: Server name, game settings preset, password, max players, auto save settings, and more...
+  - This does not include some obscure settings (ie. Enable API, Disable Save File Compression, etc.), but these can still be modified with a custom `ServerHostSettings.json` file created in `~/save-data/Settings/`.
 - RCON ready (\*requires extra port – see [Server Ports](#server-ports)). See the RCON section under [Manual Configuration Topics](#manual-configuration-topics) for more info.
 
 ___
@@ -89,14 +87,14 @@ Standardized game settings can be applied via the "Game Settings Preset" startup
 
 #### Becoming an Administrator
 
-To become an administrator in the game you will first need to open the `adminlist.txt` file under `~/VRisingServer_Data/StreamingAssets/Settings/` and add your [steamID64](https://steamid.io/) (one steamID64 per line). This can be done without restarting your server. To become an administrator in the game you need to enable the console in the options menu, bring it down with `` ` `` and authenticate using the `adminauth` console command. Once an administrator you can use a number of administrative commands like `banuser`, `bancharacter`, `banned`, `unban` and `kick`.
+To become an administrator in the game you will first need to open the `adminlist.txt` file under `~/VRisingServer_Data/StreamingAssets/Settings/` and add your [steamID64](https://steamid.io/) (one steamID64 per line). This can be done without restarting your server. To become an administrator in the game you need to enable the console in the options menu, open it with `` ` `` and authenticate using the `adminauth` console command. Once an administrator you can use a number of administrative commands like `banuser`, `bancharacter`, `banned`, `unban` and `kick`.
 
 If you ban users through the in-game console the server will automatically modify the `banlist.txt` file, but you can also modify this manually (one steamID64 per line).
 
 #### Transfer Local/Client Save to the Server
 
-[Follow these instructions by the developer very carefully](https://github.com/StunlockStudios/vrising-dedicated-server-instructions#transfer-localclient-save-to-a-dedicated-server). Note: The `-saveName <name>` command line parameter and `GameSettingsPreset` setting are handled automatically by the Egg's "Save Name" and "Game Settings Preset" startup parameters, respectively. Also, if a custom `ServerGameSettings.json` file exists for any reason in the `~/save-data/Settings` directory, delete it.
+[Follow these instructions by the developer very carefully](https://github.com/StunlockStudios/vrising-dedicated-server-instructions/blob/master/1.0.x/INSTRUCTIONS.md#transfer-localclient-save-to-a-dedicated-server). Note: The `-saveName <name>` command line parameter and `GameSettingsPreset` setting are handled automatically by the Egg's "Save Name" and "Game Settings Preset" startup parameters, respectively. Also, if a custom `ServerGameSettings.json` file exists for any reason in the `~/save-data/Settings` directory, delete it.
 
 #### RCON
 
-RCON can allow general and restart announcements to be made to the server remotely (functions which are not currently supported by the console command line). You can enable RCON by properly configuring the relevant variables under the Startup tab of your Pterodactyl server. The RCON port must be allocated to the server. [Click here for list of valid commands and recommended RCON client](https://github.com/StunlockStudios/vrising-dedicated-server-instructions#rcon).
+RCON can allow general and restart announcements to be made to the server remotely (functions which are not currently supported by the console command line). You can enable RCON by properly configuring the relevant variables under the Startup tab of your Pterodactyl server. The RCON port must be allocated to the server. [Click here for list of valid commands and recommended RCON client](https://github.com/StunlockStudios/vrising-dedicated-server-instructions/blob/master/1.0.x/INSTRUCTIONS.md#rcon-1).

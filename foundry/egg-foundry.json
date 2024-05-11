@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-05-09T09:33:57+02:00",
+    "exported_at": "2024-05-11T00:02:11+02:00",
     "name": "Foundry",
     "author": "eggs@goover.dev",
     "description": "Build a factory optimized to perfection or an artistic masterpiece in an infinite voxel world. Mine and harvest resources, automate your ever-growing production lines and manage complex systems while researching your way to mechanical mastery in FOUNDRY.",
@@ -34,7 +34,7 @@
             "name": "[SERVER] Steam Query Port",
             "description": "Sets the network port used by the Steam server browser to query information about the game. This is only used if the server is set to public.",
             "env_variable": "QUERY_PORT",
-            "default_value": "",
+            "default_value": "27015",
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|integer|between:1024,65536",

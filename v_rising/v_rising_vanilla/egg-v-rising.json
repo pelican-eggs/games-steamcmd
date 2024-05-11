@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-05-09T23:36:36-07:00",
+    "exported_at": "2024-05-11T11:42:45-07:00",
     "name": "V Rising",
     "author": "red_thirten@yahoo.com",
     "description": "Awaken as a vampire. Hunt for blood in nearby settlements to regain your strength and evade the scorching sun to survive. Raise your castle and thrive in an ever-changing open world full of mystery. Gain allies online and conquer the land of the living.",
@@ -72,12 +72,12 @@
         },
         {
             "name": "Game Difficulty Preset",
-            "description": "What preset of game difficulty the server should run. Some settings may not apply after the save file is first created.",
+            "description": "What preset of game difficulty the server should run. Some settings may not apply after the save file is first created. Leave empty\/null if you are using a single-player uploaded save or a custom ServerGameSettings.json file in the `~\/save-data\/Settings\/` directory.",
             "env_variable": "VR_DIFFICULTY_PRESET",
             "default_value": "Difficulty_Normal",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:Difficulty_Easy,Difficulty_Normal,Difficulty_Brutal",
+            "rules": "nullable|string|in:,Difficulty_Easy,Difficulty_Normal,Difficulty_Brutal",
             "field_type": "text"
         },
         {

@@ -4,9 +4,9 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-05-18T09:31:34+00:00",
+    "exported_at": "2024-05-11T11:42:45-07:00",
     "name": "V Rising",
-    "author": "rehlmgaming@gmail.com",
+    "author": "red_thirten@yahoo.com",
     "description": "Awaken as a vampire. Hunt for blood in nearby settlements to regain your strength and evade the scorching sun to survive. Raise your castle and thrive in an ever-changing open world full of mystery. Gain allies online and conquer the land of the living.",
     "features": [
         "steam_disk_space"
@@ -15,29 +15,39 @@
         "ghcr.io\/parkervcp\/yolks:wine_staging": "ghcr.io\/parkervcp\/yolks:wine_staging"
     },
     "file_denylist": [],
-    "startup": "wine .\/VRisingServer.exe -persistentDataPath save-data -address 0.0.0.0",
+    "startup": "wine .\/VRisingServer.exe -address 0.0.0.0 -gamePort {{SERVER_PORT}} -persistentDataPath save-data",
     "config": {
-        "files": "{\r\n    \"save-data\/Settings\/ServerHostSettings.json\": {\r\n        \"parser\": \"json\",\r\n        \"find\": {\r\n            \"Name\": \"{{server.build.env.SERVER_NAME}}\",\r\n            \"Description\": \"{{server.build.env.DESCRIPTION}}\",\r\n            \"Port\": \"{{server.build.default.port}}\",\r\n            \"QueryPort\": \"{{server.build.env.QUERY_PORT}}\",\r\n            \"MaxConnectedUsers\": \"{{server.build.env.MAX_PLAYERS}}\",\r\n            \"MaxConnectedAdmins\": \"{{server.build.env.MAX_ADMINS}}\",\r\n            \"ServerFps\": \"{{server.build.env.FPS}}\",\r\n            \"SaveName\": \"{{server.build.env.SAVE_NAME}}\",\r\n            \"Password\": \"{{server.build.env.SERVER_PASSWORD}}\",\r\n            \"Secure\": \"{{server.build.env.SERVER_SECURE}}\",\r\n            \"ListOnSteam\": \"{{server.build.env.LIST_STEAM}}\",\r\n            \"ListOnEOS\": \"{{server.build.env.LIST_EOS}}\",\r\n            \"AutoSaveCount\": \"{{server.build.env.SAVE_COUNT}}\",\r\n            \"AutoSaveInterval\": \"{{server.build.env.SAVE_INTERVAL}}\",\r\n            \"CompressSaveFiles\": \"{{server.build.env.COMPRESS_SAVES}}\",\r\n            \"GameSettingsPreset\": \"{{server.build.env.GAME_SETTINGS_PRESET}}\",\r\n            \"AdminOnlyDebugEvents\": \"{{server.build.env.ADMIN_ONLY_DEBUG_EVENTS}}\",\r\n            \"DisableDebugEvents\": \"{{server.build.env.DEBUG_EVENTS}}\",\r\n            \"API.Enabled\": \"{{server.build.env.ENABLE_API}}\",\r\n            \"Rcon.Enabled\": \"{{server.build.env.RCON}}\",\r\n            \"Rcon.Password\": \"{{server.build.env.RCON_PASS}}\",\r\n            \"Rcon.Port\": \"{{server.build.env.RCON_PORT}}\"\r\n        }\r\n    }\r\n}",
-        "startup": "{\r\n    \"done\": \"Loaded ServerGameSettings\"\r\n}",
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"[Server] Startup Completed\"\r\n}",
         "logs": "{}",
-        "stop": "^^C"
+        "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n\r\n## File: Pterodactyl V Rising Egg - egg-v-rising.json\r\n## Authors: David Wolfe (Red-Thirten), Kapatheus\r\n## Date: 2023\/05\/18\r\n## License: MIT License\r\n## Image to install with is 'ghcr.io\/pterodactyl\/installers:debian'\r\n\r\n# Install required packages.\r\napt -y update && apt -y --no-install-recommends install dos2unix\r\n\r\n# Download and install SteamCMD\r\nexport HOME=\/mnt\/server\r\ncd \/tmp\r\nmkdir -p $HOME\/steamcmd $HOME\/steamapps\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C $HOME\/steamcmd\r\ncd $HOME\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\n\r\n# Install game server using SteamCMD\r\n.\/steamcmd.sh +force_install_dir $HOME +login anonymous $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} +quit\r\n\r\n# Set up 32 and 64 bit libraries\r\nmkdir -p $HOME\/.steam\/sdk{32,64}\r\ncp -v linux32\/steamclient.so $HOME\/.steam\/sdk32\/steamclient.so\r\ncp -v linux64\/steamclient.so $HOME\/.steam\/sdk64\/steamclient.so\r\n\r\n## V Rising Setup\r\nmkdir -p $HOME\/save-data\/Settings\r\n# Check for successful installation.\r\ncd $HOME\/VRisingServer_Data\/StreamingAssets\/Settings\r\nif [[ -f ServerHostSettings.json ]]; then\r\n    # Copies default ServerHostSettings file to save-data directory.\r\n    # Also converts the contents to use Unix newlines so Ptero's JSON parser does not fail.\r\n    dos2unix -n ServerHostSettings.json $HOME\/save-data\/Settings\/ServerHostSettings.json\r\nelse\r\n    echo -e \"\\n\\nSteamCMD failed to install the V Rising Dedicated Server!\"\r\n    echo -e \"\\tTry reinstalling the server again.\\n\"\r\n    exit 1\r\nfi\r\n\r\necho -e \"\\nV Rising Dedicated Server successfully installed!\\n\"",
+            "script": "#!\/bin\/bash\r\n\r\n## File: V Rising Egg - egg-v-rising.json\r\n## Authors: David Wolfe (Red-Thirten), Kapatheus\r\n## Date: 2024\/05\/09\r\n## License: MIT License\r\n## Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n# Download and install SteamCMD\r\nexport HOME=\/mnt\/server\r\ncd \/tmp\r\nmkdir -p $HOME\/steamcmd $HOME\/steamapps\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C $HOME\/steamcmd\r\ncd $HOME\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\n\r\n# Install\/Verify game server using SteamCMD\r\n.\/steamcmd.sh +force_install_dir $HOME +login anonymous $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} validate +quit\r\n\r\n# Set up 32 and 64 bit libraries\r\nmkdir -p $HOME\/.steam\/sdk{32,64}\r\ncp -v linux32\/steamclient.so $HOME\/.steam\/sdk32\/steamclient.so\r\ncp -v linux64\/steamclient.so $HOME\/.steam\/sdk64\/steamclient.so\r\n\r\n## V Rising Setup\r\nmkdir -p $HOME\/save-data\/Settings\r\n# Check for successful installation.\r\ncd $HOME\/VRisingServer_Data\/StreamingAssets\/Settings\r\nif [[ -f ServerHostSettings.json ]]; then\r\n    echo -e \"\\nV Rising Dedicated Server successfully installed!\\n\"\r\nelse\r\n    echo -e \"\\n\\nSteamCMD failed to install the V Rising Dedicated Server!\"\r\n    echo -e \"\\tTry reinstalling the server again.\\n\"\r\n    exit 1\r\nfi",
             "container": "ghcr.io\/parkervcp\/installers:debian",
             "entrypoint": "\/bin\/bash"
         }
     },
     "variables": [
         {
-            "name": "[REQUIRED] Server Query Port",
+            "name": "[Host] Server Query Port",
             "description": "UDP port for Steam server list features.",
-            "env_variable": "QUERY_PORT",
+            "env_variable": "VR_QUERY_PORT",
             "default_value": "9877",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|integer|between:1024,65536",
+            "rules": "nullable|integer|between:1024,65536",
+            "field_type": "text"
+        },
+        {
+            "name": "[Host] Hide IP Address",
+            "description": "When listing server on EOS server list, the IP address will not be shown\/advertised. Players will connect via relay servers.",
+            "env_variable": "VR_HIDEIPADDRESS",
+            "default_value": "false",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|in:true,false",
             "field_type": "text"
         },
         {
@@ -53,17 +63,27 @@
         {
             "name": "Game Settings Preset",
             "description": "What preset of game settings the server should run. Some settings may not apply after the save file is first created. Leave empty\/null if you are using a single-player uploaded save or a custom ServerGameSettings.json file in the `~\/save-data\/Settings\/` directory.",
-            "env_variable": "GAME_SETTINGS_PRESET",
+            "env_variable": "VR_PRESET",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|in:,DuoPvP,HardcorePvP,Level30PvE,Level30PvP,Level50PvE,Level50PvP,Level70PvE,Level70PvP,SoloPvP,StandardPvE_Easy,StandardPvE_Hard,StandardPvE,StandardPvP_Easy,StandardPvP_Hard,StandardPVP",
+            "rules": "nullable|string|in:,DuoPvP,DuoPvP_DailySiege,DuoPvP_NoSiege,DuoPvP_WeekendSiege,HardcoreDuoPvP,HardcorePvP,HardcoreTrioPvP,Level30PvE,Level30PvP,Level40PvE,Level40PvP,Level50PvE,Level50PvP,Level60PvE,Level60PvP,Level70PvE,Level70PvP,Level80PvE,Level80PvP,Level90PvE,Level90PvP,SoloPvP,StandardPvE,StandardPvP,StandardPvP_DailySiege,StandardPvP_NoSiege,StandardPvP_WeekendSiege,TrioPvP,TrioPvP_DailySiege,TrioPvP_NoSiege,TrioPvP_WeekendSiege",
+            "field_type": "text"
+        },
+        {
+            "name": "Game Difficulty Preset",
+            "description": "What preset of game difficulty the server should run. Some settings may not apply after the save file is first created. Leave empty\/null if you are using a single-player uploaded save or a custom ServerGameSettings.json file in the `~\/save-data\/Settings\/` directory.",
+            "env_variable": "VR_DIFFICULTY_PRESET",
+            "default_value": "Difficulty_Normal",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|in:,Difficulty_Easy,Difficulty_Normal,Difficulty_Brutal",
             "field_type": "text"
         },
         {
             "name": "Server Name",
-            "description": "Name of the server that will appear in the server list.",
-            "env_variable": "SERVER_NAME",
+            "description": "Name of the server. The name that shows up in server list.",
+            "env_variable": "VR_NAME",
             "default_value": "V Rising Dedicated Server",
             "user_viewable": true,
             "user_editable": true,
@@ -72,8 +92,8 @@
         },
         {
             "name": "Server Description",
-            "description": "Short description of server purpose, rules, and the message of the day.",
-            "env_variable": "DESCRIPTION",
+            "description": "Short server description. Shows up in details panel of server list when entry is selected. Also printed in chat when connecting to server.",
+            "env_variable": "VR_DESCRIPTION",
             "default_value": "Welcome to the server!",
             "user_viewable": true,
             "user_editable": true,
@@ -82,18 +102,18 @@
         },
         {
             "name": "Max Connected Users",
-            "description": "Max number of concurrent players on the server.",
-            "env_variable": "MAX_PLAYERS",
+            "description": "Max number of concurrent players on server. The maximum number technically supported is 128.",
+            "env_variable": "VR_MAX_USERS",
             "default_value": "40",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|min:1",
+            "rules": "required|integer|min:1|max:128",
             "field_type": "text"
         },
         {
             "name": "Max Connected Admins",
             "description": "Max number of admins to allow connection even when the server is full.",
-            "env_variable": "MAX_ADMINS",
+            "env_variable": "VR_MAX_ADMINS",
             "default_value": "4",
             "user_viewable": true,
             "user_editable": true,
@@ -103,7 +123,7 @@
         {
             "name": "Server Password",
             "description": "Password required to join the server. Leave blank to have no password.",
-            "env_variable": "SERVER_PASSWORD",
+            "env_variable": "VR_PASSWORD",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
@@ -111,9 +131,19 @@
             "field_type": "text"
         },
         {
+            "name": "Secure Server",
+            "description": "Enable VAC protection on server. VAC banned clients will not be able to connect. (true | false)",
+            "env_variable": "VR_SECURE",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:true,false",
+            "field_type": "text"
+        },
+        {
             "name": "Save Name",
             "description": "Name of save file \/ directory.",
-            "env_variable": "SAVE_NAME",
+            "env_variable": "VR_SAVE_NAME",
             "default_value": "world1",
             "user_viewable": true,
             "user_editable": true,
@@ -123,8 +153,8 @@
         {
             "name": "Auto Save Count",
             "description": "Number of autosaves to keep.",
-            "env_variable": "SAVE_COUNT",
-            "default_value": "50",
+            "env_variable": "VR_SAVE_COUNT",
+            "default_value": "20",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:0",
@@ -133,47 +163,17 @@
         {
             "name": "Auto Save Interval",
             "description": "Interval in seconds between each autosave.",
-            "env_variable": "SAVE_INTERVAL",
-            "default_value": "600",
+            "env_variable": "VR_SAVE_INTERVAL",
+            "default_value": "120",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:1",
             "field_type": "text"
         },
         {
-            "name": "List On Steam",
-            "description": "Set to true to list on the Steam server list, else set to false.",
-            "env_variable": "LIST_STEAM",
-            "default_value": "true",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "field_type": "text"
-        },
-        {
-            "name": "List On Epic",
-            "description": "Set to true to list on the Epic Online Services server list, else set to false.",
-            "env_variable": "LIST_EOS",
-            "default_value": "true",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "field_type": "text"
-        },
-        {
-            "name": "[Repair] Validate Server Files",
-            "description": "Leave empty (no value) for OFF or type \"true\" or \"1\" for ON. Validates all server files when Automatic Updates is enabled. Note: This will significantly increase server startup times, so it is recommended to only enable this when needed.",
-            "env_variable": "VALIDATE",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "string|nullable",
-            "field_type": "text"
-        },
-        {
             "name": "[Advanced] Server FPS",
-            "description": "How often the server refreshes. (Default: 30)",
-            "env_variable": "FPS",
+            "description": "Target FPS for server.",
+            "env_variable": "VR_FPS",
             "default_value": "30",
             "user_viewable": true,
             "user_editable": true,
@@ -181,9 +181,29 @@
             "field_type": "text"
         },
         {
-            "name": "[Advanced] Compress Save Files",
-            "description": "Set to true to compress world save files, else set to false.",
-            "env_variable": "COMPRESS_SAVES",
+            "name": "[Advanced] Lower FPS When Empty",
+            "description": "Run the server at a lower framerate target when no players are logged in. (true | false)",
+            "env_variable": "VR_LOWER_FPS_WHEN_EMPTY",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:true,false",
+            "field_type": "text"
+        },
+        {
+            "name": "[Advanced] Lower FPS When Empty Value",
+            "description": "Set the framerate target for when \"[Advanced] Lower FPS When Empty\" is active.",
+            "env_variable": "VR_LOWER_FPS_WHEN_EMPTY_VALUE",
+            "default_value": "10",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|min:1",
+            "field_type": "text"
+        },
+        {
+            "name": "[Advanced] List On Epic",
+            "description": "Register on EOS list server or not. The client looks for servers here by default, due to additional features available. (true | false)",
+            "env_variable": "VR_LIST_ON_EOS",
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
@@ -191,9 +211,19 @@
             "field_type": "text"
         },
         {
-            "name": "[Advanced] Enable API",
-            "description": "Set to true to allow responses to public API requests to the server, else set to false.",
-            "env_variable": "ENABLE_API",
+            "name": "[Advanced] List On Steam",
+            "description": "Register on Steam list server or not. (true | false)",
+            "env_variable": "VR_LIST_ON_STEAM",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:true,false",
+            "field_type": "text"
+        },
+        {
+            "name": "[RCON] Enable RCON",
+            "description": "Enable or disable RCON functionality. (true | false) See the following link for info on how to connect and use RCON: https:\/\/github.com\/StunlockStudios\/vrising-dedicated-server-instructions\/blob\/master\/1.0.x\/INSTRUCTIONS.md#rcon-1",
+            "env_variable": "VR_RCON_ENABLED",
             "default_value": "false",
             "user_viewable": true,
             "user_editable": true,
@@ -201,19 +231,9 @@
             "field_type": "text"
         },
         {
-            "name": "[Advanced] Enable RCON",
-            "description": "See the following link for info on how to connect and use RCON: https:\/\/github.com\/StunlockStudios\/vrising-dedicated-server-instructions#rcon",
-            "env_variable": "RCON",
-            "default_value": "false",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "field_type": "text"
-        },
-        {
-            "name": "[Advanced] RCON Password",
+            "name": "[RCON] RCON Password",
             "description": "Password required to connect to RCON if it is enabled.",
-            "env_variable": "RCON_PASS",
+            "env_variable": "VR_RCON_PASSWORD",
             "default_value": "somepassword",
             "user_viewable": true,
             "user_editable": true,
@@ -221,9 +241,9 @@
             "field_type": "text"
         },
         {
-            "name": "[Advanced] RCON Port",
-            "description": "Port used to connect to RCON. Must be allocated to the server for RCON to work.",
-            "env_variable": "RCON_PORT",
+            "name": "[RCON] RCON Port",
+            "description": "TCP Port used to connect to RCON. Must be allocated to the server for RCON to work.",
+            "env_variable": "VR_RCON_PORT",
             "default_value": "25575",
             "user_viewable": true,
             "user_editable": false,
@@ -231,47 +251,27 @@
             "field_type": "text"
         },
         {
-            "name": "[Advanced] Secure Server",
-            "description": "(true or false)",
-            "env_variable": "SERVER_SECURE",
-            "default_value": "true",
+            "name": "[Repair] Validate Server Files",
+            "description": "Leave empty (no value) for OFF or set to \"true\" for ON. Validates all server files when Automatic Updates is enabled. Note: This will significantly increase server startup times, so it is recommended to only enable this when needed.",
+            "env_variable": "VALIDATE",
+            "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
+            "rules": "string|nullable|in:,true",
             "field_type": "text"
         },
         {
-            "name": "[Advanced] Admin Only Debug Events",
-            "description": "(true or false)",
-            "env_variable": "ADMIN_ONLY_DEBUG_EVENTS",
-            "default_value": "true",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "field_type": "text"
-        },
-        {
-            "name": "[Advanced] Disable Debug Events",
-            "description": "(true or false)",
-            "env_variable": "DEBUG_EVENTS",
-            "default_value": "false",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "field_type": "text"
-        },
-        {
-            "name": "[Advanced] V Rising Dedicated Server App ID",
+            "name": "[System] V Rising Dedicated Server App ID",
             "description": "Used for installation and updates. Rarely needs to be changed.",
             "env_variable": "SRCDS_APPID",
             "default_value": "1829350",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|integer",
+            "rules": "required|integer|in:1829350",
             "field_type": "text"
         },
         {
-            "name": "[Advanced] Use Windows Branch",
+            "name": "[System] Use Windows Branch",
             "description": "Tells the installer\/updater to only download the Windows branch of the server (the only branch currently available) so that it can run on Wine. Cannot be changed.",
             "env_variable": "WINDOWS_INSTALL",
             "default_value": "1",
@@ -281,17 +281,17 @@
             "field_type": "text"
         },
         {
-            "name": "[SYSTEM] WINEDEBUG",
+            "name": "[System] WINEDEBUG",
             "description": "Used to suppress WINE FIXME messages. Rarely needs to be changed.",
             "env_variable": "WINEDEBUG",
             "default_value": "-all",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string",
+            "rules": "string|nullable",
             "field_type": "text"
         },
         {
-            "name": "[SYSTEM] WINEARCH",
+            "name": "[System] WINEARCH",
             "description": "Used for compatibility. Cannot be changed.",
             "env_variable": "WINEARCH",
             "default_value": "win64",
@@ -301,7 +301,7 @@
             "field_type": "text"
         },
         {
-            "name": "[SYSTEM] WINEPATH",
+            "name": "[System] WINEPATH",
             "description": "Used for compatibility. Cannot be changed.",
             "env_variable": "WINEPATH",
             "default_value": "\/home\/container",

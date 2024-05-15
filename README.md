@@ -93,6 +93,7 @@
 * [Solace Crafting](solace_crafting)
 * [Soldat](soldat)
 * [Sons of the Forest](sonsoftheforest)
+* [SourceCoop](sourcecoop)
 * [Space Engineers](space_engineers)
   * [Default](space_engineers/default)
   * [Torch](space_engineers/torch)

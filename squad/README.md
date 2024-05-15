@@ -1,4 +1,8 @@
-# Squad-egg-pterodactyl
+# Squad-egg
+## Squad
+
+Squad is an online multiplayer first-person shooter that aims to capture combat realism through communication and teamplay.
+
 ## Required Ports
 Squad requires 5 ports
 
@@ -12,13 +16,10 @@ Squad requires 5 ports
 
 For additional servers please increase the beacon port by 1
 
-## Overview
-
-The Squad-egg-pterodactyl project provides the necessary configurations to deploy and manage a Squad game server on the Pterodactyl platform using Windows compatibility layers provided by Wine. This setup is particularly useful for supporting mods and ensuring that the Squad server operates seamlessly in a Windows-emulated environment on Linux servers.
 
 ## Features
  - [Wine Integration: Runs Squad servers through Wine, allowing you to leverage Windows-based server executables on Linux platforms.
- - [Mod Support: Full support for downloading and configuring mods directly through the Pterodactyl panel.
+ - [Mod Support: Full support for downloading and configuring mods directly through steam.
  - [Scripts: Includes scripts for easy setup and management of the game server, including installations and updates.
 
 ## Credits

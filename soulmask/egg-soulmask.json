@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T13:12:16+02:00",
+    "exported_at": "2024-06-01T13:27:43+02:00",
     "name": "Soulmask",
     "author": "josdekurk@gmail.com",
     "description": "Escaping a deadly sacrificial ritual, you find an ancient mystical mask on your journey. This mask holds potent knowledge, changing the world you knew. Face the harsh challenges of nature, survive, rally followers, and build your own tribe. Explore and unveil the truths behind the enigmatic mask.",
@@ -15,7 +15,7 @@
         "SteamCMD": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
-    "startup": "\/home\/container\/WS\/Binaries\/Linux\/WSServer-Linux-Shipping WS Level01_Main -server -SteamServerName=\"{{SERVER_NAME}}\" -saving={{SAVE_TIME}} -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -EchoPort={{ECHO_PORT}} -forcepassthrough -adminpsw={{ADMIN_PASSWORD}} -PSW={{SERVER_PASSWORD}} -MaxPlayers={{MAX_PLAYERS}} -backup={{BACKUP_TIME}} -log -UTF8Output -MULTIHOME=0.0.0.0",
+    "startup": "\/home\/container\/WS\/Binaries\/Linux\/WSServer-Linux-Shipping WS Level01_Main -server -SILENT -SteamServerName=\"{{SERVER_NAME}}\" -saving={{SAVE_TIME}} -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -EchoPort={{ECHO_PORT}} -forcepassthrough -MaxPlayers={{MAX_PLAYERS}} -backup={{BACKUP_TIME}} -log -UTF8Output -MULTIHOME=0.0.0.0 {{EXTRA_ARGS}} -online=Steam -adminpsw={{ADMIN_PASSWORD}} -PSW={{SERVER_PASSWORD}}",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Create Dungeon Successed\"\r\n}",
@@ -124,6 +124,16 @@
             "name": "Admin Password",
             "description": "GM activation password.Open GM Panel (gm key [password])",
             "env_variable": "ADMIN_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:32",
+            "field_type": "text"
+        },
+        {
+            "name": "Extra Arguments",
+            "description": "Additional arguments passed on startup such as: -pve or -pve",
+            "env_variable": "EXTRA_ARGS",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,

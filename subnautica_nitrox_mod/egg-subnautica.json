@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-05-21T09:59:37-07:00",
+    "exported_at": "2024-06-01T00:05:11+00:00",
     "name": "Subnautica",
     "author": "tueye@tuworld.de",
+    "uuid": "1edc68bc-7654-4012-a994-591bc01b705b",
     "description": "Subnautica is an open world survival action-adventure video game developed and published by Unknown Worlds Entertainment. In it, players are free to explore the ocean on an alien planet, known as planet 4546B, after their spaceship, the Aurora, crashes on the planet's surface.\r\n\r\nNote: NitroxMod version >=1.7.0.0 is required",
     "features": [
         "steam_disk_space"
@@ -38,6 +39,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|numeric|digits_between:1,6",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -48,6 +50,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:64",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -58,6 +61,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:64",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -68,6 +72,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:6",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -78,6 +83,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|between:3,12",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -88,6 +94,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|digits_between:6,7",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -98,6 +105,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:True,False",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -108,6 +116,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "alpha_dash|between:1,100",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -118,6 +127,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|between:3,12",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -128,6 +138,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|between:3,16",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -138,6 +149,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:SURVIVAL,FREEDOM,HARDCORE,CREATIVE",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -148,6 +160,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:True,False",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -158,6 +171,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:PROTOBUF,JSON",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -168,6 +182,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         }
     ]

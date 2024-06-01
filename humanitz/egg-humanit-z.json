@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-02-26T18:43:46+01:00",
+    "exported_at": "2024-06-01T00:04:20+00:00",
     "name": "HumanitZ",
     "author": "engels74@marx.ps",
+    "uuid": "8b0f6f01-ec9e-4bc9-b341-6e0425894847",
     "description": "HumanitZ is a co-op, isometric, open world survival game in a world ended by the zombie outbreak. As one of the few human survivors, try to last as long as \u201chumanly\u201d possible. The past can\u2019t be changed, but you can make a difference today for the future of humanity.",
     "features": null,
     "docker_images": {
@@ -36,6 +37,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:2728330",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -46,6 +48,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -56,6 +59,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:linuxbranch",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -66,6 +70,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -76,6 +81,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -86,6 +92,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -96,6 +103,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -106,6 +114,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -116,6 +125,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -126,6 +136,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -136,6 +147,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -146,6 +158,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -156,6 +169,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -166,6 +180,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -176,6 +191,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -186,6 +202,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -196,6 +213,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -206,6 +224,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -216,6 +235,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -226,6 +246,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -236,6 +257,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -246,6 +268,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -256,6 +279,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -266,6 +290,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -276,6 +301,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -286,6 +312,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -296,6 +323,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -306,6 +334,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -316,6 +345,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -326,6 +356,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -336,6 +367,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -346,6 +378,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -356,6 +389,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -366,6 +400,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -376,6 +411,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -386,6 +422,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -396,6 +433,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -406,6 +444,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -416,6 +455,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -426,6 +466,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -436,6 +477,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -446,6 +488,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -456,6 +499,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -466,6 +510,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -476,6 +521,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -486,6 +532,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -496,6 +543,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -506,6 +554,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -516,6 +565,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -526,6 +576,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -536,6 +587,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -546,6 +598,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         }
     ]

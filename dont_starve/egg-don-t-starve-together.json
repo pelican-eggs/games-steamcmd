@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-01-07T09:58:40-05:00",
+    "exported_at": "2024-06-01T00:04:10+00:00",
     "name": "Don't Starve Together",
     "author": "parker@parkervcp.com",
+    "uuid": "66cba527-a8b8-4b1e-aa39-c10f92cdeeba",
     "description": "Don\u2019t Starve Together is an uncompromising wilderness survival game full of science and magic.",
     "features": [
         "steam_disk_space"
@@ -38,6 +39,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|between:1,31",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -48,6 +50,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:64",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -58,6 +61,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -68,6 +72,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -78,6 +83,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -88,6 +94,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -98,6 +105,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -108,6 +116,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -118,6 +127,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         }
     ]

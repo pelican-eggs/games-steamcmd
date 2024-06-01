@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-02-20T09:47:43+01:00",
+    "exported_at": "2024-06-01T00:03:55+00:00",
     "name": "Astroneer Dedicated Server",
     "author": "melethainiel.aerin@gmail.com",
+    "uuid": "165ead11-926d-4b3b-a5d8-86c73d09427c",
     "description": "A game of aerospace industry and interplanetary exploration.",
     "features": null,
     "docker_images": {
@@ -36,6 +37,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -46,6 +48,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -56,6 +59,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -66,6 +70,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|alpha_dash|between:1,100",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -76,6 +81,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -86,6 +92,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -96,6 +103,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -106,6 +114,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -116,6 +125,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:60",
+            "sort": null,
             "field_type": "text"
         }
     ]

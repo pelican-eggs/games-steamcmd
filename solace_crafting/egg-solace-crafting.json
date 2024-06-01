@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-10-24T20:12:31+02:00",
+    "exported_at": "2024-06-01T00:04:51+00:00",
     "name": "Solace Crafting",
     "author": "eggs@goover.dev",
+    "uuid": "e2cf3c9a-0fe0-4737-9c5f-d7f6ba9b91a8",
     "description": "Open-world fantasy survival RPG. Borderless distance-based difficulty with player built fast-travel, modular-building, and town management.",
     "features": null,
     "docker_images": {
@@ -36,6 +37,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -46,6 +48,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         }
     ]

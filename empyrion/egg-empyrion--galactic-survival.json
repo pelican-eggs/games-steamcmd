@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-04-25T19:31:11+02:00",
+    "exported_at": "2024-06-01T00:04:10+00:00",
     "name": "Empyrion: Galactic Survival",
     "author": "eggs@goover.dev",
+    "uuid": "3a1450cf-20a8-4fa9-98d1-f38c9f1b5636",
     "description": "Empyrion: Galactic Survival dedicated server",
     "features": null,
     "docker_images": {
@@ -36,6 +37,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -46,6 +48,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -56,6 +59,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -66,6 +70,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|regex:\/^(?:true)?(?:false)?\\b\/",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -76,6 +81,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -86,6 +92,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|min:1",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -96,6 +103,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:127",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -106,6 +114,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -116,6 +125,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -126,6 +136,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -136,6 +147,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -146,6 +158,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -156,6 +169,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         }
     ]

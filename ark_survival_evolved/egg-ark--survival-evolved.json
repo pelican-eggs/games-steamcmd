@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-07-23T15:07:41+02:00",
+    "exported_at": "2024-06-01T00:03:48+00:00",
     "name": "Ark: Survival Evolved",
     "author": "dev@shepper.fr",
+    "uuid": "97e50ae1-b458-4811-8977-9c7a4e411b6c",
     "description": "As a man or woman stranded, naked, freezing, and starving on the unforgiving shores of a mysterious island called ARK, use your skill and cunning to kill or tame and ride the plethora of leviathan dinosaurs and other primeval creatures roaming the land. Hunt, harvest resources, craft items, grow crops, research technologies, and build shelters to withstand the elements and store valuables, all while teaming up with (or preying upon) hundreds of other players to survive, dominate... and escape! \u2014 Gamepedia: ARK",
     "features": [
         "steam_disk_space"
@@ -38,6 +39,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|alpha_dash|between:1,100",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -48,6 +50,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|alpha_dash|between:1,100",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -58,6 +61,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -68,6 +72,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:128",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -78,6 +83,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -88,6 +94,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -98,6 +105,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -108,6 +116,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -118,6 +127,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "nullable|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -128,6 +138,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -138,6 +149,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -148,6 +160,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "numeric",
+            "sort": null,
             "field_type": "text"
         }
     ]

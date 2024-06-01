@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-08-20T08:17:48+02:00",
+    "exported_at": "2024-06-01T00:05:08+00:00",
     "name": "Starbound",
     "author": "parker@parkervcp.com",
+    "uuid": "c439661f-b5c8-4e82-80f7-9c1ac6559b6d",
     "description": "Starbound takes place in a two-dimensional, procedurally generated universe which the player is able to explore in order to obtain new weapons, armor, and items, and to visit towns and villages inhabited by various intelligent lifeforms.",
     "features": [
         "steam_disk_space"
@@ -38,6 +39,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -48,6 +50,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -58,6 +61,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -68,6 +72,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:5",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -78,6 +83,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -88,6 +94,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         }
     ]

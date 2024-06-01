@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-07-02T17:55:48+02:00",
+    "exported_at": "2024-06-01T00:04:34+00:00",
     "name": "Pavlov VR",
     "author": "admin@devil.wtf",
+    "uuid": "bb40332b-2b57-40cc-a30f-5ec82a9f2ed3",
     "description": "Pavlov VR is a multiplayer shooter in VR with heavy focus on community features. Realistic reloading features and fast paced combat as part of the core experience. Play the #1 most popular VR shooter on PC today.",
     "features": [
         "steam_disk_space"
@@ -38,6 +39,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|numeric|in:622970",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -48,6 +50,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -58,6 +61,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -68,6 +72,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -78,6 +83,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|in:,beta_server",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -88,6 +94,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:64",
+            "sort": null,
             "field_type": "text"
         }
     ]

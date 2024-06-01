@@ -1,13 +1,19 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v1"
+        "version": "PTDL_v2",
+        "update_url": null
     },
-    "exported_at": "2018-03-10T13:48:24+01:00",
+    "exported_at": "2024-06-01T00:04:17+00:00",
     "name": "Garry's Mod - Reworked",
     "author": "vilhelm@prytznet.se",
+    "uuid": "c0b2f96a-f753-4d82-a73e-6e5be2bbadd5",
     "description": "Garry's Mod, is a sandbox physics game created by Garry Newman, and developed by his company, Facepunch Studios.",
-    "image": "quay.io\/pterodactyl\/core:source",
+    "features": null,
+    "docker_images": {
+        "quay.io\/pterodactyl\/core:source": "quay.io\/pterodactyl\/core:source"
+    },
+    "file_denylist": [],
     "startup": ".\/srcds_run -game garrysmod -console -maxplayers {{MAX_PLAYERS}} -port {{SERVER_PORT}} +ip 0.0.0.0 +map {{SRCDS_MAP}} -strictportbind -norestart +sv_setsteamaccount {{STEAM_ACC}}",
     "config": {
         "files": "{}",
@@ -28,27 +34,33 @@
             "description": "The default map for the server.",
             "env_variable": "SRCDS_MAP",
             "default_value": "gm_flatgrass",
-            "user_viewable": 1,
-            "user_editable": 1,
-            "rules": "required|string|alpha_dash"
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|alpha_dash",
+            "sort": null,
+            "field_type": "text"
         },
         {
             "name": "Steam Account Token",
             "description": "The Steam Account Token required for the server to be displayed publicly.",
             "env_variable": "STEAM_ACC",
             "default_value": "",
-            "user_viewable": 1,
-            "user_editable": 1,
-            "rules": "required|string|alpha_num|size:32"
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|alpha_num|size:32",
+            "sort": null,
+            "field_type": "text"
         },
         {
             "name": "Player Slots",
             "description": "The amount of player slots on the server.",
             "env_variable": "MAX_PLAYERS",
             "default_value": "32",
-            "user_viewable": 1,
-            "user_editable": 1,
-            "rules": "required|integer|max:128"
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|max:128",
+            "sort": null,
+            "field_type": "text"
         }
     ]
 }

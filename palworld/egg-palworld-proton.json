@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-04-04T09:33:27+02:00",
+    "exported_at": "2024-06-01T00:04:33+00:00",
     "name": "Palworld Proton",
     "author": "josdekurk@gmail.com",
+    "uuid": "6b1ab0c0-7e4f-437a-acc4-2952515d279e",
     "description": "Fight, farm, build and work alongside mysterious creatures called \"Pals\" in this completely new multiplayer, open world survival and crafting game!",
     "features": [
         "steam_disk_space"
@@ -38,6 +39,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:2394010",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -48,6 +50,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -58,6 +61,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|between:1,32",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -68,6 +72,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:64",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -78,6 +83,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|alpha_dash|between:1,30",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -88,6 +94,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|alpha_dash|between:1,30",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -98,6 +105,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -108,6 +116,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -118,6 +127,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:True",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -128,6 +138,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:True,False",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -138,6 +149,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:128",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -148,6 +160,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|in:1",
+            "sort": null,
             "field_type": "text"
         }
     ]

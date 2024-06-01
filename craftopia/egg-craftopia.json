@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-10-07T17:08:45+02:00",
+    "exported_at": "2024-06-01T00:04:05+00:00",
     "name": "Craftopia",
     "author": "eggs@goover.dev",
+    "uuid": "6304c348-83aa-420a-aa84-15a52d995964",
     "description": "Craftopia is the brand new multiplayer survival action game made in Japan. We combined many features we find enjoyable, such as hunting, farming, hack-and-slash, building, automation to develop this game.",
     "features": [
         "steam_disk_space"
@@ -38,6 +39,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -48,6 +50,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -58,6 +61,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:50",
+            "sort": null,
             "field_type": "text"
         }
     ]

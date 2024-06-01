@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-10-23T09:33:48+02:00",
+    "exported_at": "2024-06-01T00:04:42+00:00",
     "name": "Rising World Unity",
     "author": "eggs@goover.dev",
+    "uuid": "aee8698f-35b9-4853-a2e2-f462d27c8e97",
     "description": "Rising World is a voxel based open-world sandbox game, featuring a procedurally generated world, playable in single and multi-player.",
     "features": [
         "steam_disk_space"
@@ -38,6 +39,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -48,6 +50,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -58,6 +61,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -68,6 +72,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:40",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -78,6 +83,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -88,6 +94,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|in:,Survival,Creative",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -98,6 +105,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:20",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -108,6 +116,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:true,false",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -118,6 +127,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|nullable|min:6",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -128,6 +138,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|integer|between:1024,65536",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -138,6 +149,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         }
     ]

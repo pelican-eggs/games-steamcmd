@@ -19,13 +19,14 @@ Steam: https://store.steampowered.com/app/2646460/Soulmask/
 Soulmask requires up to 3 ports. You can choose every port you want.
 
 | Port     | default       |
-|--------- |---------------|
+|:---------:|:---------------:|
 | Game     |     7777      |
 | Query    |     27015     |
-| EchoPort |     18888     |
+| Maintenance / echo |     18888 (Does not need to be public)     |
 
 ## Special Note
 
+- Each game process needs to open two UDP ports
 - A single game process requires at least 16GB of memory and 2-4 CPU cores.
 - Bandwidth requirements: Each game server's inbound/outbound bandwidth is about 100kbps/player.
 - The game package size is about 1-2GB, requiring about 20GB of free disk space for operation.

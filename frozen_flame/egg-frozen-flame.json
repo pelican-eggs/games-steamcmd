@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-05-07T19:05:11+02:00",
+    "exported_at": "2024-06-01T00:04:14+00:00",
     "name": "Frozen Flame",
     "author": "theblitzbat@gmail.com",
+    "uuid": "e3986111-0725-4ccd-b131-528873df84df",
     "description": "Frozen Flame Dedicated Server",
     "features": null,
     "docker_images": {
@@ -36,6 +37,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "nullable|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -46,6 +48,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -56,6 +59,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|between:1024,65536",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -66,6 +70,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:128",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -76,6 +81,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:128",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -86,6 +92,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -96,6 +103,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|string|",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -106,6 +114,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:128",
+            "sort": null,
             "field_type": "text"
         }
     ]

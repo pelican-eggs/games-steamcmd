@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-12-18T17:27:56+01:00",
+    "exported_at": "2024-06-01T00:03:44+00:00",
     "name": "Colony Survival",
     "author": "josdekurk@gmail.com",
+    "uuid": "0b59b4fb-febe-4e1d-ac40-bd24e287a491",
     "description": "Colony Survival is a unique first-person strategy game developed by a two-man team. Build your own colony in a voxel world. Command guards, farmers, miners and other colonists. Defend your colony against the horde of monsters that attacks every night!",
     "features": null,
     "docker_images": {
@@ -36,6 +37,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:748090",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -46,6 +48,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -56,6 +59,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:32",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -66,6 +70,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:32",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -76,6 +81,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:1|max:64",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -86,6 +92,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|string|",
+            "sort": null,
             "field_type": "text"
         }
     ]

@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-02-27T16:19:43+01:00",
+    "exported_at": "2024-06-01T00:04:23+00:00",
     "name": "Myth of Empires",
     "author": "josdekurk@gmail.com",
+    "uuid": "f0ba2df0-dadc-40b9-bc97-225fb74e427b",
     "description": "Myth of Empires is a multiplayer war sandbox game featuring a high degree of freedom. Players must survive, craft, create, and lead troops in their quest to conquer territory and build their own empire.",
     "features": null,
     "docker_images": {
@@ -36,6 +37,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:1794810",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -46,6 +48,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|in:1",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -56,6 +59,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -66,6 +70,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:LargeTerrain_Central_Main,LargeTerrain_Central2_Main",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -76,6 +81,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:80",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -86,6 +92,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -96,6 +103,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|between:1,150",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -106,6 +114,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -116,6 +125,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -126,6 +136,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|int",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -136,6 +147,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|alpha_dash|min:5|max:32",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -146,6 +158,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:128",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -156,6 +169,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -166,6 +180,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -176,6 +191,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
+            "sort": null,
             "field_type": "text"
         }
     ]

@@ -1,12 +1,13 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-05-15T11:48:44-07:00",
+    "exported_at": "2024-06-01T00:04:52+00:00",
     "name": "SourceCoop",
     "author": "red_thirten@yahoo.com",
+    "uuid": "51f46f7b-481b-4142-ae1a-dbf34810c13f",
     "description": "SourceCoop is a cooperative server-side-only mod for multi-player Source Engine games (like Black Mesa), that enables players to play together on single-player campaigns or maps. This Egg currently supports official Black Mesa maps only, but can be easily modified to support more (see Egg README for details).",
     "features": [
         "steam_disk_space"
@@ -38,6 +39,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:128",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -48,6 +50,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:1|max:128",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -58,6 +61,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -68,6 +72,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:bm_c0a0a,bm_c0a0b,bm_c0a0c,bm_c1a0a,bm_c1a0b,bm_c1a1a,bm_c1a1b,bm_c1a1c,bm_c1a1d,bm_c1a1e,bm_c1a2a,bm_c1a2b,bm_c1a2c,bm_c1a3a,bm_c1a3b,bm_c1a3c,bm_c1a4a,bm_c1a4b,bm_c1a4c,bm_c1a4d,bm_c1a4e,bm_c2a1a,bm_c2a1b,bm_c2a2a,bm_c2a2b,bm_c2a2c,bm_c2a2a,bm_c2a2a1,bm_c2a2a2,bm_c2a2b,bm_c2a2b1,bm_c2a2b2,bm_c2a2c,bm_c2a3a,bm_c2a3b,bm_c2a3c,bm_c2a4a,bm_c2a4b,bm_c2a4c,bm_c2a4e,bm_c2a4f,bm_c2a4g,bm_c2a4h,bm_c2a5a,bm_c2a5b,bm_c2a5c,bm_c2a5d,bm_c2a5e,bm_c2a5f,bm_c2a5g,bm_c2a5h,bm_c2a5i,bm_c3a1a,bm_c3a1b,bm_c3a2a,bm_c3a2b,bm_c3a2c,bm_c3a2d,bm_c3a2e,bm_c3a2f,bm_c3a2g,bm_c3a2h,bm_c3a2i,bm_c4a1a,bm_c4a1a1,bm_c4a1b,bm_c4a1b1,bm_c4a1c,bm_c4a1c1,bm_c4a2a,bm_c4a2b,bm_c4a2c,bm_c4a3a,bm_c4a3a1,bm_c4a3b,bm_c4a3b1,bm_c4a3b2,bm_c4a3c,bm_c4a3c1,bm_c4a3c2,bm_c4a3d,bm_c4a3d1,bm_c4a4a,bm_c5a1,credits",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -78,6 +83,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -88,6 +94,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -98,6 +105,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|integer|in:346680",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -108,6 +116,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -118,6 +127,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -128,6 +138,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -138,6 +149,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:1131",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -148,6 +160,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:6940",
+            "sort": null,
             "field_type": "text"
         }
     ]

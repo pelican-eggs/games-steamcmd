@@ -1,0 +1,184 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "update_url": null,
+        "version": "PTDL_v2"
+    },
+    "exported_at": "2024-06-01T00:03:53+00:00",
+    "name": "Arma Reforger",
+    "author": "rehlmgaming@gmail.com",
+    "description": "Experience authentic Cold War combat and join friends in the struggle for a sprawling, 51 km² mid-Atlantic island — or take on the role of Game Master and create your very own scenarios for others to enjoy.",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "ghcr.io/parkervcp/steamcmd:debian": "ghcr.io/parkervcp/steamcmd:debian"
+    },
+    "file_denylist": [],
+    "startup": "./ArmaReforgerServer -gproj ./addons/data/ArmaReforger.gproj -config ./config.json -profile ./profile -backendlog -nothrow -listScenarios -logStats $(({{LOG_INTERVAL}}*1000)) -maxFPS {{MAX_FPS}}",
+    "config": {
+        "files": "{\r\n    \"config.json\": {\r\n        \"parser\": \"json\",\r\n        \"find\": {\r\n            \"bindAddress\": \"0.0.0.0\",\r\n            \"bindPort\": \"{{server.build.default.port}}\",\r\n            \"publicAddress\": \"{{server.build.default.ip}}\",\r\n            \"publicPort\": \"{{server.build.default.port}}\",\r\n            \"game.name\": \"{{server.build.env.SERVER_NAME}}\",\r\n            \"game.password\": \"{{server.build.env.SERVER_PASS}}\",\r\n            \"game.passwordAdmin\": \"{{server.build.env.ADMIN_PASS}}\",\r\n            \"game.scenarioId\": \"{{server.build.env.SCENARIO_ID}}\",\r\n            \"game.maxPlayers\": \"{{server.build.env.MAX_PLAYERS}}\",\r\n            \"game.gameProperties.fastValidation\": true\r\n        }\r\n    }\r\n}",
+        "logs": "{}",
+        "startup": "{\r\n    \"done\": \"Starting RPL server\"\r\n}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "container": "ghcr.io/parkervcp/installers:debian",
+            "entrypoint": "bash",
+            "script": "#!/bin/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n# Image to install with is 'ghcr.io/parkervcp/installers:debian'\r\n\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n## install game using steamcmd\r\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] \u0026\u0026 printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n\r\n## Arma Reforger setup\r\n# Check for successful installation\r\nif [[ ! -f $HOME/ArmaReforgerServer ]]; then\r\n    echo -e \"\\n\\nSteamCMD failed to install the Arma Reforger Dedicated Server!\"\r\n    echo -e \"\\tTry reinstalling the server again.\\n\"\r\n    exit 1\r\nfi\r\n\r\nmkdir -p $HOME/profile\r\n\r\necho -e 'Creating default \"config.json\" configuration file...'\r\ncat \u003e $HOME/config.json \u003c\u003c EOF\r\n{\r\n\t\"bindAddress\": \"0.0.0.0\",\r\n\t\"bindPort\": ${SERVER_PORT},\r\n\t\"publicAddress\": \"${SERVER_IP}\",\r\n\t\"publicPort\": ${SERVER_PORT},\r\n\t\"game\": {\r\n\t\t\"name\": \"${SERVER_NAME}\",\r\n\t\t\"password\": \"${SERVER_PASS}\",\r\n\t\t\"passwordAdmin\": \"${ADMIN_PASS}\",\r\n\t\t\"scenarioId\": \"${SCENARIO_ID}\",\r\n\t\t\"maxPlayers\": ${MAX_PLAYERS},\r\n\t\t\"visible\": true,\r\n\t\t\"gameProperties\": {\r\n\t\t\t\"serverMaxViewDistance\": 500,\r\n\t\t\t\"serverMinGrassDistance\": 50,\r\n\t\t\t\"networkViewDistance\": 500,\r\n\t\t\t\"disableThirdPerson\": ${DISABLE_THIRD},\r\n\t\t\t\"fastValidation\": true,\r\n\t\t\t\"battlEye\": ${BATTLEYE},\r\n\t\t\t\"VONDisableUI\": false,\r\n\t\t\t\"VONDisableDirectSpeechUI\": false\r\n\t\t},\r\n\t\t\"mods\": []\r\n\t}\r\n}\r\nEOF\r\n\r\necho -e \"\\nArma Reforger Dedicated Server successfully installed!\\n\""
+        }
+    },
+    "variables": [
+        {
+            "name": "Automatic Updates",
+            "description": "Quickly checks for any server or mod updates on startup, and updates if necessary.",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Region",
+            "description": "Region listed in the server browser. ISO 3166-1 alpha-2 codes can be used in this field.",
+            "env_variable": "REGION",
+            "default_value": "US",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:AD,AE,AF,AG,AI,AL,AM,AO,AQ,AR,AS,AT,AU,AW,AX,AZ,BA,BB,BD,BE,BF,BG,BH,BI,BJ,BL,BM,BN,BO,BQ,BR,BS,BT,BV,BW,BY,BZ,CA,CC,CD,CF,CG,CH,CI,CK,CL,CM,CN,CO,CR,CU,CV,CW,CX,CY,CZ,DE,DJ,DK,DM,DO,DZ,EC,EE,EG,EH,ER,ES,ET,EU,FI,FJ,FK,FM,FO,FR,GA,GB,GD,GE,GF,GG,GH,GI,GL,GM,GN,GP,GQ,GR,GS,GT,GU,GW,GY,HK,HM,HN,HR,HT,HU,ID,IE,IL,IM,IN,IO,IQ,IR,IS,IT,JE,JM,JO,JP,KE,KG,KH,KI,KM,KN,KP,KR,KW,KY,KZ,LA,LB,LC,LI,LK,LR,LS,LT,LU,LV,LY,MA,MC,MD,ME,MF,MG,MH,MK,ML,MM,MN,MO,MP,MQ,MR,MS,MT,MU,MV,MW,MX,MY,MZ,NA,NC,NE,NF,NG,NI,NL,NO,NP,NR,NU,NZ,OM,PA,PE,PF,PG,PH,PK,PL,PM,PN,PR,PS,PT,PW,PY,QA,RE,RO,RS,RU,RW,SA,SB,SC,SD,SE,SG,SH,SI,SJ,SK,SL,SM,SN,SO,SR,SS,ST,SV,SX,SY,SZ,TC,TD,TF,TG,TH,TJ,TK,TL,TM,TN,TO,TR,TT,TV,TW,TZ,UA,UG,UM,US,UY,UZ,VA,VC,VE,VG,VI,VN,VU,WF,WS,YE,YT,ZA,ZM,ZW",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Name",
+            "description": "Name displayed in the server browser.",
+            "env_variable": "SERVER_NAME",
+            "default_value": "Arma Reforger Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:255",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Players",
+            "description": "Maximum number of players allowed to join the server.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "32",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|between:1,256",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Password",
+            "description": "Password required for clients to enter before they can join the server. Leave empty to have no password.",
+            "env_variable": "SERVER_PASS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:32",
+            "field_type": "text"
+        },
+        {
+            "name": "Admin Password",
+            "description": "",
+            "env_variable": "ADMIN_PASS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:32",
+            "field_type": "text"
+        },
+        {
+            "name": "Scenario ID",
+            "description": "ID of scenario to run/play. Valid IDs can be viewed in the console upon startup of the server.",
+            "env_variable": "SCENARIO_ID",
+            "default_value": "{ECC61978EDCC2B5A}Missions/23_Campaign.conf",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Auto Joinable",
+            "description": "Set if the session can be selected through the auto join feature.",
+            "env_variable": "AUTO_JOINABLE",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:true,false",
+            "field_type": "text"
+        },
+        {
+            "name": "Visible in Server Browser",
+            "description": "Set the visibility of the server in the Server Browser.",
+            "env_variable": "VISIBLE",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:true,false",
+            "field_type": "text"
+        },
+        {
+            "name": "Enable BattlEye",
+            "description": "Enables the anti-cheat engine on the server and requires all clients to be running it.",
+            "env_variable": "BATTLEYE",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:true,false",
+            "field_type": "text"
+        },
+        {
+            "name": "Disable Third Person",
+            "description": "",
+            "env_variable": "DISABLE_THIRD",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:true,false",
+            "field_type": "text"
+        },
+        {
+            "name": "[Advanced] Max FPS",
+            "description": "Sets a maximum FPS limit for the server, saving performance in some cases. Leave empty for no limit.",
+            "env_variable": "MAX_FPS",
+            "default_value": "120",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|integer|gt:0",
+            "field_type": "text"
+        },
+        {
+            "name": "[Advanced] Log FPS Interval",
+            "description": "How often (in seconds) to log the FPS and other debug stats to the console. Set to 0 to disable.",
+            "env_variable": "LOG_INTERVAL",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|min:0",
+            "field_type": "text"
+        },
+        {
+            "name": "[Repair] Validate Server Files",
+            "description": "\"true\" to enable; empty to disable. Validates all server files when Automatic Updates is enabled. Note: This will significantly increase server startup times, so it is recommended to only enable this when needed.",
+            "env_variable": "VALIDATE",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "[Advanced] Arma Reforger Dedicated Server App ID",
+            "description": "Used for installation and updates. Rarely needs to be changed.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "1874900",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|integer",
+            "field_type": "text"
+        }
+    ]
+}

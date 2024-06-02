@@ -1,0 +1,62 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "update_url": null,
+        "version": "PTDL_v2"
+    },
+    "exported_at": "2024-06-01T00:04:17+00:00",
+    "name": "Garry's Mod - Reworked",
+    "author": "vilhelm@prytznet.se",
+    "description": "Garry's Mod, is a sandbox physics game created by Garry Newman, and developed by his company, Facepunch Studios.",
+    "features": null,
+    "docker_images": {
+        "quay.io/pterodactyl/core:source": "quay.io/pterodactyl/core:source"
+    },
+    "file_denylist": [],
+    "startup": "./srcds_run -game garrysmod -console -maxplayers {{MAX_PLAYERS}} -port {{SERVER_PORT}} +ip 0.0.0.0 +map {{SRCDS_MAP}} -strictportbind -norestart +sv_setsteamaccount {{STEAM_ACC}}",
+    "config": {
+        "files": "{}",
+        "logs": "{\r\n    \"custom\": true,\r\n    \"location\": \"logs/latest.log\"\r\n}",
+        "startup": "{\r\n    \"done\": \"gameserver Steam ID\",\r\n    \"userInteraction\": []\r\n}",
+        "stop": "quit"
+    },
+    "scripts": {
+        "installation": {
+            "container": "ubuntu:16.04",
+            "entrypoint": "bash",
+            "script": "#!/bin/bash\r\n# Garry's Mod Installation Script\r\n#\r\n# Server Files: /mnt/server\r\napt -y update\r\napt -y --no-install-recommends install curl lib32gcc1 ca-certificates\r\n\r\ncd /tmp\r\ncurl -sSL -o steamcmd.tar.gz http://media.steampowered.com/installer/steamcmd_linux.tar.gz\r\n\r\nmkdir -p /mnt/server/steamcmd\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\n\r\nexport HOME=/mnt/server\r\n./steamcmd.sh +login anonymous +force_install_dir /mnt/server +app_update 4020 +quit\r\n\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so"
+        }
+    },
+    "variables": [
+        {
+            "name": "Map",
+            "description": "The default map for the server.",
+            "env_variable": "SRCDS_MAP",
+            "default_value": "gm_flatgrass",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|alpha_dash",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Account Token",
+            "description": "The Steam Account Token required for the server to be displayed publicly.",
+            "env_variable": "STEAM_ACC",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|alpha_num|size:32",
+            "field_type": "text"
+        },
+        {
+            "name": "Player Slots",
+            "description": "The amount of player slots on the server.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "32",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|max:128",
+            "field_type": "text"
+        }
+    ]
+}

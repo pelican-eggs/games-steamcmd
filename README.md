@@ -32,7 +32,7 @@
 * [Counter-Strike](counter_strike)
 * [Craftopia](craftopia)
 * [Cryofall](cryofall)
-* [DayZ (Experimental)](dayz-experimental)
+* [DayZ](dayz)
 * [DDNet](ddnet)
 * [Dead Matter](dead_matter)
 * [Don't Starve Together](dont_starve)

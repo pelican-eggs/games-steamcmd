@@ -1,63 +1,78 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "update_url": null,
-        "version": "PTDL_v2"
+        "version": "PTDL_v2",
+        "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:08+00:00",
-    "name": "DayZ (Experimental)",
-    "author": "rehlmgaming@gmail.com",
-    "description": "How long can you survive a post-apocalyptic world? A land overrun with an infected \"zombie\" population, where you compete with other survivors for limited resources. Will you team up with strangers and stay strong together? Or play as a lone wolf to avoid betrayal? This is DayZ – this is your story.",
+    "exported_at": "2024-06-05T20:20:54-07:00",
+    "name": "DayZ",
+    "author": "red_thirten@yahoo.com",
+    "uuid": "ef7d4603-175b-4c7c-a827-516a6c19c101",
+    "description": "How long can you survive a post-apocalyptic world? A land overrun with an infected \"zombie\" population, where you compete with other survivors for limited resources. Will you team up with strangers and stay strong together? Or play as a lone wolf to avoid betrayal? This is DayZ \u2013 this is your story.",
     "features": [
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io/parkervcp/games:dayz": "ghcr.io/parkervcp/games:dayz"
+        "ghcr.io\/parkervcp\/games:dayz": "ghcr.io\/parkervcp\/games:dayz"
     },
     "file_denylist": [],
-    "startup": "./{{SERVER_BINARY}} -ip=0.0.0.0 -port={{SERVER_PORT}} -profiles=./serverprofile -BEpath=./ -config=serverDZ.cfg -mod=\\\"{{CLIENT_MODS}}\\\" -serverMod=\\\"{{SERVERMODS}}\\\" \\\"{{STARTUP_PARAMS}}\\\"",
+    "startup": ".\/{{SERVER_BINARY}} -port={{SERVER_PORT}} -profiles=profiles -BEpath=battleye -config=serverDZ.cfg -mod={{CLIENT_MODS}} -serverMod={{SERVERMODS}} {{STARTUP_PARAMS}}",
     "config": {
-        "files": "{\r\n    \"serverDZ.cfg\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"hostname =\": \"hostname = \\\"{{env.SERVER_HOSTNAME}}\\\";\",\r\n            \"password =\": \"password = \\\"{{env.SERVER_PASSWORD}}\\\";\",\r\n            \"passwordAdmin =\": \"passwordAdmin = \\\"{{env.ADMIN_PASSWORD}}\\\";\",\r\n            \"maxPlayers\": \"maxPlayers = {{env.MAX_PLAYERS}};\",\r\n            \"verifySignatures\": \"verifySignatures = {{env.VERIFY_SIGNATURES}};\",\r\n            \"forceSameBuild\": \"forceSameBuild = {{env.ENFORCE_BUILD}};\",\r\n            \"disableVoN\": \"disableVoN = {{env.DISABLE_VON}};\",\r\n            \"vonCodecQuality\": \"vonCodecQuality = {{env.VON_QUALITY}};\",\r\n            \"disable3rdPerson\": \"disable3rdPerson = {{env.DISABLE_THIRD}};\",\r\n            \"disableCrosshair\": \"disableCrosshair = {{env.DISABLE_CROSSHAIR}};\",\r\n            \"disablePersonalLight\": \"disablePersonalLight = {{env.DISABLE_PERSONAL_LIGHT}};\",\r\n            \"lightingConfig\": \"lightingConfig = {{env.LIGHTING_CONFIG}};\",\r\n            \"serverTimeAcceleration\": \"serverTimeAcceleration = {{env.TIME_MULT}};\",\r\n            \"serverNightTimeAcceleration\": \"serverNightTimeAcceleration = {{env.NIGHT_MULT}};\",\r\n            \"serverTimePersistent\": \"serverTimePersistent = {{env.PERSISTENT_TIME}};\"\r\n        }\r\n    }\r\n}",
-        "logs": "{}",
+        "files": "{\r\n    \"serverDZ.cfg\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"hostname =\": \"hostname = \\\"{{env.SERVER_HOSTNAME}}\\\";\",\r\n            \"password =\": \"password = \\\"{{env.SERVER_PASSWORD}}\\\";\",\r\n            \"passwordAdmin =\": \"passwordAdmin = \\\"{{env.ADMIN_PASSWORD}}\\\";\",\r\n            \"maxPlayers\": \"maxPlayers = {{env.MAX_PLAYERS}};\",\r\n            \"verifySignatures\": \"verifySignatures = {{env.VERIFY_SIGNATURES}};\",\r\n            \"forceSameBuild\": \"forceSameBuild = {{env.ENFORCE_BUILD}};\",\r\n            \"disableVoN\": \"disableVoN = {{env.DISABLE_VON}};\",\r\n            \"vonCodecQuality\": \"vonCodecQuality = {{env.VON_QUALITY}};\",\r\n            \"disable3rdPerson\": \"disable3rdPerson = {{env.DISABLE_THIRD}};\",\r\n            \"disableCrosshair\": \"disableCrosshair = {{env.DISABLE_CROSSHAIR}};\",\r\n            \"disablePersonalLight\": \"disablePersonalLight = {{env.DISABLE_PERSONAL_LIGHT}};\",\r\n            \"lightingConfig\": \"lightingConfig = {{env.LIGHTING_CONFIG}};\",\r\n            \"serverTimeAcceleration\": \"serverTimeAcceleration = {{env.TIME_MULT}};\",\r\n            \"serverNightTimeAcceleration\": \"serverNightTimeAcceleration = {{env.NIGHT_MULT}};\",\r\n            \"serverTimePersistent\": \"serverTimePersistent = {{env.PERSISTENT_TIME}};\",\r\n            \"steamQueryPort\": \"steamQueryPort = {{env.QUERY_PORT}};\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Mission read.\"\r\n}",
+        "logs": "{}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "container": "ghcr.io/parkervcp/installers:debian",
-            "entrypoint": "/bin/bash",
-            "script": "#!/bin/bash\r\n\r\n## File: Pterodactyl DayZ (Experimental) Egg - egg-dayz-experimental.json\r\n## Author: David Wolfe (Red-Thirten)\r\n## Date: 2022/05/26\r\n## License: MIT License\r\n## Image to install with is 'ghcr.io/parkervcp/installers:debian'\r\n\r\n\r\n# Download and install SteamCMD\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd /mnt/server/steamapps\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n# Install game server using SteamCMD\r\n./steamcmd.sh +force_install_dir /mnt/server \"+login \\\"${STEAM_USER}\\\" \\\"${STEAM_PASS}\\\"\" +app_update ${STEAMCMD_APPID} ${STEAMCMD_EXTRA_FLAGS} validate +quit\r\n\r\n# Set up 32 and 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk{32,64}\r\ncp -v linux32/steamclient.so /mnt/server/.steam/sdk32/steamclient.so\r\ncp -v linux64/steamclient.so /mnt/server/.steam/sdk64/steamclient.so\r\n\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\""
+            "script": "#!\/bin\/bash\r\n\r\n## File: DayZ Egg - egg-dayz.json\r\n## Author: David Wolfe (Red-Thirten)\r\n## Date: 2024\/06\/05\r\n## License: MIT License\r\n## Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n## Download and install SteamCMD\r\nexport HOME=\/mnt\/server\r\ncd \/tmp\r\nmkdir -p $HOME\/steamcmd $HOME\/steamapps\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C $HOME\/steamcmd\r\ncd $HOME\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\n\r\n# Install\/Verify game server using SteamCMD\r\n.\/steamcmd.sh +force_install_dir $HOME \"+login \\\"${STEAM_USER}\\\" \\\"${STEAM_PASS}\\\"\" +app_update ${STEAMCMD_APPID} $( [[ -z ${STEAMCMD_BETAID} ]] || printf %s \"-beta ${STEAMCMD_BETAID}\" ) $( [[ -z ${STEAMCMD_BETAPASS} ]] || printf %s \"-betapassword ${STEAMCMD_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit\r\n\r\n# Set up 32 and 64 bit libraries\r\nmkdir -p $HOME\/.steam\/sdk{32,64}\r\ncp -v linux32\/steamclient.so $HOME\/.steam\/sdk32\/steamclient.so\r\ncp -v linux64\/steamclient.so $HOME\/.steam\/sdk64\/steamclient.so\r\n\r\n## DayZ Setup\r\ncd $HOME\r\n\r\n# Check for successful installation\r\nif [ ! -f DayZServer ] || [ ! -f serverDZ.cfg ]; then\r\n    echo -e \"\\n\\n[ERROR] SteamCMD failed to install the DayZ Dedicated Server!\"\r\n    echo -e \"\\tTry reinstalling the server again.\\n\"\r\n    exit 1\r\nfi\r\n\r\n# Add required steamQueryPort parameter to end of default serverDZ.cfg (if it's missing)\r\nif ! grep -q \"steamQueryPort\" serverDZ.cfg; then\r\n    echo -e '\\nAdding required additional parameters to end of default \"serverDZ.cfg\"...'\r\ncat >> serverDZ.cfg << EOL\r\n\r\n\r\nsteamQueryPort = 2305;\r\nEOL\r\nfi\r\n\r\necho -e \"\\nDayZ Dedicated Server successfully installed!\\n\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "\/bin\/bash"
         }
     },
     "variables": [
         {
+            "name": "[Host] Steam Query Port",
+            "description": "UDP port for Steam server list features. Helps the server be visible in the client server browser.",
+            "env_variable": "QUERY_PORT",
+            "default_value": "2305",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|integer|between:1024,65536",
+            "sort": null,
+            "field_type": "text"
+        },
+        {
             "name": "Steam Username",
-            "description": "Used for installation and updates. \"anonymous\" username can be used for server download, but a real account that owns DayZ is required for mod downloads. For security reasons it is recommended that you create a new Steam account just for your dedicated servers. *This info is not visible to the server owner.*",
+            "description": "Used for installation and updates. Account does not need to own DayZ, but MUST BE a VALID Steam account (anonymous login cannot be used). For security reasons it is recommended that you create a new Steam account just for your dedicated servers. *This info is not visible to the server owner.*",
             "env_variable": "STEAM_USER",
-            "default_value": "anonymous",
+            "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string",
+            "rules": "required|string|not_in:anonymous",
+            "sort": null,
             "field_type": "text"
         },
         {
             "name": "Steam Password",
-            "description": "Used for installation and updates. Steam Guard MUST be completely TURNED OFF for mod downloads to work. *This info is not visible to the server owner, BUT IS stored in PLAIN TEXT. It is NOT advised to use a personal account; best to use a dummy account.*",
+            "description": "Used for installation and updates. Steam Guard MUST be completely TURNED OFF for the server and mods to download efficiently. *This info is not visible to the server owner, BUT IS stored in PLAIN TEXT. It is NOT advised to use a personal account; best to use a dummy account.*",
             "env_variable": "STEAM_PASS",
             "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "nullable|string",
+            "rules": "required|string",
+            "sort": null,
             "field_type": "text"
         },
         {
-            "name": "Disable Mod Downloads/Updates",
-            "description": "If the Steam account does not own the base DayZ game, Steam Workshop mod downloads/updates will not work. If so, this setting allows disabling of this feature to avoid errors. (1 ON | 0 OFF)",
+            "name": "Disable Mod Downloads\/Updates",
+            "description": "If the Steam account does not own the base DayZ game, Steam Workshop mod downloads\/updates will not work. If so, this setting allows disabling of this feature to avoid errors. (1 ON | 0 OFF)",
             "env_variable": "DISABLE_MOD_UPDATES",
             "default_value": "0",
             "user_viewable": false,
             "user_editable": false,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -68,46 +83,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|integer",
-            "field_type": "text"
-        },
-        {
-            "name": "Server Name",
-            "description": "Name of the server that will appear in the server list.",
-            "env_variable": "SERVER_HOSTNAME",
-            "default_value": "DayZ Server",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Max Players",
-            "description": "Maximum number of players allowed to join the server.",
-            "env_variable": "MAX_PLAYERS",
-            "default_value": "64",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer|gt:0",
-            "field_type": "text"
-        },
-        {
-            "name": "Server Password",
-            "description": "Password required to join the server. Leave blank to have no password.",
-            "env_variable": "SERVER_PASSWORD",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Admin Password",
-            "description": "Password to log in as an admin on the server.",
-            "env_variable": "ADMIN_PASSWORD",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -118,16 +94,62 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
+            "field_type": "text"
+        },
+        {
+            "name": "Server Name",
+            "description": "Name of the server that will appear in the server list.",
+            "env_variable": "SERVER_HOSTNAME",
+            "default_value": "DayZ Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "sort": null,
+            "field_type": "text"
+        },
+        {
+            "name": "Max Players",
+            "description": "Maximum number of players allowed to join the server.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "64",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|gt:0",
+            "sort": null,
+            "field_type": "text"
+        },
+        {
+            "name": "Server Password",
+            "description": "Password required to join the server. Leave blank to have no password.",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "sort": null,
+            "field_type": "text"
+        },
+        {
+            "name": "Admin Password",
+            "description": "Password to log in as an admin on the server.",
+            "env_variable": "ADMIN_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
             "name": "Modlist File (Exported from DayZ Launcher)",
-            "description": "Filename for an exported modlist. This file will be parsed for mod installation and loading. Upload your HTML file to the root directory (eg. /home/container/modlist.html). Leave blank to disable loading mods from a modlist.",
+            "description": "Filename for an exported modlist. This file will be parsed for mod installation and loading. Upload your HTML file to the root directory (eg. \/home\/container\/modlist.html). Leave blank to disable loading mods from a modlist.",
             "env_variable": "MOD_FILE",
             "default_value": "modlist.html",
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -138,6 +160,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -148,6 +171,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:0,2",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -158,6 +182,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -168,6 +193,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -178,6 +204,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|between:0,30",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -188,6 +215,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -198,6 +226,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -208,6 +237,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -218,6 +248,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -228,6 +259,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -238,6 +270,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|between:0,24",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -248,6 +281,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|between:0.1,64",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -258,6 +292,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -268,6 +303,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -278,16 +314,18 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
             "name": "[Advanced] Extra Startup Parameters",
-            "description": "See https://community.bistudio.com/wiki/DayZ:Server_Configuration#Launch_Parameters for more info on valid flags for this field.",
+            "description": "See https:\/\/community.bistudio.com\/wiki\/DayZ:Server_Configuration#Launch_Parameters for more info on valid flags for this field.",
             "env_variable": "STARTUP_PARAMS",
-            "default_value": "-doLogs -limitFPS=120",
+            "default_value": "-dologs -adminlog -netlog -freezecheck",
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
+            "sort": null,
             "field_type": "text"
         },
         {
@@ -298,16 +336,18 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|string|in:DayZServer",
+            "sort": null,
             "field_type": "text"
         },
         {
-            "name": "[Advanced] DayZ SA Dedicated Server App ID",
-            "description": "Used for installation and updates. Rarely needs to be changed. Only the Experimental app ID currently works.",
+            "name": "[Advanced] DayZ Dedicated Server App ID",
+            "description": "Used for installation and updates. Rarely needs to be changed. 223350 is for Stable branch and 1042420 is for experimental branch. Changing branches may require deleting all server files and reinstalling.",
             "env_variable": "STEAMCMD_APPID",
-            "default_value": "1042420",
+            "default_value": "223350",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|integer",
+            "rules": "required|integer|in:223350,1042420",
+            "sort": null,
             "field_type": "text"
         }
     ]

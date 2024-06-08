@@ -56,6 +56,13 @@ ___
             <br />
             <a href="https://github.com/parkervcp/eggs/commits?author=AlienXAXS" title="Contributor">💡</a>
         </td>
+        <td align="center">
+            <a href="https://github.com/gOOvER">
+                <img src="https://avatars.githubusercontent.com/u/116325?v=4" width="50px;" alt=""/><br /><sub><b>gOOvER</b></sub>
+            </a>
+            <br />
+            <a href="https://github.com/parkervcp/eggs/commits?author=gOOvER" title="Contributor">💡</a>
+        </td>
     </tr>
 </table>
 <!-- markdownlint-enable -->

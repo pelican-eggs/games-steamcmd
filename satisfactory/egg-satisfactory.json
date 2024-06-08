@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:44+00:00",
+    "exported_at": "2024-06-08T04:41:17+00:00",
     "name": "Satisfactory",
     "author": "rehlmgaming@gmail.com",
     "uuid": "dafdb96a-e8c1-449f-a6ae-b7ba209c05ff",
@@ -13,12 +13,12 @@
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io\/parkervcp\/games:source": "ghcr.io\/parkervcp\/games:source"
+        "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
     "startup": ".\/Engine\/Binaries\/Linux\/*-Linux-Shipping FactoryGame ?listen -Port={{SERVER_PORT}} -ServerQueryPort={{QUERY_PORT}} -BeaconPort={{BEACON_PORT}} -multihome=0.0.0.0 $(if {{DISABLE_SEASONAL}}; then echo \"-DisableSeasonalEvents\"; fi)",
     "config": {
-        "files": "{\r\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Game.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"MaxPlayers\": \"MaxPlayers={{server.build.env.MAX_PLAYERS}}\"\r\n        }\r\n    },\r\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Engine.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"mNumRotatingAutosaves\": \"mNumRotatingAutosaves={{server.build.env.NUM_AUTOSAVES}}\",\r\n            \"bImplicitSend\": \"bImplicitSend={{server.build.env.UPLOAD_CRASH_REPORT}}\",\r\n            \"InitialConnectTimeout\": \"InitialConnectTimeout={{server.build.env.INIT_CONNECT_TIMEOUT}}\",\r\n            \"ConnectionTimeout\": \"ConnectionTimeout={{server.build.env.CONNECT_TIMEOUT}}\"\r\n        }\r\n    },\r\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/GameUserSettings.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"mFloatValues\": \"mFloatValues=((\\\"FG.AutosaveInterval\\\", {{server.build.env.AUTOSAVE_INTERVAL}}))\",\r\n            \"mIntValues\": \"mIntValues=((\\\"FG.NetworkQuality\\\", {{server.build.env.NETWORK_QUALITY}}))\"\r\n        }\r\n    }\r\n}",
+        "files": "{\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Game.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"MaxPlayers\": \"MaxPlayers={{server.environment.MAX_PLAYERS}}\"\n        }\n    },\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Engine.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"mNumRotatingAutosaves\": \"mNumRotatingAutosaves={{server.environment.NUM_AUTOSAVES}}\",\n            \"bImplicitSend\": \"bImplicitSend={{server.environment.UPLOAD_CRASH_REPORT}}\",\n            \"InitialConnectTimeout\": \"InitialConnectTimeout={{server.environment.INIT_CONNECT_TIMEOUT}}\",\n            \"ConnectionTimeout\": \"ConnectionTimeout={{server.environment.CONNECT_TIMEOUT}}\"\n        }\n    },\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/GameUserSettings.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"mFloatValues\": \"mFloatValues=((\\\"FG.AutosaveInterval\\\", {{server.environment.AUTOSAVE_INTERVAL}}))\",\n            \"mIntValues\": \"mIntValues=((\\\"FG.NetworkQuality\\\", {{server.environment.NETWORK_QUALITY}}))\"\n        }\n    }\n}",
         "startup": "{\r\n    \"done\": \"Engine Initialization\"\r\n}",
         "logs": "{}",
         "stop": "^C"
@@ -39,7 +39,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|integer|between:1024,65536",
-            "sort": null,
+            "sort": 1,
             "field_type": "text"
         },
         {
@@ -50,7 +50,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|integer|between:1024,65536",
-            "sort": null,
+            "sort": 2,
             "field_type": "text"
         },
         {
@@ -61,7 +61,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
-            "sort": null,
+            "sort": 3,
             "field_type": "text"
         },
         {
@@ -72,7 +72,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "string|nullable",
-            "sort": null,
+            "sort": 4,
             "field_type": "text"
         },
         {
@@ -83,7 +83,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|min:1",
-            "sort": null,
+            "sort": 5,
             "field_type": "text"
         },
         {
@@ -94,7 +94,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:0",
-            "sort": null,
+            "sort": 6,
             "field_type": "text"
         },
         {
@@ -105,7 +105,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:true,false",
-            "sort": null,
+            "sort": 7,
             "field_type": "text"
         },
         {
@@ -116,7 +116,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:true,false",
-            "sort": null,
+            "sort": 8,
             "field_type": "text"
         },
         {
@@ -127,7 +127,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:1",
-            "sort": null,
+            "sort": 9,
             "field_type": "text"
         },
         {
@@ -138,7 +138,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|min:1",
-            "sort": null,
+            "sort": 10,
             "field_type": "text"
         },
         {
@@ -149,7 +149,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|min:1",
-            "sort": null,
+            "sort": 11,
             "field_type": "text"
         },
         {
@@ -160,7 +160,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|between:0,3",
-            "sort": null,
+            "sort": 12,
             "field_type": "text"
         },
         {
@@ -171,7 +171,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "string|nullable|in:public,experimental",
-            "sort": null,
+            "sort": 13,
             "field_type": "text"
         },
         {
@@ -182,7 +182,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|integer|min:1",
-            "sort": null,
+            "sort": 14,
             "field_type": "text"
         }
     ]

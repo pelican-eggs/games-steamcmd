@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-15T07:06:05+00:00",
+    "exported_at": "2024-06-15T09:44:04+02:00",
     "name": "Night Of The Dead",
     "author": "marshals@gmail.com",
     "description": "Build defenses against nightly waves of zombies. Survive and escape the island.",
@@ -15,12 +15,12 @@
         "wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
     },
     "file_denylist": [],
-    "startup": "xvfb-run --auto-servernum wine \/home\/container\/LF\/Binaries\/Win64\/LFServer-Win64-Shipping.exe ?listen -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -console -log --CRASHREPORTS {{OTHER_ARGS}}",
+    "startup": "wine \/home\/container\/LF\/Binaries\/Win64\/LFServer-Win64-Shipping.exe ?listen -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -console -log --CRASHREPORTS {{OTHER_ARGS}} & NOTD_PID=$!; sleep 5; tail -c0 -F  \/home\/container\/LF\/Saved\/Logs\/LF.log --pid=$NOTD_PID",
     "config": {
-        "files": "{\n    \"LF\/Saved\/Config\/ServerSettings.ini\": {\n        \"parser\": \"ini\",\n        \"find\": {\n            \"ServerSettings.ServerName\": \"{{env.SERVER_NAME}}\",\n            \"ServerSettings.Password\": \"{{env.SERVER_PASSWORD}}\",\n            \"SystemSettings.SaveName\": \"\/home\/container\/LF\/Saved\/SaveGames\/{{env.SERVER_SAVEGAME}}\",\n            \"SystemSettings.IngameAdminPassword\": \"{{env.SERVER_ADMIN_PASSWORD}}\",\n            \"SystemSettings.DefaultMessageOfTheDay\": \"{{env.SERVER_MOTD}}\",\n            \"GameSettings.Difficulty\": \"{{env.DIFFICULTY}}\",\n            \"GameSettings\/General.MODSelect\": \"{{env.PVP}}\"\n        }\n    }\n}",
-        "startup": "{\n    \"done\": [\n        \"Successfully updated session\",\n        \"Session Update success\"\n    ]\n}",
+        "files": "{\n    \"LF\/Saved\/Config\/ServerSettings.ini\": {\n        \"parser\": \"ini\",\n        \"find\": {\n            \"ServerSettings.ServerName\": \"{{env.SERVER_NAME}}\",\n            \"ServerSettings.Password\": \"{{env.SERVER_PASSWORD}}\",\n            \"SystemSettings.SaveName\": \"\/home\/container\/LF\/Saved\/SaveGames\/{{env.SERVER_SAVEGAME}}\",\n            \"SystemSettings.IngameAdminPassword\": \"{{env.SERVER_ADMIN_PASSWORD}}\",\n            \"SystemSettings.DefaultMessageOfTheDay\": \"{env.SERVER_MOTD}}\",\n            \"GameSettings.Difficulty\": \"{{env.DIFFICULTY}}\",\n            \"GameSettings\/General.MODSelect\": \"{{env.PVP}}\"\n        }\n    }\n}",
+        "startup": "{\n    \"done\": [\n        \"Successfully updated session\",\n        \"Start Session Complete\"\n    ]\n}",
         "logs": "{}",
-        "stop": "^^C"
+        "stop": "^C"
     },
     "scripts": {
         "installation": {
@@ -134,7 +134,7 @@
             "name": "Savegame Name",
             "description": "",
             "env_variable": "SERVER_SAVEGAME",
-            "default_value": "savedgame",
+            "default_value": "savedgame1",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:32",
@@ -178,6 +178,16 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "XVFB",
+            "description": "Start XVFB in the background.",
+            "env_variable": "XVFB",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "boolean|in:1",
             "field_type": "text"
         }
     ]

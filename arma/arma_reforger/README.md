@@ -50,11 +50,11 @@ ___
 
 ### Server Ports
 
-| Port | Default (UDP) | Notes |
-|---------|---------|---------|
-| **Game** | 2001 | **Required** / Primary port in Pterodactyl |
-| Steam communication | 50000..65000 | Documented, but not seemingly needed |
-| Steam Query | 17777 | Used to provide Steam with server status (but does not seemingly need to be forwarded) |
+| Port | Default | Protocol | Required | Notes |
+|---------|---------|---------|---------|---------|
+| **Game** | 2001 | UDP | **Yes** | Primary port in Panel |
+| A2S | 17777 | UDP | No | Steam Query / Requires additional configuration in `config.json` |
+| RCON | 19999 | UDP | No | Requires additional configuration in `config.json` |
 
 ___
 
@@ -65,7 +65,7 @@ ___
 | Processor | Recent x86/64 (AMD/Intel) processor. No ARM support. | Can use up to 300-600% CPU under load with uncapped FPS (set Max FPS to prevent). |
 | RAM | 3328 MiB | 6144-8192 MiB |
 | Storage | 5 GB | 7-10 GB (or more, depending on number of mods downloaded) |
-| Network | If node is behind a NAT, will require Egg Modification (\*see [Define Host Registered Bind Address](#define-host-registered-bind-address) | Pterodactyl Node is not behind a NAT |
+| Network | If node is behind a NAT, will require Egg Modification (\*see [Define Host Registered Bind Address](#define-host-registered-bind-address) | Wings Node is not behind a NAT |
 | Game Ownership | Not required to start or download mods. | ---- |
 
 ___
@@ -110,14 +110,14 @@ The following are highly recommended variable modifications you can make to the 
 
 #### Define Host Registered Bind Address
 
-Due to a current behavior of Pterodactyl, `SERVER_IP` will not return the node's public IP address if it is behind a NAT; it will return its private IP address. Unfortunately at this time, Arma Reforger **requires** the server's public IP address to be strictly defined within `config.json`. If you know your node is behind a NAT (or you are finding your node's private IP address being added to `config.json`), you will need to edit this egg after importing it by following these steps:
+Due to a current behavior of the Panel, `SERVER_IP` will not return the node's public IP address if it is behind a NAT; it will return its private IP address. Unfortunately at this time, Arma Reforger **requires** the server's public IP address to be strictly defined within `config.json`. If you know your node is behind a NAT (or you are finding your node's private IP address being added to `config.json`), you will need to edit this egg after importing it by following these steps:
 
 1. As a panel admin, find and open the egg within your Nests tab.
 2. On the first tab "Configuration", find the "Configuration Files" box under the "Process Management" section.
 3. Carefully (as to not touch anything else), find `{{server.build.default.ip}}` and replace it with your node's public IP address. If done correctly, the line should now look something like this:
 
 ```json
-"    \"gameHostRegisterBindAddress\"": "    \"gameHostRegisterBindAddress\": \"123.4.56.789\",",
+"publicAddress": "123.4.56.789",
 ```
 
 #### Restrict Max Players

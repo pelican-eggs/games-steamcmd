@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:33+00:00",
+    "exported_at": "2024-07-15T19:02:11+02:00",
     "name": "Palworld Proton",
     "author": "josdekurk@gmail.com",
     "uuid": "6b1ab0c0-7e4f-437a-acc4-2952515d279e",
@@ -32,6 +32,7 @@
     },
     "variables": [
         {
+            "sort": 1,
             "name": "App ID",
             "description": "Do not edit!",
             "env_variable": "SRCDS_APPID",
@@ -39,10 +40,10 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:2394010",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 2,
             "name": "Auto Update",
             "description": "Auto update the server on start.",
             "env_variable": "AUTO_UPDATE",
@@ -50,10 +51,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 3,
             "name": "Max Players",
             "description": "",
             "env_variable": "MAX_PLAYERS",
@@ -61,10 +62,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|between:1,32",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 4,
             "name": "Server Name",
             "description": "",
             "env_variable": "SERVER_NAME",
@@ -72,10 +73,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:64",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 5,
             "name": "Server Password",
             "description": "If specified, players must provide this password to join the server.",
             "env_variable": "SERVER_PASSWORD",
@@ -83,10 +84,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|alpha_dash|between:1,30",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 6,
             "name": "Admin Password",
             "description": "If specified, players must provide this password (via the in-game chat or RCON) to gain access to administrator commands on the server.",
             "env_variable": "ADMIN_PASSWORD",
@@ -94,10 +95,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|alpha_dash|between:1,30",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 7,
             "name": "Public IP",
             "description": "Set this to the server public ip address.\r\nOnly needed if the allocation is a local ip, else the allocate ip will be used automatically",
             "env_variable": "PUBLIC_IP",
@@ -105,10 +106,10 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "nullable|string",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 8,
             "name": "RCON Port",
             "description": "Does not need to be allocated!",
             "env_variable": "RCON_PORT",
@@ -116,10 +117,10 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|numeric",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 9,
             "name": "Enable RCON",
             "description": "Must Be ON",
             "env_variable": "RCON_ENABLE",
@@ -127,21 +128,10 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:True",
-            "sort": null,
             "field_type": "text"
         },
         {
-            "name": "bEnableInvaderEnemy",
-            "description": "Turns off or on bEnableInvaderEnemy,\r\nCan be used to slow download memory leaks.\r\nOff should slow down the memory leaks.",
-            "env_variable": "ENABLE_ENEMY",
-            "default_value": "True",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:True,False",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
+            "sort": 10,
             "name": "Server Description",
             "description": "The description of the server.",
             "env_variable": "SERVER_DESCRIPTION",
@@ -149,10 +139,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:128",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 11,
             "name": "WINDOWS_INSTALL",
             "description": "",
             "env_variable": "WINDOWS_INSTALL",
@@ -160,7 +150,17 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|in:1",
-            "sort": null,
+            "field_type": "text"
+        },
+        {
+            "sort": 12,
+            "name": "Connection Platfrom",
+            "description": "The platform players will be able to connect from",
+            "env_variable": "ALLOW_CONNECT_PLATFORM",
+            "default_value": "Steam",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:Steam,Xbox",
             "field_type": "text"
         }
     ]

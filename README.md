@@ -57,6 +57,7 @@
 * [Left 4 Dead](left4dead)
 * [Left 4 Dead 2](left4dead_2)
 * [Longvinter](longvinter)
+* [Midnight Ghost Hunt](midnight_ghost_hunt/)
 * [Modiverse](modiverse)
 * [Mordhau](mordhau)
 * [Mount & Blade II: Bannerlord](mount_blade_II_bannerlord)

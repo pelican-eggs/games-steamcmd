@@ -16,7 +16,7 @@
         "Proton": "ghcr.io\/parkervcp\/steamcmd:proton"
     },
     "file_denylist": [],
-    "startup": "proton run MidnightGhostHunt\/Binaries\/Win64\/MidnightGhostHuntServer-Win64-Shipping.exe -server -log -port={{SERVER_PORT}} -queryport={{QUERY_PORT}} -BeaconPort={{BEACON_PORT}} -multihome=0.0.0.0 -Map={{MAP}}-Gamename=\"{{GAME_NAME}}\" -Gamemode=\"{{GAME_MODE}}\" -Region=\"{{REGION}}\" -BotDifficulty=\"{{B_DIFFICULTY}}\" -password=\"{{PASSWORD}}\" {{ADDITIONAL_ARGS}}  & GH_PID=$!; sleep 1; tail -c0 -F  \/home\/container\/MidnightGhostHunt\/Saved\/Logs\/MidnightGhostHunt.log --pid=$GH_PID",
+    "startup": "proton run MidnightGhostHunt\/Binaries\/Win64\/MidnightGhostHuntServer-Win64-Shipping.exe -server -log -port={{SERVER_PORT}} -queryport={{QUERY_PORT}} -BeaconPort={{BEACON_PORT}} -multihome=0.0.0.0 -Map={{MAP}} -Gamename=\"{{GAME_NAME}}\" -Gamemode=\"{{GAME_MODE}}\" -Region=\"{{REGION}}\" -BotDifficulty=\"{{B_DIFFICULTY}}\" -password=\"{{PASSWORD}}\" {{ADDITIONAL_ARGS}}  & GH_PID=$!; sleep 1; tail -c0 -F  \/home\/container\/MidnightGhostHunt\/Saved\/Logs\/MidnightGhostHunt.log --pid=$GH_PID",
     "config": {
         "files": "{}",
         "startup": "{\n    \"done\": \"IpNetDriver listening on port\"\n}",

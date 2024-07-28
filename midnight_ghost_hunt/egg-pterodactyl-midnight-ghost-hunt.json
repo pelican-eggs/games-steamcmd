@@ -78,7 +78,7 @@
             "default_value": "Dedicated_Server_01",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|alpha_dash|min:3",
+            "rules": "required|string|min:3",
             "field_type": "text"
         },
         {

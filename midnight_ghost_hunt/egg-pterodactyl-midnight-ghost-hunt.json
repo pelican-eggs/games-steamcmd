@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-07-17T15:11:01+02:00",
+    "exported_at": "2024-07-28T19:43:17+02:00",
     "name": "Midnight Ghost Hunt",
     "author": "josdekurk@gmail.com",
     "uuid": "b8327da9-c298-4e5a-9271-04c35a377ce3",
@@ -16,10 +16,10 @@
         "Proton": "ghcr.io\/parkervcp\/steamcmd:proton"
     },
     "file_denylist": [],
-    "startup": "proton run MidnightGhostHunt\/Binaries\/Win64\/MidnightGhostHuntServer-Win64-Shipping.exe -server -log -port={{SERVER_PORT}} -queryport={{QUERY_PORT}} -BeaconPort={{BEACON_PORT}} -multihome=0.0.0.0 -Map={{MAP}}-Gamename=\"{{GAME_NAME}}\" -Gamemode=\"{{GAME_MODE}}\" -Region=\"{{REGION}}\" -BotDifficulty=\"{{B_DIFFICULTY}}\" -password=\"{{PASSWORD}}\" {{ADDITIONAL_ARGS}}  & GH_PID=$!; sleep 1; tail -c0 -F  \/home\/container\/MidnightGhostHunt\/Saved\/Logs\/MidnightGhostHunt.log --pid=$GH_PID",
+    "startup": "proton run MidnightGhostHunt\/Binaries\/Win64\/MidnightGhostHuntServer-Win64-Shipping.exe -server -log -port={{SERVER_PORT}} -queryport={{QUERY_PORT}} -BeaconPort={{BEACON_PORT}} -multihome=0.0.0.0 -Map={{MAP}} -Gamename=\"{{GAME_NAME}}\" -Gamemode=\"{{GAME_MODE}}\" -Region=\"{{REGION}}\" -BotDifficulty=\"{{B_DIFFICULTY}}\" -password=\"{{PASSWORD}}\" {{ADDITIONAL_ARGS}}  & GH_PID=$!; sleep 1; tail -c0 -F  \/home\/container\/MidnightGhostHunt\/Saved\/Logs\/MidnightGhostHunt.log --pid=$GH_PID",
     "config": {
         "files": "{}",
-        "startup": "{\n    \"done\": \"IpNetDriver listening on port\"\n}",
+        "startup": "{\r\n    \"done\": \"IpNetDriver listening on port\"\r\n}",
         "logs": "{}",
         "stop": "^C"
     },
@@ -78,7 +78,7 @@
             "default_value": "Dedicated_Server_01",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|alpha_dash|min:3",
+            "rules": "required|string|min:3",
             "field_type": "text"
         },
         {

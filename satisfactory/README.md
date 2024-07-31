@@ -175,7 +175,7 @@ steamclient.so: cannot open shared object file: No such file or directory
 LogSteamShared: Warning: Steam Dedicated Server API failed to initialize.
 ```
 
-↑ The local file of 'steamclient.so' was attempted to be loaded, but could not because it is not present, causing the warning message. However, the backup `/home/container/.steam/sdk64/steamclient.so` is loaded successfully (this is the correct behavior according to the [Wiki](https://satisfactory.wiki.gg/wiki/Dedicated_servers#SteamAPI_Init.28.29:_Sys_LoadModule_filed_to_load:_.2Fpath.2Fto.2F.steam.2Fsdk64.2Fsteamclient.so)).
+↑ The local file of 'steamclient.so' was attempted to be loaded, but could not because it is not present, causing the warning message. However, the backup `/home/container/.steam/sdk64/steamclient.so` is loaded successfully (this is the correct behavior according to the [Wiki](https://satisfactory.wiki.gg/wiki/Dedicated_servers#SteamAPI_Init():_Sys_LoadModule_failed_to_load:_/path/to/.steam/sdk64/steamclient.so)).
 
 ```log
 Warning: failed to init SDL thread priority manager: SDL not found

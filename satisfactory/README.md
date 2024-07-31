@@ -112,7 +112,7 @@ ___
 | Processor | Recent x86/64 (AMD/Intel) processor. No 32 bit or ARM support. | Favours higher single-core performance over multiple cores. |
 | RAM | 1536-2048 MiB | 6144-12288 MiB (especially for 4 players or large save files) |
 | Storage | 5 GB | 7-10 GB (or more, depending on save size or frequency) |
-| Network | 0.512 Mbit/s | 1-5 Mbit/s ([may require server *and* client config tweaks](https://satisfactory.fandom.com/wiki/Multiplayer#Temporary_lag_solution)) |
+| Network | 0.512 Mbit/s | 1-5 Mbit/s ([may require server *and* client config tweaks](https://satisfactory.wiki.gg/wiki/Multiplayer#Temporary_lag_solution)) |
 | Host OS | Most stable Linux OS branches should work | Using the latest kernel version for your installed OS can prevent some edge-case installation/boot issues. |
 | Game Ownership | Not required to start. | Required to fully "initialize" (see [Server Initialization](#server-initialization) below) |
 
@@ -161,7 +161,7 @@ ___
 
 The console tab in the client server manager is the only way to execute commands. Entering commands via Pterodactyl do nothing.
 
-[List of known commands can be found via the Wiki.](https://satisfactory.fandom.com/wiki/Dedicated_servers#Console_commands)
+[List of known commands can be found via the Wiki.](https://satisfactory.wiki.gg/wiki/Dedicated_servers#Console_commands)
 
 ___
 
@@ -175,7 +175,7 @@ steamclient.so: cannot open shared object file: No such file or directory
 LogSteamShared: Warning: Steam Dedicated Server API failed to initialize.
 ```
 
-↑ The local file of 'steamclient.so' was attempted to be loaded, but could not because it is not present, causing the warning message. However, the backup `/home/container/.steam/sdk64/steamclient.so` is loaded successfully (this is the correct behavior according to the [Wiki](https://satisfactory.fandom.com/wiki/Dedicated_servers#SteamAPI_Init.28.29:_Sys_LoadModule_filed_to_load:_.2Fpath.2Fto.2F.steam.2Fsdk64.2Fsteamclient.so)).
+↑ The local file of 'steamclient.so' was attempted to be loaded, but could not because it is not present, causing the warning message. However, the backup `/home/container/.steam/sdk64/steamclient.so` is loaded successfully (this is the correct behavior according to the [Wiki](https://satisfactory.wiki.gg/wiki/Dedicated_servers#SteamAPI_Init():_Sys_LoadModule_failed_to_load:_/path/to/.steam/sdk64/steamclient.so)).
 
 ```log
 Warning: failed to init SDL thread priority manager: SDL not found

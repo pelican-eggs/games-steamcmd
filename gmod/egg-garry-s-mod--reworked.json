@@ -14,7 +14,7 @@
         "quay.io\/pterodactyl\/core:source": "quay.io\/pterodactyl\/core:source"
     },
     "file_denylist": [],
-    "startup": ".\/srcds_run -game garrysmod -console -maxplayers {{MAX_PLAYERS}} -port {{SERVER_PORT}} +ip 0.0.0.0 +map {{SRCDS_MAP}} -strictportbind -norestart +sv_setsteamaccount {{STEAM_ACC}}",
+    "startup": ".\/srcds_run -game garrysmod -console -maxplayers {{MAX_PLAYERS}} -port {{SERVER_PORT}} -tickrate {{TICKRATE}} +ip 0.0.0.0 +gamemode {{GAMEMODE}} +map {{SRCDS_MAP}} -strictportbind -norestart +sv_setsteamaccount {{STEAM_ACC}}",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"gameserver Steam ID\",\r\n    \"userInteraction\": []\r\n}",
@@ -59,6 +59,28 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|max:128",
+            "sort": null,
+            "field_type": "text"
+        },
+        {
+            "name": "Gamemode",
+            "description": "The gamemode of the server.",
+            "env_variable": "GAMEMODE",
+            "default_value": "sandbox",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|alpha_dash",
+            "sort": null,
+            "field_type": "text"
+        },
+        {
+            "name": "Tickrate",
+            "description": "The tickt rate or update rate of the server.",
+            "env_variable": "TICKRATE",
+            "default_value": "22",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|between:1,128",
             "sort": null,
             "field_type": "text"
         }

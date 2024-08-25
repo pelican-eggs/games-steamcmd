@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:12+00:00",
+    "exported_at": "2024-08-25T09:33:05+00:00",
     "name": "Foundry",
     "author": "eggs@goover.dev",
     "uuid": "91705781-6ef4-49a7-8655-8da3b89aa99f",
@@ -13,12 +13,12 @@
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io\/parkervcp\/yolks:wine_staging": "ghcr.io\/parkervcp\/yolks:wine_staging"
+        "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
     },
     "file_denylist": [],
     "startup": "xvfb :0 -screen 0 1024x768x16; DISPLAY=:0.0 xvfb-run wine \/home\/container\/FoundryDedicatedServer.exe -log",
     "config": {
-        "files": "{\r\n    \"App.cfg\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"server_name\": \"{{server.build.env.SERVER_NAME}}\",\r\n            \"server_password\": \"{{server.build.env.SRV_PW}}\",\r\n            \"server_world_name\": \"{{server.build.env.WORLD_NAME}}\",\r\n            \"server_max_players\": \"{{server.build.env.MAX_PLAYERS}}\",\r\n            \"server_port\": \"{{server.build.default.port}}\",\r\n            \"server_query_port\": \"{{server.build.env.QUERY_PORT}}\",\r\n            \"pause_server_when_empty\": \"{{server.build.env.PAUSE_SERVER}}\",\r\n            \"autosave_interval\": \"{{server.build.env.AUTOSAVE_INTERVAL}}\",\r\n            \"server_is_public\": \"{{server.build.env.PUBLIC_SERVER}}\",\r\n            \"server_persistent_data_override_folder\": \"{{server.build.env.SAVE_PATH}}\",\r\n            \"map_seed\": \"{{server.build.env.MAP_SEED}}\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"App.cfg\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"server_name\": \"{{server.environment.SERVER_NAME}}\",\r\n            \"server_password\": \"{{server.environment.SRV_PW}}\",\r\n            \"server_world_name\": \"{{server.environment.WORLD_NAME}}\",\r\n            \"server_max_players\": \"{{server.environment.MAX_PLAYERS}}\",\r\n            \"server_port\": \"{{server.allocations.default.port}}\",\r\n            \"server_query_port\": \"{{server.environment.QUERY_PORT}}\",\r\n            \"pause_server_when_empty\": \"{{server.environment.PAUSE_SERVER}}\",\r\n            \"autosave_interval\": \"{{server.environment.AUTOSAVE_INTERVAL}}\",\r\n            \"server_is_public\": \"{{server.environment.PUBLIC_SERVER}}\",\r\n            \"server_persistent_data_override_folder\": \"{{server.environment.SAVE_PATH}}\",\r\n            \"map_seed\": \"{{server.environment.MAP_SEED}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Dedicated server is now running!\"\r\n}",
         "logs": "{}",
         "stop": "^C"
@@ -32,6 +32,7 @@
     },
     "variables": [
         {
+            "sort": null,
             "name": "[SERVER] Steam Query Port",
             "description": "Sets the network port used by the Steam server browser to query information about the game. This is only used if the server is set to public.",
             "env_variable": "QUERY_PORT",
@@ -39,10 +40,10 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|integer|between:1024,65536",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Server Name",
             "description": "This is the name of the server listed in the Steam server browser.",
             "env_variable": "SERVER_NAME",
@@ -50,10 +51,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:40",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Server World Name",
             "description": "Sets the server world name. This is the folder where the save files will be stored.",
             "env_variable": "WORLD_NAME",
@@ -61,10 +62,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:20",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Server Password",
             "description": "Sets the server password.",
             "env_variable": "SRV_PW",
@@ -72,10 +73,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:20",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Pause Server When Empty",
             "description": "Will the server pause when nobody is connected.",
             "env_variable": "PAUSE_SERVER",
@@ -83,10 +84,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:true,false",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Autosave Interval",
             "description": "Sets the autosave frequency in seconds.",
             "env_variable": "AUTOSAVE_INTERVAL",
@@ -94,10 +95,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Server Public",
             "description": "Sets whether the server is listed on the Steam server browser.",
             "env_variable": "PUBLIC_SERVER",
@@ -105,10 +106,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|in:true,false",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Map Seed",
             "description": "Sets the map seed used to generate the world.",
             "env_variable": "MAP_SEED",
@@ -116,10 +117,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Server Max Players",
             "description": "This sets the max amount of players on a server.",
             "env_variable": "MAX_PLAYERS",
@@ -127,10 +128,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Savepath",
             "description": "",
             "env_variable": "SAVE_PATH",
@@ -138,10 +139,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Auto update the server",
             "description": "",
             "env_variable": "AUTO_UPDATE",
@@ -149,10 +150,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "WINDOWS_INSTALL",
             "description": "",
             "env_variable": "WINDOWS_INSTALL",
@@ -160,10 +161,10 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|in:1",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[STEAM] Steam App ID",
             "description": "Steam App ID",
             "env_variable": "SRCDS_APPID",
@@ -171,10 +172,10 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:2915550",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[WINE] WINETRICKS_RUN",
             "description": "",
             "env_variable": "WINETRICKS_RUN",
@@ -182,10 +183,10 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[WINE] WINEDEBUG",
             "description": "",
             "env_variable": "WINEDEBUG",
@@ -193,10 +194,10 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[WINE] XVFB",
             "description": "",
             "env_variable": "XVFB",
@@ -204,7 +205,6 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|in:1",
-            "sort": null,
             "field_type": "text"
         }
     ]

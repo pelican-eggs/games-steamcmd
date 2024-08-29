@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:05:03+00:00",
+    "exported_at": "2024-08-29T06:41:05+00:00",
     "name": "Valheim",
     "author": "magi1053@outlook.com",
     "uuid": "af693402-1618-49e0-8678-0818aae9b92e",
@@ -16,7 +16,7 @@
         "ghcr.io\/parkervcp\/games:valheim": "ghcr.io\/parkervcp\/games:valheim"
     },
     "file_denylist": [],
-    "startup": ".\/valheim_server.x86_64 -nographics -batchmode -name \"{{SERVER_NAME}}\" -port {{SERVER_PORT}} -world \"{{WORLD}}\" -password \"{{PASSWORD}}\" -public {{PUBLIC_SERVER}} -saveinterval {{BACKUP_INTERVAL}} -backups {{BACKUP_COUNT}} -backupshort {{BACKUP_SHORTTIME}} -backuplong {{BACKUP_LONGTIME}} $( [[ {{ENABLE_CROSSPLAY}} -eq 1 ]] && echo \" -crossplay \") > >(sed -uE \"{{CONSOLE_FILTER}}\") & trap \"{{STOP}}\" 15; wait $!",
+    "startup": ".\/valheim_server.x86_64 -nographics -batchmode -name \"{{SERVER_NAME}}\" -port {{SERVER_PORT}} -world \"{{WORLD}}\" -password \"{{PASSWORD}}\" -public {{PUBLIC_SERVER}} -saveinterval {{BACKUP_INTERVAL}} -backups {{BACKUP_COUNT}} -backupshort {{BACKUP_SHORTTIME}} -backuplong {{BACKUP_LONGTIME}} $( [[ {{ENABLE_CROSSPLAY}} -eq 1 ]] && echo \" -crossplay\") $( [[ {{COMBAT}} != \"normal\" ]] && echo \" -modifier combat {{COMBAT}} \" ) $( [[ {{RESOURCES}} != \"normal\" ]] && echo \" -modifier resources {{RESOURCES}} \" ) $( [[ {{DEATH_PENALTY}} != \"normal\" ]] && echo \" -modifier deathpenalty {{DEATH_PENALTY}} \" ) $( [[ {{RAID_RATE}} != \"normal\" ]] && echo \" -modifier raids {{RAID_RATE}} \" ) $( [[ {{PORTALS}} != \"normal\" ]] && echo \" -modifier portals {{PORTALS}} \" ) > >(sed -uE \"{{CONSOLE_FILTER}}\") & trap \"{{STOP}}\" 15; wait $!",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"DungeonDB Start\"\r\n}",
@@ -39,7 +39,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:60",
-            "sort": null,
+            "sort": 1,
             "field_type": "text"
         },
         {
@@ -50,7 +50,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|min:5|max:20",
-            "sort": null,
+            "sort": 2,
             "field_type": "text"
         },
         {
@@ -60,8 +60,8 @@
             "default_value": "Dedicated",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:20",
-            "sort": null,
+            "rules": "required|string|max:40",
+            "sort": 3,
             "field_type": "text"
         },
         {
@@ -72,7 +72,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
-            "sort": null,
+            "sort": 4,
             "field_type": "text"
         },
         {
@@ -83,7 +83,7 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "nullable|numeric",
-            "sort": null,
+            "sort": 10,
             "field_type": "text"
         },
         {
@@ -94,7 +94,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string",
-            "sort": null,
+            "sort": 12,
             "field_type": "text"
         },
         {
@@ -105,7 +105,7 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string",
-            "sort": null,
+            "sort": 11,
             "field_type": "text"
         },
         {
@@ -116,7 +116,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
-            "sort": null,
+            "sort": 13,
             "field_type": "text"
         },
         {
@@ -127,7 +127,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
-            "sort": null,
+            "sort": 14,
             "field_type": "text"
         },
         {
@@ -138,7 +138,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|min:0",
-            "sort": null,
+            "sort": 15,
             "field_type": "text"
         },
         {
@@ -149,7 +149,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|min:0",
-            "sort": null,
+            "sort": 16,
             "field_type": "text"
         },
         {
@@ -160,7 +160,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|min:0",
-            "sort": null,
+            "sort": 17,
             "field_type": "text"
         },
         {
@@ -171,7 +171,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|min:0",
-            "sort": null,
+            "sort": 18,
             "field_type": "text"
         },
         {
@@ -182,7 +182,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "max:30",
-            "sort": null,
+            "sort": 19,
             "field_type": "text"
         },
         {
@@ -193,7 +193,7 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "max:30",
-            "sort": null,
+            "sort": 20,
             "field_type": "text"
         },
         {
@@ -204,7 +204,62 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "string",
-            "sort": null,
+            "sort": 21,
+            "field_type": "text"
+        },
+        {
+            "name": "Combat",
+            "description": "Combat multiplier. Can be veryeasy, easy, normal, hard or veryhard.",
+            "env_variable": "COMBAT",
+            "default_value": "normal",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|in:veryeasy,easy,normal,hard,veryhard",
+            "sort": 5,
+            "field_type": "text"
+        },
+        {
+            "name": "Resources",
+            "description": "Resource multiplier. Can be muchless (0.5x), less (0.75x), normal, more (1.5x), muchmore (2x) or most (3x).",
+            "env_variable": "RESOURCES",
+            "default_value": "normal",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|in:muchless,less,normal,more,muchmore,most",
+            "sort": 7,
+            "field_type": "text"
+        },
+        {
+            "name": "Death Penalty",
+            "description": "Death Penalty modifier. Casual (keep equipped, 1% skill loss), veryeasy (all items dropped, 1% loss), easy (all drop, 2.5% loss), normal (all drop, 5% loss), hard (equipment dropped, unequipped items destroyed, 7.5% loss), hardcore (all inventory items and skills are destroyed).",
+            "env_variable": "DEATH_PENALTY",
+            "default_value": "normal",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|in:casual,veryeasy,easy,normal,hard,hardcore",
+            "sort": 6,
+            "field_type": "text"
+        },
+        {
+            "name": "Raid Rate",
+            "description": "Raid rate frequency.",
+            "env_variable": "RAID_RATE",
+            "default_value": "normal",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|in:none,muchless,less,normal,more,muchmore",
+            "sort": 8,
+            "field_type": "text"
+        },
+        {
+            "name": "Portals",
+            "description": "Portal behavior. Casual (all items). Normal (no ingots\/ores). Hard (portals deactivate during boss fights). Veryhard (no portals at all).",
+            "env_variable": "PORTALS",
+            "default_value": "normal",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|in:casual,normal,hard,veryhard",
+            "sort": 9,
             "field_type": "text"
         }
     ]

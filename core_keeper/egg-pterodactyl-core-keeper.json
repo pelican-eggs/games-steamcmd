@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-09-04T16:19:16+00:00",
+    "exported_at": "2024-09-05T05:52:50+00:00",
     "name": "Core Keeper",
     "author": "karsten@fiedleronline.net",
     "description": "Core Keeper is a survival sandbox game for single or multiplayers.\r\n\r\n--- Drawn towards a mysterious relic, you are an explorer who awakens in an ancient cavern of creatures, resources and trinkets. Trapped deep underground will your survival skills be up to the task? Mine relics and resources to build your base, craft new equipment, survive, and power up the Core. ---",
@@ -12,19 +12,19 @@
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
+        "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
-    "startup": "xvfb-run --auto-servernum --server-args=\"-screen 0 1x1x24 -ac -nolisten tcp -nolisten unix\" wine .\/CoreKeeperServer.exe -batchmode -world {{WORLD_INDEX}} -worldname \"{{WORLD_NAME}}\" -worldseed {{WORLD_SEED}} $([[ -n \"{{GAME_ID}}\" ]] && echo -n \" -gameid {{GAME_ID}}\") -maxplayers {{MAX_PLAYERS}} -worldmode {{WORLD_SEED}} -port {{SERVER_PORT}} -logfile \"\/home\/container\/CoreKeeperServerLog.txt\"; echo \"Game ID: $(cat GameID.txt)\";",
+    "startup": "export DISPLAY=:0; set -m; rm .\/GameID.txt .\/CoreKeeperServerLog.txt; touch .\/CoreKeeperServerLog.txt; Xvfb :0 -screen 0 1x1x24 -ac -nolisten tcp -nolisten unix & XVFBPID=$!; .\/CoreKeeperServer -batchmode -logfile CoreKeeperServerLog.txt -world {{WORLD_INDEX}} -worldname \"{{WORLD_NAME}}\" -worldseed {{WORLD_SEED}} $([[ \"{{GAME_ID}}\" != \"\" ]] && echo -n \" -gameid {{GAME_ID}}\") -maxplayers {{MAX_PLAYERS}} -worldmode {{WORLD_MODE}} -port {{SERVER_PORT}} & CKPID=$!; tail -f CoreKeeperServerLog.txt | grep -e '^[userid:[0-9]*] player' -e '^[^[]' & LOGPID=$!; trap 'if [[ ! -z \"$CKPID\" ]]; then kill $CKPID; wait $CKPID; fi; if [[ ! -z \"$XVFBPID\" ]]; then kill $XVFBPID; wait $XVFBPID; fi; if [[ ! -z \"$LOGPID\" ]]; then kill $LOGPID; wait $LOGPID; fi' EXIT; wait $CKPID; CKPID=\"\"",
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"Game ID:\"\r\n}",
+        "startup": "{\r\n    \"done\": \"Started session\"\r\n}",
         "logs": "{}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "script": "#!\/bin\/\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\nrm \/mnt\/server\/CoreKeeperServer_Data\/Plugins\/libparty.so\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
             "container": "ghcr.io\/parkervcp\/installers:debian",
             "entrypoint": "bash"
         }
@@ -107,16 +107,6 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "field_type": "text"
-        },
-        {
-            "name": "Windows Install",
-            "description": "\"Required for windows game server installs\"",
-            "env_variable": "WINDOWS_INSTALL",
-            "default_value": "1",
-            "user_viewable": false,
-            "user_editable": false,
             "rules": "required|boolean",
             "field_type": "text"
         },

@@ -1,6 +1,13 @@
 # Satisfactory
 
-***Updating your Egg?**: Ensure any existing servers have the latest Startup Command, new Startup Variables are set, **and you reinstall server!***
+> [!CAUTION]
+> This Egg will require an update on Sept. 10th to accomodate Satisfactory's **v1.0 release**. \
+> Given what we currently know, the current Egg will likely stop working after this release. \
+> \
+> ***This caution banner will be removed once official documentation is released and the Egg has been properly updated.***
+
+> [!IMPORTANT]
+> ***Updating your Egg?**: Ensure any existing servers have the latest Startup Command, new Startup Variables are set, **and you reinstall server!***
 ___
 
 ### Authors / Contributors
@@ -147,7 +154,8 @@ Save files are located in this directory:
 
 *Note: A manually uploaded save will only load if it is (a.) loaded manually via the "Manage Saves" tab in-game, (b.) it is the only save file present, or (c.) its existing session name (not its file name) matches the existing save's session name *and* has the most recent time stamp.*
 
-***Warning:*** Stopping the server **does not** currently save your game! Ensure it is saved before stopping the server.
+> [!WARNING]
+> Stopping the server **does not** currently save your game! Ensure it is saved before stopping the server.
 
 If you have forgotten your administrator password or would generally like to reset your server as if it were new, you can delete the following file:
 

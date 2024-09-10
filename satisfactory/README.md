@@ -122,6 +122,10 @@ ___
 
 ### Server Initialization
 
+> [!WARNING]
+> The server cannot be joined for the first time via "Join Game -> Join game directly..." on the main menu due to the TLS certificate not being trusted yet.\
+> Instead, join via "Server Manager -> Add Server" and you will be prompted to trust the certificate and initialize the server.
+
 For a server to be fully "initialized", a client who owns the game must log into the server to "claim" it and create an administrator password. Then, a new session can be created via the "Create Game" tab in-game, or an existing save file can be uploaded (see [Save Files](#save-files) below).
 
 Misc. settings listed below can be configured by an admin client via the Server Manager's "Server Settings" tab, and are currently **not** set via the Egg:
@@ -138,7 +142,7 @@ Misc. settings listed below can be configured by an admin client via the Server 
 - Send Gameplay Data (Crash Reports)
 - Network Quality
 
-> [!WARNING]
+> [!NOTE]
 > Currently, Tier 0 (Onboarding) is not possible to play on a dedicated server and it will be automatically unlocked, even if you upload a save in Tier 0. If you would like to play the beginning of the game with Onboarding, it is recommended you play local multiplayer first, and then upload your save after completing Tier 0.
 
 ___

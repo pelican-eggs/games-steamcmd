@@ -16,7 +16,7 @@
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
-    "startup": ".\/Engine\/Binaries\/Linux\/*-Linux-Shipping FactoryGame ?listen -Port={{SERVER_PORT}} -ServerQueryPort={{QUERY_PORT}} -BeaconPort={{BEACON_PORT}} -multihome=0.0.0.0 $(if {{DISABLE_SEASONAL}}; then echo \"-DisableSeasonalEvents\"; fi)",
+    "startup": ".\/Engine\/Binaries\/Linux\/*-Linux-Shipping FactoryGame ?listen -Port={{SERVER_PORT}} $(if {{DISABLE_SEASONAL}}; then echo \"-DisableSeasonalEvents\"; fi)",
     "config": {
         "files": "{\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Game.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"MaxPlayers\": \"MaxPlayers={{server.environment.MAX_PLAYERS}}\"\n        }\n    },\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Engine.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"mNumRotatingAutosaves\": \"mNumRotatingAutosaves={{server.environment.NUM_AUTOSAVES}}\",\n            \"bImplicitSend\": \"bImplicitSend={{server.environment.UPLOAD_CRASH_REPORT}}\",\n            \"InitialConnectTimeout\": \"InitialConnectTimeout={{server.environment.INIT_CONNECT_TIMEOUT}}\",\n            \"ConnectionTimeout\": \"ConnectionTimeout={{server.environment.CONNECT_TIMEOUT}}\"\n        }\n    },\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/GameUserSettings.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"mFloatValues\": \"mFloatValues=((\\\"FG.AutosaveInterval\\\", {{server.environment.AUTOSAVE_INTERVAL}}))\",\n            \"mIntValues\": \"mIntValues=((\\\"FG.NetworkQuality\\\", {{server.environment.NETWORK_QUALITY}}))\"\n        }\n    }\n}",
         "startup": "{\r\n    \"done\": \"Engine Initialization\"\r\n}",
@@ -31,28 +31,6 @@
         }
     },
     "variables": [
-        {
-            "name": "[REQUIRED] Server Query Port",
-            "description": "This is the port that your clients will type in and use to connect to the lobby (not the game world). Ensure this port matches your externally forwarded port, and is distanced from other running Satisfactory servers in Pterodactyl (increments of 100 are recommended). This is also true for the Primary\/Game Port!",
-            "env_variable": "QUERY_PORT",
-            "default_value": "15777",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": "required|integer|between:1024,65536",
-            "sort": 1,
-            "field_type": "text"
-        },
-        {
-            "name": "[REQUIRED] Beacon Port",
-            "description": "This port provides a lightweight way for clients to contact a server and interact with it without committing to a normal game connection (likely used for client administration). Ensure this port matches your externally forwarded port, and is distanced from other running Satisfactory servers in Pterodactyl (increments of 100 are recommended).",
-            "env_variable": "BEACON_PORT",
-            "default_value": "15000",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": "required|integer|between:1024,65536",
-            "sort": 2,
-            "field_type": "text"
-        },
         {
             "name": "Automatic Updates",
             "description": "Quickly checks for any server updates on startup, and updates if necessary. (1 Enable | 0 Disable)",
@@ -76,17 +54,6 @@
             "field_type": "text"
         },
         {
-            "name": "Autosave Interval",
-            "description": "How often, in seconds, the server should generate a new autosave (ex. 300 = 5 min). Keep in mind that shorter times mean that while the server will save the game more often, it also means a potential drop in server performance. NOTE: This overrides any \"FG.AutosaveInterval\" commands made to the console!",
-            "env_variable": "AUTOSAVE_INTERVAL",
-            "default_value": "300",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|numeric|min:1",
-            "sort": 5,
-            "field_type": "text"
-        },
-        {
             "name": "Number of Rotating Autosaves",
             "description": "Number of session auto-saves for the server to keep before the oldest save is deleted and the others are moved down the list.",
             "env_variable": "NUM_AUTOSAVES",
@@ -106,17 +73,6 @@
             "user_editable": true,
             "rules": "required|string|in:true,false",
             "sort": 7,
-            "field_type": "text"
-        },
-        {
-            "name": "Disable Seasonal Events",
-            "description": "Accepted values are \"true\" or \"false\". Setting to \"true\" will disable any currently active seasonal events.",
-            "env_variable": "DISABLE_SEASONAL",
-            "default_value": "false",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": 8,
             "field_type": "text"
         },
         {
@@ -150,17 +106,6 @@
             "user_editable": true,
             "rules": "required|numeric|min:1",
             "sort": 11,
-            "field_type": "text"
-        },
-        {
-            "name": "[Advanced] Network Quality",
-            "description": "[0 = Low, 1 = Medium, 2 = High, 3 = Ultra] Sets the network configuration for the game server (shouldn't need to be changed). NOTE: This overrides any \"FG.NetworkQuality\" commands made to the console!",
-            "env_variable": "NETWORK_QUALITY",
-            "default_value": "3",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer|between:0,3",
-            "sort": 12,
             "field_type": "text"
         },
         {

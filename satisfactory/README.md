@@ -1,11 +1,5 @@
 # Satisfactory
 
-> [!CAUTION]
-> This Egg will require an update on Sept. 10th to accomodate Satisfactory's **v1.0 release**. \
-> Given what we currently know, the current Egg will likely stop working after this release. \
-> \
-> ***This caution banner will be removed once official documentation is released and the Egg has been properly updated.***
-
 > [!IMPORTANT]
 > ***Updating your Egg?**: Ensure any existing servers have the latest Startup Command, new Startup Variables are set, **and you reinstall server!***
 ___
@@ -68,6 +62,7 @@ ___
                 <img src="https://avatars.githubusercontent.com/u/116325?v=4" width="50px;" alt=""/><br /><sub><b>gOOvER</b></sub>
             </a>
             <br />
+            <a href="https://github.com/parkervcp/eggs/commits?author=matthewpi" title="Codes">💻</a>
             <a href="https://github.com/parkervcp/eggs/commits?author=gOOvER" title="Contributor">💡</a>
         </td>
     </tr>

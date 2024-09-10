@@ -1,8 +1,8 @@
 # Satisfactory
 
 > [!CAUTION]
-> This Egg will require an update on Sept. 10th to accomodate Satisfactory's **v1.0 release**. \
-> Given what we currently know, the current Egg will likely stop working after this release. \
+> This Egg has received a preliminary update on Sept. 10th to accomodate Satisfactory's **v1.0 release**. \
+> This egg has not been fully verified or stress tested, but is capable of starting the server and accepting clients. \
 > \
 > ***This caution banner will be removed once official documentation is released and the Egg has been properly updated.***
 

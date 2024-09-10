@@ -62,7 +62,7 @@ ___
                 <img src="https://avatars.githubusercontent.com/u/116325?v=4" width="50px;" alt=""/><br /><sub><b>gOOvER</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=matthewpi" title="Codes">💻</a>
+            <a href="https://github.com/parkervcp/eggs/commits?author=gOOvER" title="Codes">💻</a>
             <a href="https://github.com/parkervcp/eggs/commits?author=gOOvER" title="Contributor">💡</a>
         </td>
     </tr>

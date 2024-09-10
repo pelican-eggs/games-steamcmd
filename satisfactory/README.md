@@ -2,8 +2,8 @@
 
 > [!IMPORTANT]
 > ***Updating for v1.0?***
-> - Ensure any existing servers have the updated Startup Command applied!\
-> - TCP is now required! (See [Server Ports](#server-ports) for details)\
+> - Ensure any existing servers have the updated Startup Command applied!
+> - TCP is now required! (See [Server Ports](#server-ports) for details)
 > - While not required, it's recommended existing servers delete the `LinuxServer` directory under `~/FactoryGame/Saved/Config/` to remove depreciated settings, and reconfigure the settings via the in-game Server Manager.
 ___
 

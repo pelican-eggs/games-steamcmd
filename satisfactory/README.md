@@ -81,26 +81,25 @@ ___
 
 ### Egg Capabilities
 
-- Configuration Game ports.
 - Configurable to automatically check for server updates on start via SteamCMD. Forcing validation is also configurable.
-- *[Experimental]* Max player configuration.
-- Disable crash reporting if desired.
-- ...and other advanced networking and server branch configurable settings.
+- Configurable number of rotating autosaves.
+- [*Experimental*] Configurable maximum number of players.
+- [*Advanced*] Configurable networking and server branch settings.
+
+> [!NOTE]
+> asd
 
 ___
 
 ### Server Ports
 
-- Default server ports are listed below, but all three ports can be changed freely (\*some exceptions apply below).
-    - All three ports must be unique; they cannot currently be shared on one port (this may change in the future).
-    - It is recommended to distance ports of other running Satisfactory servers in Pterodactyl by **increments of 100** (it is currently unknown what the minimum increment is, but an increment of +1 caused cross-server talk in testing). Also, your internal ports **must match** your external ports on your network (ie. you can't have an external port of 7778 forwarded to your 7777 internal port; they must match).
-- **Note:** The Primary/Default/Game Port for your server in Pterodactyl will be Satisfactory's `-Port=????` game port, even though clients will **connect with the Query port**.
-- ***All three ports are required to be open/allocated for normal server behavior!***
+| Port | Default | Protocol | Required | Notes |
+|---------|---------|---------|---------|---------|
+| **Primary** | 7777 | UDP & TCP | **Yes** | Clients connect using this port. UDP is un-encrypted game traffic. TCP is also required for the in-game admin UI & API, and it is TLS encrypted. |
 
-| Port | Default (UDP) |
-|---------|---------|
-| **Game (Primary Port in Pterodactyl)** | 7777 |
-
+> [!TIP]
+> It is recommended to distance ports of other running Satisfactory servers by **increments of 100** (it is currently unknown what the minimum increment is, but an increment of +1 caused cross-server talk in previous testing).\
+> \*Also, your internal ports **must match** your external ports on your network (ie. you can't have an external port of 7778 forwarded to your 7777 internal port; they must match). (\*Source/Testing needed after v1.0 release)
 
 ___
 
@@ -111,7 +110,7 @@ ___
 | Processor | Recent x86/64 (AMD/Intel) processor. No 32 bit or ARM support. | Favours higher single-core performance over multiple cores. |
 | RAM | 1536-2048 MiB | 6144-12288 MiB (especially for 4 players or large save files) |
 | Storage | 5 GB | 7-10 GB (or more, depending on save size or frequency) |
-| Network | 0.512 Mbit/s | 1-5 Mbit/s ([may require server *and* client config tweaks](https://satisfactory.wiki.gg/wiki/Multiplayer#Temporary_lag_solution)) |
+| Network | 1 Mbit/s | 1-5 Mbit/s ([may require server *and* client config tweaks](https://satisfactory.wiki.gg/wiki/Multiplayer#Temporary_lag_solution)) |
 | Host OS | Most stable Linux OS branches should work | Using the latest kernel version for your installed OS can prevent some edge-case installation/boot issues. |
 | Game Ownership | Not required to start. | Required to fully "initialize" (see [Server Initialization](#server-initialization) below) |
 
@@ -123,11 +122,17 @@ For a server to be fully "initialized", a client who owns the game must log into
 
 Misc. settings listed below can be configured by an admin client via the game's "Server Settings" tab, and are currently **not** set via the Egg:
 
-- Server Password
+- Server Name
 - Admin Password
+- Player Password Protection
+- Auto-Load Session Name
+- Auto Pause (when no players are online)
 - Auto-Save on Player Disconnect
-- Pause When No Players Online
-- ...and possibly more as the client's UI is developed further for more configuration options.
+- Disable Seasonal Events
+- Autosave Interval
+- Server Restart Interval
+- Send Gameplay Data (Crash Reports)
+- Network Quality
 
 ___
 

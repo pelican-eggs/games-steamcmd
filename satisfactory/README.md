@@ -1,7 +1,10 @@
 # Satisfactory
 
 > [!IMPORTANT]
-> ***Updating for v1.0?**: Ensure any existing servers have the updated Startup Command applied! Also, TCP is now required! (See [Server Ports](#server-ports) for details)*
+> ***Updating for v1.0?***\
+> - Ensure any existing servers have the updated Startup Command applied!\
+> - TCP is now required! (See [Server Ports](#server-ports) for details)\
+> - While not required, it's recommended existing servers delete the `LinuxServer` directory under `~/FactoryGame/Saved/Config/` to remove depreciated settings, and reconfigure the settings via the in-game Server Manager.
 ___
 
 ### Authors / Contributors
@@ -87,7 +90,7 @@ ___
 - [*Advanced*] Configurable networking and server branch settings.
 
 > [!NOTE]
-> As of Satisfactory v1.0, most server settings have moved from being configured in the Egg to being configured via the in-game admin UI.\
+> As of Satisfactory v1.0, most server settings have moved from being configured in the Egg to being configured via the in-game Server Manager.\
 > Please see [Server Initialization](#server-initialization) for what settings can be configured in-game.
 
 ___
@@ -96,7 +99,7 @@ ___
 
 | Port | Default | Protocol | Required | Notes |
 |---------|---------|---------|---------|---------|
-| **Primary** | 7777 | UDP & TCP | **Yes** | Clients connect using this port. UDP is un-encrypted game traffic. TCP is also required for the in-game admin UI & API, and it is TLS encrypted. |
+| **Primary** | 7777 | UDP & TCP | **Yes** | Clients connect using this port. UDP is un-encrypted game traffic. TCP is also required for the in-game Server Manager & API, and it is TLS encrypted. |
 
 > [!TIP]
 > It is recommended to distance ports of other running Satisfactory servers by **increments of 100** (it is currently unknown what the minimum increment is, but an increment of +1 caused cross-server talk in previous testing).\
@@ -121,7 +124,7 @@ ___
 
 For a server to be fully "initialized", a client who owns the game must log into the server to "claim" it and create an administrator password. Then, a new session can be created via the "Create Game" tab in-game, or an existing save file can be uploaded (see [Save Files](#save-files) below).
 
-Misc. settings listed below can be configured by an admin client via the game's "Server Settings" tab, and are currently **not** set via the Egg:
+Misc. settings listed below can be configured by an admin client via the Server Manager's "Server Settings" tab, and are currently **not** set via the Egg:
 
 - Server Name
 - Admin Password
@@ -135,29 +138,23 @@ Misc. settings listed below can be configured by an admin client via the game's 
 - Send Gameplay Data (Crash Reports)
 - Network Quality
 
+> [!WARNING]
+> Currently, Tier 0 (Onboarding) is not possible to play on a dedicated server and it will be automatically unlocked, even if you upload a save in Tier 0. If you would like to play the beginning of the game with Onboarding, it is recommended you play local multiplayer first, and then upload your save after completing Tier 0.
+
 ___
 
 ### Save Files
 
-An existing save file (including single-player saves) can currently be uploaded to the server via two different methods:
+> [!CAUTION]
+> Stopping the server **does not** currently save your game! Ensure it is saved before stopping the server!
 
-- "Manage Saves" tab via an admin client in-game (Recommended)
-- Manually via the File Manager or SFTP
-
-Save files are located in this directory:
+Save files are located in the following directory, but can be more easily downloaded to your local computer in-game via the Server Manager under the "Manage Saves" tab (admins only).
 
 ```md
 /home/container/.config/Epic/FactoryGame/Saved/SaveGames/server
 ```
 
-> [!NOTE]
-> A manually uploaded save will only load if it is...\
-> (a.) loaded manually via the "Manage Saves" tab in-game\
-> (b.) it is the only save file present\
-> or (c.) its existing session name (not its file name) matches the existing save's session name *and* has the most recent time stamp.
-
-> [!WARNING]
-> Stopping the server **does not** currently save your game! Ensure it is saved before stopping the server.
+An existing save file (including single-player saves) can be uploaded to the server via the Server Manager as well and loaded under the same tab.
 
 If you have forgotten your administrator password or would generally like to reset your server as if it were new, you can delete the following file:
 
@@ -169,7 +166,7 @@ ___
 
 ### Console Commands
 
-The console tab in the in-game admin server menu is the only way to execute commands. Entering commands via the Panel do nothing.
+The "Console" tab in the in-game Server Manager is the only way to execute commands. Entering commands via the Panel do nothing.
 
 [List of known commands can be found via the Wiki.](https://satisfactory.wiki.gg/wiki/Dedicated_servers#Console_commands)
 

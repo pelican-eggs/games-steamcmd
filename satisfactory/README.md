@@ -1,8 +1,8 @@
 # Satisfactory
 
 > [!CAUTION]
-> This Egg will require an update on Sept. 10th to accomodate Satisfactory's **v1.0 release**. \
-> Given what we currently know, the current Egg will likely stop working after this release. \
+> This Egg has received a preliminary update on Sept. 10th to accomodate Satisfactory's **v1.0 release**. \
+> This egg has not been fully verified or stress tested, but is capable of starting a server with the **v1.0 release** \
 > \
 > ***This caution banner will be removed once official documentation is released and the Egg has been properly updated.***
 
@@ -86,12 +86,10 @@ ___
 
 ### Egg Capabilities
 
-- Configuration of the Server Query, Beacon, and Game ports.
+- Configuration of the Game port.
 - Configurable to automatically check for server updates on start via SteamCMD. Forcing validation is also configurable.
 - *[Experimental]* Max player configuration.
-- Autosave amount and interval configuration.
 - Disable crash reporting if desired.
-- Disable seasonal events if desired.
 - ...and other advanced networking and server branch configurable settings.
 
 ___
@@ -107,8 +105,8 @@ ___
 | Port | Default (UDP) |
 |---------|---------|
 | **Game (Primary Port in Pterodactyl)** | 7777 |
-| Beacon | 15000 |
-| Server Query (Port clients connect with) | 15777 |
+
+*As of v1.0, Satisfactory only requires a single game port to be bound for TCP and UDP. Query and Beacon ports are deprecated*
 
 ___
 
@@ -134,7 +132,10 @@ Misc. settings listed below can be configured by an admin client via the game's 
 - Server Password
 - Admin Password
 - Auto-Save on Player Disconnect
+- Auto-Save interval
+- Enable/Disable Seasonal Events
 - Pause When No Players Online
+- Network Quality
 - ...and possibly more as the client's UI is developed further for more configuration options.
 
 ___

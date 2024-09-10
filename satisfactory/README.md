@@ -123,8 +123,7 @@ ___
 ### Server Initialization
 
 > [!WARNING]
-> The server cannot be joined for the first time via "Join Game -> Join game directly..." on the main menu due to the TLS certificate not being trusted yet.\
-> Instead, join via "Server Manager -> Add Server" and you will be prompted to trust the certificate and initialize the server.
+> The server cannot be joined for the first time via "Join Game -> Join game directly..." on the main menu due to the TLS certificate not being trusted yet. Instead, join via "Server Manager -> Add Server" and you will be prompted to trust the certificate and initialize the server.
 
 For a server to be fully "initialized", a client who owns the game must log into the server to "claim" it and create an administrator password. Then, a new session can be created via the "Create Game" tab in-game, or an existing save file can be uploaded (see [Save Files](#save-files) below).
 

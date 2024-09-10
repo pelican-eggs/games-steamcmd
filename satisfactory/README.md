@@ -86,12 +86,10 @@ ___
 
 ### Egg Capabilities
 
-- Configuration of the Server Query, Beacon, and Game ports.
+- Configuration Game ports.
 - Configurable to automatically check for server updates on start via SteamCMD. Forcing validation is also configurable.
 - *[Experimental]* Max player configuration.
-- Autosave amount and interval configuration.
 - Disable crash reporting if desired.
-- Disable seasonal events if desired.
 - ...and other advanced networking and server branch configurable settings.
 
 ___
@@ -107,8 +105,7 @@ ___
 | Port | Default (UDP) |
 |---------|---------|
 | **Game (Primary Port in Pterodactyl)** | 7777 |
-| Beacon | 15000 |
-| Server Query (Port clients connect with) | 15777 |
+
 
 ___
 

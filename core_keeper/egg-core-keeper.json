@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:03:59+00:00",
+    "exported_at": "2024-09-12T17:08:00+00:00",
     "name": "Core Keeper",
     "author": "karsten@fiedleronline.net",
     "uuid": "39588b7e-3ff5-474c-ba6a-969f34662b74",
@@ -13,10 +13,10 @@
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
+        "ghcr.io\/parkervcp\/games:corekeeper": "ghcr.io\/parkervcp\/games:corekeeper"
     },
     "file_denylist": [],
-    "startup": "export DISPLAY=:0; rm .\/GameID.txt .\/CoreKeeperServerLog.txt; touch .\/CoreKeeperServerLog.txt; xvfb-run -s \"-screen 0 {{DISPLAY_WIDTH}}x{{DISPLAY_HEIGHT}}x{{DISPLAY_DEPTH}} -ac -nolisten tcp -nolisten unix\" .\/CoreKeeperServer -batchmode -logfile CoreKeeperServerLog.txt -world {{WORLD_INDEX}} -worldname \"{{WORLD_NAME}}\" -worldseed {{WORLD_SEED}} $([[ \"{{GAME_ID}}\" != \"\" ]] && echo -n \" -gameid {{GAME_ID}}\") -maxplayers {{MAX_PLAYERS}} -worldmode {{WORLD_MODE}} -port {{SERVER_PORT}} & CKPID=$!; tail -f CoreKeeperServerLog.txt | grep -e '^\\[userid:[0-9]*\\] player' -e '^[^\\[]' & LOGPID=$!; trap \"kill ${CKPID}; wait ${CKPID}; kill ${LOGPID}; wait ${LOGPID}\" 15; wait $!",
+    "startup": "export DISPLAY=:0; set -m; rm -f .\/GameID.txt .\/CoreKeeperServerLog.txt; touch .\/CoreKeeperServerLog.txt; Xvfb :0 -screen 0 1x1x24 -ac -nolisten tcp -nolisten unix & XVFBPID=$!; .\/CoreKeeperServer -batchmode -logfile CoreKeeperServerLog.txt -world {{WORLD_INDEX}} -worldname \"{{WORLD_NAME}}\" -worldseed {{WORLD_SEED}} $([[ \"{{GAME_ID}}\" != \"\" ]] && echo -n \" -gameid {{GAME_ID}}\") -maxplayers {{MAX_PLAYERS}} -worldmode {{WORLD_MODE}} -port {{SERVER_PORT}} & CKPID=$!; tail -f CoreKeeperServerLog.txt | grep -e '^[userid:[0-9]*] player' -e '^[^[]' & LOGPID=$!; trap 'if [[ ! -z \"$CKPID\" ]]; then kill $CKPID; wait $CKPID; fi; if [[ ! -z \"$XVFBPID\" ]]; then kill $XVFBPID; wait $XVFBPID; fi; if [[ ! -z \"$LOGPID\" ]]; then kill $LOGPID; wait $LOGPID; fi' EXIT; wait $CKPID; CKPID=\"\"",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Started session\"\r\n}",
@@ -25,13 +25,14 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n##\r\n#\r\n# Variables\r\n# STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.\r\n# WINDOWS_INSTALL - if it's a windows server you want to install set to 1\r\n# SRCDS_APPID - steam app id found here - https:\/\/developer.valvesoftware.com\/wiki\/Dedicated_Servers_List\r\n# SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch\r\n# SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.\r\n# INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.\r\n# AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.\r\n#\r\n ##\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} validate +quit\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "script": "#!\/bin\/bash\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## create config file for libparty.so\r\nmkdir -p \/mnt\/server\/PlayFabParty\/log\r\ncat <<EOF > \/mnt\/server\/PlayFabParty\/PlayFabPartyLogger.json\r\n{\r\n    \"enabled\": true,\r\n    \"bufferSize\": 16384,\r\n    \"maxNumberOfItemsInBatch\": 100,\r\n    \"maxBatchWaitTimeInSeconds\": 1,\r\n    \"readBufferWaitTimeInMilliseconds\": 1,\r\n    \"logFolder\": \"\/home\/container\/PlayFabParty\/log\",\r\n    \"logLevel\": \"INFO\",\r\n    \"xrnLogEnabled\": false,\r\n    \"consoleEnabled\": false,\r\n    \"maxLogFileSizeInMegabytes\": 1024\r\n}\r\nEOF\r\n\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
             "container": "ghcr.io\/parkervcp\/installers:debian",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
+            "sort": 1,
             "name": "World Index",
             "description": "Which world index to use. Default: 0.",
             "env_variable": "WORLD_INDEX",
@@ -39,10 +40,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:0",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 2,
             "name": "World Name",
             "description": "The name to use for the server. Defaul: Core Keeper Server.",
             "env_variable": "WORLD_NAME",
@@ -50,10 +51,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:100|min:3",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 3,
             "name": "World Seed",
             "description": "The seed to use for a new world. Set to 0 to generate random seed. Default: 0.",
             "env_variable": "WORLD_SEED",
@@ -61,10 +62,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:0",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 4,
             "name": "Game ID",
             "description": "Game ID to use for the server. Needs to be at least 28 characters and alphanumeric, excluding Y,y,x,0,O. Empty or not valid means a new ID will be generated at start. Default: EMPTY.",
             "env_variable": "GAME_ID",
@@ -72,10 +73,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|min:28",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 5,
             "name": "Max Players",
             "description": "Maximum number of players that will be allowed to connect to server. Maximum is 100. Default: 100,",
             "env_variable": "MAX_PLAYERS",
@@ -83,10 +84,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|integer|min:1|max:100",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 6,
             "name": "World Mode",
             "description": "Whether to use normal (0) or hard (1) mode for world.",
             "env_variable": "WORLD_MODE",
@@ -94,10 +95,10 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 7,
             "name": "Steam App ID",
             "description": "Steam App ID of Core Keeper Dedicated Server",
             "env_variable": "SRCDS_APPID",
@@ -105,10 +106,10 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|in:1963720",
-            "sort": null,
             "field_type": "text"
         },
         {
+            "sort": 8,
             "name": "Auto Update",
             "description": "Enable automatic updates on boot",
             "env_variable": "AUTO_UPDATE",
@@ -116,40 +117,39 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
-            "sort": null,
             "field_type": "text"
         },
         {
-            "name": "DISPLAY_WIDTH",
-            "description": "Virtual display width. Fix:1.",
-            "env_variable": "DISPLAY_WIDTH",
+            "sort": 9,
+            "name": "Validate",
+            "description": "",
+            "env_variable": "VALIDATE",
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|integer",
-            "sort": null,
+            "rules": "required|boolean",
             "field_type": "text"
         },
         {
-            "name": "DISPLAY_HEIGHT",
-            "description": "Virtual display height. Fix:1.",
-            "env_variable": "DISPLAY_HEIGHT",
-            "default_value": "1",
+            "sort": 10,
+            "name": "BETA ID",
+            "description": "",
+            "env_variable": "SRCDS_BETAID",
+            "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|integer",
-            "sort": null,
+            "rules": "nullable|string|max:20",
             "field_type": "text"
         },
         {
-            "name": "DISPLAY_DEPTH",
-            "description": "Virtual display color depth. Fix: 24.",
-            "env_variable": "DISPLAY_DEPTH",
-            "default_value": "24",
+            "sort": 11,
+            "name": "BETA PASS",
+            "description": "",
+            "env_variable": "SRCDS_BETAPASS",
+            "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|integer",
-            "sort": null,
+            "rules": "nullable|string|max:20",
             "field_type": "text"
         }
     ]

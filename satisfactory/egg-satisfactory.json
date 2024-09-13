@@ -16,7 +16,7 @@
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
-    "startup": ".\/Engine\/Binaries\/Linux\/*-Linux-Shipping FactoryGame ?listen -port={{SERVER_PORT}}",
+    "startup": ".\/Engine\/Binaries\/Linux\/*-Linux-Shipping FactoryGame ?listen -port={{SERVER_PORT}} -ini:Engine:[HTTPServer.Listeners]:DefaultBindAddress=any",
     "config": {
         "files": "{\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Game.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"MaxPlayers\": \"MaxPlayers={{server.environment.MAX_PLAYERS}}\"\n        }\n    },\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Engine.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"mNumRotatingAutosaves\": \"mNumRotatingAutosaves={{server.environment.NUM_AUTOSAVES}}\",\n            \"bImplicitSend\": \"bImplicitSend={{server.environment.UPLOAD_CRASH_REPORT}}\",\n            \"InitialConnectTimeout\": \"InitialConnectTimeout={{server.environment.INIT_CONNECT_TIMEOUT}}\",\n            \"ConnectionTimeout\": \"ConnectionTimeout={{server.environment.CONNECT_TIMEOUT}}\"\n        }\n    }\n}",
         "startup": "{\r\n    \"done\": \"Engine Initialization\"\r\n}",

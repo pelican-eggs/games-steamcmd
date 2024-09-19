@@ -102,8 +102,7 @@ ___
 | **Primary** | 7777 | UDP & TCP | **Yes** | Clients connect using this port. UDP is un-encrypted game traffic. TCP is also required for the in-game Server Manager & API, and it is TLS encrypted. |
 
 > [!TIP]
-> It is recommended to distance ports of other running Satisfactory servers by **increments of 100** (it is currently unknown what the minimum increment is, but an increment of +1 caused cross-server talk in previous testing).\
-> \*Also, your internal ports **must match** your external ports on your network (ie. you can't have an external port of 7778 forwarded to your 7777 internal port; they must match). (\*Source/Testing needed after v1.0 release)
+> \*Your internal ports **must match** your external ports on your network (ie. you can't have an external port of 7778 forwarded to your 7777 internal port; they must match). (\*Testing needed after v1.0 release)
 
 ___
 
@@ -111,8 +110,8 @@ ___
 
 |  | Bare Minimum | Recommended |
 |---------|---------|---------|
-| Processor | Recent x86/64 (AMD/Intel) processor. No 32 bit or ARM support. | Favours higher single-core performance over multiple cores. |
-| RAM | 6144 MiB | 8192-12288 MiB (especially for 4 players or large save files) |
+| Processor | Recent x86/64 (AMD/Intel) processor that supports modern instructions (ie. AVX, AES, etc.). No 32 bit or ARM support. | Favours higher single-core performance over multiple cores. If you are running Wings via Proxmox, you may need to set the VM's CPU Type to "host" to avoid session save/load crashes. |
+| RAM | 4608 MiB | 8192-12288 MiB (especially for 4 players or large save files) |
 | Storage | 5120 MiB | 7168-10240 MiB (or more, depending on save size or frequency) |
 | Network | 1 Mbit/s | 1-5 Mbit/s ([may require server *and* client config tweaks](https://satisfactory.wiki.gg/wiki/Multiplayer#Temporary_lag_solution)) |
 | Host OS | Most stable Linux OS branches should work | Using the latest kernel version for your installed OS can prevent some edge-case installation/boot issues. |

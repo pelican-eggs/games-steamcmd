@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-09-19T23:39:05-04:00",
+    "exported_at": "2024-09-20T00:41:06-04:00",
     "name": "Satisfactory",
     "author": "vapokrocks@gmail.com",
     "description": "Satisfactory is a first-person open-world factory building game with a dash of exploration and combat. Play alone or with friends, explore an alien planet, create multi-story factories, and enter conveyor belt heaven!",
@@ -17,7 +17,7 @@
     "file_denylist": [],
     "startup": ".\/FactoryServer.sh ?listen -port={{SERVER_PORT}} $(if {{DISABLE_SEASONAL}}; then echo \"-DisableSeasonalEvents\"; fi)",
     "config": {
-        "files": "{\r\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Game.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"MaxPlayers\": \"MaxPlayers={{server.build.env.MAX_PLAYERS}}\"\r\n        }\r\n    },\r\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Engine.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"mNumRotatingAutosaves\": \"mNumRotatingAutosaves={{server.build.env.NUM_AUTOSAVES}}\",\r\n            \"bImplicitSend\": \"bImplicitSend={{server.build.env.UPLOAD_CRASH_REPORT}}\",\r\n            \"InitialConnectTimeout\": \"InitialConnectTimeout={{server.build.env.INIT_CONNECT_TIMEOUT}}\",\r\n            \"ConnectionTimeout\": \"ConnectionTimeout={{server.build.env.CONNECT_TIMEOUT}}\"\r\n        }\r\n    },\r\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/GameUserSettings.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"mFloatValues\": \"mFloatValues=((\\\"FG.AutosaveInterval\\\", {{server.build.env.AUTOSAVE_INTERVAL}}),(\\\"FG.ServerRestartTimeSlot\\\",  {{server.build.env.SERVER_RESTART_TIME_SLOT}}.000000))\",\r\n            \"mIntValues\": \"mIntValues=((\\\"FG.NetworkQuality\\\", {{server.build.env.NETWORK_QUALITY}}))\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Game.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"MaxPlayers\": \"MaxPlayers={{server.build.env.MAX_PLAYERS}}\"\r\n        }\r\n    },\r\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Engine.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"mNumRotatingAutosaves\": \"mNumRotatingAutosaves={{server.build.env.NUM_AUTOSAVES}}\",\r\n            \"bImplicitSend\": \"bImplicitSend={{server.build.env.UPLOAD_CRASH_REPORT}}\",\r\n            \"InitialConnectTimeout\": \"InitialConnectTimeout={{server.build.env.INIT_CONNECT_TIMEOUT}}\",\r\n            \"ConnectionTimeout\": \"ConnectionTimeout={{server.build.env.CONNECT_TIMEOUT}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Engine is initialized\"\r\n}",
         "logs": "{}",
         "stop": "^C"
@@ -51,26 +51,6 @@
             "field_type": "text"
         },
         {
-            "name": "Autosave Interval",
-            "description": "How often, in seconds, the server should generate a new autosave (ex. 300 = 5 min). Keep in mind that shorter times mean that while the server will save the game more often, it also means a potential drop in server performance. NOTE: This overrides any \"FG.AutosaveInterval\" commands made to the console!",
-            "env_variable": "AUTOSAVE_INTERVAL",
-            "default_value": "300",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|numeric|min:1",
-            "field_type": "text"
-        },
-        {
-            "name": "Server Restart Time",
-            "description": "Set the number of minutes from Midnight UTC, that you want the server to restart at. For example, for 3AM Eastern US time, which is 0700 UTC, 7 hours * 60 minutes = 420.  Therefore, this value would be 420.",
-            "env_variable": "SERVER_RESTART_TIME_SLOT",
-            "default_value": "420",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|int|max:1440",
-            "field_type": "text"
-        },
-        {
             "name": "Number of Rotating Autosaves",
             "description": "Number of session auto-saves for the server to keep before the oldest save is deleted and the others are moved down the list.",
             "env_variable": "NUM_AUTOSAVES",
@@ -91,7 +71,7 @@
             "field_type": "text"
         },
         {
-            "name": "Max Players",
+            "name": "[Experimental] Max Players",
             "description": "[Requires server re-install to change default value!] The server and client are currently not optimized to support more than 4 players. However, you can override this value here at your own risk of poor performance.",
             "env_variable": "MAX_PLAYERS",
             "default_value": "4",
@@ -118,16 +98,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|numeric|min:1",
-            "field_type": "text"
-        },
-        {
-            "name": "[Advanced] Network Quality",
-            "description": "[0 = Low, 1 = Medium, 2 = High, 3 = Ultra] Sets the network configuration for the game server (shouldn't need to be changed). NOTE: This overrides any \"FG.NetworkQuality\" commands made to the console!",
-            "env_variable": "NETWORK_QUALITY",
-            "default_value": "3",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer|between:0,3",
             "field_type": "text"
         },
         {

@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:57+00:00",
+    "exported_at": "2024-09-20T07:02:17+00:00",
     "name": "The Front",
     "author": "eggs@goover.dev",
     "uuid": "cdab0d81-2c29-416e-9766-4e7c17a55533",
@@ -16,7 +16,7 @@
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
-    "startup": ".\/ProjectWar\/Binaries\/Linux\/TheFrontServer  ProjectWar_Start?DedicatedServer -server -game -log -ServerTags=\"{{SRV_TAGS}}\" -UseSteamSocket={{STEAMSOCKET}} -Port=\"{{SERVER_PORT}}\" -BeaconPort=\"{{BEACON_PORT}}\" -ShutDownServicePort=\"{{SHUTDOWN_PORT}}\" -QueryPort=\"{{QUERY_PORT}}\" -ConfigServerName=\"{{CFG_NAME}}\" -OutIPAddress={{SERVER_IP}} -UserDir=\"\/home\/container\/TheFrontManager\/{{CFG_NAME}}\/\" -ServerName=\"{{SRV_NAME}}\" -EnableParallelCharacterMovementTickFunction -EnableParallelCharacterTickFunction -UseDynamicPhysicsScene -Game.PhysicsVehicle=false -ansimalloc -Game.MaxFrameRate=35 -MaxQueueSize=50 -QueueValidTime=120 -QueueThreshold={{MAX_PLAYERS}} -ServerFightModeType={{GAMEMODE}} -IsCanSelfDamage={{SELFDMG}} -IsCanFriendDamage={{DMGALLIES}} -SaveWorldInterval={{SRV_SAVETIME}} -GMOverlapRatio=2 -GreenHand={{GREENHAND}} -SensitiveWords={{SENSITIVE_WORDS}} -UseACE={{ANTI_CHEAT}} -ServerAdminAccounts={{SRV_ADMIN}} -IsShowGmTitle={{ADMIN_LABEL}} -ServerPassword={{SRV_PW}}",
+    "startup": ".\/ProjectWar\/Binaries\/Linux\/TheFrontServer  ProjectWar_Start?DedicatedServer -server -game -log -ServerTags=\"{{SRV_TAGS}}\" -UseSteamSocket={{STEAMSOCKET}} -Port=\"{{SERVER_PORT}}\" -BeaconPort=\"{{BEACON_PORT}}\" -ShutDownServicePort=\"{{SHUTDOWN_PORT}}\" -QueryPort=\"{{QUERY_PORT}}\" -ConfigServerName=\"{{CFG_NAME}}\" -OutIPAddress={{SERVER_IP}} -UserDir=\"\/home\/container\/TheFrontManager\/{{CFG_NAME}}\/\" -ServerName=\"{{SRV_NAME}}\" -EnableParallelCharacterMovementTickFunction -EnableParallelCharacterTickFunction -UseDynamicPhysicsScene -Game.PhysicsVehicle=false -ansimalloc -Game.MaxFrameRate=35 -MaxQueueSize=50 -QueueValidTime=120 -QueueThreshold={{MAX_PLAYERS}} -ServerFightModeType={{GAMEMODE}} -IsCanSelfDamage={{SELFDMG}} -IsCanFriendDamage={{DMGALLIES}} -SaveWorldInterval={{SRV_SAVETIME}} -GMOverlapRatio=2 -GreenHand={{GREENHAND}} -SensitiveWords={{SENSITIVE_WORDS}} -UseACE={{ANTI_CHEAT}} -ServerAdminAccounts=\"{{SRV_ADMIN}}\" -IsShowGmTitle={{ADMIN_LABEL}} -ServerPassword={{SRV_PW}}",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"LogLoad: (Engine Initialization) \"\r\n}",
@@ -32,234 +32,309 @@
     },
     "variables": [
         {
+            "sort": null,
             "name": "[SERVER] Server Name",
             "description": "no spaces und special signs",
             "env_variable": "SRV_NAME",
             "default_value": "Pterodactyl hosted Server",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:50",
-            "sort": null,
+            "rules": [
+                "required",
+                "string",
+                "max:50"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Max Players",
             "description": "The max number of players on your server.",
             "env_variable": "MAX_PLAYERS",
             "default_value": "10",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|between:1,80",
-            "sort": null,
+            "rules": [
+                "required",
+                "integer",
+                "between:1,80"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Config Name",
             "description": "Name of the savefile. NO SPACE or SPECIAL signs",
             "env_variable": "CFG_NAME",
             "default_value": "new",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:20",
-            "sort": null,
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Server Password",
             "description": "",
             "env_variable": "SRV_PW",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable",
-            "sort": null,
+            "rules": [
+                "nullable"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] PvE",
             "description": "off = PvP; on = PvE",
             "env_variable": "GAMEMODE",
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
+            "rules": [
+                "required",
+                "boolean"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Use Steam Socket",
             "description": "Use Steam servers for network penetration. Enable this if you don't have a public IP but you want to allow players from outside your network to join your server. If disabled, only you and other players on your LAN can join. If you have a public IP, you do not need to enable this. Enabling this feature will affect latency. When Steam servers are busy, you may not be able to join this server.",
             "env_variable": "STEAMSOCKET",
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
+            "rules": [
+                "required",
+                "boolean"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Damage self?",
             "description": "Allows players to damage themselves.",
             "env_variable": "SELFDMG",
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Damage allies?",
             "description": "Allows squadmates to damage each other.",
             "env_variable": "DMGALLIES",
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Server Admins",
             "description": "Enter a 17-digit Steam ID. Use semicolons between each ID. GM level defaults to highest level (Lv. 25)",
             "env_variable": "SRV_ADMIN",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": null,
+            "rules": [
+                "nullable",
+                "string"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[ADVANCED] Label admin",
             "description": "Toggles special admin icon.",
             "env_variable": "ADMIN_LABEL",
             "default_value": "false",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[ADVANCED] Server save interval",
             "description": "Server archive interval (in seconds)",
             "env_variable": "SRV_SAVETIME",
             "default_value": "300",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|between:150,600",
-            "sort": null,
+            "rules": [
+                "required",
+                "integer",
+                "between:150,600"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[ADVANCED] Enable novice protection?",
             "description": "When enabled, new characters will receive novice protection.",
             "env_variable": "GREENHAND",
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[ADVANCED] Server Tags",
             "description": "MAX 5 -> \r\n\r\n0= PVP |   \r\n1= PVE | \r\n2= EXP Multiplikator |  \r\n3= GatheringRate |  \r\n4= KeepInventory |  \r\n5= 45d wipe |  \r\n6= 15d wipe |  \r\n7= 30d wipe |  \r\n8= 60d wipe |",
             "env_variable": "SRV_TAGS",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable",
-            "sort": null,
+            "rules": [
+                "nullable"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[ADVANCED] Enable anticheat?",
             "description": "Toggles anticheat.",
             "env_variable": "ANTI_CHEAT",
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[ADVANCED] Enable profanity?",
             "description": "When disable, profanity will be blocked.",
             "env_variable": "SENSITIVE_WORDS",
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] Auto Update",
             "description": "Autoupdate your Server on start\/restart",
             "env_variable": "AUTO_UPDATE",
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
+            "rules": [
+                "required",
+                "boolean"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SYSTEM] SRCDS_APPID",
             "description": "",
             "env_variable": "SRCDS_APPID",
             "default_value": "2334200",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] BeaconPort",
             "description": "port+1",
             "env_variable": "BEACON_PORT",
             "default_value": "27016",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|integer|between:1024,65536",
-            "sort": null,
+            "rules": [
+                "required",
+                "integer",
+                "between:1024,65536"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] QueryPort",
             "description": "port+2",
             "env_variable": "QUERY_PORT",
             "default_value": "27017",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|integer|between:1024,65536",
-            "sort": null,
+            "rules": [
+                "required",
+                "integer",
+                "between:1024,65536"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "[SERVER] ShutDownServicePort",
             "description": "port +3",
             "env_variable": "SHUTDOWN_PORT",
             "default_value": "27017",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|integer|between:1024,65536",
-            "sort": null,
+            "rules": [
+                "required",
+                "integer",
+                "between:1024,65536"
+            ],
             "field_type": "text"
         },
         {
+            "sort": null,
             "name": "WINDOWS_INSTALL",
             "description": "DO NOT REMOVE !!!",
             "env_variable": "WINDOWS_INSTALL",
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|boolean",
-            "sort": null,
+            "rules": [
+                "required",
+                "boolean"
+            ],
             "field_type": "text"
         }
     ]

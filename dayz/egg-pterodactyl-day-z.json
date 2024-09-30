@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-13T12:52:57+07:00",
+    "exported_at": "2024-07-04T17:23:00-07:00",
     "name": "DayZ",
     "author": "red_thirten@yahoo.com",
     "description": "How long can you survive a post-apocalyptic world? A land overrun with an infected \"zombie\" population, where you compete with other survivors for limited resources. Will you team up with strangers and stay strong together? Or play as a lone wolf to avoid betrayal? This is DayZ \u2013 this is your story.",
@@ -24,7 +24,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n\r\n## File: DayZ Egg - egg-dayz.json\r\n## Author: David Wolfe (Red-Thirten)\r\n## Date: 2024\/06\/05\r\n## License: MIT License\r\n## Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n## Download and install SteamCMD\r\nexport HOME=\/mnt\/server\r\ncd \/tmp\r\nmkdir -p $HOME\/steamcmd $HOME\/steamapps\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C $HOME\/steamcmd\r\ncd $HOME\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\n\r\n# Install\/Verify game server using SteamCMD\r\n.\/steamcmd.sh +force_install_dir $HOME \"+login \\\"${STEAM_USER}\\\" \\\"${STEAM_PASS}\\\"\" +app_update ${STEAMCMD_APPID} $( [[ -z ${STEAMCMD_BETAID} ]] || printf %s \"-beta ${STEAMCMD_BETAID}\" ) $( [[ -z ${STEAMCMD_BETAPASS} ]] || printf %s \"-betapassword ${STEAMCMD_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit\r\n\r\n# Set up 32 and 64 bit libraries\r\nmkdir -p $HOME\/.steam\/sdk{32,64}\r\ncp -v linux32\/steamclient.so $HOME\/.steam\/sdk32\/steamclient.so\r\ncp -v linux64\/steamclient.so $HOME\/.steam\/sdk64\/steamclient.so\r\n\r\n## DayZ Setup\r\ncd $HOME\r\n\r\n# Check for successful installation\r\nif [ ! -f DayZServer ] || [ ! -f serverDZ.cfg ]; then\r\n    echo -e \"\\n\\n[ERROR] SteamCMD failed to install the DayZ Dedicated Server!\"\r\n    echo -e \"\\tTry reinstalling the server again.\\n\"\r\n    exit 1\r\nfi\r\n\r\n# Add required steamQueryPort parameter to end of default serverDZ.cfg (if it's missing)\r\nif ! grep -q \"steamQueryPort\" serverDZ.cfg; then\r\n    echo -e '\\nAdding required additional parameters to end of default \"serverDZ.cfg\"...'\r\ncat >> serverDZ.cfg << EOL\r\n\r\n\r\nsteamQueryPort = 2305;\r\nEOL\r\nfi\r\n\r\n# Check for BattlEye RCon configuration\r\necho -e '\\nCreating BattlEye RCon Configuration.'\r\ncat > $HOME\/battleye\/beserver_x64.cfg << EOF\r\nRConPort ${RCON_PORT}\r\nRConPassword ${RCON_PASSWORD}\r\nRestrictRCon 0\r\nEOF\r\n\r\necho -e \"\\nDayZ Dedicated Server successfully installed!\\n\"",
+            "script": "#!\/bin\/bash\r\n\r\n## File: Pterodactyl DayZ Egg - egg-pterodactyl-day-z.json\r\n## Author: David Wolfe (Red-Thirten)\r\n## Date: 2024\/07\/04\r\n## License: MIT License\r\n## Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\nexport HOME=\/mnt\/server\r\nCONFIG_URL=\"https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/main\/dayz\/config\/serverDZ.cfg\"\r\nMISSIONS_GITHUB_PACKAGE=\"BohemiaInteractive\/DayZ-Central-Economy\"\r\n\r\n## Download and install SteamCMD\r\ncd \/tmp\r\nmkdir -p $HOME\/steamcmd $HOME\/steamapps\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C $HOME\/steamcmd\r\ncd $HOME\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\n\r\nif [ \"$SKIP_INSTALL\" -eq 1 ]; then\r\n    # This is for the minority of hosts who want to install this server with Steam Guard enabled.\r\n    # Please read the README for instructions on how to do this properly!\r\n    echo -e '\"Skip Game Server Install\" variable is set to enabled!'\r\n    echo -e \"\\tOnly SteamCMD will be installed...\"\r\n    .\/steamcmd.sh +quit\r\nelse\r\n    # Install\/Verify game server using SteamCMD\r\n    .\/steamcmd.sh +force_install_dir $HOME \"+login \\\"${STEAM_USER}\\\" \\\"${STEAM_PASS}\\\"\" +app_update ${STEAMCMD_APPID} $( [[ -z ${STEAMCMD_BETAID} ]] || printf %s \"-beta ${STEAMCMD_BETAID}\" ) $( [[ -z ${STEAMCMD_BETAPASS} ]] || printf %s \"-betapassword ${STEAMCMD_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit\r\nfi\r\necho -e \"\"\r\n\r\n# Set up 32 and 64 bit libraries\r\nmkdir -p $HOME\/.steam\/sdk{32,64}\r\ncp -v linux32\/steamclient.so $HOME\/.steam\/sdk32\/steamclient.so\r\ncp -v linux64\/steamclient.so $HOME\/.steam\/sdk64\/steamclient.so\r\n\r\n## DayZ Setup\r\ncd $HOME\r\n\r\n# Check for successful server binary installation\r\nif [ ! -f DayZServer ] && [ \"$SKIP_INSTALL\" -ne 1 ]; then\r\n    echo -e \"\\n\\n[ERROR] SteamCMD failed to install the DayZ Dedicated Server!\"\r\n    echo -e \"\\tTry reinstalling the server again.\\n\"\r\n    exit 1\r\nfi\r\n\r\n# Download default serverDZ.cfg if it is missing or empty (occurs when Steam account *owns* the DayZ game)\r\nif [ ! -f serverDZ.cfg ] || [ ! -s serverDZ.cfg ]; then\r\n    echo -e \"'serverDZ.cfg' is missing or empty. Downloading default config file...\"\r\n    curl -LO ${CONFIG_URL}\r\n    if [ ! -f serverDZ.cfg ]; then\r\n        echo -e \"\\n\\n[ERROR] Failed to download default server config file!\"\r\n        exit 1\r\n    fi\r\n    chmod 644 serverDZ.cfg\r\nfi\r\n\r\n# Add required 'steamQueryPort' parameter to the end of serverDZ.cfg (if it's missing)\r\nif ! grep -q \"steamQueryPort\" serverDZ.cfg; then\r\n    echo -e \"Adding additional required parameters to the end of 'serverDZ.cfg'...\"\r\n    cat >> serverDZ.cfg << EOL\r\n\r\n\r\nsteamQueryPort = ${QUERY_PORT};\r\nEOL\r\nfi\r\n\r\n# Download vanilla mission files if they are missing (occurs when Steam account *does not own* the DayZ game)\r\nif { [ ! -d \"mpmissions\" ] || [ -z \"$(ls -A mpmissions 2>\/dev\/null)\" ]; } && [ \"$SKIP_INSTALL\" -ne 1 ]; then\r\n    echo -e \"[WARNING] The Steam account used to install this server does not own the DayZ game!\"\r\n    echo -e \"\\tVanilla mission files will have to be MANUALLY updated in the future if they update! (See Egg's README for instructions)\"\r\n    echo -e \"\\tDownloading and installing vanilla mission files...\"\r\n    mkdir -p $HOME\/mpmissions\r\n    cd $HOME\/mpmissions\r\n    LATEST_JSON=$(curl --silent \"https:\/\/api.github.com\/repos\/${MISSIONS_GITHUB_PACKAGE}\/releases\/latest\")\r\n    DOWNLOAD_URL=$(echo ${LATEST_JSON} | jq -r .tarball_url)\r\n    curl -Lo mpmissions.tar.gz ${DOWNLOAD_URL}\r\n    if [ ! -f mpmissions.tar.gz ]; then\r\n        echo -e \"\\n\\n[ERROR] Failed to download vanilla mission files!\"\r\n        exit 1\r\n    fi\r\n    tar -xzvf mpmissions.tar.gz --strip-components=1 --wildcards '*\/dayzOffline.chernarusplus\/*' '*\/dayzOffline.enoch\/*'\r\n    rm -f mpmissions.tar.gz\r\nfi\r\n\r\n# Check for BattlEye RCon configuration\r\nmkdir -p $HOME\/battleye\r\ncd $HOME\/battleye\r\nif [ ! -f beserver_x64.cfg ]; then\r\n    echo -e \"Creating BattlEye RCon Configuration...\"\r\n    cat > beserver_x64.cfg << EOF\r\nRConPort ${RCON_PORT}\r\nRConPassword ${RCON_PASSWORD}\r\nRestrictRCon 0\r\nEOF\r\nfi\r\n\r\necho -e \"\\nDayZ Dedicated Server successfully installed!\\n\"",
             "container": "ghcr.io\/parkervcp\/installers:debian",
             "entrypoint": "\/bin\/bash"
         }
@@ -34,14 +34,14 @@
             "name": "[Host] Steam Query Port",
             "description": "UDP port for Steam server list features. Helps the server be visible in the client server browser.",
             "env_variable": "QUERY_PORT",
-            "default_value": "2305",
+            "default_value": "27016",
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|integer|between:1024,65536",
             "field_type": "text"
         },
         {
-            "name": "Steam Username",
+            "name": "[Host] Steam Username",
             "description": "Used for installation and updates. Account does not need to own DayZ, but MUST BE a VALID Steam account (anonymous login cannot be used). For security reasons it is recommended that you create a new Steam account just for your dedicated servers. *This info is not visible to the server owner.*",
             "env_variable": "STEAM_USER",
             "default_value": "",
@@ -51,7 +51,7 @@
             "field_type": "text"
         },
         {
-            "name": "Steam Password",
+            "name": "[Host] Steam Password",
             "description": "Used for installation and updates. Steam Guard MUST be completely TURNED OFF for the server and mods to download efficiently. *This info is not visible to the server owner, BUT IS stored in PLAIN TEXT. It is NOT advised to use a personal account; best to use a dummy account.*",
             "env_variable": "STEAM_PASS",
             "default_value": "",
@@ -61,7 +61,7 @@
             "field_type": "text"
         },
         {
-            "name": "Disable Mod Downloads\/Updates",
+            "name": "[Host] Disable Mod Downloads\/Updates",
             "description": "If the Steam account does not own the base DayZ game, Steam Workshop mod downloads\/updates will not work. If so, this setting allows disabling of this feature to avoid errors. (1 ON | 0 OFF)",
             "env_variable": "DISABLE_MOD_UPDATES",
             "default_value": "0",
@@ -71,13 +71,23 @@
             "field_type": "text"
         },
         {
-            "name": "Number of SteamCMD Retry Attempts",
+            "name": "[Host] Number of SteamCMD Retry Attempts",
             "description": "How many times SteamCMD should retry downloading a server or mod after a recoverable error. (ie. A particularly large mod download times out)",
             "env_variable": "STEAMCMD_ATTEMPTS",
             "default_value": "3",
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|integer",
+            "field_type": "text"
+        },
+        {
+            "name": "[Host] Skip Game Server Install",
+            "description": "Skips the installation of game server files via SteamCMD during the installation script. Should only be enabled if you are trying to install the server with a Steam account that has Steam Guard enabled (not recommended).",
+            "env_variable": "SKIP_INSTALL",
+            "default_value": "0",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "boolean",
             "field_type": "text"
         },
         {
@@ -97,7 +107,7 @@
             "default_value": "DayZ Server",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
+            "rules": "required|string",
             "field_type": "text"
         },
         {

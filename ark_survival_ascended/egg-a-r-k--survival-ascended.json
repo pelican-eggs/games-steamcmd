@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/ark_survival_ascended\/egg-a-r-k--survival-ascended.json"
     },
-    "exported_at": "2024-10-04T15:25:38+00:00",
+    "exported_at": "2024-10-04T17:57:36+00:00",
     "name": "ARK: Survival Ascended",
     "author": "blood@darkartsgaming.com",
-    "uuid": "ad1c5e05-f296-4bc9-86d9-344d87a20ac3",
+    "uuid": "e9a600eb-3f06-44bf-bcbc-47fe70fa774e",
     "description": "ARK is reimagined from the ground-up into the next-generation of video game technology with Unreal Engine 5! Form a tribe, tame & breed hundreds of unique dinosaurs and primeval creatures, explore, craft, build, and fight your way to the top of the food-chain. Your new world awaits!",
     "features": [
         "steam_disk_space"

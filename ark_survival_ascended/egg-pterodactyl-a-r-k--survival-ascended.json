@@ -32,7 +32,7 @@
     "variables": [
         {
             "name": "Server Map",
-            "description": "Available Maps: TheIsland_WP",
+            "description": "Available Maps: TheIsland_WP, TheCenter_WP, ScorchedEarth_WP, Aberration_WP",
             "env_variable": "SERVER_MAP",
             "default_value": "TheIsland_WP",
             "user_viewable": true,

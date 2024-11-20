@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-09-20T07:02:17+00:00",
+    "exported_at": "2024-11-20T10:05:44+00:00",
     "name": "The Front",
     "author": "eggs@goover.dev",
     "uuid": "cdab0d81-2c29-416e-9766-4e7c17a55533",
@@ -43,8 +43,7 @@
                 "required",
                 "string",
                 "max:50"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -58,8 +57,7 @@
                 "required",
                 "integer",
                 "between:1,80"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -73,8 +71,7 @@
                 "required",
                 "string",
                 "max:20"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -86,8 +83,7 @@
             "user_editable": true,
             "rules": [
                 "nullable"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -100,8 +96,7 @@
             "rules": [
                 "required",
                 "boolean"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -114,8 +109,7 @@
             "rules": [
                 "required",
                 "boolean"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -129,8 +123,7 @@
                 "required",
                 "string",
                 "in:true,false"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -144,8 +137,7 @@
                 "required",
                 "string",
                 "in:true,false"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -158,8 +150,7 @@
             "rules": [
                 "nullable",
                 "string"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -173,8 +164,7 @@
                 "required",
                 "string",
                 "in:true,false"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -188,8 +178,7 @@
                 "required",
                 "integer",
                 "between:150,600"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -203,8 +192,7 @@
                 "required",
                 "string",
                 "in:true,false"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -216,8 +204,7 @@
             "user_editable": true,
             "rules": [
                 "nullable"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -231,8 +218,7 @@
                 "required",
                 "string",
                 "in:true,false"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -246,8 +232,7 @@
                 "required",
                 "string",
                 "in:true,false"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -260,8 +245,7 @@
             "rules": [
                 "required",
                 "boolean"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -275,8 +259,7 @@
                 "required",
                 "string",
                 "max:20"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -290,8 +273,7 @@
                 "required",
                 "integer",
                 "between:1024,65536"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -305,8 +287,7 @@
                 "required",
                 "integer",
                 "between:1024,65536"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -320,8 +301,7 @@
                 "required",
                 "integer",
                 "between:1024,65536"
-            ],
-            "field_type": "text"
+            ]
         },
         {
             "sort": null,
@@ -334,8 +314,7 @@
             "rules": [
                 "required",
                 "boolean"
-            ],
-            "field_type": "text"
+            ]
         }
     ]
 }

@@ -60,6 +60,12 @@ ___
 
 ### Installation/System Requirements
 
+> [!IMPORTANT]
+> [As of 2024-11-27] A real, valid Steam account is required to install this game server.
+
+> [!WARNING]
+> Steam Guard **must** be completely **turned off** for the server to download correctly!
+
 |  | Bare Minimum | Recommended |
 |---------|---------|---------|
 | Processor | Recent x86/64 (AMD/Intel) processor. No ARM support. | Can use up to 300-600% CPU under load with uncapped FPS (set Max FPS to prevent). |

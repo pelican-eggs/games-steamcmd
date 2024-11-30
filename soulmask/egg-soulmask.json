@@ -101,6 +101,16 @@
             "field_type": "text"
         },
         {
+            "name": "Server Port",
+            "description": "Specifies the Server port",
+            "env_variable": "SERVER_PORT",
+            "default_value": "7777",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|numeric|between:1024,65536",
+            "field_type": "text"
+        },
+        {
             "name": "Maintenance Port",
             "description": "Maintenance port, used for local telnet server maintenance, TCP, does not need to be open.",
             "env_variable": "ECHO_PORT",

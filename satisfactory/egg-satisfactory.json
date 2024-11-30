@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
-        "update_url": null
+        "version": "PLCN_v1",
+        "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/satisfactory\/egg-satisfactory.json"
     },
-    "exported_at": "2024-09-12T17:23:14+00:00",
+    "exported_at": "2024-11-30T15:42:32+00:00",
     "name": "Satisfactory",
     "author": "red_thirten@yahoo.com",
     "uuid": "dafdb96a-e8c1-449f-a6ae-b7ba209c05ff",
@@ -32,92 +32,113 @@
     },
     "variables": [
         {
-            "sort": 1,
             "name": "Automatic Updates",
             "description": "Quickly checks for any server updates on startup, and updates if necessary. (1 Enable | 0 Disable)",
             "env_variable": "AUTO_UPDATE",
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 1
         },
         {
-            "sort": 2,
             "name": "[Repair] Validate Server Files",
             "description": "Leave empty (no value) for OFF or type \"true\" or \"1\" for ON. Validates all server files when Automatic Updates is enabled. Note: This will significantly increase server startup times, so it is recommended to only enable this when needed.",
             "env_variable": "VALIDATE",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "string|nullable",
-            "field_type": "text"
+            "rules": [
+                "string",
+                "nullable"
+            ],
+            "sort": 2
         },
         {
-            "sort": 3,
             "name": "Number of Rotating Autosaves",
             "description": "Number of session auto-saves for the server to keep before the oldest save is deleted and the others are moved down the list.",
             "env_variable": "NUM_AUTOSAVES",
             "default_value": "3",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|min:0",
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "min:0"
+            ],
+            "sort": 3
         },
         {
-            "sort": 4,
             "name": "[Experimental] Max Players",
             "description": "The server and client are currently not optimized to support more than 4 players. However, you can override this value here at your own risk of poor performance.",
             "env_variable": "MAX_PLAYERS",
             "default_value": "4",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|min:1",
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "min:1"
+            ],
+            "sort": 4
         },
         {
-            "sort": 5,
             "name": "[Advanced] Client Initial Connection Timeout",
             "description": "Time in seconds to wait for a new client connection to be established before destroying the connection.",
             "env_variable": "INIT_CONNECT_TIMEOUT",
             "default_value": "30",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|min:1",
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "min:1"
+            ],
+            "sort": 5
         },
         {
-            "sort": 6,
             "name": "[Advanced] Client Established Connection Timeout",
             "description": "Time in seconds to wait before considering an established client connection timed out. Typically shorter than the time to wait on an initial connection because this connection should already have been setup and any interruption should be trapped quicker.",
             "env_variable": "CONNECT_TIMEOUT",
             "default_value": "20",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|min:1",
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "min:1"
+            ],
+            "sort": 6
         },
         {
-            "sort": 7,
             "name": "[Advanced] Branch Name",
             "description": "[Accepted Values: \"public\", \"experimental\", or leave empty to use the primary branch of the server] Used to download or switch to a non-primary branch of the game server. \"Automatic Updates\" and \"Validate Server Files\" must be set to \"1\" to switch branches if the server is already installed. NOTE: Any non-primary branches may not be fully compatible\/stable!",
             "env_variable": "SRCDS_BETAID",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "string|nullable|in:public,experimental",
-            "field_type": "text"
+            "rules": [
+                "string",
+                "nullable",
+                "in:public,experimental"
+            ],
+            "sort": 7
         },
         {
-            "sort": 8,
             "name": "[Advanced] Satisfactory Dedicated Server App ID",
             "description": "Steam App ID used for installation and updates.",
             "env_variable": "SRCDS_APPID",
             "default_value": "1690800",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|integer|in:1690800",
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "in:1690800"
+            ],
+            "sort": 8
         }
     ]
 }

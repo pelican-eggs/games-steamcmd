@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/ark_survival_ascended\/egg-a-r-k--survival-ascended.json"
     },
-    "exported_at": "2024-10-04T17:57:36+00:00",
+    "exported_at": "2024-11-30T15:44:05+00:00",
     "name": "ARK: Survival Ascended",
     "author": "blood@darkartsgaming.com",
     "uuid": "e9a600eb-3f06-44bf-bcbc-47fe70fa774e",
@@ -43,8 +43,7 @@
                 "string",
                 "max:64"
             ],
-            "sort": 1,
-            "field_type": "text"
+            "sort": 1
         },
         {
             "name": "Server Name",
@@ -58,8 +57,7 @@
                 "string",
                 "max:256"
             ],
-            "sort": 2,
-            "field_type": "text"
+            "sort": 2
         },
         {
             "name": "Auto-update server",
@@ -72,8 +70,7 @@
                 "required",
                 "boolean"
             ],
-            "sort": 3,
-            "field_type": "text"
+            "sort": 3
         },
         {
             "name": "Battle Eye",
@@ -86,8 +83,7 @@
                 "required",
                 "boolean"
             ],
-            "sort": 4,
-            "field_type": "text"
+            "sort": 4
         },
         {
             "name": "App ID",
@@ -101,8 +97,7 @@
                 "integer",
                 "in:2430930"
             ],
-            "sort": 5,
-            "field_type": "text"
+            "sort": 5
         },
         {
             "name": "Additional Arguments (PARAMS)",
@@ -116,8 +111,7 @@
                 "string",
                 "max:1024"
             ],
-            "sort": 6,
-            "field_type": "text"
+            "sort": 6
         },
         {
             "name": "Max Players",
@@ -132,8 +126,7 @@
                 "min:1",
                 "max:200"
             ],
-            "sort": 7,
-            "field_type": "text"
+            "sort": 7
         },
         {
             "name": "Server Admin Password",
@@ -147,8 +140,7 @@
                 "alpha_dash",
                 "max:128"
             ],
-            "sort": 8,
-            "field_type": "text"
+            "sort": 8
         },
         {
             "name": "Query Port",
@@ -163,8 +155,7 @@
                 "min:1025",
                 "max:65535"
             ],
-            "sort": 9,
-            "field_type": "text"
+            "sort": 9
         },
         {
             "name": "Additional Arguments (FLAGS)",
@@ -178,8 +169,7 @@
                 "string",
                 "max:1024"
             ],
-            "sort": 10,
-            "field_type": "text"
+            "sort": 10
         },
         {
             "name": "Server PvE",
@@ -192,8 +182,7 @@
                 "required",
                 "boolean"
             ],
-            "sort": 11,
-            "field_type": "text"
+            "sort": 11
         },
         {
             "name": "Server Password",
@@ -207,8 +196,7 @@
                 "alpha_dash",
                 "max:128"
             ],
-            "sort": 12,
-            "field_type": "text"
+            "sort": 12
         },
         {
             "name": "RCON Port",
@@ -223,8 +211,7 @@
                 "min:1025",
                 "max:65535"
             ],
-            "sort": 13,
-            "field_type": "text"
+            "sort": 13
         },
         {
             "name": "MOD IDs",
@@ -238,8 +225,7 @@
                 "string",
                 "max:512"
             ],
-            "sort": 14,
-            "field_type": "text"
+            "sort": 14
         }
     ]
 }

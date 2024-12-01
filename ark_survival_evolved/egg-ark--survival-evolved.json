@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
-        "update_url": null
+        "version": "PLCN_v1",
+        "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/ark_survival_evolved\/egg-ark--survival-evolved.json"
     },
-    "exported_at": "2024-06-01T00:03:48+00:00",
+    "exported_at": "2024-11-30T15:45:55+00:00",
     "name": "Ark: Survival Evolved",
     "author": "dev@shepper.fr",
     "uuid": "97e50ae1-b458-4811-8977-9c7a4e411b6c",
@@ -13,7 +13,7 @@
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io\/parkervcp\/games:source": "ghcr.io\/parkervcp\/games:source"
+        "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
     "startup": "rmv() { echo  \"stopping server\"; rcon -t rcon -a 127.0.0.1:${RCON_PORT} -p ${ARK_ADMIN_PASSWORD} saveworld &&rcon -t rcon -a 127.0.0.1:${RCON_PORT} -p ${ARK_ADMIN_PASSWORD} DoExit && wait ${ARK_PID}; echo \"Server Closed\"; exit; }; trap rmv 15 2; cd ShooterGame\/Binaries\/Linux && .\/ShooterGameServer {{SERVER_MAP}}?listen?SessionName=\"{{SESSION_NAME}}\"?ServerPassword={{ARK_PASSWORD}}?ServerAdminPassword={{ARK_ADMIN_PASSWORD}}?Port={{SERVER_PORT}}?RCONPort={{RCON_PORT}}?QueryPort={{QUERY_PORT}}?RCONEnabled=True?MaxPlayers={{MAX_PLAYERS}}?GameModIds={{MOD_ID}}$( [ \"$BATTLE_EYE\" == \"1\" ] || printf %s ' -NoBattlEye' ) -server -automanagedmods {{ARGS}} -log & ARK_PID=$! ; until echo \"waiting for rcon connection...\"; (rcon -t rcon -a 127.0.0.1:${RCON_PORT} -p ${ARK_ADMIN_PASSWORD})<&0 & wait $!; do sleep 5; done",
@@ -38,9 +38,12 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|alpha_dash|between:1,100",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "alpha_dash",
+                "between:1,100"
+            ],
+            "sort": 1
         },
         {
             "name": "Admin Password",
@@ -49,9 +52,12 @@
             "default_value": "PleaseChangeMe",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|alpha_dash|between:1,100",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "alpha_dash",
+                "between:1,100"
+            ],
+            "sort": 2
         },
         {
             "name": "Server Map",
@@ -60,9 +66,12 @@
             "default_value": "TheIsland",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 3
         },
         {
             "name": "Server Name",
@@ -71,9 +80,12 @@
             "default_value": "A Pterodactyl Hosted ARK Server",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:128",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:128"
+            ],
+            "sort": 4
         },
         {
             "name": "Rcon Port",
@@ -82,9 +94,11 @@
             "default_value": "27020",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric"
+            ],
+            "sort": 5
         },
         {
             "name": "Query Port",
@@ -93,9 +107,11 @@
             "default_value": "27015",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric"
+            ],
+            "sort": 6
         },
         {
             "name": "Auto-update server",
@@ -104,9 +120,11 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 7
         },
         {
             "name": "Battle Eye",
@@ -115,9 +133,11 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 8
         },
         {
             "name": "App ID",
@@ -126,9 +146,11 @@
             "default_value": "376030",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "nullable|numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "numeric"
+            ],
+            "sort": 9
         },
         {
             "name": "Additional Arguments",
@@ -137,9 +159,11 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 10
         },
         {
             "name": "Mods",
@@ -148,9 +172,11 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 11
         },
         {
             "name": "Max Players",
@@ -159,9 +185,10 @@
             "default_value": "12",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "numeric"
+            ],
+            "sort": 12
         }
     ]
 }

@@ -10,7 +10,6 @@ Asseto Corsa requires two ports, game port is UDP and WEB HTTP port is TCP.
 |----------------|---------|
 | Game           | `9600`  |
 | HTTP           | `8081`  |
-| Server Manager | `8772`  |
 
 ### Notes
 

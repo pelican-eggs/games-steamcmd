@@ -1,0 +1,164 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2024-12-23T19:04:04+01:00",
+    "name": "Dark and Light",
+    "author": "info@r3ps4j.nl",
+    "description": "Dark and Light is a vast sandbox survival RPG set in a world dominated by powerful elemental forces. Find your way in a meticulously crafted world, featuring breathtaking landscapes, a wide variety of mythical creatures, and limitless possibility to craft, build, and unlock dozens of powerful weapons, spells, and skills.",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "Proton": "ghcr.io\/parkervcp\/steamcmd:proton"
+    },
+    "file_denylist": [],
+    "startup": "rmv() { echo \"stopping server\"; rcon -t rcon -a 127.0.0.1:${RCON_PORT} -p ${DNL_ADMIN_PASSWORD} saveworld && rcon -t rcon -a 127.0.0.1:${RCON_PORT} -p ${DNL_ADMIN_PASSWORD} DoExit && wait ${DNL_PID}; echo \"Server Closed\"; exit; }; trap rmv 15 2; proton run .\/DNL\/Binaries\/Win64\/DNLServer.exe {{SERVER_MAP}}?listen?SessionName=\\\"{{SESSION_NAME}}\\\"?ServerPassword=\"{{DNL_PASSWORD}}\"?ServerAdminPassword=\"{{DNL_ADMIN_PASSWORD}}\"?Port={{SERVER_PORT}}?QueryPort={{QUERY_PORT}}?RCONPort={{RCON_PORT}}?RCONEnabled=True$( [  \"$SERVER_PVE\" == \"0\" ] || printf %s '?ServerPVE=True' )?MaxPlayers={{MAX_PLAYERS}}?GameModIds={{MOD_ID}}$( [ \"$BATTLE_EYE\" == \"1\" ] || printf %s ' -NoBattlEye' ){{ARGS_PARAMS}} -server -automanagedmods {{ARGS_FLAGS}} -log & DNL_PID=$! ; tail -c0 -F .\/DNL\/Saved\/Logs\/DNL.log --pid=$DNL_PID & until echo \"waiting for rcon connection...\"; (rcon -t rcon -a 127.0.0.1:${RCON_PORT} -p ${DNL_ADMIN_PASSWORD})<&0 & wait $!; do sleep 5; done",
+    "config": {
+        "files": "{}",
+        "logs": "{}",
+        "startup": "{\r\n    \"done\": \"Waiting commands for 127.0.0.1:\"\r\n}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n##\r\n#\r\n# Variables\r\n# STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.\r\n# WINDOWS_INSTALL - if it's a windows server you want to install set to 1\r\n# SRCDS_APPID - steam app id found here - https:\/\/developer.valvesoftware.com\/wiki\/Dedicated_Servers_List\r\n# SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch\r\n# SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.\r\n# INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.\r\n# AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.\r\n#\r\n ##\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n## touch log file\r\nmkdir -p \/mnt\/server\/DNL\/Saved\/Logs\r\necho \"--fresh install--\" >> \/mnt\/server\/DNL\/Saved\/Logs\/DNL.log\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Server Password",
+            "description": "If specified, players must provide this password to join the server.",
+            "env_variable": "DNL_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|alpha_dash|between:1,100",
+            "field_type": "text"
+        },
+        {
+            "name": "Admin Password",
+            "description": "If specified, players must provide this password (via the in-game console) to gain access to administrator commands on the server.",
+            "env_variable": "DNL_ADMIN_PASSWORD",
+            "default_value": "PleaseChangeMe",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|alpha_dash|between:1,100",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Map",
+            "description": "Available Maps: DNL_ALL, theshard",
+            "env_variable": "SERVER_MAP",
+            "default_value": "DNL_ALL",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Name",
+            "description": "Dark and Light server name",
+            "env_variable": "SESSION_NAME",
+            "default_value": "A Pterodactyl Hosted Dark and Light Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:128",
+            "field_type": "text"
+        },
+        {
+            "name": "Rcon Port",
+            "description": "DNL rcon port used by rcon tools.",
+            "env_variable": "RCON_PORT",
+            "default_value": "27020",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "Query Port",
+            "description": "DNL query port used by steam server browser and DNL client server browser.",
+            "env_variable": "QUERY_PORT",
+            "default_value": "27015",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "Auto-update server",
+            "description": "This is to enable auto-updating for servers.\r\n\r\nDefault is 0. Set to 1 to update",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Battle Eye",
+            "description": "Enable BattleEye\r\n\r\n0 to disable\r\n1 to enable\r\n\r\ndefault=\"1\"",
+            "env_variable": "BATTLE_EYE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "App ID",
+            "description": "Dark and Light steam app id for auto updates. Leave blank to avoid auto update.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "630230",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "nullable|numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "Additional Arguments (PARAMS)",
+            "description": "Specify additional server parameters. These parameters need to be touching. (i.e): ?ServerPassword=MyP4SsWoRd?ServerAdminPassword=sUpRp4ssW0rd",
+            "env_variable": "ARGS_PARAMS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:1024",
+            "field_type": "text"
+        },
+        {
+            "name": "Additional Arguments (FLAGS)",
+            "description": "Specify additional launch parameters such as -crossplay. You must include a dash - and separate each parameter with space: -crossplay -exclusivejoin",
+            "env_variable": "ARGS_FLAGS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:1024",
+            "field_type": "text"
+        },
+        {
+            "name": "Mods",
+            "description": "Specifies the order and which mods are loaded. ModIDs need to be comma-separated such as: ModID1,ModID2",
+            "env_variable": "MOD_ID",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Players",
+            "description": "Specifies the maximum amount of players able to join the server.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "127",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric",
+            "field_type": "text"
+        }
+    ]
+}

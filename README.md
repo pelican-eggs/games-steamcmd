@@ -80,6 +80,7 @@
 * [Quake Live](quake_live)
 * [Resonite](resonite)
 * [Rising World](rising_world)
+  * [Java](rising_world/java)
   * [Legacy Java](rising_world/legacy)
   * [Unity](rising_world/unity)
 * [Risk Of Rain 2](risk_of_rain_2)

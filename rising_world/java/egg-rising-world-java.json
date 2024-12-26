@@ -1,0 +1,202 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "version": "PLCN_v1",
+        "update_url": null
+    },
+    "exported_at": "2024-12-26T20:49:48+00:00",
+    "name": "Rising World Java",
+    "author": "eagled2@zoho.com",
+    "uuid": "70335990-1c2c-488c-bf2f-417646f6c85b",
+    "description": "IMPORTANT: This starts the server using the memory limit configured in environment. This will be zero if unlimited, so you must set a limit.\n\nRising World is a voxel based open-world sandbox game, featuring a procedurally  generated world, playable in single and multi-player.",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "ghcr.io\/parkervcp\/yolks:java_8": "ghcr.io\/parkervcp\/yolks:java_8"
+    },
+    "file_denylist": [],
+    "startup": "java -Xmx{{SERVER_MEMORY}}M -jar server.jar +maxplayer={{MAX_PLAYERS}} +serverport={{SERVER_PORT}} +servername=\\\"{{SERVER_NAME}}\\\" +rconport {{RCON_PORT}}",
+    "config": {
+        "files": "{\n    \"server.properties\": {\n        \"parser\": \"properties\",\n        \"find\": {  \n            \"server_memory\": \"{{server.environment.SERVER_MEMORY}}\",          \n            \"server_name\": \"{{server.environment.SERVER_NAME}}\",\n            \"server_world_name\": \"{{server.environment.WORLD_NAME}}\",\n            \"server_port\": \"{{server.allocations.default.port}}\",\n            \"settings_default_gamemode\": \"{{server.environment.GAME_MODE}}\",\n            \"server_world_startbiome\": \"{{server.environment.START_BIOME}}\",\n            \"server_password\": \"{{server.environment.SERVER_PASSWORD}}\",\n            \"settings_max_players\": \"{{server.environment.MAX_PLAYERS}}\",\n            \"settings_pvp_enabled\": \"{{server.environment.PVP_ENABLED}}\",\n            \"rcon_enabled\": \"{{server.environment.RCON_ENABLED}}\",\n            \"rcon_port\": \"{{server.environment.RCON_PORT}}\",\n            \"rcon_password\": \"{{server.environment.RCON_PASSWORD}}\"                \n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"RISING WORLD SERVER STARTED\"\n}",
+        "logs": "{}",
+        "stop": "shutdown"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\n# steamcmd Base Installation Script\n#\n# Server Files: \/mnt\/server\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\n\n##\n#\n# Variables\n# STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.\n# WINDOWS_INSTALL - if it's a windows server you want to install set to 1\n# SRCDS_APPID - steam app id found here - https:\/\/developer.valvesoftware.com\/wiki\/Dedicated_Servers_List\n# SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch\n# SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.\n# INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.\n# AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.\n#\n ##\n\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\napt -y update\napt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\n\n## just in case someone removed the defaults.\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\n    echo -e \"steam user is not set.\\n\"\n    echo -e \"Using anonymous user.\\n\"\n    STEAM_USER=anonymous\n    STEAM_PASS=\"\"\n    STEAM_AUTH=\"\"\nelse\n    echo -e \"user set to ${STEAM_USER}\"\nfi\n\n## download and install steamcmd\ncd \/tmp\nmkdir -p \/mnt\/server\/steamcmd\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\ncd \/mnt\/server\/steamcmd\n\n# SteamCMD fails otherwise for some reason, even running as root.\n# This is changed at the end of the install process anyways.\nchown -R root:root \/mnt\nexport HOME=\/mnt\/server\n\n## install game using steamcmd\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\n\n## set up 32 bit libraries\nmkdir -p \/mnt\/server\/.steam\/sdk32\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\n\n## set up 64 bit libraries\nmkdir -p \/mnt\/server\/.steam\/sdk64\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\n\nif [ -f \"$HOME\/server.properties\" ]; then\n  echo \"-----------------------------------------\"\n  echo \"server.properties found.\"\n  echo \"-----------------------------------------\"\nelif [ -f \"$HOME\/server.example.properties\" ]; then\n  echo \"-----------------------------------------\"\n  echo \"renaming server.example.properties\"\n  echo \"-----------------------------------------\"\n  mv \/mnt\/server\/server.example.properties \/mnt\/server\/server.properties\nfi\n\nif [ -d \"$HOME\/permissions\" ]; then\n  echo \"-----------------------------------------\"\n  echo \"permissions found.\"\n  echo \"-----------------------------------------\"\nelif [ -d \"$HOME\/permissions.example\" ]; then\n  echo \"-----------------------------------------\"\n  echo \"renaming permissions.example\"\n  echo \"-----------------------------------------\"\n  mv \/mnt\/server\/permissions.example \/mnt\/server\/permissions\nfi\n\n# remove unused start scripts\nrm -fR $HOME\/linux_screen.sh\nrm -fR $HOME\/linux_startscript.sh\n\necho \"-----------------------------------------\"\necho \"Installation completed...\"\necho \"-----------------------------------------\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "sort": 1,
+            "name": "Server Name",
+            "description": "Name of the server",
+            "env_variable": "SERVER_NAME",
+            "default_value": "Rising World Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:32"
+            ]
+        },
+        {
+            "sort": 2,
+            "name": "World Name",
+            "description": "Name of the world which should be loaded (if it does not exist, it will be created)",
+            "env_variable": "WORLD_NAME",
+            "default_value": "myworld",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "string",
+                "required",
+                "max:20"
+            ]
+        },
+        {
+            "sort": 3,
+            "name": "Game Mode",
+            "description": "Default world game mode (only used when a new world is created). Either \"Survival\" or \"Creative\"",
+            "env_variable": "GAME_MODE",
+            "default_value": "Survival",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string",
+                "in:Survival,Creative"
+            ]
+        },
+        {
+            "sort": 5,
+            "name": "Server Password",
+            "description": "",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string",
+                "max:20"
+            ]
+        },
+        {
+            "sort": 6,
+            "name": "Max Players",
+            "description": "Maximum player count for the server.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "4",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "integer",
+                "max:64"
+            ]
+        },
+        {
+            "sort": 7,
+            "name": "PVP Enabled",
+            "description": "Enable\/disable pvp",
+            "env_variable": "PVP_ENABLED",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "in:true,false"
+            ]
+        },
+        {
+            "sort": 10,
+            "name": "LD Library Path",
+            "description": "",
+            "env_variable": "LD_LIBRARY_PATH",
+            "default_value": ".\/linux64",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ]
+        },
+        {
+            "sort": 11,
+            "name": "SRCDS_APPID",
+            "description": "",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "339010",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "integer",
+                "in:339010"
+            ]
+        },
+        {
+            "sort": 4,
+            "name": "Start Biome",
+            "description": "The starting biome on new worlds. Uses the default biome if left blank.",
+            "env_variable": "START_BIOME",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string",
+                "in:,,drybiome,coldbiome,oceanbiome"
+            ]
+        },
+        {
+            "sort": 8,
+            "name": "RCON Enabled",
+            "description": "Enable\/disable RCON port",
+            "env_variable": "RCON_ENABLED",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "in:true,false"
+            ]
+        },
+        {
+            "sort": 9,
+            "name": "RCON Port",
+            "description": "Port used for RCON.",
+            "env_variable": "RCON_PORT",
+            "default_value": "4253",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "integer",
+                "max:65535",
+                "min:1024"
+            ]
+        },
+        {
+            "sort": 12,
+            "name": "RCON Password",
+            "description": "Password for RCON.",
+            "env_variable": "RCON_PASS",
+            "default_value": "changeme",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ]
+        }
+    ]
+}

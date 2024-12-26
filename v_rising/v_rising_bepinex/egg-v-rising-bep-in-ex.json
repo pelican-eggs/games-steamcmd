@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
-        "update_url": null
+        "version": "PLCN_v1",
+        "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/v_rising\/v_rising_bepinex\/egg-v-rising-bep-in-ex.json"
     },
-    "exported_at": "2024-06-01T00:05:07+00:00",
+    "exported_at": "2024-12-26T09:56:26+00:00",
     "name": "V Rising BepInEx",
     "author": "red_thirten@yahoo.com",
     "uuid": "e0c3ba57-2351-4cf6-9bbb-dac5032ce8a0",
@@ -18,14 +18,14 @@
     "file_denylist": [],
     "startup": "WINEDLLOVERRIDES=\"winhttp=n,b\"; xvfb-run wine .\/VRisingServer.exe -persistentDataPath save-data -address 0.0.0.0",
     "config": {
-        "files": "{\r\n    \"save-data\/Settings\/ServerHostSettings.json\": {\r\n        \"parser\": \"json\",\r\n        \"find\": {\r\n            \"Name\": \"{{server.build.env.SERVER_NAME}}\",\r\n            \"Description\": \"{{server.build.env.DESCRIPTION}}\",\r\n            \"Port\": \"{{server.build.default.port}}\",\r\n            \"QueryPort\": \"{{server.build.env.QUERY_PORT}}\",\r\n            \"MaxConnectedUsers\": \"{{server.build.env.MAX_PLAYERS}}\",\r\n            \"MaxConnectedAdmins\": \"{{server.build.env.MAX_ADMINS}}\",\r\n            \"ServerFps\": \"{{server.build.env.FPS}}\",\r\n            \"SaveName\": \"{{server.build.env.SAVE_NAME}}\",\r\n            \"Password\": \"{{server.build.env.SERVER_PASSWORD}}\",\r\n            \"Secure\": \"{{server.build.env.SERVER_SECURE}}\",\r\n            \"ListOnSteam\": \"{{server.build.env.SERVER_LIST}}\",\r\n            \"ListOnEOS\": \"{{server.build.env.SERVER_LIST}}\",\r\n            \"AutoSaveCount\": \"{{server.build.env.SAVE_COUNT}}\",\r\n            \"AutoSaveInterval\": \"{{server.build.env.SAVE_INTERVAL}}\",\r\n            \"GameSettingsPreset\": \"{{server.build.env.GAME_SETTINGS_PRESET}}\",\r\n            \"AdminOnlyDebugEvents\": \"{{server.build.env.ADMIN_ONLY_DEBUG_EVENTS}}\",\r\n            \"DisableDebugEvents\": \"{{server.build.env.DEBUG_EVENTS}}\",\r\n            \"Rcon.Enabled\": \"{{server.build.env.RCON}}\",\r\n            \"Rcon.Password\": \"{{server.build.env.RCON_PASS}}\",\r\n            \"Rcon.Port\": \"{{server.build.env.RCON_PORT}}\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"save-data\/Settings\/ServerHostSettings.json\": {\r\n        \"parser\": \"json\",\r\n        \"find\": {\r\n            \"Name\": \"{{server.environment.SERVER_NAME}}\",\r\n            \"Description\": \"{{server.environment.DESCRIPTION}}\",\r\n            \"Port\": \"{{server.allocations.default.port}}\",\r\n            \"QueryPort\": \"{{server.environment.QUERY_PORT}}\",\r\n            \"MaxConnectedUsers\": \"{{server.environment.MAX_PLAYERS}}\",\r\n            \"MaxConnectedAdmins\": \"{{server.environment.MAX_ADMINS}}\",\r\n            \"ServerFps\": \"{{server.environment.FPS}}\",\r\n            \"SaveName\": \"{{server.environment.SAVE_NAME}}\",\r\n            \"Password\": \"{{server.environment.SERVER_PASSWORD}}\",\r\n            \"Secure\": \"{{server.environment.SERVER_SECURE}}\",\r\n            \"ListOnSteam\": \"{{server.environment.SERVER_LIST}}\",\r\n            \"ListOnEOS\": \"{{server.environment.SERVER_LIST}}\",\r\n            \"AutoSaveCount\": \"{{server.environment.SAVE_COUNT}}\",\r\n            \"AutoSaveInterval\": \"{{server.environment.SAVE_INTERVAL}}\",\r\n            \"GameSettingsPreset\": \"{{server.environment.GAME_SETTINGS_PRESET}}\",\r\n            \"AdminOnlyDebugEvents\": \"{{server.environment.ADMIN_ONLY_DEBUG_EVENTS}}\",\r\n            \"DisableDebugEvents\": \"{{server.environment.DEBUG_EVENTS}}\",\r\n            \"Rcon.Enabled\": \"{{server.environment.RCON}}\",\r\n            \"Rcon.Password\": \"{{server.environment.RCON_PASS}}\",\r\n            \"Rcon.Port\": \"{{server.environment.RCON_PORT}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Loaded ServerGameSettings\"\r\n}",
         "logs": "{}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n\r\n## File: Pterodactyl V Rising Egg - egg-v-rising.json\r\n## Authors: David Wolfe (Red-Thirten), Kapatheus\r\n## Date: 2022\/05\/28\r\n## License: MIT License\r\n## Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\nclear\r\nRED='\\033[0;31m'\r\nGREEN='\\033[0;32m'\r\nYELLOW='\\033[1;33m'\r\nBLUE='\\033[0;34m'\r\nNC='\\033[0m'\r\n\r\n# Install packages. Default packages below are skipped if using image noted above, thus speeding up the install process.\r\napt -y update\r\napt -y --no-install-recommends install curl jq unzip wget\r\n# Download and install SteamCMD\r\necho -e \"${YELLOW}download and install steamcmd${NC}\"\r\n\r\nexport HOME=\/mnt\/server\r\ncd \/tmp\r\nmkdir -p $HOME\/steamcmd $HOME\/steamapps\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C $HOME\/steamcmd\r\ncd $HOME\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\n\r\n# Install game server using SteamCMD\r\necho -e \"${YELLOW}install V Rising with SteamCMD${NC}\"\r\n\r\n.\/steamcmd.sh +force_install_dir $HOME +login anonymous $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} +quit\r\n\r\n# Set up 32 and 64 bit libraries\r\nmkdir -p $HOME\/.steam\/sdk{32,64}\r\ncp -v linux32\/steamclient.so $HOME\/.steam\/sdk32\/steamclient.so\r\ncp -v linux64\/steamclient.so $HOME\/.steam\/sdk64\/steamclient.so\r\n\r\n# Enable BEPINEX (Credits to: https:\/\/github.com\/ricin\/vrising-bepinex-linux\/blob\/main\/scripts\/start-server.sh)\r\necho -e \"${YELLOW}installing BepInex${NC}\"\r\n\r\n#variables\r\nBEPINEX_VR_TS_URL=https:\/\/v-rising.thunderstore.io\/package\/BepInEx\/BepInExPack_V_Rising\/\r\nCUR_V=\"$(find ${HOME} -maxdepth 1 -name \"BepInEx-*\" | cut -d '-' -f2)\"\r\nBEPINEX_VR_API_DATA=\"$(curl -s -X GET https:\/\/thunderstore.io\/c\/v-rising\/api\/v1\/package\/b86fcaaf-297a-45c8-82a0-fcbd7806fdc4\/ -H \"accept: application\/json\")\"\r\nLAT_V=\"$(echo ${BEPINEX_VR_API_DATA} | jq -r '.versions[0].version_number')\"\r\n\r\nif [ -z \"${LAT_V}\" ] && [ -z \"${CUR_V}\" ]; then\r\n    echo -e \"${RED}Can't get latest version of BepInEx for V Rising!${NC}\"\r\n    echo -e \"${RED}Please try to run without BepInEx for V Rising. Exiting.${NC}\"\r\n    exit 1\r\nfi\r\n\r\nif [ -f ${HOME}\/BepInEx.zip ]; then\r\n    rm -rf ${HOME}\/BepInEx.zip\r\nfi\r\nif [ -f ${HOME}\/doorstop_config.ini ]; then\r\n    sed -i \"\/enabled=false\/c\\enabled=true\" ${HOME}\/doorstop_config.ini\r\nfi\r\n\r\necho -e \"${YELLOW}BepInEx for V Rising Version Check${NC}\"\r\necho -e \"${YELLOW}More info: ${BEPINEX_VR_TS_URL}${NC}\"\r\n\r\nBEPINEX_VR_TS_DOWNLOAD_URL=\"$(echo ${BEPINEX_VR_API_DATA} | jq -r '.versions[0].download_url')\"\r\nif [ -z \"${CUR_V}\" ]; then\r\n    echo -e \"${YELLOW}BepInEx for V Rising not found, downloading and installing v${LAT_V} ...${NC}\"\r\n    \r\n    cd ${HOME}\r\n    rm -rf ${HOME}\/BepInEx-*\r\n    if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${HOME}\/BepInEx.zip --user-agent=Mozilla --content-disposition -E -c \"${BEPINEX_VR_TS_DOWNLOAD_URL}\" ; then\r\n        echo -e \"${GREEN}Successfully downloaded BepInEx for V Rising v${LAT_V}${NC}\"\r\n    else\r\n        echo -e \"${RED}Something went wrong, can't download BepInEx for V Rising v${LAT_V}. Exiting.${NC}\"\r\n        exit 1\r\n    fi\r\n    \r\n    mkdir -p \/tmp\/BepInEx\r\n    unzip -o ${HOME}\/BepInEx.zip -d \/tmp\/BepInEx\r\n    if [ $? -eq 0 ];then\r\n        touch ${HOME}\/BepInEx-${LAT_V}\r\n        cp -rf \/tmp\/BepInEx\/BepInEx*\/* ${HOME}\/\r\n        cp \/tmp\/BepInEx\/README* ${HOME}\/README_BepInEx_for_VRising.txt\r\n        rm -rf ${HOME}\/BepInEx.zip \/tmp\/BepInEx\r\n    else\r\n        echo -e \"${RED}Unable to unzip BepInEx archive! Exiting.${NC}\"\r\n        exit 1\r\n    fi\r\nelif [ \"$CUR_V\" != \"${LAT_V}\" ]; then\r\n    echo -e \"${YELLOW}Version missmatch, BepInEx v$CUR_V installed, downloading and installing v${LAT_V}  ...${NC}\"\r\n    \r\n    cd ${HOME}\r\n    rm -rf ${HOME}\/BepInEx-$CUR_V\r\n    mkdir \/tmp\/Backup\r\n    cp -R ${HOME}\/BepInEx\/config \/tmp\/Backup\/\r\n    if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${HOME}\/BepInEx.zip --user-agent=Mozilla --content-disposition -E -c \"${BEPINEX_VR_TS_DOWNLOAD_URL}\" ; then\r\n        echo -e \"${GREEN}Successfully downloaded BepInEx for V Rising v${LAT_V}${NC}\"\r\n    else\r\n        echo -e \"${RED}Unable to download BepInEx for V Rising v${LAT_V}. Exiting.${NC}\"\r\n        exit 1\r\n    fi\r\n    \r\n    unzip -o ${HOME}\/BepInEx.zip -d \/tmp\/BepInEx \r\n    \r\n    if [ $? -eq 0 ];then\r\n        cp -rf \/tmp\/BepInEx\/BepInEx*\/* ${HOME}\/\r\n        cp \/tmp\/BepInEx\/README* ${HOME}\/README_BepInEx_for_VRising.txt\r\n        touch ${HOME}\/BepInEx-${LAT_V}\r\n        cp -R \/tmp\/Backup\/config ${HOME}\/BepInEx\/\r\n        rm -rf ${HOME}\/BepInEx.zip \/tmp\/BepInEx \/tmp\/Backup\r\n    else\r\n        echo -e \"${RED}Unable to unzip BepInEx archive! Exiting.${NC}\"\r\n        exit 1\r\n    fi\r\nelif [ \"${CUR_V}\" == \"${LAT_V}\" ]; then\r\n    echo -e \"${GREEN}BepInEx v$CUR_V up-to-date!${NC}\"\r\nfi\r\n\r\nrm -fR \/mnt\/server\/dotnet\r\n\r\n## V Rising Setup\r\nmkdir -p $HOME\/save-data\/Settings && cd \"$_\"\r\ncat > ServerHostSettings.json << EOF\r\n{\r\n  \"Name\": \"${SERVER_NAME}\",\r\n  \"Description\": \"${DESCRIPTION}\",\r\n  \"Port\": ${SERVER_PORT},\r\n  \"QueryPort\": ${QUERY_PORT},\r\n  \"MaxConnectedUsers\": ${MAX_PLAYERS},\r\n  \"MaxConnectedAdmins\": ${MAX_ADMINS},\r\n  \"ServerFps\": ${FPS},\r\n  \"SaveName\": \"${SAVE_NAME}\",\r\n  \"Password\": \"${SERVER_PASSWORD}\",\r\n  \"Secure\": ${SERVER_SECURE},\r\n  \"ListOnMasterServer\": ${SERVER_LIST},\r\n  \"AutoSaveCount\": ${SAVE_COUNT},\r\n  \"AutoSaveInterval\": ${SAVE_INTERVAL},\r\n  \"GameSettingsPreset\": \"${GAME_SETTINGS_PRESET}\",\r\n  \"AdminOnlyDebugEvents\": ${ADMIN_ONLY_DEBUG_EVENTS},\r\n  \"DisableDebugEvents\": ${DEBUG_EVENTS},\r\n  \"Rcon\": {\r\n    \"Enabled\": ${RCON},\r\n    \"Password\": \"${RCON_PASS}\",\r\n    \"Port\": ${RCON_PORT}\r\n  }\r\n}\r\nEOF\r\n\r\n## cleanup to prevent errors\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${RED}deleting old wine dirs... please wait...${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\n\r\nif [ ! -d \"\/mnt\/server\/.wine\" ]; then\r\n    rm -fR \/mnt\/server\/.wine\r\n    rm -fR \/mnt\/server\/.config\r\n    rm -fR \/mnt\/server\/.cache\r\n    rm -fR \/mnt\/server\/.local\r\n    rm -fR \/mnt\/server\/appcache\r\n    rm -fR \/mnt\/server\/dotnet\r\nfi\r\necho -e \"${GREEN}..done..${NC}\"\r\n\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${GREEN}Installation completed${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"",
+            "script": "#!\/bin\/bash\r\n\r\n## File: Pterodactyl V Rising Egg - egg-v-rising.json\r\n## Authors: David Wolfe (Red-Thirten), Kapatheus\r\n## Date: 2022\/05\/28\r\n## License: MIT License\r\n## Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\nclear\r\nRED='\\033[0;31m'\r\nGREEN='\\033[0;32m'\r\nYELLOW='\\033[1;33m'\r\nBLUE='\\033[0;34m'\r\nNC='\\033[0m'\r\n\r\n# Install packages. Default packages below are skipped if using image noted above, thus speeding up the install process.\r\napt -y update\r\napt -y --no-install-recommends install curl jq unzip wget\r\n# Download and install SteamCMD\r\necho -e \"${YELLOW}download and install steamcmd${NC}\"\r\n\r\nexport HOME=\/mnt\/server\r\ncd \/tmp\r\nmkdir -p $HOME\/steamcmd $HOME\/steamapps\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C $HOME\/steamcmd\r\ncd $HOME\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\n\r\n# Install game server using SteamCMD\r\necho -e \"${YELLOW}install V Rising with SteamCMD${NC}\"\r\n\r\n.\/steamcmd.sh +force_install_dir $HOME +login anonymous $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} +quit\r\n\r\n# Set up 32 and 64 bit libraries\r\nmkdir -p $HOME\/.steam\/sdk{32,64}\r\ncp -v linux32\/steamclient.so $HOME\/.steam\/sdk32\/steamclient.so\r\ncp -v linux64\/steamclient.so $HOME\/.steam\/sdk64\/steamclient.so\r\n\r\n# Enable BEPINEX (Credits to: https:\/\/github.com\/ricin\/vrising-bepinex-linux\/blob\/main\/scripts\/start-server.sh)\r\necho -e \"${YELLOW}installing BepInex${NC}\"\r\n\r\n#variables\r\nBEPINEX_VR_TS_URL=https:\/\/v-rising.thunderstore.io\/package\/BepInEx\/BepInExPack_V_Rising\/\r\nCUR_V=\"$(find ${HOME} -maxdepth 1 -name \"BepInEx-*\" | cut -d '-' -f2)\"\r\nBEPINEX_VR_API_DATA=\"$(curl -s -X GET https:\/\/thunderstore.io\/c\/v-rising\/api\/v1\/package\/b86fcaaf-297a-45c8-82a0-fcbd7806fdc4\/ -H \"accept: application\/json\")\"\r\nLAT_V=\"$(echo ${BEPINEX_VR_API_DATA} | jq -r '.versions[0].version_number')\"\r\n\r\nif [ -z \"${LAT_V}\" ] && [ -z \"${CUR_V}\" ]; then\r\n    echo -e \"${RED}Can't get latest version of BepInEx for V Rising!${NC}\"\r\n    echo -e \"${RED}Please try to run without BepInEx for V Rising. Exiting.${NC}\"\r\n    exit 1\r\nfi\r\n\r\nif [ -f ${HOME}\/BepInEx.zip ]; then\r\n    rm -rf ${HOME}\/BepInEx.zip\r\nfi\r\nif [ -f ${HOME}\/doorstop_config.ini ]; then\r\n    sed -i \"\/enabled=false\/c\\enabled=true\" ${HOME}\/doorstop_config.ini\r\nfi\r\n\r\necho -e \"${YELLOW}BepInEx for V Rising Version Check${NC}\"\r\necho -e \"${YELLOW}More info: ${BEPINEX_VR_TS_URL}${NC}\"\r\n\r\nBEPINEX_VR_TS_DOWNLOAD_URL=\"$(echo ${BEPINEX_VR_API_DATA} | jq -r '.versions[0].download_url')\"\r\nif [ -z \"${CUR_V}\" ]; then\r\n    echo -e \"${YELLOW}BepInEx for V Rising not found, downloading and installing v${LAT_V} ...${NC}\"\r\n    \r\n    cd ${HOME}\r\n    rm -rf ${HOME}\/BepInEx-*\r\n    if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${HOME}\/BepInEx.zip --user-agent=Mozilla --content-disposition -E -c \"${BEPINEX_VR_TS_DOWNLOAD_URL}\" ; then\r\n        echo -e \"${GREEN}Successfully downloaded BepInEx for V Rising v${LAT_V}${NC}\"\r\n    else\r\n        echo -e \"${RED}Something went wrong, can't download BepInEx for V Rising v${LAT_V}. Exiting.${NC}\"\r\n        exit 1\r\n    fi\r\n    \r\n    mkdir -p \/tmp\/BepInEx\r\n    unzip -o ${HOME}\/BepInEx.zip -d \/tmp\/BepInEx\r\n    if [ $? -eq 0 ];then\r\n        touch ${HOME}\/BepInEx-${LAT_V}\r\n        cp -rf \/tmp\/BepInEx\/BepInEx*\/* ${HOME}\/\r\n        cp \/tmp\/BepInEx\/README* ${HOME}\/README_BepInEx_for_VRising.txt\r\n        rm -rf ${HOME}\/BepInEx.zip \/tmp\/BepInEx\r\n    else\r\n        echo -e \"${RED}Unable to unzip BepInEx archive! Exiting.${NC}\"\r\n        exit 1\r\n    fi\r\nelif [ \"$CUR_V\" != \"${LAT_V}\" ]; then\r\n    echo -e \"${YELLOW}Version missmatch, BepInEx v$CUR_V installed, downloading and installing v${LAT_V}  ...${NC}\"\r\n    \r\n    cd ${HOME}\r\n    rm -rf ${HOME}\/BepInEx-$CUR_V\r\n    mkdir \/tmp\/Backup\r\n    cp -R ${HOME}\/BepInEx\/config \/tmp\/Backup\/\r\n    if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${HOME}\/BepInEx.zip --user-agent=Mozilla --content-disposition -E -c \"${BEPINEX_VR_TS_DOWNLOAD_URL}\" ; then\r\n        echo -e \"${GREEN}Successfully downloaded BepInEx for V Rising v${LAT_V}${NC}\"\r\n    else\r\n        echo -e \"${RED}Unable to download BepInEx for V Rising v${LAT_V}. Exiting.${NC}\"\r\n        exit 1\r\n    fi\r\n    \r\n    unzip -o ${HOME}\/BepInEx.zip -d \/tmp\/BepInEx \r\n    \r\n    if [ $? -eq 0 ];then\r\n        cp -rf \/tmp\/BepInEx\/BepInEx*\/* ${HOME}\/\r\n        cp \/tmp\/BepInEx\/README* ${HOME}\/README_BepInEx_for_VRising.txt\r\n        touch ${HOME}\/BepInEx-${LAT_V}\r\n        cp -R \/tmp\/Backup\/config ${HOME}\/BepInEx\/\r\n        rm -rf ${HOME}\/BepInEx.zip \/tmp\/BepInEx \/tmp\/Backup\r\n    else\r\n        echo -e \"${RED}Unable to unzip BepInEx archive! Exiting.${NC}\"\r\n        exit 1\r\n    fi\r\nelif [ \"${CUR_V}\" == \"${LAT_V}\" ]; then\r\n    echo -e \"${GREEN}BepInEx v$CUR_V up-to-date!${NC}\"\r\nfi\r\n\r\nrm -fR \/mnt\/server\/dotnet\r\n\r\n## V Rising Setup\r\nmkdir -p $HOME\/save-data\/Settings && cd \"$_\"\r\ncat > ServerHostSettings.json << EOF\r\n{\r\n  \"Name\": \"${SERVER_NAME}\",\r\n  \"Description\": \"${DESCRIPTION}\",\r\n  \"Port\": ${SERVER_PORT},\r\n  \"QueryPort\": ${QUERY_PORT},\r\n  \"MaxConnectedUsers\": ${MAX_PLAYERS},\r\n  \"MaxConnectedAdmins\": ${MAX_ADMINS},\r\n  \"ServerFps\": ${FPS},\r\n  \"SaveName\": \"${SAVE_NAME}\",\r\n  \"Password\": \"${SERVER_PASSWORD}\",\r\n  \"Secure\": ${SERVER_SECURE},\r\n  \"ListOnMasterServer\": ${SERVER_LIST},\r\n  \"AutoSaveCount\": ${SAVE_COUNT},\r\n  \"AutoSaveInterval\": ${SAVE_INTERVAL},\r\n  \"GameSettingsPreset\": \"${GAME_SETTINGS_PRESET}\",\r\n  \"AdminOnlyDebugEvents\": ${ADMIN_ONLY_DEBUG_EVENTS},\r\n  \"DisableDebugEvents\": ${DEBUG_EVENTS},\r\n  \"Rcon\": {\r\n    \"Enabled\": ${RCON},\r\n    \"Password\": \"${RCON_PASS}\",\r\n    \"Port\": ${RCON_PORT}\r\n  }\r\n}\r\nEOF\r\n\r\n## cleanup to prevent errors\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${RED}deleting old wine dirs... please wait...${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\n\r\nif [ ! -d \"\/mnt\/server\/.wine\" ]; then\r\n    rm -fR \/mnt\/server\/.wine\r\n    rm -fR \/mnt\/server\/.config\r\n    rm -fR \/mnt\/server\/.cache\r\n    rm -fR \/mnt\/server\/.local\r\n    rm -fR \/mnt\/server\/appcache\r\nfi\r\necho -e \"${GREEN}..done..${NC}\"\r\n\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"\r\necho -e \"${GREEN}Installation completed${NC}\"\r\necho -e \"${BLUE}-------------------------------------------------${NC}\"",
             "container": "ghcr.io\/parkervcp\/installers:debian",
             "entrypoint": "\/bin\/bash"
         }
@@ -38,9 +38,12 @@
             "default_value": "9877",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|integer|between:1024,65536",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "between:1024,65536"
+            ],
+            "sort": 1
         },
         {
             "name": "Automatic Updates",
@@ -49,9 +52,10 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 2
         },
         {
             "name": "Game Settings Preset",
@@ -60,9 +64,12 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|in:,DuoPvP,HardcorePvP,Level30PvE,Level30PvP,Level50PvE,Level50PvP,Level70PvE,Level70PvP,SoloPvP,StandardPvE_Easy,StandardPvE_Hard,StandardPvE,StandardPvP_Easy,StandardPvP_Hard,StandardPVP",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string",
+                "in:,DuoPvP,HardcorePvP,Level30PvE,Level30PvP,Level50PvE,Level50PvP,Level70PvE,Level70PvP,SoloPvP,StandardPvE_Easy,StandardPvE_Hard,StandardPvE,StandardPvP_Easy,StandardPvP_Hard,StandardPVP"
+            ],
+            "sort": 3
         },
         {
             "name": "Server Name",
@@ -71,9 +78,11 @@
             "default_value": "V Rising Dedicated Server",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 4
         },
         {
             "name": "Server Description",
@@ -82,9 +91,11 @@
             "default_value": "Welcome to the server!",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 5
         },
         {
             "name": "Max Connected Users",
@@ -93,9 +104,12 @@
             "default_value": "40",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|min:1",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "min:1"
+            ],
+            "sort": 6
         },
         {
             "name": "Max Connected Admins",
@@ -104,9 +118,12 @@
             "default_value": "4",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|min:0",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "min:0"
+            ],
+            "sort": 7
         },
         {
             "name": "Server Password",
@@ -115,9 +132,11 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 8
         },
         {
             "name": "Save Name",
@@ -126,9 +145,11 @@
             "default_value": "world1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 9
         },
         {
             "name": "Auto Save Count",
@@ -137,9 +158,12 @@
             "default_value": "50",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|min:0",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "min:0"
+            ],
+            "sort": 10
         },
         {
             "name": "Auto Save Interval",
@@ -148,9 +172,12 @@
             "default_value": "600",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|min:1",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "min:1"
+            ],
+            "sort": 11
         },
         {
             "name": "List On Master Server",
@@ -159,9 +186,12 @@
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
+            "sort": 12
         },
         {
             "name": "[Repair] Validate Server Files",
@@ -170,9 +200,11 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "string|nullable",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "string",
+                "nullable"
+            ],
+            "sort": 13
         },
         {
             "name": "[Advanced] Server FPS",
@@ -181,9 +213,12 @@
             "default_value": "30",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|min:1",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "min:1"
+            ],
+            "sort": 14
         },
         {
             "name": "[Advanced] Enable RCON",
@@ -192,9 +227,12 @@
             "default_value": "false",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
+            "sort": 15
         },
         {
             "name": "[Advanced] RCON Password",
@@ -203,9 +241,11 @@
             "default_value": "somepassword",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 16
         },
         {
             "name": "[Advanced] RCON Port",
@@ -214,9 +254,12 @@
             "default_value": "25575",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|integer|between:1024,65536",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "between:1024,65536"
+            ],
+            "sort": 17
         },
         {
             "name": "[Advanced] Secure Server",
@@ -225,9 +268,12 @@
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
+            "sort": 18
         },
         {
             "name": "[Advanced] Admin Only Debug Events",
@@ -236,9 +282,12 @@
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
+            "sort": 19
         },
         {
             "name": "[Advanced] Disable Debug Events",
@@ -247,9 +296,12 @@
             "default_value": "false",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
+            "sort": 20
         },
         {
             "name": "[Advanced] V Rising Dedicated Server App ID",
@@ -258,9 +310,11 @@
             "default_value": "1829350",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|integer",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer"
+            ],
+            "sort": 21
         },
         {
             "name": "[Advanced] Use Windows Branch",
@@ -269,9 +323,12 @@
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:1",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:1"
+            ],
+            "sort": 22
         },
         {
             "name": "WINEDEBUG",
@@ -280,9 +337,12 @@
             "default_value": "-all",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 23
         },
         {
             "name": "WINEPATH",
@@ -291,9 +351,12 @@
             "default_value": "\/home\/container",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 24
         },
         {
             "name": "XVFB",
@@ -302,9 +365,10 @@
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 25
         },
         {
             "name": "WINETRICKS_RUN",
@@ -313,9 +377,12 @@
             "default_value": "mono",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:50",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:50"
+            ],
+            "sort": 26
         },
         {
             "name": "WINEARCH",
@@ -324,9 +391,12 @@
             "default_value": "win64",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 27
         }
     ]
 }

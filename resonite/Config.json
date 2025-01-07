@@ -27,7 +27,7 @@
 		"tags": null,
 		"mobileFriendly": false,
 		"loadWorldURL": null,
-		"loadWorldPresetName": "SpaceWorld",
+		"loadWorldPresetName": "Grid",
 		"overrideCorrespondingWorldId": null,
 		"forcePort": null,
 		"keepOriginalRoles": false,

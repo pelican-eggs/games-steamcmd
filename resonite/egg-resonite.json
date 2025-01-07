@@ -1,20 +1,20 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:38+00:00",
+    "exported_at": "2025-01-07T09:19:17+00:00",
     "name": "Resonite",
     "author": "espeon@espeon.dev",
     "uuid": "3e156e2f-9046-4eba-8da2-8968e6045294",
     "description": "Enter a novel digital universe with infinite possibilities. Whether you resonate with people around the world in a casual conversation, playing games and socializing or you riff off each other when creating anything from art to programming complex games, you'll find your place here.",
-    "features": null,
+    "features": [],
     "docker_images": {
-        "Mono": "ghcr.io\/parkervcp\/yolks:mono_latest"
+        "dotnet": "ghcr.io\/pelican-eggs\/steamcmd:dotnet"
     },
     "file_denylist": [],
-    "startup": "mono Headless\/Resonite.exe -HeadlessConfig Headless\/Config\/Config.json -Logs Headless\/Logs $(if {{ENABLE_MODLOADER}}; then echo \"-LoadAssembly \"Libraries\/ResoniteModLoader.dll\"\"; fi)",
+    "startup": "dotnet Headless\/Resonite.dll -HeadlessConfig Headless\/Config\/Config.json -Logs Headless\/Logs $(if {{ENABLE_MODLOADER}}; then echo \"-LoadAssembly \"Libraries\/ResoniteModLoader.dll\"\"; fi)",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"World running...\"\r\n}",
@@ -23,7 +23,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\necho -e \"steam user is not set.\\n\"\r\necho -e \"Using anonymous user.\\n\"\r\nSTEAM_USER=anonymous\r\nSTEAM_PASS=\"\"\r\nSTEAM_AUTH=\"\"\r\nelse\r\necho -e \"user set to ${STEAM_USER}\"\r\nfi\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) -betapassword ${SRCDS_BETAPASS} ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n## check if config file exists\r\necho \"Looking for existing config file...\"\r\nif ! [ -f \"\/mnt\/server\/Headless\/Config\/Config.json\" ]; then\r\necho \"Config does not exist, creating new config.\"\r\n## create default config\r\nmkdir -p \/mnt\/server\/Headless\/Config\r\ncurl -sSL -o \/mnt\/server\/Headless\/Config\/Config.json https:\/\/raw.githubusercontent.com\/parkervcp\/eggs\/master\/game_eggs\/steamcmd_servers\/resonite\/Config.json\r\nelse\r\n## leave existing config\r\necho \"Config already exists, leaving it as is.\"\r\nfi\r\n## check if mod loader is enabled\r\necho \"Checking if mod loader needs to be installed...\"\r\nif [ \"$ENABLE_MODLOADER\" = true ]; then\r\necho \"Installing\/Updating mod loader as its enabled.\"\r\nmkdir -p \/mnt\/server\/Libraries\r\nmkdir -p \/mnt\/server\/rml_libs\r\nmkdir -p \/mnt\/server\/rml_mods\r\ncurl -sSL -o \/mnt\/server\/Libraries\/ResoniteModLoader.dll https:\/\/github.com\/resonite-modding-group\/ResoniteModLoader\/releases\/latest\/download\/ResoniteModLoader.dll\r\ncurl -sSL -o \/mnt\/server\/rml_libs\/0Harmony.dll https:\/\/github.com\/resonite-modding-group\/ResoniteModLoader\/releases\/latest\/download\/0Harmony.dll\r\nelse\r\necho \"Skipping installing mod loader as its not enabled.\"\r\nfi\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\necho -e \"steam user is not set.\\n\"\r\necho -e \"Using anonymous user.\\n\"\r\nSTEAM_USER=anonymous\r\nSTEAM_PASS=\"\"\r\nSTEAM_AUTH=\"\"\r\nelse\r\necho -e \"user set to ${STEAM_USER}\"\r\nfi\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) -betapassword ${SRCDS_BETAPASS} ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n## check if config file exists\r\necho \"Looking for existing config file...\"\r\nif ! [ -f \"\/mnt\/server\/Headless\/Config\/Config.json\" ]; then\r\necho \"Config does not exist, creating new config.\"\r\n## create default config\r\nmkdir -p \/mnt\/server\/Headless\/Config\r\ncurl -sSL -o \/mnt\/server\/Headless\/Config\/Config.json https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/resonite\/Config.json\r\nelse\r\n## leave existing config\r\necho \"Config already exists, leaving it as is.\"\r\nfi\r\n## check if mod loader is enabled\r\necho \"Checking if mod loader needs to be installed...\"\r\nif [ \"$ENABLE_MODLOADER\" = true ]; then\r\necho \"Installing\/Updating mod loader as its enabled.\"\r\nmkdir -p \/mnt\/server\/Libraries\r\nmkdir -p \/mnt\/server\/rml_libs\r\nmkdir -p \/mnt\/server\/rml_mods\r\ncurl -sSL -o \/mnt\/server\/Libraries\/ResoniteModLoader.dll https:\/\/github.com\/resonite-modding-group\/ResoniteModLoader\/releases\/latest\/download\/ResoniteModLoader.dll\r\ncurl -sSL -o \/mnt\/server\/rml_libs\/0Harmony-Net9.dll https:\/\/github.com\/resonite-modding-group\/ResoniteModLoader\/releases\/latest\/download\/0Harmony-Net9.dll\r\nelse\r\necho \"Skipping installing mod loader as its not enabled.\"\r\nfi\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
             "container": "ghcr.io\/parkervcp\/installers:debian",
             "entrypoint": "bash"
         }
@@ -36,9 +36,12 @@
             "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:128",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:128"
+            ],
+            "sort": 1
         },
         {
             "name": "Steam Account Password",
@@ -47,9 +50,12 @@
             "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:128",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:128"
+            ],
+            "sort": 2
         },
         {
             "name": "Steam Account Token\/Code",
@@ -58,9 +64,11 @@
             "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "nullable|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 3
         },
         {
             "name": "Enable Mod Loader",
@@ -69,9 +77,12 @@
             "default_value": "false",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
+            "sort": 4
         },
         {
             "name": "Beta Password",
@@ -80,9 +91,12 @@
             "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:30",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:30"
+            ],
+            "sort": 5
         },
         {
             "name": "Beta branch name",
@@ -91,9 +105,12 @@
             "default_value": "headless",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                ""
+            ],
+            "sort": 6
         },
         {
             "name": "Auto update",
@@ -102,9 +119,11 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 7
         },
         {
             "name": "Steam App ID",
@@ -113,9 +132,12 @@
             "default_value": "2519830",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 8
         }
     ]
 }

@@ -4,13 +4,13 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-01-07T18:34:26+11:00",
+    "exported_at": "2025-01-07T20:18:20+11:00",
     "name": "Resonite",
     "author": "espeon@espeon.dev",
     "description": "Enter a novel digital universe with infinite possibilities. Whether you resonate with people around the world in a casual conversation, playing games and socializing or you riff off each other when creating anything from art to programming complex games, you'll find your place here.",
     "features": null,
     "docker_images": {
-        ".NET 9": "ghcr.io\/pelican-eggs\/yolks:dotnet_9"
+        "dotnet": "ghcr.io\/pelican-eggs\/steamcmd:dotnet"
     },
     "file_denylist": [],
     "startup": "dotnet Headless\/Resonite.dll -HeadlessConfig Headless\/Config\/Config.json -Logs Headless\/Logs $(if {{ENABLE_MODLOADER}}; then echo \"-LoadAssembly \"Libraries\/ResoniteModLoader.dll\"\"; fi)",

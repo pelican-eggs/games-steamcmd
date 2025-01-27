@@ -4,7 +4,7 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-01-27T15:27:29+00:00",
+    "exported_at": "2025-01-27T17:31:29+00:00",
     "name": "Night Of The Dead",
     "author": "marshals@gmail.com",
     "uuid": "08b518e7-fa75-4db9-9fdc-07fc9bc35c28",
@@ -152,7 +152,7 @@
             "rules": [
                 "required",
                 "string",
-                "in:Normal,Peaceful,Easy,Hard,Survival,Challenge,Legend"
+                "in:Normal,Peaceful,Easy,Hard,Survival,Challenge,Legend,Custom"
             ],
             "sort": 9
         },

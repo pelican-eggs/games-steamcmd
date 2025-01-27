@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-01-27T16:25:55+01:00",
+    "exported_at": "2025-01-27T17:30:55+01:00",
     "name": "Night Of The Dead",
     "author": "marshals@gmail.com",
     "description": "Build defenses against nightly waves of zombies. Survive and escape the island.",
@@ -117,7 +117,7 @@
             "default_value": "Normal",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:Normal,Peaceful,Easy,Hard,Survival,Challenge,Legend",
+            "rules": "required|string|in:Normal,Peaceful,Easy,Hard,Survival,Challenge,Legend,Custom",
             "field_type": "text"
         },
         {

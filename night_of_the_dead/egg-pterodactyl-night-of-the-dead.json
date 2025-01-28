@@ -1,10 +1,10 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-15T18:59:35+02:00",
+    "exported_at": "2025-01-27T17:30:55+01:00",
     "name": "Night Of The Dead",
     "author": "marshals@gmail.com",
     "description": "Build defenses against nightly waves of zombies. Survive and escape the island.",
@@ -17,8 +17,8 @@
     "file_denylist": [],
     "startup": "wine \/home\/container\/LF\/Binaries\/Win64\/LFServer-Win64-Shipping.exe ?listen -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -console -log --CRASHREPORTS {{OTHER_ARGS}} & NOTD_PID=$!; sleep 5; tail -c0 -F  \/home\/container\/LF\/Saved\/Logs\/LF.log --pid=$NOTD_PID",
     "config": {
-        "files": "{\n    \"LF\/Saved\/Config\/ServerSettings.ini\": {\n        \"parser\": \"ini\",\n        \"find\": {\n            \"ServerSettings.ServerName\": \"{{env.SERVER_NAME}}\",\n            \"ServerSettings.Password\": \"{{env.SERVER_PASSWORD}}\",\n            \"SystemSettings.SaveName\": \"{{env.SERVER_SAVEGAME}}\",\n            \"SystemSettings.IngameAdminPassword\": \"{{env.SERVER_ADMIN_PASSWORD}}\",\n            \"SystemSettings.DefaultMessageOfTheDay\": \"{env.SERVER_MOTD}}\",\n            \"GameSettings.Difficulty\": \"{{env.DIFFICULTY}}\",\n            \"GameSettings\/General.MODSelect\": \"{{env.PVP}}\"\n        }\n    }\n}",
-        "startup": "{\n    \"done\": [\n        \"Successfully updated session\",\n        \"Start Session Complete\"\n    ]\n}",
+        "files": "{\r\n    \"LF\/Saved\/Config\/ServerSettings.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"ServerSettings.ServerName\": \"{{env.SERVER_NAME}}\",\r\n            \"ServerSettings.Password\": \"{{env.SERVER_PASSWORD}}\",\r\n            \"SystemSettings.SaveName\": \"{{env.SERVER_SAVEGAME}}\",\r\n            \"SystemSettings.IngameAdminPassword\": \"{{env.SERVER_ADMIN_PASSWORD}}\",\r\n            \"SystemSettings.DefaultMessageOfTheDay\": \"{{env.SERVER_MOTD}}\",\r\n            \"GameSettings.Difficulty\": \"{{env.DIFFICULTY}}\",\r\n            \"GameSettings\/General.MODSelect\": \"{{env.PVP}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": [\r\n        \"Successfully updated session\",\r\n        \"Start Session Complete\"\r\n    ]\r\n}",
         "logs": "{}",
         "stop": "^C"
     },
@@ -117,7 +117,7 @@
             "default_value": "Normal",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:Normal,Peaceful,Easy,Hard,Survival,Challenge,Legend",
+            "rules": "required|string|in:Normal,Peaceful,Easy,Hard,Survival,Challenge,Legend,Custom",
             "field_type": "text"
         },
         {

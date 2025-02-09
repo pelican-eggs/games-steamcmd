@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:03:56+00:00",
+    "exported_at": "2025-02-09T16:12:54+00:00",
     "name": "Icarus-Dedicated",
     "author": "bolverblitz@ebg.pw",
     "uuid": "7f2f0676-3d0c-457f-a3aa-b2af40966698",
@@ -16,7 +16,7 @@
         "Wine Staging": "ghcr.io\/parkervcp\/yolks:wine_latest"
     },
     "file_denylist": [],
-    "startup": "wine64 .\/Icarus\/Binaries\/Win64\/IcarusServer-Win64-Shipping.exe -Log -SteamServerName=${SERVER_NAME} -PORT=\"${SERVER_PORT}\" -QueryPort=\"${QUERY_PORT}\"",
+    "startup": "wine64 .\/Icarus\/Binaries\/Win64\/IcarusServer-Win64-Shipping.exe -Log -SteamServerName={{SERVER_NAME}} -PORT=\"{{SERVER_PORT}}\" -QueryPort=\"{{QUERY_PORT}}\"",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"(Engine Initialization) Total time:\"\r\n}",
@@ -32,103 +32,72 @@
     },
     "variables": [
         {
+            "sort": 2,
             "name": "[REQUIRED] Server Query Port",
             "description": "UDP port for Steam server list features.",
             "env_variable": "QUERY_PORT",
             "default_value": "27015",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|between:1024,65536",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "between:1024,65536"
+            ]
         },
         {
+            "sort": 1,
             "name": "Server Name",
             "description": "",
             "env_variable": "SERVER_NAME",
             "default_value": "IcarusEGG",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:32",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:32"
+            ]
         },
         {
+            "sort": 4,
             "name": "Windows Install Flag",
             "description": "Required for windows game server installs",
             "env_variable": "WINDOWS_INSTALL",
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ]
         },
         {
-            "name": "WINETRICKS_RUN",
-            "description": "Run installs on software that is required by the server",
-            "env_variable": "WINETRICKS_RUN",
-            "default_value": "vcrun2019 corefonts",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|in:vcrun2019 corefonts",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
+            "sort": 5,
             "name": "SRCDS_APPID",
             "description": "steam app id found here - https:\/\/developer.valvesoftware.com\/wiki\/Dedicated_Servers_List",
             "env_variable": "SRCDS_APPID",
             "default_value": "2089300",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:2089300",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:2089300"
+            ]
         },
         {
+            "sort": 3,
             "name": "AUTO_UPDATE",
             "description": "Disabling or enabling automated updates on boot",
             "env_variable": "AUTO_UPDATE",
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "WINEDEBUG",
-            "description": "",
-            "env_variable": "WINEDEBUG",
-            "default_value": "-all",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "WINEPATH",
-            "description": "",
-            "env_variable": "WINEPATH",
-            "default_value": "\/home\/container",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "WINEARCH",
-            "description": "",
-            "env_variable": "WINEARCH",
-            "default_value": "win64",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|in:win64",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ]
         }
     ]
 }

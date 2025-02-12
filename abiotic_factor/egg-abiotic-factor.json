@@ -16,7 +16,7 @@
         "ghcr.io\/parkervcp\/steamcmd:proton": "ghcr.io\/parkervcp\/steamcmd:proton"
     },
     "file_denylist": [],
-    "startup": "cd \/home\/container\/AbioticFactor\/Binaries\/Win64; proton run .\/AbioticFactorServer-Win64-Shipping.exe -log -useperfthreads -NoAsyncLoadingThread -MaxServerPlayers=${NUM_PLAYERS} -PORT=${SERVER_PORT} -QueryPort=${QUERY_PORT} -ServerPassword=\"${SERVER_PASSWORD}\" -SteamServerName=\"${SERVER_NAME}\" & AF_PID=$!; tail -c0 -F \/home\/container\/AbioticFactor\/Saved\/Logs\/AbioticFactor.log --pid=$AF_PID",
+    "startup": "cd \/home\/container\/AbioticFactor\/Binaries\/Win64; proton run .\/AbioticFactorServer-Win64-Shipping.exe -log -useperfthreads -NoAsyncLoadingThread -MaxServerPlayers=${NUM_PLAYERS} -Port=${SERVER_PORT} -QueryPort=${QUERY_PORT} -ServerPassword=\"${SERVER_PASSWORD}\" -SteamServerName=\"${SERVER_NAME}\" & AF_PID=$!; tail -c0 -F \/home\/container\/AbioticFactor\/Saved\/Logs\/AbioticFactor.log --pid=$AF_PID",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"LogInit: Display: Engine is initialized.\"\r\n}",

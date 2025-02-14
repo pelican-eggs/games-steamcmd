@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:03:47+00:00",
+    "exported_at": "2025-02-14T08:08:55+00:00",
     "name": "Abiotic Factor",
     "author": "git@robsti.dev",
     "uuid": "e4316a24-7f8a-458a-a462-57d8f3f4b0cd",
@@ -38,9 +38,11 @@
             "default_value": "2857200",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric"
+            ],
+            "sort": 1
         },
         {
             "name": "[STEAM] Auto Update",
@@ -49,9 +51,11 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 2
         },
         {
             "name": "[SERVER] Server Name",
@@ -60,9 +64,12 @@
             "default_value": "A Pelican Hosted Server",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:64",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:64"
+            ],
+            "sort": 3
         },
         {
             "name": "[STEAM] WINDOWS_INSTALL",
@@ -71,9 +78,12 @@
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|boolean|in:1",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean",
+                "in:1"
+            ],
+            "sort": 4
         },
         {
             "name": "[SERVER] Server Password",
@@ -82,9 +92,12 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:30",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:30"
+            ],
+            "sort": 5
         },
         {
             "name": "[SERVER] Query Port",
@@ -93,9 +106,11 @@
             "default_value": "27015",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric"
+            ],
+            "sort": 6
         },
         {
             "name": "[SERVER] Number of Players",
@@ -104,9 +119,12 @@
             "default_value": "6",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|between:1,32",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "between:1,32"
+            ],
+            "sort": 7
         }
     ]
 }

@@ -19,7 +19,7 @@
     "startup": "wine64 .\/Icarus\/Binaries\/Win64\/IcarusServer-Win64-Shipping.exe -Log -SteamServerName=\"{{SERVER_NAME}}\" -PORT=\"{{SERVER_PORT}}\" -QueryPort=\"{{QUERY_PORT}}\"",
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"(Engine Initialization) Total time:\"\r\n}",
+        "startup": "{\r\n    \"done\": [\r\n        \"(Engine Initialization) Total time:\",\r\n        \"Game Engine Initialized\"\r\n    ]\r\n}",
         "logs": "{}",
         "stop": "^C"
     },

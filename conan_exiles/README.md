@@ -8,6 +8,14 @@ Conan Exiles is online multiplayer survival game set in the lands of Conan the B
 
 This server requires about 4096m to run properly.
 
+### Update notice
+
+If you are updating from an old copy of the egg you will need to remove the `.wine` folder. 
+
+An example error message you may be seeing is that `MSVCP140.dll` is missing.
+
+---
+
 ## Server Ports
 
 Ports required to run the server in a table format.

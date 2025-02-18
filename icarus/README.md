@@ -38,6 +38,14 @@ ___
 
 ___
 
+### Update notice
+
+If you are updating from an old copy of the egg you will need to remove the `.wine` folder. 
+
+An example error message you may be seeing is that `MSVCP140.dll` is missing.
+
+---
+
 ### Server Ports
 
 - Default server ports are listed below, but all ports can be changed freely.

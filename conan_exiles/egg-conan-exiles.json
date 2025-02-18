@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:00+00:00",
+    "exported_at": "2025-02-09T16:13:03+00:00",
     "name": "Conan Exiles",
     "author": "brycea@terrahost.cloud",
     "uuid": "aa97e69d-d83a-4cc3-9769-c7f401d04e1f",
@@ -32,114 +32,98 @@
     },
     "variables": [
         {
+            "sort": 1,
             "name": "App id",
             "description": "The ID corresponding to the game to download.",
             "env_variable": "SRCDS_APPID",
             "default_value": "443030",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:443030",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:443030"
+            ]
         },
         {
+            "sort": 2,
             "name": "Auto Update",
             "description": "Decide if you want to update your server",
             "env_variable": "AUTO_UPDATE",
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ]
         },
         {
+            "sort": 3,
             "name": "Query Port",
             "description": "Server Query Port",
             "env_variable": "QUERY_PORT",
             "default_value": "27015",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|numeric|max:65535",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "max:65535"
+            ]
         },
         {
+            "sort": 4,
             "name": "Server Name",
             "description": "",
             "env_variable": "SRV_NAME",
             "default_value": "Pterodactyl hosted Server",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:40",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:40"
+            ]
         },
         {
+            "sort": 5,
             "name": "Server Password",
             "description": "",
             "env_variable": "SRV_PW",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ]
         },
         {
-            "name": "WINEDEBUG",
-            "description": "",
-            "env_variable": "WINEDEBUG",
-            "default_value": "-all",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "WINEPATH",
-            "description": "",
-            "env_variable": "WINEPATH",
-            "default_value": "\/home\/container",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "WINETRICKS_RUN",
-            "description": "",
-            "env_variable": "WINETRICKS_RUN",
-            "default_value": "vcrun2013 vcrun2015 corefonts",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
+            "sort": 6,
             "name": "Windows",
             "description": "",
             "env_variable": "WINDOWS_INSTALL",
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ]
         },
         {
+            "sort": 7,
             "name": "Rcon port",
             "description": "Remote administrative access",
             "env_variable": "RCON_PORT",
             "default_value": "25575",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric"
+            ]
         }
     ]
 }

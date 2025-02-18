@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-          Make sure there are no existing egg requests by searching the [repository issues](https://github.com/pelican-eggs/games-steamcmd/issues/new?template=egg-request.yml). Please understand how Pterodactyl works when you are requesting an egg. (ie. docker-compose doesn't work for a pterodactyl server)
+          Make sure there are no existing egg requests by searching the [repository egg requests](https://github.com/pelican-eggs/games-steamcmd/labels/egg%20request). Please understand how Pterodactyl works when you are requesting an egg. (ie. docker-compose doesn't work for a pterodactyl server)
   - type: dropdown
     id: expand
     attributes:

@@ -10,7 +10,7 @@ body:
         * `A fatal error was encountered while starting this server.`
         * `No server egg configuration could be located; aborting startup.`
 
-        Make sure there are no existing bug reports by searching the the issues for [install bugs](https://github.com/pelican-eggs/games-steamcmd/issues/new?template=install-bug-report.yml).
+        Make sure there are no existing bug reports by searching the the issues for [install bugs](https://github.com/pelican-eggs/games-steamcmd/labels/install%20bug).
   - type: input
     id: panel-version
     attributes:

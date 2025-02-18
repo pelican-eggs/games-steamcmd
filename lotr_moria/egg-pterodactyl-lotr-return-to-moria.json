@@ -53,7 +53,7 @@
         {
             "name": "[STEAM] STEAM_APPID",
             "description": "",
-            "env_variable": "STEAM_APPID",
+            "env_variable": "SRCDS_APPID",
             "default_value": "3349480",
             "user_viewable": false,
             "user_editable": false,
@@ -99,6 +99,15 @@
             "user_editable": true,
             "rules": "required|string|in:story,solo,normal,hard,custom",
             "field_type": "text"
-        }
+        },
+        {
+            "name": "[STEAM] Auto Update",
+            "description": "Auto update the server on startup",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "boolean"
+        }        
     ]
 }

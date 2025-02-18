@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        If you see any of the following, go to [Discord](https://discord.gg/pterodactyl) and report your error in a support channel.
+        If you see any of the following, go to [Discord](https://discord.gg/pelican-panel) and report your error in a support channel.
         * `A fatal error was encountered while starting this server.`
         * `No server egg configuration could be located; aborting startup.`
 

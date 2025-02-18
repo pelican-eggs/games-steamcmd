@@ -47,7 +47,7 @@ ___
 
 | Port | Default (UDP) |
 |---------|---------|
-| **Game (Primary Port in Pterodactyl)** | 7777 |
+| **Game (Primary Port)** | 7777 |
 | Server Query | 27015 |
 
 ___
@@ -66,14 +66,14 @@ ___
 
 ### Server Configuration
 
-**NOTE: Server Name and Max Players will be overwritten by your Pterodactyl Startup settings every time the server is started.**
+**NOTE: Server Name and Max Players will be overwritten by your Startup settings every time the server is started.**
 
 #### In-Game Setup (Recommended):
 
 Configuring all aspects of the server (MOTD, game rules, map list, admins, etc.) is, by far, the easiest (and safest) to do in-game via the built in admin menu. Perform the following steps to do so:
 
 1. Start the server.
-2. Navigate to `/home/container/GroundBranch/ServerConfig` within Pterodactyl's file browser and open `AdminSetupPassword.txt`.
+2. Navigate to `/home/container/GroundBranch/ServerConfig` within the file browser and open `AdminSetupPassword.txt`.
 3. Copy the code and start your personal Ground Branch game client.
 4. Log into your server via the server browser by searching for it by the name you set in the Startup tab of the server.
 5. Open the console by pressing `` ` `` and run the following command: `admin setup <your_setup_password>`. This will add you as a SuperAdmin.

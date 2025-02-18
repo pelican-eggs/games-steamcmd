@@ -1,4 +1,4 @@
-# ATSPtero - A Egg For Setting Up ATS Dedicated Server
+# ATS - A Egg For Setting Up ATS Dedicated Server
 
 
 Ports below are the default ports that are associated with the ATS dedicated server. 

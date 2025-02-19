@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:42+00:00",
+    "exported_at": "2025-02-19T20:41:35+00:00",
     "name": "Rising World Unity",
     "author": "eggs@goover.dev",
     "uuid": "aee8698f-35b9-4853-a2e2-f462d27c8e97",
@@ -18,7 +18,7 @@
     "file_denylist": [],
     "startup": ".\/RisingWorldServer.x64 +Server_Port={{SERVER_PORT}}",
     "config": {
-        "files": "{\r\n    \"server.properties\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"Server_Name=\": \"Server_Name={{server.build.env.SRV_NAME}}\",\r\n            \"Server_Password=\": \"Server_Password={{server.build.env.SRV_PW}}\",\r\n            \"Password=\": \"Password={{server.build.env.SRV_PW}}\",\r\n            \"World_GameMode=\": \"World_GameMode={{server.build.env.GAME_MODE}}\",\r\n            \"World_Name=\": \"World_Name={{server.build.env.WORLD_NAME}}\",\r\n            \"RCON_Enabled=\": \"RCON_Enabled={{server.build.env.RCON}}\",\r\n            \"RCON_Password=\": \"RCON_Password={{server.build.env.RCON_PASS}}\",\r\n            \"RCON_Port=\": \"RCON_Port={{server.build.env.RCON_PORT}}\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"server.properties\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"Server_Name=\": \"Server_Name={{server.environment.SRV_NAME}}\",\r\n            \"Server_Password=\": \"Server_Password={{server.environment.SRV_PW}}\",\r\n            \"Password=\": \"Password={{server.environment.SRV_PW}}\",\r\n            \"World_GameMode=\": \"World_GameMode={{server.environment.GAME_MODE}}\",\r\n            \"World_Name=\": \"World_Name={{server.environment.WORLD_NAME}}\",\r\n            \"RCON_Enabled=\": \"RCON_Enabled={{server.environment.RCON}}\",\r\n            \"RCON_Password=\": \"RCON_Password={{server.environment.RCON_PASS}}\",\r\n            \"RCON_Port=\": \"RCON_Port={{server.environment.RCON_PORT}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Dedicated server is ready!\"\r\n}",
         "logs": "{}",
         "stop": "^C"
@@ -38,9 +38,12 @@
             "default_value": "339010",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 1
         },
         {
             "name": "SRCDS_BETAID",
@@ -49,9 +52,12 @@
             "default_value": "unity",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 2
         },
         {
             "name": "LD_LIBRARY_PATH",
@@ -60,9 +66,12 @@
             "default_value": "\/linux64",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 3
         },
         {
             "name": "Server Name",
@@ -71,9 +80,12 @@
             "default_value": "Pterodactyl hosted Server",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:40",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:40"
+            ],
+            "sort": 4
         },
         {
             "name": "Server Password",
@@ -82,9 +94,10 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable"
+            ],
+            "sort": 5
         },
         {
             "name": "Game Mode",
@@ -93,9 +106,12 @@
             "default_value": "Survival",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|in:,Survival,Creative",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string",
+                "in:,Survival,Creative"
+            ],
+            "sort": 6
         },
         {
             "name": "World Name",
@@ -104,9 +120,12 @@
             "default_value": "myworld",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 7
         },
         {
             "name": "[Advanced] Enable RCON",
@@ -115,9 +134,12 @@
             "default_value": "false",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
+            "sort": 8
         },
         {
             "name": "[Advanced] RCON Password",
@@ -126,9 +148,12 @@
             "default_value": "somepassword",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|nullable|min:6",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "min:6"
+            ],
+            "sort": 9
         },
         {
             "name": "[Advanced] RCON Port",
@@ -137,9 +162,12 @@
             "default_value": "4253",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|integer|between:1024,65536",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "between:1024,65536"
+            ],
+            "sort": 10
         },
         {
             "name": "Auto Update",
@@ -148,9 +176,11 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 11
         }
     ]
 }

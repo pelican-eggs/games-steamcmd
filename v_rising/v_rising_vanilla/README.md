@@ -56,7 +56,7 @@ ___
 
 | Port | Default | Protocol |
 |---------|---------|---------|
-| **Game (Primary Port in Pterodactyl)** | 9876 | UDP |
+| **Game (Primary Port)** | 9876 | UDP |
 | Query | 9877 | UDP |
 | RCON | 25575 | TCP |
 
@@ -97,4 +97,4 @@ If you ban users through the in-game console the server will automatically modif
 
 #### RCON
 
-RCON can allow general and restart announcements to be made to the server remotely (functions which are not currently supported by the console command line). You can enable RCON by properly configuring the relevant variables under the Startup tab of your Pterodactyl server. The RCON port must be allocated to the server. [Click here for list of valid commands and recommended RCON client](https://github.com/StunlockStudios/vrising-dedicated-server-instructions/blob/master/1.0.x/INSTRUCTIONS.md#rcon-1).
+RCON can allow general and restart announcements to be made to the server remotely (functions which are not currently supported by the console command line). You can enable RCON by properly configuring the relevant variables under the Startup tab of your server. The RCON port must be allocated to the server. [Click here for list of valid commands and recommended RCON client](https://github.com/StunlockStudios/vrising-dedicated-server-instructions/blob/master/1.0.x/INSTRUCTIONS.md#rcon-1).

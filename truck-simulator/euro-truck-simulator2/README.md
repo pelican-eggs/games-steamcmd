@@ -1,4 +1,4 @@
-# ETS2 Ptero - A Egg For Setting Up ETS2 Dedicated Server
+# ETS2 - A Egg For Setting Up ETS2 Dedicated Server
 
 
 Ports below are the default ports that are associated with the ETS2 dedicated server.

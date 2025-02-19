@@ -6,11 +6,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        If you see any of the following, go to [Discord](https://discord.gg/pterodactyl) and report your error in a support channel.
+        If you see any of the following, go to [Discord](https://discord.gg/pelican-panel) and report your error in a support channel.
         * `A fatal error was encountered while starting this server.`
         * `No server egg configuration could be located; aborting startup.`
 
-        Make sure there are no existing bug reports by searching the [repository issues](https://github.com/parkervcp/eggs/issues?q=is%3Aopen+is%3Aissue+label%3ABug).
+        Make sure there are no existing bug reports by searching the [repository issues](https://github.com/pelican-eggs/games-steamcmd/labels/bug).
   - type: input
     id: panel-version
     attributes:
@@ -79,10 +79,16 @@ body:
       description: |
         Run the command below on the SSH terminal of your Wings machine and provide the link to logs.
         
+        Pelican:
         ```
-        tail -n 1000 $(ls -Alrt /var/log/pterodactyl/install/*.log | tail -1 | sed 's/  */ /g' | cut -s -d' ' -f9) | nc pteropaste.com 99
+          tail -n 1000 $(ls -Alrt /var/log/pelican/install/*.log | tail -1 | sed 's/  */ /g' | cut -s -d' ' -f9) | curl -X POST -F 'c=@-' paste.pelistuff.com
+        ```
+
+        Pterodactyl:
+        ```
+          tail -n 1000 $(ls -Alrt /var/log/pterodactyl/install/*.log | tail -1 | sed 's/  */ /g' | cut -s -d' ' -f9) | nc pteropaste.com 99
         ```
       placeholder: |
-        https://pteropaste.com/exampleLogs
+        https://paste.pelistuff.com/exampleURL
     validations:
       required: true

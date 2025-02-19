@@ -4,7 +4,7 @@ Join a world where you design, create and pilot your own air sea rescue service.
 
 ## Configuration warning
 
-Due to the way the Stormworks configuration file is formatted and the way Pterodactyl handles config file replacement this egg cannot be configured by Pterodactyl.  A config file is created in the container home directory (`/home/container/server_config.xml`) and must be manually updated for any changes, **INCLUDING THE PORT NUMBER**.  This egg will not work after installation and you **MUST** edit the `server_config.xml` file manually to use anything other than the default settings.
+Due to the way the Stormworks configuration file is formatted this egg cannot be configured automatically.  A config file is created in the container home directory (`/home/container/server_config.xml`) and must be manually updated for any changes, **INCLUDING THE PORT NUMBER**.  This egg will not work after installation and you **MUST** edit the `server_config.xml` file manually to use anything other than the default settings.
 
 For more information about the configuration file issue see the [Github issue](https://github.com/parkervcp/eggs/issues/522#issuecomment-652514654).
 

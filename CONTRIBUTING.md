@@ -15,10 +15,10 @@ You can contribute by either creating a new pull request or testing [existing pu
     We don't need 8 miles of the install script.
 
 4. Keep it small.
-    Only use what is absolutely needed. The [yolks install images](https://github.com/pelican-eggs/yolks#installation-images) already contain the most basic packages that speeds up the installation process.
+    Only use what is absolutely needed. The [yolks install images](https://github.com/pelican-eggs/yolks?tab=readme-ov-file#installation-images) already contain the most basic packages that speeds up the installation process.
 
 5. Use the stock images.
-    If you need something in an image, open a PR in [my yolks repo](https://github.com/pelican-eggs/yolks) where it can be reviewed and built. Self-hosted or third-party images won't be accepted for security reasons.
+    If you need something in an image, open a PR in [Pelican Yolks Repo](https://github.com/pelican-eggs/yolks) where it can be reviewed and built. Self-hosted or third-party images won't be accepted for security reasons.
 
 6. Export eggs from the panel
     We ask that you use the panel to manage and export eggs.
@@ -26,17 +26,17 @@ You can contribute by either creating a new pull request or testing [existing pu
 
 ### Sources for working on a new egg
 
-Look at existing eggs to see how they work. In most cases, you can take the existing egg as your new template. There's a brief documentation on how to [create eggs](https://pterodactyl.io/community/config/eggs/creating_a_custom_egg.html) and [Docker images](https://pterodactyl.io/community/config/eggs/creating_a_custom_image.html).
+Look at existing eggs to see how they work. In most cases, you can take the existing egg as your new template. There's a brief documentation on how to [create eggs](https://pelican.dev/community/config/eggs/creating_a_custom_egg.html) and [Docker images](https://pelican.dev/community/config/eggs/creating_a_custom_image.html).
 
-Use existing Docker images for your egg. You can find them in [Parkers Yolks fork](https://github.com/pelican-eggs/yolks) and [Pterodactyl Yolks](https://github.com/pterodactyl/yolks).
+Use existing Docker images for your egg. You can find them in [Pelican Yolks](https://github.com/pelican-eggs/yolks).
 
 We have a collection of [existing install script snippets](https://github.com/pelican-eggs/eggs/tree/master/scripts) that you can use.
 
 ## Step 1
 
-### Be aware of the pterodactyl install process
+### Be aware of the Pelican/Pterodactyl install process
 
-The Pterodactyl install process is fairly simple once you know it.
+The install process is fairly simple once you know it.
 
 ```md
 1. Spin up install container

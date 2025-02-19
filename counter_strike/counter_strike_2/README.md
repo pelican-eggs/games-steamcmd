@@ -27,7 +27,7 @@ Ports required to run the server in a table format.
 ## RCON
 
 RCON is only accessible from external apps, NOT from the game client itself. It's broken in CS2.<br>
-If possible always use the Pterodactyl console to use your commands like ``map de_nuke`` or ``mp_restartgame 3``.<br>
+If possible always use the console to use your commands like ``map de_nuke`` or ``mp_restartgame 3``.<br>
 
 ## Notes
 

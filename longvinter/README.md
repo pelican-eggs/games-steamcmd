@@ -9,7 +9,7 @@ ___
 
 | Port | Default |
 |---------|---------|
-| **Game (Primary Port in Pterodactyl)** | 7777 (UDP) |
+| **Game (Primary Port)** | 7777 (UDP) |
 | Query | 27015 (UDP/TCP) |
 | Query +1 | 27016 (UDP/TCP) |
 

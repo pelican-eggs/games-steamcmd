@@ -6,7 +6,7 @@
 
 <!-- insert X into the brackets to mark it as done (i.e. [x]). You can click preview to make the links appear clickable. -->
 
-* [ ] Have you followed the guidelines in our [Contributing document](https://github.com/parkervcp/eggs/blob/master/CONTRIBUTING.md)?
+* [ ] Have you followed the guidelines in our [Contributing document](https://github.com/pelican-eggs/games-steamcmd/blob/main/CONTRIBUTING.md)?
 * [ ] Have you checked to ensure there aren't other open [Pull Requests](../pulls) for the same update/change?
 * [ ] Have you tested and reviewed your changes with confidence that everything works?
 * [ ] Did you branch your changes and PR from that branch and not from your master branch?

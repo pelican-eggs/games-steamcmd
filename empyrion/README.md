@@ -18,6 +18,8 @@ Discord: https://discord.gg/empyrion
 
 ### Special Note
 
+If you are experiencing problems with the playfield server, increase the “TimeoutBootingPfServer” in the /empyrion/dedicated.yaml file
+
 This server have NO Autoupdate. Dont change the AUTO_UPDATE Variable to 1, else server is broken.
 
 ### Server Ports

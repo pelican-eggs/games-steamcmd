@@ -1,22 +1,22 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:10+00:00",
+    "exported_at": "2025-02-25T15:21:08+00:00",
     "name": "Empyrion: Galactic Survival",
     "author": "eggs@goover.dev",
-    "uuid": "3a1450cf-20a8-4fa9-98d1-f38c9f1b5636",
+    "uuid": "fe2bcb9e-3e46-41c7-80a7-d8fbfb98a7f0",
     "description": "Empyrion: Galactic Survival dedicated server",
     "features": null,
     "docker_images": {
-        "ghcr.io\/parkervcp\/yolks:wine_staging": "ghcr.io\/parkervcp\/yolks:wine_staging"
+        "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
     },
     "file_denylist": [],
-    "startup": "cd empyrion; WINEDLLOVERRIDES=\"mscoree,mshtml=\" wine .\/DedicatedServer\/EmpyrionDedicated.exe -batchmode -log -logFile .\/logs\/current.log & echo -e \"Checking on telnet connection\" && until nc -z 127.0.0.1 ${TELNET_PORT}; do echo -e \"Waiting on telnet connection...\"; sleep 5; done && $( [[ -z ${TELNET_PWD} ]] && printf %s \"telnet -E 127.0.0.1 ${TELNET_PORT}\")",
+    "startup": "cd empyrion; WINEDLLOVERRIDES=\"mscoree,mshtml=\" wine .\/DedicatedServer\/EmpyrionDedicated.exe -batchmode -nographics -log -logFile .\/logs\/current.log & echo -e \"Checking on telnet connection\" && until nc -z 127.0.0.1 ${TELNET_PORT}; do echo -e \"Waiting on telnet connection...\"; sleep 5; done && $( [[ -z ${TELNET_PWD} ]] && printf %s \"telnet -E 127.0.0.1 ${TELNET_PORT}\")",
     "config": {
-        "files": "{\r\n    \"empyrion\/dedicated.yaml\": {\r\n        \"parser\": \"yaml\",\r\n        \"find\": {\r\n            \"ServerConfig.Srv_Port\": \"{{server.build.default.port}}\",\r\n            \"ServerConfig.Srv_Name\": \"{{env.SRV_NAME}}\",\r\n            \"ServerConfig.Srv_Password\": \"{{env.SRV_PWD}}\",\r\n            \"ServerConfig.Srv_MaxPlayers\": \"{{env.MAX_PLAYERS}}\",\r\n            \"ServerConfig.Tel_Enabled\": \"{{env.TELNET_ENABLED}}\",\r\n            \"ServerConfig.Tel_Port\": \"{{env.TELNET_PORT}}\",\r\n            \"ServerConfig.Srv_Description\": \"{{env.SRV_DESC}}\",\r\n            \"GameConfig.Seed\": \"{{env.SEED}}\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"empyrion\/dedicated.yaml\": {\r\n        \"parser\": \"yaml\",\r\n        \"find\": {\r\n            \"ServerConfig.Srv_Port\": \"{{server.allocations.default.port}}\",\r\n            \"ServerConfig.Srv_Name\": \"{{env.SRV_NAME}}\",\r\n            \"ServerConfig.Srv_Password\": \"{{env.SRV_PWD}}\",\r\n            \"ServerConfig.Srv_MaxPlayers\": \"{{env.MAX_PLAYERS}}\",\r\n            \"ServerConfig.Tel_Enabled\": \"{{env.TELNET_ENABLED}}\",\r\n            \"ServerConfig.Tel_Port\": \"{{env.TELNET_PORT}}\",\r\n            \"ServerConfig.Srv_Description\": \"{{env.SRV_DESC}}\",\r\n            \"GameConfig.Seed\": \"{{env.SEED}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Connected to 127.0.0.1.\"\r\n}",
         "logs": "{}",
         "stop": "saveandexit 0"
@@ -36,9 +36,12 @@
             "default_value": "My Server",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": null
         },
         {
             "name": "Server Password",
@@ -47,9 +50,12 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string",
+                "max:20"
+            ],
+            "sort": null
         },
         {
             "name": "Max Players",
@@ -58,9 +64,11 @@
             "default_value": "20",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric"
+            ],
+            "sort": null
         },
         {
             "name": "Enable Telnet",
@@ -69,9 +77,12 @@
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|regex:\/^(?:true)?(?:false)?\\b\/",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "regex:\/^(?:true)?(?:false)?\\b\/"
+            ],
+            "sort": null
         },
         {
             "name": "Telnet Port",
@@ -80,9 +91,11 @@
             "default_value": "30004",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric"
+            ],
+            "sort": null
         },
         {
             "name": "Game Seed",
@@ -91,9 +104,12 @@
             "default_value": "1011345",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|min:1",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "min:1"
+            ],
+            "sort": null
         },
         {
             "name": "Server Description",
@@ -102,9 +118,12 @@
             "default_value": "Empyrion Galactic Survival Dedicated Server running on Pterodactyl Panel",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|max:127",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string",
+                "max:127"
+            ],
+            "sort": null
         },
         {
             "name": "Version",
@@ -113,9 +132,12 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string",
+                "max:20"
+            ],
+            "sort": null
         },
         {
             "name": "WINEARCH",
@@ -124,9 +146,12 @@
             "default_value": "win64",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": null
         },
         {
             "name": "WINEDEBUG",
@@ -135,20 +160,26 @@
             "default_value": "-all",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": null
         },
         {
             "name": "WINETRICKS_RUN",
             "description": "",
             "env_variable": "WINETRICKS_RUN",
-            "default_value": "vcrun2019 dotnet48",
+            "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string",
+                "max:20"
+            ],
+            "sort": null
         },
         {
             "name": "Auto Update",
@@ -157,9 +188,12 @@
             "default_value": "0",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": null
         },
         {
             "name": "SRCDS_APPID",
@@ -168,9 +202,12 @@
             "default_value": "530870",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": null
         }
     ]
 }

@@ -7,12 +7,12 @@ This is a multiplayer cooperative open world construction survival sandbox game,
 ## Minimum RAM warning
 
 Minimum required memory to run the server.
-2GB is recommended. 4GB+ is preferred
+8GB is recommended. 9GB+ is preferred
 
 ## Minimum Sorage warning
 
 Minimum required storage to run the server.
-3GB is recommended.
+8GB is recommended.
 
 
 ## Server Ports

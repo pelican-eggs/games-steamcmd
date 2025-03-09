@@ -1,23 +1,23 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
-        "update_url": null
+        "version": "PLCN_v1",
+        "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/no_one_survived\/egg-no-one-survived.json"
     },
-    "exported_at": "2024-06-01T00:04:28+00:00",
+    "exported_at": "2025-03-09T10:17:07+00:00",
     "name": "No One Survived",
     "author": "josdekurk@gmail.com",
     "uuid": "7b329d96-d3e9-40ab-82fe-6ba425c75c12",
     "description": "This is a multiplayer cooperative open world construction survival sandbox game, where you and your friends must find supplies and build shelters in this world. You have to keep an eye on your character's needs state at all times, a bad state is likely to lead to death.",
-    "features": null,
+    "features": [],
     "docker_images": {
-        "ghcr.io\/parkervcp\/yolks:wine_staging": "ghcr.io\/parkervcp\/yolks:wine_staging"
+        "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
     },
     "file_denylist": [],
     "startup": "wine WRSHServer.exe -server -log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}}",
     "config": {
-        "files": "{\r\n    \"WRSH\/Saved\/Config\/WindowsServer\/Engine.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"URL.Port\": \"{{server.build.default.port}}\",\r\n            \"OnlineSubsystemSteam.bUseSteamNetworking\": \"{{server.build.env.STEAM_NETWORKING}}\",\r\n            \"OnlineSubsystemSteam.GameServerQueryPort\": \"{{server.build.env.QUERY_PORT}}\"\r\n        }\r\n    },\r\n    \"WRSH\/Saved\/Config\/WindowsServer\/Game.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"ServerSetting.SaveName\": \"{{server.build.env.SERVER_SAVE_NAME}}\",\r\n            \"ServerSetting.ServerName\": \"{{server.build.env.SERVER_NAME}}\",\r\n            \"ServerSetting.NeedPassword\": \"{{server.build.env.SERVER_NEED_PASSWORD}}\",\r\n            \"ServerSetting.Password\": \"{{server.build.env.SERVER_PASSWORD}}\",\r\n            \"ServerSetting.MaxPlayers\": \"{{server.build.env.SERVER_PLAYERS}}\",\r\n            \"ServerSetting.NumOfZombieSpawn\": \"{{server.build.env.SERVER_NUM_ZOMBIES}}\",\r\n            \"ServerSetting.Region\": \"{{server.build.env.SERVER_REGION}}\",\r\n            \"ServerSetting.AdminPassword\": \"{{server.build.env.SERVER_ADMIN_PASSWORD}}\"\r\n        }\r\n    }    \r\n}",
-        "startup": "{\r\n    \"done\": \"ServerCreate\"\r\n}",
+        "files": "{\r\n    \"WRSH\/Saved\/Config\/WindowsServer\/Engine.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"URL.Port\": \"{{server.allocations.default.port}}\",\r\n            \"OnlineSubsystemSteam.bUseSteamNetworking\": \"{{server.environment.STEAM_NETWORKING}}\",\r\n            \"OnlineSubsystemSteam.GameServerQueryPort\": \"{{server.environment.QUERY_PORT}}\"\r\n        }\r\n    },\r\n    \"WRSH\/Saved\/Config\/WindowsServer\/Game.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"ServerSetting.SaveName\": \"{{server.environment.SERVER_SAVE_NAME}}\",\r\n            \"ServerSetting.ServerName\": \"{{server.environment.SERVER_NAME}}\",\r\n            \"ServerSetting.NeedPassword\": \"{{server.environment.SERVER_NEED_PASSWORD}}\",\r\n            \"ServerSetting.Password\": \"{{server.environment.SERVER_PASSWORD}}\",\r\n            \"ServerSetting.MaxPlayers\": \"{{server.environment.SERVER_PLAYERS}}\",\r\n            \"ServerSetting.NumOfZombieSpawn\": \"{{server.environment.SERVER_NUM_ZOMBIES}}\",\r\n            \"ServerSetting.Region\": \"{{server.environment.SERVER_REGION}}\",\r\n            \"ServerSetting.AdminPassword\": \"{{server.environment.SERVER_ADMIN_PASSWORD}}\"\r\n        }\r\n    }    \r\n}",
+        "startup": "{\n    \"done\": \"wine WRSHServer.exe -server -log\"\n}",
         "logs": "{}",
         "stop": "^^C"
     },
@@ -36,9 +36,11 @@
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 1
         },
         {
             "name": "App id",
@@ -47,9 +49,12 @@
             "default_value": "2329680",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:2329680",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:2329680"
+            ],
+            "sort": 2
         },
         {
             "name": "Auto update",
@@ -58,9 +63,11 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 3
         },
         {
             "name": "WINEDEBUG",
@@ -69,9 +76,11 @@
             "default_value": "-all",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 4
         },
         {
             "name": "WINEARCH",
@@ -80,9 +89,12 @@
             "default_value": "win64",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:win64,win32",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:win64,win32"
+            ],
+            "sort": 5
         },
         {
             "name": "WINEPATH",
@@ -91,9 +103,11 @@
             "default_value": "\/home\/container",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 6
         },
         {
             "name": "WINETRICKS_RUN",
@@ -102,9 +116,11 @@
             "default_value": "vcrun2022 corefonts",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 7
         },
         {
             "name": "Query Port",
@@ -113,9 +129,11 @@
             "default_value": "27015",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 8
         },
         {
             "name": "Steam Networking",
@@ -124,9 +142,12 @@
             "default_value": "False",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:False,True",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:False,True"
+            ],
+            "sort": 9
         },
         {
             "name": "Server save name",
@@ -135,9 +156,12 @@
             "default_value": "MySave",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:32",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:32"
+            ],
+            "sort": 10
         },
         {
             "name": "Server name",
@@ -146,9 +170,12 @@
             "default_value": "Test",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:32",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:32"
+            ],
+            "sort": 11
         },
         {
             "name": "Toggle server password",
@@ -157,9 +184,12 @@
             "default_value": "False",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:False,True",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:False,True"
+            ],
+            "sort": 12
         },
         {
             "name": "Server password",
@@ -168,9 +198,12 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|max:32",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string",
+                "max:32"
+            ],
+            "sort": 13
         },
         {
             "name": "Server players",
@@ -179,9 +212,12 @@
             "default_value": "50",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|numeric|between:1,100",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "between:1,100"
+            ],
+            "sort": 14
         },
         {
             "name": "Number of zombies",
@@ -190,9 +226,12 @@
             "default_value": "50",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|between:25,100",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "between:25,100"
+            ],
+            "sort": 15
         },
         {
             "name": "Server region",
@@ -201,9 +240,12 @@
             "default_value": "All",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:All,AF,AS,EU,NA,OC,SA",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:All,AF,AS,EU,NA,OC,SA"
+            ],
+            "sort": 16
         },
         {
             "name": "Server admin password",
@@ -212,9 +254,12 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:32",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:32"
+            ],
+            "sort": 17
         }
     ]
 }

@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-03-24T17:52:28-07:00",
+    "exported_at": "2025-03-26T17:10:33-07:00",
     "name": "Arma 3",
     "author": "red_thirten@yahoo.com",
     "uuid": "1cc1d168-9896-4e4d-b26a-7a649c2d3a57",
@@ -187,12 +187,12 @@
         },
         {
             "name": "RCon Password",
-            "description": "BattlEye's RCon password for remote connections with an Arma 3 compliant RCon client\/tool. It is recommended to choose a strong password that does not contain spaces. The server config file (server.cfg) must contain `BattlEye = 1;` otherwise RCon is disabled.",
+            "description": "BattlEye's RCon password for remote connections with an Arma 3 compliant RCon client\/tool. It is recommended to choose a strong password that only contains alpha-numerics. The server config file (server.cfg) must contain `BattlEye = 1;` otherwise RCon is disabled.",
             "env_variable": "RCON_PASSWORD",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
+            "rules": "nullable|alpha_num",
             "sort": 15,
             "field_type": "text"
         },

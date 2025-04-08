@@ -57,6 +57,7 @@
 * [Left 4 Dead](left4dead)
 * [Left 4 Dead 2](left4dead_2)
 * [Longvinter](longvinter)
+* [The Lord of the Rings: Return to Moria](lotr_moria)
 * [Midnight Ghost Hunt](midnight_ghost_hunt/)
 * [Modiverse](modiverse)
 * [Mordhau](mordhau)

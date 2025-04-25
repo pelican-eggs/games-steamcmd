@@ -77,7 +77,7 @@
             "name": "Server Name",
             "description": "",
             "env_variable": "SRV_NAME",
-            "default_value": "Pterodactyl hosted Server",
+            "default_value": "Pelican hosted Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": [

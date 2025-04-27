@@ -4,11 +4,12 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-02-09T16:13:03+00:00",
+    "exported_at": "2025-04-27T07:05:06+00:00",
     "name": "Conan Exiles",
     "author": "brycea@terrahost.cloud",
     "uuid": "aa97e69d-d83a-4cc3-9769-c7f401d04e1f",
     "description": "Conan Exiles is an open-world survival game set in the brutal lands of Conan the Barbarian. Survive in a savage world, build your kingdom, and dominate your enemies in brutal combat and epic warfare.",
+    "tags": [],
     "features": [
         "steam_disk_space"
     ],
@@ -32,7 +33,6 @@
     },
     "variables": [
         {
-            "sort": 1,
             "name": "App id",
             "description": "The ID corresponding to the game to download.",
             "env_variable": "SRCDS_APPID",
@@ -43,10 +43,10 @@
                 "required",
                 "string",
                 "in:443030"
-            ]
+            ],
+            "sort": 1
         },
         {
-            "sort": 2,
             "name": "Auto Update",
             "description": "Decide if you want to update your server",
             "env_variable": "AUTO_UPDATE",
@@ -56,10 +56,10 @@
             "rules": [
                 "required",
                 "boolean"
-            ]
+            ],
+            "sort": 2
         },
         {
-            "sort": 3,
             "name": "Query Port",
             "description": "Server Query Port",
             "env_variable": "QUERY_PORT",
@@ -70,10 +70,23 @@
                 "required",
                 "numeric",
                 "max:65535"
-            ]
+            ],
+            "sort": 3
         },
         {
-            "sort": 4,
+            "name": "Rcon port",
+            "description": "Remote administrative access",
+            "env_variable": "RCON_PORT",
+            "default_value": "25575",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "numeric"
+            ],
+            "sort": 7
+        },
+        {
             "name": "Server Name",
             "description": "",
             "env_variable": "SRV_NAME",
@@ -84,10 +97,10 @@
                 "required",
                 "string",
                 "max:40"
-            ]
+            ],
+            "sort": 4
         },
         {
-            "sort": 5,
             "name": "Server Password",
             "description": "",
             "env_variable": "SRV_PW",
@@ -97,10 +110,10 @@
             "rules": [
                 "nullable",
                 "string"
-            ]
+            ],
+            "sort": 5
         },
         {
-            "sort": 6,
             "name": "Windows",
             "description": "",
             "env_variable": "WINDOWS_INSTALL",
@@ -110,20 +123,8 @@
             "rules": [
                 "required",
                 "boolean"
-            ]
-        },
-        {
-            "sort": 7,
-            "name": "Rcon port",
-            "description": "Remote administrative access",
-            "env_variable": "RCON_PORT",
-            "default_value": "25575",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": [
-                "required",
-                "numeric"
-            ]
+            ],
+            "sort": 6
         }
     ]
 }

@@ -4,11 +4,12 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-03-01T03:16:13+00:00",
+    "exported_at": "2025-04-28T10:12:56+00:00",
     "name": "Left 4 Dead 2",
     "author": "pterodactyl@mazoyer.eu",
     "uuid": "bb4e0919-946b-4486-836f-61b116e2e4e6",
     "description": "Left 4 Dead 2 is set in the aftermath of a worldwide pandemic of a disease nicknamed the \"Green Flu\", which rapidly transforms humans into zombie-like creatures and mutated forms that demonstrate extreme aggression towards non-infected beings. A few humans are immune to the disease, while some of those who are infected have no symptoms. The Civil Emergency and Defense Agency (CEDA) and the U.S. military create safe zones to attempt to evacuate as many survivors as possible.",
+    "tags": [],
     "features": [
         "steam_disk_space"
     ],
@@ -32,7 +33,6 @@
     },
     "variables": [
         {
-            "sort": 1,
             "name": "Game ID",
             "description": "The ID corresponding to the game to download and run using SRCDS.",
             "env_variable": "SRCDS_APPID",
@@ -42,10 +42,10 @@
             "rules": [
                 "required",
                 "in:222860"
-            ]
+            ],
+            "sort": 1
         },
         {
-            "sort": 2,
             "name": "Default Map",
             "description": "Default map used when starting the server.",
             "env_variable": "SRCDS_MAP",
@@ -56,10 +56,10 @@
                 "required",
                 "string",
                 "max:40"
-            ]
+            ],
+            "sort": 2
         },
         {
-            "sort": 3,
             "name": "Auto Update",
             "description": "Auto update the server on startup.",
             "env_variable": "AUTO_UPDATE",
@@ -69,7 +69,8 @@
             "rules": [
                 "required",
                 "boolean"
-            ]
+            ],
+            "sort": 3
         }
     ]
 }

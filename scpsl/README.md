@@ -7,7 +7,7 @@ This Server is NOT compatible with ServerMod2 or MultiAdmin
 
 ## [Exiled Plugin Framework](exiled)
 
-SCP: Secret Laboratory Pterodactyl egg with Exiled Plugin Framework <https://github.com/ExMod-Team/EXILED>
+SCP: Secret Laboratory egg with Exiled Plugin Framework <https://github.com/ExMod-Team/EXILED>
 
 ## Minimum RAM
 

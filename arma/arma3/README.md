@@ -109,7 +109,7 @@ ___
 
 External/Compatible RCON clients can be used to connect to the server if the following requirements are met:
 
-1. An extra port is forwarded and assigned to the server in Pterodactyl. It is recommended to use the +5 port from the Main port (ie. if Main port is 2032, RCON port would be 2037). The +3 port **cannot** be used as it is reserved.
+1. An extra port is forwarded and assigned to the server. It is recommended to use the +5 port from the Main port (ie. if Main port is 2032, RCON port would be 2037). The +3 port **cannot** be used as it is reserved.
 2. `server.cfg` has `BattlEye = 1;`. Unfortunately, RCON cannot be used with BattlEye off.
 3. A `beserver_x64.cfg` file (or `beserver.cfg` if using 32-bit) is added to `/home/container/battleye/launch` with the following content:
 ```
@@ -121,7 +121,11 @@ ___
 
 ### Mounting Workshop Mods
 
-Server hosts may wish to save space and avoid download issues by mounting large and/or common mods. Unfortunately, Arma only allows mods to be loaded from directories down-stream of the server binary (ie. `/home/container/*`. Docker limitations disallow Pterodactyl from mounting mounts into `/home/container/*`. The only way around this that I can think of is to create a symlink with a destination that is outside of this location. If anyone knows a way around this, please open an Issue to let us know.
+Server hosts may wish to save space and avoid download issues by mounting large and/or common mods. Unfortunately, Arma only allows mods to be loaded from directories down-stream of the server binary (ie. `/home/container/*`. Docker limitations disallows mounting into `/home/container/*`. The only way around this that I can think of is to create a symlink with a destination that is outside of this location. If anyone knows a way around this, please open an Issue to let us know.
+
+For assistance with mounts, please visit the following links  
+[Using Mounts in Pelican](https://pelican.dev/docs/guides/mounts)  
+[Using Mounts in Pterodactyl](https://pterodactyl.io/guides/mounts.html)
 
 ___
 
@@ -141,7 +145,7 @@ ___
 ### How to Update Egg
 
 If you already have an Arma 3 egg installed on your panel, there are a couple things to consider before updating to this egg:
-- The Startup Command has changed, but Pterodactyl currently does not update this across all your existing servers. Servers will still boot with their old Startup Command, but the new HTML Modlist feature will not work, and depreciated variables for config files will be used. Servers will have to be manually updated to the new Startup Command via the Startup tab.
+- The Startup Command has changed, but does not update this across all your existing servers. Servers will still boot with their old Startup Command, but the new HTML Modlist feature will not work, and depreciated variables for config files will be used. Servers will have to be manually updated to the new Startup Command via the Startup tab.
 - Startup Variables have been completely rehauled. While most important existing variables have retained their Environment Variable names, a lot of their titles and order have been adjusted. Simply updating your existing egg with this egg may lead to Startup Variables being terribly out of order and cluttered. Therefore, the following steps are recommended to avoid this:
   1. Change the name of your existing Arma 3 egg to "Arma 3 (Old)".
   2. Install this updated egg as a new egg in your nest.

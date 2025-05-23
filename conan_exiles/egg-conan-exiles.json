@@ -1,14 +1,15 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:00+00:00",
+    "exported_at": "2025-04-27T07:05:06+00:00",
     "name": "Conan Exiles",
     "author": "brycea@terrahost.cloud",
     "uuid": "aa97e69d-d83a-4cc3-9769-c7f401d04e1f",
     "description": "Conan Exiles is an open-world survival game set in the brutal lands of Conan the Barbarian. Survive in a savage world, build your kingdom, and dominate your enemies in brutal combat and epic warfare.",
+    "tags": [],
     "features": [
         "steam_disk_space"
     ],
@@ -38,9 +39,12 @@
             "default_value": "443030",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:443030",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:443030"
+            ],
+            "sort": 1
         },
         {
             "name": "Auto Update",
@@ -49,9 +53,11 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 2
         },
         {
             "name": "Query Port",
@@ -60,75 +66,12 @@
             "default_value": "27015",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|numeric|max:65535",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Server Name",
-            "description": "",
-            "env_variable": "SRV_NAME",
-            "default_value": "Pterodactyl hosted Server",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:40",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Server Password",
-            "description": "",
-            "env_variable": "SRV_PW",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "WINEDEBUG",
-            "description": "",
-            "env_variable": "WINEDEBUG",
-            "default_value": "-all",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "WINEPATH",
-            "description": "",
-            "env_variable": "WINEPATH",
-            "default_value": "\/home\/container",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "WINETRICKS_RUN",
-            "description": "",
-            "env_variable": "WINETRICKS_RUN",
-            "default_value": "vcrun2013 vcrun2015 corefonts",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Windows",
-            "description": "",
-            "env_variable": "WINDOWS_INSTALL",
-            "default_value": "1",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "max:65535"
+            ],
+            "sort": 3
         },
         {
             "name": "Rcon port",
@@ -137,9 +80,51 @@
             "default_value": "25575",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric"
+            ],
+            "sort": 7
+        },
+        {
+            "name": "Server Name",
+            "description": "",
+            "env_variable": "SRV_NAME",
+            "default_value": "Pelican hosted Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:40"
+            ],
+            "sort": 4
+        },
+        {
+            "name": "Server Password",
+            "description": "",
+            "env_variable": "SRV_PW",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 5
+        },
+        {
+            "name": "Windows",
+            "description": "",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 6
         }
     ]
 }

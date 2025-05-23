@@ -1,3 +1,3 @@
 # Garry's Mod egg
 
-A copy of the one already available in Pterodacty with the addition of the "maxplayers" setting.
+A copy of the one already available with the panel with the addition of the "maxplayers" setting.

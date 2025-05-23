@@ -1,30 +1,30 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
-        "update_url": null,
-        "version": "PTDL_v2"
+        "version": "PTDL_v2",
+        "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:28+00:00",
+    "exported_at": "2025-03-08T21:17:07+00:00",
     "name": "No One Survived",
     "author": "josdekurk@gmail.com",
     "description": "This is a multiplayer cooperative open world construction survival sandbox game, where you and your friends must find supplies and build shelters in this world. You have to keep an eye on your character's needs state at all times, a bad state is likely to lead to death.",
-    "features": null,
+    "features": [],
     "docker_images": {
-        "ghcr.io/parkervcp/yolks:wine_staging": "ghcr.io/parkervcp/yolks:wine_staging"
+        "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
     },
     "file_denylist": [],
     "startup": "wine WRSHServer.exe -server -log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}}",
     "config": {
-        "files": "{\r\n    \"WRSH/Saved/Config/WindowsServer/Engine.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"URL.Port\": \"{{server.build.default.port}}\",\r\n            \"OnlineSubsystemSteam.bUseSteamNetworking\": \"{{server.build.env.STEAM_NETWORKING}}\",\r\n            \"OnlineSubsystemSteam.GameServerQueryPort\": \"{{server.build.env.QUERY_PORT}}\"\r\n        }\r\n    },\r\n    \"WRSH/Saved/Config/WindowsServer/Game.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"ServerSetting.SaveName\": \"{{server.build.env.SERVER_SAVE_NAME}}\",\r\n            \"ServerSetting.ServerName\": \"{{server.build.env.SERVER_NAME}}\",\r\n            \"ServerSetting.NeedPassword\": \"{{server.build.env.SERVER_NEED_PASSWORD}}\",\r\n            \"ServerSetting.Password\": \"{{server.build.env.SERVER_PASSWORD}}\",\r\n            \"ServerSetting.MaxPlayers\": \"{{server.build.env.SERVER_PLAYERS}}\",\r\n            \"ServerSetting.NumOfZombieSpawn\": \"{{server.build.env.SERVER_NUM_ZOMBIES}}\",\r\n            \"ServerSetting.Region\": \"{{server.build.env.SERVER_REGION}}\",\r\n            \"ServerSetting.AdminPassword\": \"{{server.build.env.SERVER_ADMIN_PASSWORD}}\"\r\n        }\r\n    }    \r\n}",
+        "files": "{\r\n    \"WRSH\/Saved\/Config\/WindowsServer\/Engine.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"URL.Port\": \"{{server.build.default.port}}\",\r\n            \"OnlineSubsystemSteam.bUseSteamNetworking\": \"{{env.STEAM_NETWORKING}}\",\r\n            \"OnlineSubsystemSteam.GameServerQueryPort\": \"{{env.QUERY_PORT}}\"\r\n        }\r\n    },\r\n    \"WRSH\/Saved\/Config\/WindowsServer\/Game.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"ServerSetting.SaveName\": \"{{env.SERVER_SAVE_NAME}}\",\r\n            \"ServerSetting.ServerName\": \"{{env.SERVER_NAME}}\",\r\n            \"ServerSetting.NeedPassword\": \"{{env.SERVER_NEED_PASSWORD}}\",\r\n            \"ServerSetting.Password\": \"{{env.SERVER_PASSWORD}}\",\r\n            \"ServerSetting.MaxPlayers\": \"{{env.SERVER_PLAYERS}}\",\r\n            \"ServerSetting.NumOfZombieSpawn\": \"{{env.SERVER_NUM_ZOMBIES}}\",\r\n            \"ServerSetting.Region\": \"{{env.SERVER_REGION}}\",\r\n            \"ServerSetting.AdminPassword\": \"{{env.SERVER_ADMIN_PASSWORD}}\"\r\n        }\r\n    }    \r\n}",
+        "startup": "{\n    \"done\": \"wine WRSHServer.exe -server -log\"\n}",
         "logs": "{}",
-        "startup": "{\r\n    \"done\": \"ServerCreate\"\r\n}",
         "stop": "^^C"
     },
     "scripts": {
         "installation": {
-            "container": "ghcr.io/parkervcp/installers:debian",
-            "entrypoint": "bash",
-            "script": "#!/bin/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n# Image to install with is 'ghcr.io/parkervcp/installers:debian'\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n## install game using steamcmd\r\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] \u0026\u0026 printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\""
+            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
         }
     },
     "variables": [
@@ -82,7 +82,7 @@
             "name": "WINEPATH",
             "description": "",
             "env_variable": "WINEPATH",
-            "default_value": "/home/container",
+            "default_value": "\/home\/container",
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|",

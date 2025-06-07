@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/arma\/arma3\/egg-arma3.json"
     },
-    "exported_at": "2025-03-26T17:10:33-07:00",
+    "exported_at": "2025-06-06T16:53:31-07:00",
     "name": "Arma 3",
     "author": "red_thirten@yahoo.com",
     "uuid": "1cc1d168-9896-4e4d-b26a-7a649c2d3a57",
@@ -38,9 +38,11 @@
             "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string",
-            "sort": 1,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 1
         },
         {
             "name": "[Host] Steam Password",
@@ -49,9 +51,11 @@
             "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string",
-            "sort": 2,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 2
         },
         {
             "name": "[Host] Number of SteamCMD Retry Attempts",
@@ -60,9 +64,11 @@
             "default_value": "3",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|integer",
-            "sort": 3,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer"
+            ],
+            "sort": 3
         },
         {
             "name": "[Host] RCon Port",
@@ -71,9 +77,12 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "required|integer|between:0,65536",
-            "sort": 4,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "between:0,65536"
+            ],
+            "sort": 4
         },
         {
             "name": "Automatic Updates",
@@ -82,9 +91,10 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": 5,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 5
         },
         {
             "name": "Arma 3 Branch (CDLC, etc.)",
@@ -93,9 +103,12 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|in:,creatordlc,profiling",
-            "sort": 6,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string",
+                "in:,creatordlc,profiling"
+            ],
+            "sort": 6
         },
         {
             "name": "Server Binary",
@@ -104,9 +117,12 @@
             "default_value": "arma3server_x64",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:arma3server,arma3server_x64,arma3serverprofiling,arma3serverprofiling_x64",
-            "sort": 7,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:arma3server,arma3server_x64,arma3serverprofiling,arma3serverprofiling_x64"
+            ],
+            "sort": 7
         },
         {
             "name": "Max Players",
@@ -115,9 +131,12 @@
             "default_value": "32",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|gt:0",
-            "sort": 8,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "gt:0"
+            ],
+            "sort": 8
         },
         {
             "name": "Server Password",
@@ -126,9 +145,11 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": 9,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 9
         },
         {
             "name": "Modlist File (Exported from A3 Launcher)",
@@ -137,9 +158,11 @@
             "default_value": "modlist.html",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": 10,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 10
         },
         {
             "name": "Additional Mods",
@@ -148,9 +171,11 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": 11,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 11
         },
         {
             "name": "Disable Verbose Logging",
@@ -159,9 +184,10 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": 12,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 12
         },
         {
             "name": "Load Mission To Memory",
@@ -170,9 +196,10 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": 13,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 13
         },
         {
             "name": "Auto Initialize Mission",
@@ -181,9 +208,10 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": 14,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 14
         },
         {
             "name": "RCon Password",
@@ -192,9 +220,11 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|alpha_num",
-            "sort": 15,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "alpha_num"
+            ],
+            "sort": 15
         },
         {
             "name": "[Advanced] Server-Side Only Mods",
@@ -203,9 +233,11 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": 16,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 16
         },
         {
             "name": "[Advanced] Optional Client-Side Mods",
@@ -214,9 +246,11 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": 17,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 17
         },
         {
             "name": "[Advanced] Enable File Patching",
@@ -225,9 +259,10 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": 18,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 18
         },
         {
             "name": "[Advanced] Server FPS",
@@ -236,9 +271,12 @@
             "default_value": "50",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|between:5,1000",
-            "sort": 19,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "between:5,1000"
+            ],
+            "sort": 19
         },
         {
             "name": "[Advanced] Headless Clients (HC)",
@@ -247,9 +285,12 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|between:0,5",
-            "sort": 20,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "between:0,5"
+            ],
+            "sort": 20
         },
         {
             "name": "[Advanced] HC Hide Console Output",
@@ -258,9 +299,10 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": 21,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 21
         },
         {
             "name": "[Repair] Make Mod Files Lowercase",
@@ -269,9 +311,10 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": 22,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 22
         },
         {
             "name": "[Repair] Validate Server Files",
@@ -280,9 +323,10 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": 23,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 23
         },
         {
             "name": "[System] Arma 3 Dedicated Server App ID",
@@ -291,9 +335,11 @@
             "default_value": "233780",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|integer",
-            "sort": 24,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer"
+            ],
+            "sort": 24
         },
         {
             "name": "[System] basic.cfg URL",
@@ -302,9 +348,11 @@
             "default_value": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/main\/arma\/arma3\/egg-arma3-config\/basic.cfg",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|url",
-            "sort": 25,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "url"
+            ],
+            "sort": 25
         }
     ]
 }

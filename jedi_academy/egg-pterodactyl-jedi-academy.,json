@@ -4,14 +4,13 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-06-10T15:44:08+02:00",
+    "exported_at": "2025-06-10T15:46:07+02:00",
     "name": "Jedi Academy",
     "author": "dominique@wellisch-itservice.de",
     "description": "Dedicated Server for Jedi Academy",
     "features": null,
     "docker_images": {
-        "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian",
-        "draakoor\/jka:latest": "draakoor\/jka:latest"
+        "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
     "startup": "[[ $BINARY == \"vanilla\" ]] && .\/GameData\/linuxjampded +set dedicated 1 +exec server.cfg +set net_port {{SERVER_PORT}} +set fs_basepath \/home\/container\/GameData || [[ $BINARY == \"openjk\" ]] && .\/GameData\/openjkded.x86_64 +set dedicated 1 +exec server.cfg +set net_port {{SERVER_PORT}} +set fs_basepath \/home\/container\/GameData || [[ $BINARY == \"taystjk\" ]] && .\/GameData\/taystjkded.x86_64 +set dedicated 1 +exec server.cfg +set net_port {{SERVER_PORT}} +set fs_basepath \/home\/container\/GameData",

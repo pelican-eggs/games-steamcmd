@@ -10,3 +10,7 @@ Jedi Academy requires one port
 | Port    | default       |
 |---------|---------------|
 | Game    | 29070 |
+
+## Additonal Note:
+
+You can choose between openjk(https://github.com/JACoders/OpenJK) or TaystJK (https://github.com/taysta/TaystJK) or the vanilla server binary (https://jkhub.org/files/file/390-jedi-academy-dedicated-server-for-linux) with the variable BINARY

@@ -13,6 +13,17 @@ Set in a brutally unforgiving post-apocalyptic world overrun by the undead, 7 Da
 | RCON    | 8080 - 8081   |
 | webmap  | 8082          |
 
+## Crossplay Support (Version 2.0 and above)
+
+For dedicated servers to host players on Xbox Series and PS5 consoles, the following variables should be configured.
+
+| Variable              | Value |
+|-----------------------|-------|
+| Max Players (Up To)   | 8     |
+| Easy Anti-Cheat       | True  |
+| Crossplay Support     | True  |
+| Ignore EOS Sanctions  | False |
+
 ## Sample ignore file for backups 
 
 By default the backup includes a lot of files that can be reacquired by pulling the image. Using the following file limits backups to the files that are unique to your server: your config files, logs, saves and generated worlds.

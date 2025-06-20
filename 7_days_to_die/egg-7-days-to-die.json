@@ -1,14 +1,15 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
-        "update_url": null
+        "version": "PLCN_v1",
+        "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/7_days_to_die\/egg-7-days-to-die.json"
     },
-    "exported_at": "2024-06-01T00:03:45+00:00",
+    "exported_at": "2025-06-20T16:10:34+00:00",
     "name": "7 Days To Die",
     "author": "kristoffer.norman@bahnhof.se",
-    "uuid": "b7a88721-15c1-4081-beed-e3add926a372",
+    "uuid": "b1545a0f-f8ba-41dc-9afc-3020696c08be",
     "description": "7 days to die server",
+    "tags": [],
     "features": [
         "steam_disk_space"
     ],
@@ -16,7 +17,7 @@
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
-    "startup": ".\/7DaysToDieServer.x86_64 -configfile=serverconfig.xml -quit -batchmode -nographics -dedicated -ServerPort=${SERVER_PORT} -ServerDisabledNetworkProtocols=${SERVER_DISABLED_NETWORK_PROTOCOLS} -ServerMaxPlayerCount=${MAX_PLAYERS} -GameDifficulty=${GAME_DIFFICULTY} -ControlPanelEnabled=false -TelnetEnabled=true -TelnetPort=${TELNET_PORT} -TelnetPassword=${PASSWORD} -logfile logs\/latest.log & echo -e \"Checking on telnet connection\" && until nc -z -v -w5 127.0.0.1 ${TELNET_PORT}; do echo \"Waiting for telnet connection...\"; sleep 5; done && $( [[ -z ${PASSWORD} ]] && printf %s \"telnet -E 127.0.0.1 ${TELNET_PORT}\" || printf %s \"rcon -t telnet -a 127.0.0.1:${TELNET_PORT} -p {{PASSWORD}}\" )",
+    "startup": ".\/7DaysToDieServer.x86_64 -configfile=serverconfig.xml -quit -batchmode -nographics -dedicated -ServerPort=${SERVER_PORT} -ServerDisabledNetworkProtocols=${SERVER_DISABLED_NETWORK_PROTOCOLS} -ServerMaxPlayerCount=${MAX_PLAYERS} -ServerAllowCrossplay=${CROSSPLAY_SUPPORT} -EACEnabled=${EAC} -IgnoreEOSSanctions=${IGNORE_EOS_SANCTIONS} -GameDifficulty=${GAME_DIFFICULTY} -ControlPanelEnabled=false -TelnetEnabled=true -TelnetPort=${TELNET_PORT} -TelnetPassword=${PASSWORD} -logfile logs\/latest.log & echo -e \"Checking on telnet connection\" && until nc -z -v -w5 127.0.0.1 ${TELNET_PORT}; do echo \"Waiting for telnet connection...\"; sleep 5; done && $( [[ -z ${PASSWORD} ]] && printf %s \"telnet -E 127.0.0.1 ${TELNET_PORT}\" || printf %s \"rcon -t telnet -a 127.0.0.1:${TELNET_PORT} -p {{PASSWORD}}\" )",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Connected with 7DTD server\"\r\n}",
@@ -32,103 +33,171 @@
     },
     "variables": [
         {
-            "name": "Max Players",
-            "description": "Maximum Concurrent Players",
-            "env_variable": "MAX_PLAYERS",
-            "default_value": "8",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Game Difficulty",
-            "description": "0 - 5, 0=easiest, 5=hardest",
-            "env_variable": "GAME_DIFFICULTY",
-            "default_value": "2",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer|between:0,5",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Source AppID",
-            "description": "This is the app id for 7dtd please no step on snek.",
-            "env_variable": "SRCDS_APPID",
-            "default_value": "294420",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
+            "sort": 7,
             "name": "Auto Update",
             "description": "This is to auto update the server on start.\r\n\r\nOptions are 0 or 1\r\nDefault is 1",
             "env_variable": "AUTO_UPDATE",
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ]
         },
         {
+            "sort": 4,
+            "name": "Crossplay Support",
+            "description": "Enables\/Disables crossplay",
+            "env_variable": "CROSSPLAY_SUPPORT",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ]
+        },
+        {
+            "sort": 3,
+            "name": "Easy Anti-Cheat",
+            "description": "Enables\/Disables EasyAntiCheat",
+            "env_variable": "EAC",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ]
+        },
+        {
+            "sort": 2,
+            "name": "Game Difficulty",
+            "description": "0 - 5, 0=easiest, 5=hardest",
+            "env_variable": "GAME_DIFFICULTY",
+            "default_value": "2",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "integer",
+                "between:0,5"
+            ]
+        },
+        {
+            "sort": 5,
+            "name": "Ignore EOS Sanctions ",
+            "description": "Ignore EOS sanctions when allowing players to join",
+            "env_variable": "IGNORE_EOS_SANCTIONS",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ]
+        },
+        {
+            "sort": 8,
             "name": "ld lib path",
             "description": "This is really annoying that more games are doing this.",
             "env_variable": "LD_LIBRARY_PATH",
             "default_value": ".",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ]
         },
         {
-            "name": "Beta Branch",
-            "description": "Installs beta branch if specified. For example, latest_experimental would install the latest experimental branch release. Requires a reinstall to switch branches properly.",
-            "env_variable": "SRCDS_BETAID",
-            "default_value": "",
+            "sort": 1,
+            "name": "Max Players",
+            "description": "Maximum Concurrent Players",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "8",
             "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ]
         },
         {
+            "sort": 10,
             "name": "Telnet Password",
             "description": "Telnet listens on a local interface by default without a password. However, you can specify a password if  you wish to expose telnet.",
             "env_variable": "PASSWORD",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|max:30",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string",
+                "max:30"
+            ]
         },
         {
-            "name": "Telnet Port",
-            "description": "",
-            "env_variable": "TELNET_PORT",
-            "default_value": "8081",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
+            "sort": 12,
             "name": "Network Protocols",
             "description": "Networking protocols that should NOT be used. Separated by comma. Possible values: LiteNetLib, SteamNetworking. Dedicated servers should disable SteamNetworking if there is no NAT router in between your users and the server or when port-forwarding is set up correctly. lets it empty if you are connecting your self hosted server behind a NAT",
             "env_variable": "SERVER_DISABLED_NETWORK_PROTOCOLS",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string",
+                "max:20"
+            ]
+        },
+        {
+            "sort": 6,
+            "name": "Source AppID",
+            "description": "This is the app id for 7dtd please no step on snek.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "294420",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ]
+        },
+        {
+            "sort": 9,
+            "name": "Beta Branch",
+            "description": "Installs beta branch if specified. For example, latest_experimental would install the latest experimental branch release. Requires a reinstall to switch branches properly.",
+            "env_variable": "SRCDS_BETAID",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string",
+                "max:20"
+            ]
+        },
+        {
+            "sort": 11,
+            "name": "Telnet Port",
+            "description": "",
+            "env_variable": "TELNET_PORT",
+            "default_value": "8081",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ]
         }
     ]
 }

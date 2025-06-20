@@ -16,10 +16,11 @@ Set in a brutally unforgiving post-apocalyptic world overrun by the undead, 7 Da
 ## Crossplay Support (Version 2.0 and above)
 
 For dedicated servers to host players on Xbox Series and PS5 consoles, the following variables should be configured.
+Max players cannot be set above 8 in order for crossplay to be enabled. 
 
 | Variable              | Value |
 |-----------------------|-------|
-| Max Players (Up To)   | 8     |
+| Max Players           | 8     |
 | Easy Anti-Cheat       | True  |
 | Crossplay Support     | True  |
 | Ignore EOS Sanctions  | False |

@@ -4,10 +4,10 @@
         "version": "PLCN_v1",
         "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/7_days_to_die\/egg-7-days-to-die.json"
     },
-    "exported_at": "2025-06-20T16:10:34+00:00",
+    "exported_at": "2025-06-20T16:34:55+00:00",
     "name": "7 Days To Die",
     "author": "kristoffer.norman@bahnhof.se",
-    "uuid": "b1545a0f-f8ba-41dc-9afc-3020696c08be",
+    "uuid": "b7a88721-15c1-4081-beed-e3add926a372",
     "description": "7 days to die server",
     "tags": [],
     "features": [
@@ -55,8 +55,7 @@
             "user_editable": false,
             "rules": [
                 "required",
-                "string",
-                "in:true,false"
+                "boolean"
             ]
         },
         {
@@ -69,8 +68,7 @@
             "user_editable": false,
             "rules": [
                 "required",
-                "string",
-                "in:true,false"
+                "boolean"
             ]
         },
         {
@@ -97,8 +95,7 @@
             "user_editable": false,
             "rules": [
                 "required",
-                "string",
-                "in:true,false"
+                "boolean"
             ]
         },
         {

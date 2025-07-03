@@ -78,18 +78,27 @@ ___
 ### Installation/System Requirements
 
 > [!IMPORTANT]
-> - A valid, **real** Steam account, with **Steam Guard turned off**, is required to install the server (default "anonymous" login cannot be used). This account *does not* need to own Arma 3. For security reasons it is [recommended by Valve](https://developer.valvesoftware.com/wiki/SteamCMD#With_a_Steam_account) that you create a new Steam account just for your dedicated servers.
-> - For automatic Steam Workshop mod downloading to work, the Steam account *does* need to own Arma 3. However, this is optional functionality, and mods can be manually uploaded to the server if desired. See [Recommended Egg Modifications](#recommended-egg-modifications) if you would like to disable mod downloading.
+> - A valid, **real** Steam account, with **Steam Guard turned off**, is required to install the server (default "anonymous" login cannot be used). This account *does not* need to own Arma 3 (unless downloading mods; see below). For security reasons it is [recommended by Valve](https://developer.valvesoftware.com/wiki/SteamCMD#With_a_Steam_account) that you create a new Steam account just for your dedicated servers.
+> - For automatic Steam Workshop **mod downloading** to work, the Steam account ***does*** need to ****own Arma 3**. However, this is optional functionality, and mods can be manually uploaded to the server if desired. See [Recommended Egg Modifications](#recommended-egg-modifications) if you would like to disable mod downloading.
 
 |  | Bare Minimum | Recommended | Notes |
 |---------|---------|---------|---------|
-| Processor | 2.4 GHz Dual-Core x86-64-v3. No ARM support. | 3.5 GHz Quad-Core | ARMA 3 is mainly CPU intensive. Contrary to popular belief, the server binary *can* run on multiple cores/threads. However, it's ability to manage asynchronous tasks and hyperthread is *very* limited, meaning additional cores/threads reach diminishing returns very quickly. In addition, it's ability to utilize all of the CPU allotted to it for AI processing seems to be limited as well. Therefore, a Headless Client ***and*** a properly written mission file are highly recommended if large amounts of AI units will be used. |
+| Processor | 2.4 GHz Dual-Core x86-64-v3. No ARM support. | 3.5+ GHz Quad-Core | ARMA 3 is mainly CPU intensive. Contrary to popular belief, the server binary *can* run on multiple cores/threads. However, it's ability to manage asynchronous tasks and hyperthread is somewhat limited, meaning additional cores/threads reach diminishing returns very quickly. In addition, it's ability to utilize all of the CPU allotted to it for AI processing seems to be limited as well. Therefore, a Headless Client ***and*** a properly written mission file are highly recommended if large amounts of AI units will be used. |
 | RAM | 2048 MiB | 4096 MiB | If used, every Headless Client uses an additional 2048 MB of RAM as well. |
 | Storage | 32 GB HDD | 50+ GB SSD | Mods can drastically increase usage if many are downloaded. |
-| Network | 0.512 Mbit/s/player | 1-5 Mbit/s/player | Arma 3 server does not support IPv6 or DSlite IPv4 via IPv6 tunnel. You must have a real IPv4 connection. |
+| Network | 0.512 Mbit/s/player | 1-5 Mbit/s/player | Arma 3 server does not support IPv6 or DSlite IPv4 via IPv6 tunnel. You must have a real IPv4 connection. Multihome (ie. host with multiple WAN IPs) is not supported. |
 | Host OS | Most stable Linux OS branches should work. | Using the latest kernel version for your installed OS can prevent some edge-case installation/boot issues. |
 
-> [!CAUTION]
+> [!WARNING]
+> It has recently been found that newer CPUs with "efficiency cores" can sometimes cause major issues with Arma's performance. If Arma arbitrarily chooses to use any of these cores, this issue can occur.\
+> \
+> This issue **should not** be fixed by telling the panel to pin the server to specific CPU cores as this has caused issues in the past. Instead, hosts should manually add the [`-cpuCount`](https://community.bistudio.com/wiki/Arma_3:_Startup_Parameters#cpuCount) or [`-cpuAffinity`](https://community.bistudio.com/wiki/Arma_3:_Startup_Parameters#cpuAffinity) flag to the Startup Command of the Egg/Server.\
+> \
+> Which one you should use depends on where your efficiency cores are indexed for your CPU model. Examples for a 24-core CPU:
+> - Cores 0 to 7 are efficiency cores: `-cpuAffinity=0xFFFF00` (use cores 8-24)
+> - Cores 16 to 23 are efficiency cores: `-cpuCount=16` (use cores 0-15)
+
+> [!NOTE]
 > This Egg no longer supports the Wisp SaaS Panel.
 
 ___

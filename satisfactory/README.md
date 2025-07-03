@@ -14,59 +14,59 @@ ___
 <table>
     <tr>
         <td align="center">
-            <a href="https://github.com/lilkingjr1">
+            <a href="https://github.com/redthirten">
                 <img src="https://avatars.githubusercontent.com/u/4533989" width="50px;" alt=""/><br /><sub><b>Red-Thirten</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=lilkingjr1" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=lilkingjr1" title="Maintains">🔨</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=redthirten" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=redthirten" title="Maintains">🔨</a>
         </td>
         <td align="center">
             <a href="https://github.com/iamkubi">
                 <img src="https://avatars.githubusercontent.com/u/6176191" width="50px;" alt=""/><br /><sub><b>Kubi</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=iamkubi" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=iamkubi" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=iamkubi" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=iamkubi" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/matthewpi">
                 <img src="https://avatars.githubusercontent.com/u/26559841" width="50px;" alt=""/><br /><sub><b>matthewpi</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=matthewpi" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=matthewpi" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=matthewpi" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=matthewpi" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/Software-Noob">
                 <img src="https://avatars.githubusercontent.com/u/10975908" width="50px;" alt=""/><br /><sub><b>Software-Noob</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=Software-Noob" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=Software-Noob" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Software-Noob" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Software-Noob" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/Zarklord">
                 <img src="https://avatars.githubusercontent.com/u/1622280" width="50px;" alt=""/><br /><sub><b>Zarklord</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=Zarklord" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=Zarklord" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Zarklord" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Zarklord" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/AlienXAXS">
                 <img src="https://avatars.githubusercontent.com/u/1773445" width="50px;" alt=""/><br /><sub><b>AlienXAXS</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=AlienXAXS" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=AlienXAXS" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/gOOvER">
                 <img src="https://avatars.githubusercontent.com/u/116325?v=4" width="50px;" alt=""/><br /><sub><b>gOOvER</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=gOOvER" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=gOOvER" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=gOOvER" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=gOOvER" title="Contributor">💡</a>
         </td>
     </tr>
 </table>

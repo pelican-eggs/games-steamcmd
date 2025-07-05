@@ -1,14 +1,15 @@
 {
   "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
   "meta": {
-    "version": "PTDL_v2",
+    "version": "PLCN_v1",
     "update_url": null
   },
-  "exported_at": "2024-06-01T00:03:57+00:00",
+  "exported_at": "2025-07-05T01:06:40+00:00",
   "name": "Killing Floor 2",
   "author": "parker@parkervcp.com",
   "uuid": "1c46cac5-9cca-414c-9a72-244372ac7efc",
   "description": "In KILLING FLOOR 2, players descend into continental Europe after it has been overrun by horrific, murderous clones called Zeds that were created by the corporation Horzine. The Zed outbreak caused by Horzine Biotech\u2019s failed experiments has quickly spread with unstoppable momentum, paralyzing the European Union. Only a month ago, the first Zed outbreak from the original KILLING FLOOR ripped through London; now the specimen clones are everywhere.",
+  "tags": [],
   "features": ["steam_disk_space"],
   "docker_images": {
     "ghcr.io/parkervcp/steamcmd:debian": "ghcr.io/parkervcp/steamcmd:debian"
@@ -16,7 +17,7 @@
   "file_denylist": [],
   "startup": "/home/container/Binaries/Win64/KFGameSteamServer.bin.x86_64 {{MAP_NAME}}?Port={{SERVER_PORT}}?QueryPort={{QUERY_PORT}}?AdminPassword={{ADMIN_PASS}}?Difficulty={{DIFFICULTY}}?GameLength={{GAME_LENGTH}}$( [ \"$WEB_ADMIN\" == \"true\" ] || printf %s '??WebAdminPort={{WEB_ADMIN_PORT}}' )",
   "config": {
-    "files": "{\r\n    \"KFGame/Config/KFWeb.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"bEnabled\": \"benabled={{server.build.env.WEB_ADMIN}}\",\r\n            \"ListenPort\": \"ListenPort={{server.build.env.WEB_ADMIN_PORT}}\"\r\n        }\r\n    },\r\n    \"KFGame/Config/LinuxServer-KFGame.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"AdminPassword\": \"AdminPassword={{server.build.env.ADMIN_PASS}}\",\r\n            \"ServerName\": \"ServerName={{server.build.env.SERVER_NAME}}\"\r\n        }\r\n    }\r\n}",
+    "files": "{\r\n    \"KFGame/Config/KFWeb.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"bEnabled\": \"benabled={{server.environment.WEB_ADMIN}}\",\r\n            \"ListenPort\": \"ListenPort={{server.environment.WEB_ADMIN_PORT}}\"\r\n        }\r\n    },\r\n    \"KFGame/Config/LinuxServer-KFGame.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"AdminPassword\": \"AdminPassword={{server.environment.ADMIN_PASS}}\",\r\n            \"ServerName\": \"ServerName={{server.environment.SERVER_NAME}}\"\r\n        }\r\n    }\r\n}",
     "startup": "{\r\n    \"done\": \"DevOnline: Playfab server registered with lobby ID \"\r\n}",
     "logs": "{}",
     "stop": "^C"
@@ -30,158 +31,144 @@
   },
   "variables": [
     {
-      "name": "Steam Username",
-      "description": "A steam username to use to install the server.\r\n\r\nOnly needed for games that need a user that owns the server",
-      "env_variable": "STEAM_USER",
-      "default_value": "",
-      "user_viewable": false,
-      "user_editable": false,
-      "rules": "nullable|string",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
-      "name": "Steam Password",
-      "description": "Password for the Steam account to install a server.",
-      "env_variable": "STEAM_PASS",
-      "default_value": "",
-      "user_viewable": false,
-      "user_editable": false,
-      "rules": "nullable|string",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
-      "name": "Steam Auth",
-      "description": "Will most likely time out before it gets used.",
-      "env_variable": "STEAM_AUTH",
-      "default_value": "",
-      "user_viewable": false,
-      "user_editable": false,
-      "rules": "nullable|string|max:6",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
-      "name": "Steam Server App ID",
-      "description": "The App ID for the Server",
-      "env_variable": "SRCDS_APPID",
-      "default_value": "232130",
-      "user_viewable": false,
-      "user_editable": false,
-      "rules": "required|string|in:232130",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
-      "name": "Extra Flags",
-      "description": "Only needed for specific situations.",
-      "env_variable": "EXTRA_FLAGS",
-      "default_value": "",
-      "user_viewable": false,
-      "user_editable": false,
-      "rules": "nullable|string",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
-      "name": "Map Name",
-      "description": "The map to load when the server starts\r\n\r\ndefault - 'kf-bioticslab'",
-      "env_variable": "MAP_NAME",
-      "default_value": "kf-bioticslab",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "required|string",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
-      "name": "Query Port",
-      "description": "The port steam will use to query the server.",
-      "env_variable": "QUERY_PORT",
-      "default_value": "27015",
-      "user_viewable": true,
-      "user_editable": false,
-      "rules": "required|numeric|max:65535",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
-      "name": "Enable WebAdmin (beta)",
-      "description": "",
-      "env_variable": "WEB_ADMIN",
-      "default_value": "false",
-      "user_viewable": true,
-      "user_editable": false,
-      "rules": "required|string|in:true,false",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
+      "sort": 1,
       "name": "Admin Password",
       "description": "An admin password for the server.",
       "env_variable": "ADMIN_PASS",
       "default_value": "",
       "user_viewable": true,
       "user_editable": true,
-      "rules": "required|string",
-      "sort": null,
-      "field_type": "text"
+      "rules": ["required", "string"]
     },
     {
-      "name": "Server Name",
-      "description": "This is the displayed server name to all players in the server and the server browser",
-      "env_variable": "SERVER_NAME",
-      "default_value": "A Pterodactyl Hosted Server",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "required|string",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
-      "name": "Server Difficulty",
-      "description": "0 = Normal, 1 = Hard, 2 = Suicidal, 3 = Hell on Earth",
-      "env_variable": "DIFFICULTY",
-      "default_value": "0",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "required|numeric|in:0,1,2,3",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
-      "name": "Game Length",
-      "description": "0 = Short (4 waves), 1 = Medium (7 waves), 2 = Long (10 waves)",
-      "env_variable": "GAME_LENGTH",
-      "default_value": "2",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "required|numeric|in:0,1,2",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
-      "name": "Web Admin Port",
-      "description": "The port the webadmin panel should use. This is a beta feature.",
-      "env_variable": "WEB_ADMIN_PORT",
-      "default_value": "8089",
-      "user_viewable": true,
-      "user_editable": false,
-      "rules": "required|string|max:20",
-      "sort": null,
-      "field_type": "text"
-    },
-    {
+      "sort": 2,
       "name": "Auto Update",
       "description": "Auto update the server on startup.",
       "env_variable": "AUTO_UPDATE",
       "default_value": "1",
       "user_viewable": true,
       "user_editable": true,
-      "rules": "required|boolean",
-      "sort": null,
-      "field_type": "text"
+      "rules": ["required", "boolean"]
+    },
+    {
+      "sort": 3,
+      "name": "Server Difficulty",
+      "description": "0 = Normal, 1 = Hard, 2 = Suicidal, 3 = Hell on Earth",
+      "env_variable": "DIFFICULTY",
+      "default_value": "0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": ["required", "numeric", "in:0,1,2,3"]
+    },
+    {
+      "sort": 4,
+      "name": "Extra Flags",
+      "description": "Only needed for specific situations.",
+      "env_variable": "EXTRA_FLAGS",
+      "default_value": "",
+      "user_viewable": false,
+      "user_editable": false,
+      "rules": ["nullable", "string"]
+    },
+    {
+      "sort": 14,
+      "name": "Game Length",
+      "description": "Length of the game. 0 = Short (4 waves), 1 = Medium (7 waves), 2 = Long (10 waves)",
+      "env_variable": "GAME_LENGTH",
+      "default_value": "0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": ["required", "numeric", "in:0,1,2"]
+    },
+    {
+      "sort": 5,
+      "name": "Map Name",
+      "description": "The map to load when the server starts\r\n\r\ndefault - 'kf-bioticslab'",
+      "env_variable": "MAP_NAME",
+      "default_value": "kf-bioticslab",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": ["required", "string"]
+    },
+    {
+      "sort": 6,
+      "name": "Query Port",
+      "description": "The port steam will use to query the server.",
+      "env_variable": "QUERY_PORT",
+      "default_value": "27015",
+      "user_viewable": true,
+      "user_editable": false,
+      "rules": ["required", "numeric", "max:65535"]
+    },
+    {
+      "sort": 7,
+      "name": "Server Name",
+      "description": "This is the displayed server name to all players in the server and the server browser",
+      "env_variable": "SERVER_NAME",
+      "default_value": "A Pterodactyl Hosted Server",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": ["required", "string"]
+    },
+    {
+      "sort": 8,
+      "name": "Steam Server App ID",
+      "description": "The App ID for the Server",
+      "env_variable": "SRCDS_APPID",
+      "default_value": "232130",
+      "user_viewable": false,
+      "user_editable": false,
+      "rules": ["required", "string", "in:232130"]
+    },
+    {
+      "sort": 9,
+      "name": "Steam Auth",
+      "description": "Will most likely time out before it gets used.",
+      "env_variable": "STEAM_AUTH",
+      "default_value": "",
+      "user_viewable": false,
+      "user_editable": false,
+      "rules": ["nullable", "string", "max:6"]
+    },
+    {
+      "sort": 10,
+      "name": "Steam Password",
+      "description": "Password for the Steam account to install a server.",
+      "env_variable": "STEAM_PASS",
+      "default_value": "",
+      "user_viewable": false,
+      "user_editable": false,
+      "rules": ["nullable", "string"]
+    },
+    {
+      "sort": 11,
+      "name": "Steam Username",
+      "description": "A steam username to use to install the server.\r\n\r\nOnly needed for games that need a user that owns the server",
+      "env_variable": "STEAM_USER",
+      "default_value": "",
+      "user_viewable": false,
+      "user_editable": false,
+      "rules": ["nullable", "string"]
+    },
+    {
+      "sort": 12,
+      "name": "Enable WebAdmin (beta)",
+      "description": "",
+      "env_variable": "WEB_ADMIN",
+      "default_value": "false",
+      "user_viewable": true,
+      "user_editable": false,
+      "rules": ["required", "string", "in:true,false"]
+    },
+    {
+      "sort": 13,
+      "name": "Web Admin Port",
+      "description": "The port the webadmin panel should use. This is a beta feature.",
+      "env_variable": "WEB_ADMIN_PORT",
+      "default_value": "8089",
+      "user_viewable": true,
+      "user_editable": false,
+      "rules": ["required", "string", "max:20"]
     }
   ]
 }

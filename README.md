@@ -53,6 +53,7 @@
 * [Icarus](icarus)
 * [Insurgency: Sandstorm](insurgency_sandstorm)
 * [iosoccer](iosoccer)
+* [Jedi Academy](jedi_academy)
 * [Killing Floor 2](killing_floor_2)
 * [Left 4 Dead](left4dead)
 * [Left 4 Dead 2](left4dead_2)

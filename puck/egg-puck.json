@@ -1,0 +1,100 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "version": "PLCN_v1",
+        "update_url": null
+    },
+    "exported_at": "2025-04-27T14:46:51+00:00",
+    "name": "Puck",
+    "author": "pelican@stather.me",
+    "uuid": "7bdd6305-dbb9-49ee-b71d-8f424ae130cb",
+    "description": "Fast-paced physics-based hockey simulation where precision, strategy, and chaos collide. Control every move, pass, and shot with realistic puck physics, dynamic player movement, and thrilling gameplay. Master the rink with friends or team up with other Puck players for ultimate hockey dominance!",
+    "tags": [],
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
+    },
+    "file_denylist": [],
+    "startup": ".\/Puck.x86_64",
+    "config": {
+        "files": "{\n    \"server_configuration.json\": {\n        \"parser\": \"json\",\n        \"find\": {\n            \"name\": \"{{server.environment.SERVER_NAME}}\",\n            \"password\": \"{{server.environment.SERVER_PASSWORD}}\",\n            \"maxPlayers\": \"{{server.environment.MAX_PLAYERS}}\",\n            \"port\": \"{{server.allocations.default.port}}\",\n            \"pingPort\": \"{{server.environment.PING_PORT}}\"\n        }\n    }\n}",
+        "startup": "{\"done\":\"UDP socket started on port\"}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n\r\n## just in case someone removed the defaults.\r\nif [ \"${STEAM_USER}\" == \"\" ]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} ${EXTRA_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\ncd \/mnt\/server\/\r\necho '\r\n{\r\n    \"port\":7777,\r\n    \"pingPort\":7778,\r\n    \"name\":\"Puck Dedicated Server\",\r\n    \"maxPlayers\":12,\r\n    \"password\":\"\",\r\n    \"voip\":false,\r\n    \"isPublic\":true,\r\n    \"adminSteamIds\":[],\r\n    \"reloadBannedSteamIds\":false,\r\n    \"usePuckBannedSteamIds\":true,\r\n    \"printMetrics\":true,\r\n    \"kickTimeout\":300,\r\n    \"targetFrameRate\":120,\r\n    \"tickRate\":100,\r\n    \"phaseDurationMap\":\r\n    {\r\n        \"Warmup\":600,\r\n        \"FaceOff\":3,\r\n        \"Playing\":300,\r\n        \"BlueScore\":5,\r\n        \"RedScore\":5,\r\n        \"Replay\":10,\r\n        \"PeriodOver\":15,\r\n        \"GameOver\":15\r\n    }\r\n}\r\n' > server_configuration.json",
+            "container": "ghcr.io\/pelican-eggs\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "AppID",
+            "description": "Required for auto update, don't change this",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "3481440",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "integer"
+            ],
+            "sort": 5
+        },
+        {
+            "name": "Max Players",
+            "description": "The maximum number of players allowed to connect to the server",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "12",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "integer",
+                "required"
+            ],
+            "sort": 3
+        },
+        {
+            "name": "Ping Port",
+            "description": "The port on which the server is queried in the server browser.",
+            "env_variable": "PING_PORT",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "integer"
+            ],
+            "sort": 4
+        },
+        {
+            "name": "Server Name",
+            "description": "The server name in the server browser.",
+            "env_variable": "SERVER_NAME",
+            "default_value": "Puck Dedicated Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "string",
+                "required"
+            ],
+            "sort": 1
+        },
+        {
+            "name": "Server Password",
+            "description": "Password required to join the server. Leave blank to have no password.",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "string"
+            ],
+            "sort": 2
+        }
+    ]
+}

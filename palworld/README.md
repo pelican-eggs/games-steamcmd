@@ -11,21 +11,21 @@ Fight, farm, build and work alongside mysterious creatures called "Pals" in this
                 <img src="https://avatars.githubusercontent.com/u/38478976" width="50px;" alt=""/><br /><sub><b>Alexander Ballauf</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/issues/2669#issuecomment-1900216079" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=Ballaual" title="Maintains">🔨</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/issues/2669#issuecomment-1900216079" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Ballaual" title="Maintains">🔨</a>
         </td>
         <td align="center">
             <a href="https://github.com/QuintenQVD0">
                 <img src="https://avatars.githubusercontent.com/u/67589015" width="50px;" alt=""/><br /><sub><b>QuintenQVD0</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/issues/2669#issuecomment-1899999796" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/issues/2669#issuecomment-1899999796" title="Codes">💻</a>
         <td align="center">
             <a href="https://github.com/hackles">
                 <img src="https://avatars.githubusercontent.com/u/30584261" width="50px;" alt=""/><br /><sub><b>heckler</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/issues/2669#issuecomment-1900043987" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/issues/2669#issuecomment-1900043987" title="Contributor">💡</a>
         </td>
         </td>
         <td align="center">
@@ -33,28 +33,28 @@ Fight, farm, build and work alongside mysterious creatures called "Pals" in this
                 <img src="https://avatars.githubusercontent.com/u/388231" width="50px;" alt=""/><br /><sub><b>Daniel Barton</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/issues/2669#issuecomment-1900100992" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/issues/2669#issuecomment-1900100992" title="Codes">💻</a>
         </td>  
         <td align="center">
             <a href="https://github.com/Rodhin">
                 <img src="https://avatars.githubusercontent.com/u/13395074" width="50px;" alt=""/><br /><sub><b>Rodhin</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/issues/2669#issuecomment-1900153550" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/issues/2669#issuecomment-1900153550" title="Codes">💻</a>
         </td> 
         <td align="center">
             <a href="https://github.com/B0rbor4d">
                 <img src="https://avatars.githubusercontent.com/u/33213807" width="50px;" alt=""/><br /><sub><b>B0rbor4d</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/issues/2669#issuecomment-1900213758" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/issues/2669#issuecomment-1900213758" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/Simsz">
                 <img src="https://avatars.githubusercontent.com/u/12779829" width="50px;" alt=""/><br /><sub><b>Zach</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/issues/2669#issuecomment-1899954711" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/issues/2669#issuecomment-1899954711" title="Contributor">💡</a>
         </td>         
     </tr>
 </table>

@@ -112,6 +112,7 @@
 * [Swords 'n Magic and Stuff](swords_'n_Magic_and_Stuff)
 * [Team Fortress 2 Classic](team_fortress_2_classic)
 * [TerraTech Worlds](terratech_worlds)
+* [The Bus](the_bus)
 * [The Forest](the_forest)
 * [The Isle](the_isle)
   * [Evrima](the_isle/evrima)

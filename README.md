@@ -78,6 +78,7 @@
 * [Portal Knights](portal_knights)
 * [Post Scriptum](post_scriptum)
 * [Project Zomboid](project_zomboid)
+* [Puck](puck)
 * [QANGA](qanga)
 * [Quake Live](quake_live)
 * [Resonite](resonite)

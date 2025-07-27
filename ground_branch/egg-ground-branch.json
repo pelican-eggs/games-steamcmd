@@ -1,23 +1,23 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:18+00:00",
+    "exported_at": "2025-07-27T12:53:37+00:00",
     "name": "Ground Branch",
     "author": "red_thirten@yahoo.com",
     "uuid": "8294a38b-f31b-4a4b-bfd7-3aaea63d67b8",
     "description": "From one of the developers behind the original Rainbow Six\u00ae and Ghost Recon\u00ae games, comes a thinking-man's first-person shooter featuring in-depth character and weapon customization. Take your time. Think ahead. Get the job done.",
-    "features": null,
+    "tags": [],
+    "features": [],
     "docker_images": {
-        "Wine [Latest]": "ghcr.io\/parkervcp\/yolks:wine_latest",
         "Wine [Staging]": "ghcr.io\/parkervcp\/yolks:wine_staging"
     },
     "file_denylist": [],
-    "startup": "wine GroundBranch\/Binaries\/Win64\/GroundBranchServer-Win64-Shipping.exe MultiHome=0.0.0.0 Port={{SERVER_PORT}} QueryPort={{QUERY_PORT}} -log",
+    "startup": "wine .\/GroundBranch\/Binaries\/Win64\/GroundBranchServer-Win64-Shipping.exe MultiHome=0.0.0.0 Port={{SERVER_PORT}} QueryPort={{QUERY_PORT}} -log & GB_PID=$!; tail -c0 -F .\/GroundBranch\/Saved\/Logs\/GroundBranch.log --pid=$GB_PID",
     "config": {
-        "files": "{\r\n    \"GroundBranch\/ServerConfig\/Server.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"ServerName=\": \"ServerName={{server.build.env.SERVER_NAME}}\",\r\n            \"MaxPlayers=\": \"MaxPlayers={{server.build.env.MAX_PLAYERS}}\"\r\n        }\r\n    },\r\n    \"GroundBranch\/Config\/DefaultModding.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"ModPath=\": \"ModPath=..\/steamapps\/workshop\/content\/16900\/\"\r\n        }\r\n    }\r\n}",
+        "files": "{\n    \"GroundBranch\/ServerConfig\/Server.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"ServerName=\": \"ServerName={{env.SERVER_NAME}}\",\n            \"MaxPlayers=\": \"MaxPlayers={{env.MAX_PLAYERS}}\"\n        }\n    },\n    \"GroundBranch\/Config\/DefaultModding.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"ModPath=\": \"ModPath=..\/steamapps\/workshop\/content\/16900\/\"\n        }\n    }\n}",
         "startup": "{\r\n    \"done\": \"Bringing up level for play took\"\r\n}",
         "logs": "{}",
         "stop": "^^C"
@@ -31,37 +31,16 @@
     },
     "variables": [
         {
-            "name": "[REQUIRED] Server Query Port",
-            "description": "This is the port that your clients will type in and use to connect to the lobby (not the game world). Ensure this port matches your externally forwarded port, and is distanced from other running Ground Branch servers in Pterodactyl (increments of 100 are recommended). This is also true for the Primary\/Game Port!",
-            "env_variable": "QUERY_PORT",
-            "default_value": "27015",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": "required|integer|between:1024,65536",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
             "name": "Automatic Updates",
             "description": "Quickly checks for any server updates on startup, and updates if necessary. (1 ON | 0 OFF)",
             "env_variable": "AUTO_UPDATE",
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Server Name",
-            "description": "The name of the server that will appear in the server list.",
-            "env_variable": "SERVER_NAME",
-            "default_value": "Unnamed Ground Branch Server",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:255",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 1
         },
         {
             "name": "Max Players",
@@ -70,9 +49,40 @@
             "default_value": "16",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|min:1",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "integer",
+                "min:1"
+            ],
+            "sort": 2
+        },
+        {
+            "name": "Server Name",
+            "description": "The name of the server that will appear in the server list.",
+            "env_variable": "SERVER_NAME",
+            "default_value": "Unnamed Ground Branch Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:255"
+            ],
+            "sort": 3
+        },
+        {
+            "name": "[REQUIRED] Server Query Port",
+            "description": "This is the port that your clients will type in and use to connect to the lobby (not the game world). Ensure this port matches your externally forwarded port, and is distanced from other running Ground Branch servers in Pterodactyl (increments of 100 are recommended). This is also true for the Primary\/Game Port!",
+            "env_variable": "QUERY_PORT",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "integer",
+                "between:1024,65536"
+            ],
+            "sort": 4
         },
         {
             "name": "[Repair] Validate Server Files",
@@ -81,9 +91,11 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "string|nullable",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "string",
+                "nullable"
+            ],
+            "sort": 5
         },
         {
             "name": "[System] Ground Branch Dedicated Server App ID",
@@ -92,9 +104,12 @@
             "default_value": "476400",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:476400",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:476400"
+            ],
+            "sort": 6
         },
         {
             "name": "[System] Use Windows Branch",
@@ -103,20 +118,12 @@
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:1",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "[System] WINEDEBUG",
-            "description": "Used to suppress WINE FIXME messages. Rarely needs to be changed.",
-            "env_variable": "WINEDEBUG",
-            "default_value": "-all",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "string|nullable",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:1"
+            ],
+            "sort": 7
         },
         {
             "name": "[System] WINEARCH",
@@ -125,20 +132,25 @@
             "default_value": "win64",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:win64",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:win64"
+            ],
+            "sort": 8
         },
         {
-            "name": "[System] WINEPATH",
-            "description": "Used for compatibility. Cannot be changed.",
-            "env_variable": "WINEPATH",
-            "default_value": "\/home\/container",
+            "name": "[System] WINEDEBUG",
+            "description": "Used to suppress WINE FIXME messages. Rarely needs to be changed.",
+            "env_variable": "WINEDEBUG",
+            "default_value": "-all",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:\/home\/container",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "string",
+                "nullable"
+            ],
+            "sort": 9
         }
     ]
 }

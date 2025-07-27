@@ -25,6 +25,7 @@
 * [Barotrauma](barotrauma)
 * [BATTALION: Legacy](/battalion_legacy)
 * [Black Mesa](black_mesa)
+* [Brickadia](brickadia)
 * [Citadel: Forged with Fire](citadel)
 * [Colony Survival](colony_survival)
 * [Conan Exiles](conan_exiles)

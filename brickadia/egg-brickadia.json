@@ -4,7 +4,7 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-07-25T18:11:42+00:00",
+    "exported_at": "2025-08-16T22:43:10+00:00",
     "name": "Brickadia",
     "author": "felinusfish@gmail.com",
     "uuid": "3ee993b6-124a-4260-85fe-b622ebddded7",
@@ -12,11 +12,10 @@
     "tags": [],
     "features": [],
     "docker_images": {
-        "Debian": "ghcr.io\/parkervcp\/steamcmd:debian",
         "Mono": "ghcr.io\/parkervcp\/yolks:mono_latest"
     },
     "file_denylist": [],
-    "startup": ".\/Brickadia\/Binaries\/Linux\/BrickadiaServer-Linux-Shipping -- -token={{BRICKADIA_TOKEN}} -- -port={{server.allocations.default.port}}",
+    "startup": ".\/Brickadia\/Binaries\/Linux\/BrickadiaServer-Linux-Shipping -token={{BRICKADIA_TOKEN}} -port={{SERVER_PORT}} $( [[ -z ${WORLD_NAME} ]] || printf %s \"-world ${WORLD_NAME}\" )",
     "config": {
         "files": "{}",
         "startup": "{\n    \"done\": \"Posting server.\"\n}",
@@ -33,13 +32,16 @@
     "variables": [
         {
             "name": "Brickadia Dedicated Server Token",
-            "description": "This is the token generated on the Brickadia website. You won't be able to host without one.",
+            "description": "This is the token generated on the Brickadia website. You won't be able to host without one. This token should be in Base64 encoded format.",
             "env_variable": "BRICKADIA_TOKEN",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required"
+                "required",
+                "string",
+                "ends_with:==",
+                "size:88"
             ],
             "sort": 2
         },
@@ -50,7 +52,9 @@
             "default_value": "3017590",
             "user_viewable": true,
             "user_editable": false,
-            "rules": [],
+            "rules": [
+                "in:3017590"
+            ],
             "sort": 1
         },
         {
@@ -95,6 +99,18 @@
             "user_editable": true,
             "rules": [],
             "sort": 3
+        },
+        {
+            "name": "World Name",
+            "description": "Load a world upon startup.",
+            "env_variable": "WORLD_NAME",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "string"
+            ],
+            "sort": 7
         }
     ]
 }

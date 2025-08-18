@@ -4,10 +4,11 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-10-04T17:28:26+02:00",
+    "exported_at": "2025-08-18T08:38:47+00:00",
     "name": "ARK: Survival Ascended",
     "author": "blood@darkartsgaming.com",
     "description": "ARK is reimagined from the ground-up into the next-generation of video game technology with Unreal Engine 5! Form a tribe, tame & breed hundreds of unique dinosaurs and primeval creatures, explore, craft, build, and fight your way to the top of the food-chain. Your new world awaits!",
+    "tags": [],
     "features": [
         "steam_disk_space"
     ],
@@ -31,23 +32,33 @@
     },
     "variables": [
         {
-            "name": "Server Map",
-            "description": "Available Maps: TheIsland_WP",
-            "env_variable": "SERVER_MAP",
-            "default_value": "TheIsland_WP",
+            "name": "Additional Arguments (FLAGS)",
+            "description": "flags (-UseBattleEye) are supported here without them touching. (i.e): -crossplay -mods=1234,1235,1236",
+            "env_variable": "ARGS_FLAGS",
+            "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:64",
+            "rules": "nullable|string|max:1024",
             "field_type": "text"
         },
         {
-            "name": "Server Name",
-            "description": "\"Unofficial\" dedicated server name",
-            "env_variable": "SESSION_NAME",
-            "default_value": "A Pterodactyl Hosted Server",
+            "name": "Additional Arguments (PARAMS)",
+            "description": "params (?ServerPassword=...) are supported here but params need to be touching. (i.e): ?ServerPassword=MyP4SsWoRd?ServerAdminPassword=sUpRp4ssW0rd",
+            "env_variable": "ARGS_PARAMS",
+            "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:256",
+            "rules": "nullable|string|max:1024",
+            "field_type": "text"
+        },
+        {
+            "name": "App ID",
+            "description": "app id required for server download\/updates. end users should not see this.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "2430930",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|integer|in:2430930",
             "field_type": "text"
         },
         {
@@ -71,23 +82,13 @@
             "field_type": "text"
         },
         {
-            "name": "App ID",
-            "description": "app id required for server download\/updates. end users should not see this.",
-            "env_variable": "SRCDS_APPID",
-            "default_value": "2430930",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|integer|in:2430930",
-            "field_type": "text"
-        },
-        {
-            "name": "Additional Arguments (PARAMS)",
-            "description": "params (?ServerPassword=...) are supported here but params need to be touching. (i.e): ?ServerPassword=MyP4SsWoRd?ServerAdminPassword=sUpRp4ssW0rd",
-            "env_variable": "ARGS_PARAMS",
+            "name": "MOD IDs",
+            "description": "https:\/\/www.curseforge.com\/ark-survival-ascended ; ProjectID is is the MOD_ID on the right-side of the mod-view page ; leave blank to disable mods ; separate only by comma ( , ) without spaces! (i.e.) 1234,1235,1236",
+            "env_variable": "MOD_IDS",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|max:1024",
+            "rules": "nullable|string|max:512",
             "field_type": "text"
         },
         {
@@ -101,16 +102,6 @@
             "field_type": "text"
         },
         {
-            "name": "Server Admin Password",
-            "description": "Used for RCON (remote and in-browser console) as well as in-game EnableCheats",
-            "env_variable": "ARK_ADMIN_PASSWORD",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|alpha_dash|max:128",
-            "field_type": "text"
-        },
-        {
             "name": "Query Port",
             "description": "ARK query port used by steam server browser and ark client server browser.",
             "env_variable": "QUERY_PORT",
@@ -118,36 +109,6 @@
             "user_viewable": true,
             "user_editable": false,
             "rules": "required|integer|min:1025|max:65535",
-            "field_type": "text"
-        },
-        {
-            "name": "Additional Arguments (FLAGS)",
-            "description": "flags (-UseBattleEye) are supported here without them touching. (i.e): -crossplay -mods=1234,1235,1236",
-            "env_variable": "ARGS_FLAGS",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string|max:1024",
-            "field_type": "text"
-        },
-        {
-            "name": "Server PvE",
-            "description": "ON = Player-vs-Environment (PvE), OFF = Player-vs-Player (PvP); Default is ON",
-            "env_variable": "SERVER_PVE",
-            "default_value": "1",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|boolean",
-            "field_type": "text"
-        },
-        {
-            "name": "Server Password",
-            "description": "required password to enter the server, leave blank for public server",
-            "env_variable": "SERVER_PASSWORD",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|alpha_dash|max:128",
             "field_type": "text"
         },
         {
@@ -161,13 +122,53 @@
             "field_type": "text"
         },
         {
-            "name": "MOD IDs",
-            "description": "https:\/\/www.curseforge.com\/ark-survival-ascended ; ProjectID is is the MOD_ID on the right-side of the mod-view page ; leave blank to disable mods ; separate only by comma ( , ) without spaces! (i.e.) 1234,1235,1236",
-            "env_variable": "MOD_IDS",
+            "name": "Server Admin Password",
+            "description": "Used for RCON (remote and in-browser console) as well as in-game EnableCheats",
+            "env_variable": "ARK_ADMIN_PASSWORD",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|max:512",
+            "rules": "required|alpha_dash|max:128",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Map",
+            "description": "Available Maps: TheIsland_WP",
+            "env_variable": "SERVER_MAP",
+            "default_value": "TheIsland_WP",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:64",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Name",
+            "description": "\"Unofficial\" dedicated server name",
+            "env_variable": "SESSION_NAME",
+            "default_value": "A Pterodactyl Hosted Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:256",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Password",
+            "description": "required password to enter the server, leave blank for public server",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|alpha_dash|max:128",
+            "field_type": "text"
+        },
+        {
+            "name": "Server PvE",
+            "description": "ON = Player-vs-Environment (PvE), OFF = Player-vs-Player (PvP); Default is ON",
+            "env_variable": "SERVER_PVE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
             "field_type": "text"
         }
     ]

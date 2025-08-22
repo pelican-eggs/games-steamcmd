@@ -1,8 +1,5 @@
 # Arma Reforger
 
-***Server version currently marked as early access by the Arma developers! Check back often for egg updates as more features are added to the server software.***
-___
-
 ## Authors / Contributors
 
 <!-- prettier-ignore-start -->
@@ -59,12 +56,6 @@ ___
 ___
 
 ### Installation/System Requirements
-
-> [!IMPORTANT]
-> [As of 2024-11-27] A real, valid Steam account is required to install this game server.
-
-> [!WARNING]
-> Steam Guard **must** be completely **turned off** for the server to download correctly!
 
 |  | Bare Minimum | Recommended |
 |---------|---------|---------|

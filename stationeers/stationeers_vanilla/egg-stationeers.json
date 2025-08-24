@@ -19,7 +19,7 @@
     "startup": "stty cols 80 rows 24; .\/rocketstation_DedicatedServer.x86_64  -loadlatest \"{{SAVE_NAME}}\" {{WORLD_NAME}} -settings ServerName \"{{SERVER_NAME}}\" StartLocalHost true ServerVisible true GamePort {{SERVER_PORT}} UpdatePort {{UPDATE_PORT}} AutoSave {{AUTOSAVE}} SaveInterval {{SAVE_INTERVAL}} ServerPassword {{SERVER_PASSWD}} ServerMaxPlayers {{MAX_PLAYERS}} UPNPEnabled {{UPNP}} ;2>&1",
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"World load complete\"\r\n}",
+        "startup": "{\r\n    \"done\": \"Host Address\"\r\n}",
         "logs": "{}",
         "stop": "^C"
     },

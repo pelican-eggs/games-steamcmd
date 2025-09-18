@@ -15,11 +15,11 @@
         "ghcr.io/parkervcp/steamcmd:ubuntu": "ghcr.io/parkervcp/steamcmd:ubuntu"
     },
     "file_denylist": [],
-    "startup": "stty cols 80 rows 24; ./rocketstation_DedicatedServer.x86_64  -loadlatest \"{{SAVE_NAME}}\" {{WORLD_NAME}} -settings ServerName \"{{SERVER_NAME}}\" StartLocalHost true ServerVisible true GamePort {{SERVER_PORT}} UpdatePort {{UPDATE_PORT}} AutoSave {{AUTOSAVE}} SaveInterval {{SAVE_INTERVAL}} ServerPassword {{SERVER_PASSWD}} ServerMaxPlayers {{MAX_PLAYERS}} UPNPEnabled {{UPNP}} ;2\u003e\u00261",
+    "startup": "stty cols 80 rows 24; ./rocketstation_DedicatedServer.x86_64  -file start \"{{SAVE_NAME}}\" {{WORLD_NAME}} -settings ServerName \"{{SERVER_NAME}}\" StartLocalHost true ServerVisible true GamePort {{SERVER_PORT}} UpdatePort {{UPDATE_PORT}} AutoSave {{AUTOSAVE}} SaveInterval {{SAVE_INTERVAL}} ServerPassword {{SERVER_PASSWD}} ServerMaxPlayers {{MAX_PLAYERS}} UPNPEnabled {{UPNP}} LocalIpAddress {{LOCALIP}} ;2\u003e\u00261",
     "config": {
         "files": "{}",
         "logs": "{}",
-        "startup": "{\r\n    \"done\": \"World load complete\"\r\n}",
+        "startup": "{\r\n    \"done\": \"Host Address\"\n}",
         "stop": "^C"
     },
     "scripts": {
@@ -42,12 +42,12 @@
         },
         {
             "name": "World Name",
-            "description": "Available Maps: Moon, Mars, Europa, Europa2, Mimas, Vulcan, Vulcan2, Space, Loulan, Venus",
+            "description": "Available Maps: Lunar, Mars2, MimasHerschel, Europa3, Venus, Vulcan\n* Case Sensitive *",
             "env_variable": "WORLD_NAME",
             "default_value": "moon",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|in:,Moon,Mars,Europa,Europa2,Mimas,Vulcan,Vulcan2,Space,Loulan,Venus",
+            "rules": "nullable|string",
             "field_type": "text"
         },
         {
@@ -149,6 +149,26 @@
             "user_editable": true,
             "rules": "nullable|string",
             "field_type": "text"
+        },
+         {
+            "name": "Beta Password",
+            "description": "(Might be able to leave blank)\nWork around for currently known bug in linux version of dedicated server. \nUse the local address of the pelican server (i.e. 192.168.0.x)\nServer will report that the address fails to bind. This is normal.",
+            "env_variable": "LOCALIP",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "feild_type": "text"
+        },
+        {
+            "name": "Local IP",
+            "description": "",
+            "env_variable": "BETA_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "feild_type": "text"
         }
     ]
 }

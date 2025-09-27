@@ -1,7 +1,9 @@
 # Arma 3
 
 > [!IMPORTANT]
-> **(September 2025) *This Egg has just been majorly updated.*** Please see [How to Update Egg](#how-to-update-egg) to avoid any migration issues!
+> **(September 2025) *This Egg has just been majorly updated.*** Please see [How to Update Egg](#how-to-update-egg) to avoid any migration issues!\
+> \
+> If you need time to update, you can continue using the old Egg with this image for the time being: `ghcr.io/ptero-eggs/games:arma3`
 ___
 
 ## Authors / Contributors

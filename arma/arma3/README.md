@@ -155,6 +155,7 @@ If you already have an Arma 3 Egg installed on your panel, there are a couple th
 
 #### September 2025 Update
 
+- Please **delete all existing mod folders** and have the system download and install them again. The mod management system was completely rehauled, and there is unfortunately no easy way to convert the mod files of the old system to the new system. Appologies for this, but the new system will dramatically reduce mod download errors.
 - If you are still getting the "Your Arma 3 Egg is outdated and no longer supported" error after updating the Egg, please toggle the "Disable Verbose Logging" startup variable on or off once for every server that is using this Egg. This is due to a small bug in the panel where default values for new variables are set to `null` instead of their defaults.
 - If you use a custom Arma3Profile file, **its location and name has changed**. You can move the contents of your old Arma3Profile to its new location at: `/home/container/.local/share/Arma 3 - Other Profiles/server/server.Arma3Profile`
 - The Startup Command has changed, but does not update across all your existing servers. Servers will still boot with their old Startup Command, but will not operate as intended. Servers will have to be manually updated to the new Startup Command via the Startup tab.

@@ -1,7 +1,7 @@
 # Arma 3
 
 > [!IMPORTANT]
-> **(March 2025) *This Egg has just been majorly updated.*** Please see [How to Update Egg](#how-to-update-egg) to avoid any migration issues!
+> **(September 2025) *This Egg has just been majorly updated.*** Please see [How to Update Egg](#how-to-update-egg) to avoid any migration issues!
 ___
 
 ## Authors / Contributors
@@ -151,8 +151,15 @@ ___
 
 ### How to Update Egg
 
-If you already have an Arma 3 Egg installed on your panel, there are a couple things to consider before updating to this Egg:
+If you already have an Arma 3 Egg installed on your panel, there are a couple things to consider after updating this Egg:
+
+#### September 2025 Update
+
+- If you are still getting the "Your Arma 3 Egg is outdated and no longer supported" error after updating the Egg, please toggle the "Disable Verbose Logging" startup variable on or off once for every server that is using this Egg. This is due to a small bug in the panel where default values for new variables are set to `null` instead of their defaults.
+- If you use a custom Arma3Profile file, **its location and name has changed**. You can move the contents of your old Arma3Profile to its new location at: `/home/container/.local/share/Arma 3 - Other Profiles/server/server.Arma3Profile`
 - The Startup Command has changed, but does not update across all your existing servers. Servers will still boot with their old Startup Command, but will not operate as intended. Servers will have to be manually updated to the new Startup Command via the Startup tab.
+
+#### Pterodactyl specific
 - Startup Variables have been completely re-hauled. While most existing variables have retained their Environment Variable names, some have been completely changed or removed. Simply updating your existing Egg with this Egg may lead to Startup Variables being terribly out of order and cluttered. Therefore, the following steps are recommended to avoid this:
   1. Inform your end-users that some Startup Variable values may be lost and must be reconfigured.
   2. Change the name of your existing Arma 3 Egg to "Arma 3 (Old)".

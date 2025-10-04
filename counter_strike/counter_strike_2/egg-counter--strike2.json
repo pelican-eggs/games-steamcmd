@@ -1,14 +1,15 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:01+00:00",
+    "exported_at": "2025-10-04T16:04:33+00:00",
     "name": "Counter-Strike 2",
     "author": "admin@ballaual.de",
     "uuid": "d2991753-0db4-4b68-9f5d-11f997019b78",
     "description": "For over two decades, Counter-Strike has offered an elite competitive experience, one shaped by millions of players from across the globe. And now the next chapter in the CS story is about to begin. This is Counter-Strike 2.",
+    "tags": [],
     "features": [
         "steam_disk_space"
     ],
@@ -16,7 +17,7 @@
         "ghcr.io\/parkervcp\/steamcmd:sniper": "ghcr.io\/parkervcp\/steamcmd:sniper"
     },
     "file_denylist": [],
-    "startup": ".\/game\/bin\/linuxsteamrt64\/cs2 -dedicated $( [ \"$VAC_ENABLED\" == \"1\" ] || printf %s ' -insecure' ) -ip 0.0.0.0 -port {{SERVER_PORT}} -tv_port {{TV_PORT}} -maxplayers {{MAX_PLAYERS}} $( [ \"$RCON_ENABLED\" == \"0\" ] || printf %s ' -usercon' ) +game_mode {{GAME_MODE}} +game_type {{GAME_TYPE}} +map {{SRCDS_MAP}} +hostname \"{{SERVER_NAME}}\" +sv_password \"{{SERVER_PASSWORD}}\" +rcon_password \"{{RCON_PASSWORD}}\" +sv_setsteamaccount {{STEAM_GSLT}}",
+    "startup": ".\/game\/cs2.sh -dedicated $( [ \"$VAC_ENABLED\" == \"1\" ] || printf %s ' -insecure' ) -ip 0.0.0.0 -port {{SERVER_PORT}} -tv_port {{TV_PORT}} -maxplayers {{MAX_PLAYERS}} $( [ \"$RCON_ENABLED\" == \"0\" ] || printf %s ' -usercon' ) +game_mode {{GAME_MODE}} +game_type {{GAME_TYPE}} +map {{SRCDS_MAP}} +hostname \"{{SERVER_NAME}}\" +sv_password \"{{SERVER_PASSWORD}}\" +rcon_password \"{{RCON_PASSWORD}}\" +sv_setsteamaccount {{STEAM_GSLT}}",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Connection to Steam servers successful\"\r\n}",
@@ -32,81 +33,17 @@
     },
     "variables": [
         {
-            "name": "Map",
-            "description": "The default map for the server.\r\nExamples:\r\n\r\nBomb:\r\nde_dust2, de_mirage, de_nuke, de_overpass, de_inferno, de_ancient, de_vertigo, de_anubis\r\n\r\nHostage:\r\ncs_italy, cs_office\r\n\r\nArms Race:\r\nar_baggage, ar_shoots",
-            "env_variable": "SRCDS_MAP",
-            "default_value": "de_dust2",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Source AppID",
-            "description": "Required for game to update on server restart. Do not modify this.",
-            "env_variable": "SRCDS_APPID",
-            "default_value": "730",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|in:730",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Max Players",
-            "description": "Specifies the maximum amount of players that are able to join the server.",
-            "env_variable": "MAX_PLAYERS",
-            "default_value": "12",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|numeric|between:1,64",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
             "name": "Auto-update server",
             "description": "This is to enable \/ disable auto-updating your server on restart.\r\n\r\nBy default this is set to enabled.",
             "env_variable": "AUTO_UPDATE",
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "SourceTV Port",
-            "description": "SourceTV port used for connections to spectates games on your server.",
-            "env_variable": "TV_PORT",
-            "default_value": "27020",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": "required|integer|between:1025,65535",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Steam Gameserver Login Token",
-            "description": "The Steam Account Token required for the server to be displayed public. The token can be acquired here: https:\/\/steamcommunity.com\/dev\/managegameservers",
-            "env_variable": "STEAM_GSLT",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|alpha_num|size:32",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Enable VAC",
-            "description": "Enable \/ Disable VAC (Valve Anti Cheat) on your server. By default this will be enabled.",
-            "env_variable": "VAC_ENABLED",
-            "default_value": "1",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 1
         },
         {
             "name": "Enable RCON",
@@ -115,42 +52,24 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 2
         },
         {
-            "name": "Server Name",
-            "description": "Sets the server name listed in the steam server browser.",
-            "env_variable": "SERVER_NAME",
-            "default_value": "A Pterodactyl hosted CS2 Server",
+            "name": "Enable VAC",
+            "description": "Enable \/ Disable VAC (Valve Anti Cheat) on your server. By default this will be enabled.",
+            "env_variable": "VAC_ENABLED",
+            "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:64",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Server Password",
-            "description": "If specified, players must provide this password to join the server.",
-            "env_variable": "SERVER_PASSWORD",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|alpha_dash|between:1,30",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "RCON Password",
-            "description": "To gain access to administrator commands on the server.",
-            "env_variable": "RCON_PASSWORD",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|alpha_dash|between:1,30",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 3
         },
         {
             "name": "Gamemode",
@@ -159,9 +78,11 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 4
         },
         {
             "name": "Gametype",
@@ -170,9 +91,123 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 5
+        },
+        {
+            "name": "Map",
+            "description": "The default map for the server.\r\nExamples:\r\n\r\nBomb:\r\nde_dust2, de_mirage, de_nuke, de_overpass, de_inferno, de_ancient, de_vertigo, de_anubis\r\n\r\nHostage:\r\ncs_italy, cs_office\r\n\r\nArms Race:\r\nar_baggage, ar_shoots",
+            "env_variable": "SRCDS_MAP",
+            "default_value": "de_dust2",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 6
+        },
+        {
+            "name": "Max Players",
+            "description": "Specifies the maximum amount of players that are able to join the server.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "12",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "numeric",
+                "between:1,64"
+            ],
+            "sort": 7
+        },
+        {
+            "name": "RCON Password",
+            "description": "To gain access to administrator commands on the server.",
+            "env_variable": "RCON_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "alpha_dash",
+                "between:1,30"
+            ],
+            "sort": 8
+        },
+        {
+            "name": "Server Name",
+            "description": "Sets the server name listed in the steam server browser.",
+            "env_variable": "SERVER_NAME",
+            "default_value": "A Pterodactyl hosted CS2 Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:64"
+            ],
+            "sort": 9
+        },
+        {
+            "name": "Server Password",
+            "description": "If specified, players must provide this password to join the server.",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "alpha_dash",
+                "between:1,30"
+            ],
+            "sort": 10
+        },
+        {
+            "name": "Source AppID",
+            "description": "Required for game to update on server restart. Do not modify this.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "730",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "in:730"
+            ],
+            "sort": 11
+        },
+        {
+            "name": "SourceTV Port",
+            "description": "SourceTV port used for connections to spectates games on your server.",
+            "env_variable": "TV_PORT",
+            "default_value": "27020",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "integer",
+                "between:1025,65535"
+            ],
+            "sort": 12
+        },
+        {
+            "name": "Steam Gameserver Login Token",
+            "description": "The Steam Account Token required for the server to be displayed public. The token can be acquired here: https:\/\/steamcommunity.com\/dev\/managegameservers",
+            "env_variable": "STEAM_GSLT",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "alpha_num",
+                "size:32"
+            ],
+            "sort": 13
         }
     ]
 }

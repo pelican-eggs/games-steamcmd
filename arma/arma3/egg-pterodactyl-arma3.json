@@ -87,7 +87,7 @@
             "default_value": "public",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string|in:public,creatordlc,profiling",
+            "rules": "required|string|in:public,creatordlc,profiling",
             "field_type": "text"
         },
         {

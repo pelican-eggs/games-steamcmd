@@ -137,7 +137,7 @@
             "default_value": "changethispassword",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|regex:\/^[\\w.-]*$\/|max:64",
+            "rules": "required|string|max:128",
             "field_type": "text"
         },
         {

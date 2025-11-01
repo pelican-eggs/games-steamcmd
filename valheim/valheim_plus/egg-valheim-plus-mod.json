@@ -88,7 +88,7 @@
         },
         {
             "name": "Enable Crossplay",
-            "description": "Enable crossplay support",
+            "description": "Enable crossplay support to join on a 6 digit invite code or public IP. Disable crossplay support to join on a private IP or public IP.",
             "env_variable": "ENABLE_CROSSPLAY",
             "default_value": "0",
             "user_viewable": true,

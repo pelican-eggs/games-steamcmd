@@ -132,5 +132,6 @@
   * [BepInEx](valheim/valheim_bepinex)
   * [Plus Mod](valheim/valheim_plus)
 * [VEIN](vein)
+* [Voyagers of Nera](voyagers_of_nera)
 * [Wurm Unlimited](wurm_unlimited/)
 * [Zombie Survival Game Online](zombie_survival_game_online/)

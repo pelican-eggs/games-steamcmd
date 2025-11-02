@@ -1,10 +1,10 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:05:04+00:00",
+    "exported_at": "2025-11-02T13:28:05+00:00",
     "name": "Valheim  BepINex",
     "author": "eggs@goover.dev",
     "uuid": "7cf84d70-b857-4167-b051-ca3e3855c5d7",
@@ -16,7 +16,7 @@
         "ghcr.io\/parkervcp\/games:valheim": "ghcr.io\/parkervcp\/games:valheim"
     },
     "file_denylist": [],
-    "startup": "export DOORSTOP_ENABLE=TRUE; export DOORSTOP_INVOKE_DLL_PATH=.\/BepInEx\/core\/BepInEx.Preloader.dll; export LD_LIBRARY_PATH=\".\/doorstop_libs:$LD_LIBRARY_PATH\"; export LD_PRELOAD=\"libdoorstop_x64.so:$LD_PRELOAD\"; export templdpath=$LD_LIBRARY_PATH; export LD_LIBRARY_PATH=\".\/linux64:$LD_LIBRARY_PATH\"; export SteamAppId=892970; export LD_LIBRARY_PATH=$templdpath; .\/valheim_server.x86_64 -nographics -batchmode -name \"{{SERVER_NAME}}\" -port {{SERVER_PORT}} -world \"{{WORLD}}\" -password \"{{PASSWORD}}\" -public {{PUBLIC_SERVER}} -saveinterval {{BACKUP_INTERVAL}} -backups {{BACKUP_COUNT}} -backupshort {{BACKUP_SHORTTIME}} -backuplong {{BACKUP_LONGTIME}} $( [[ {{ENABLE_CROSSPLAY}} -eq 1 ]] && echo \" -crossplay \") > >(sed -uE \"{{CONSOLE_FILTER}}\") & trap \"{{STOP}}\" 15; wait $!",
+    "startup": "export DOORSTOP_ENABLED=1; export DOORSTOP_TARGET_ASSEMBLY=./BepInEx/core/BepInEx.Preloader.dll; export LD_LIBRARY_PATH=\"./doorstop_libs:$LD_LIBRARY_PATH\"; export LD_PRELOAD=\"libdoorstop_x64.so:$LD_PRELOAD\"; export LD_LIBRARY_PATH=\"./linux64:$LD_LIBRARY_PATH\"; export SteamAppId=892970; .\/valheim_server.x86_64 -nographics -batchmode -name \"{{SERVER_NAME}}\" -port {{SERVER_PORT}} -world \"{{WORLD}}\" -password \"{{PASSWORD}}\" -public {{PUBLIC_SERVER}} -saveinterval {{BACKUP_INTERVAL}} -backups {{BACKUP_COUNT}} -backupshort {{BACKUP_SHORTTIME}} -backuplong {{BACKUP_LONGTIME}} $( [[ {{ENABLE_CROSSPLAY}} -eq 1 ]] && echo \" -crossplay \") > >(sed -uE \"{{CONSOLE_FILTER}}\") & trap \"{{STOP}}\" 15; wait $!",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Game server connected\"\r\n}",
@@ -38,9 +38,12 @@
             "default_value": "My Server",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:60",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:60"
+            ],
+            "sort": 1
         },
         {
             "name": "Server Password",
@@ -49,9 +52,13 @@
             "default_value": "secret",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|min:5|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "min:5",
+                "max:20"
+            ],
+            "sort": 2
         },
         {
             "name": "World Name",
@@ -60,9 +67,12 @@
             "default_value": "Dedicated",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 3
         },
         {
             "name": "Public Server",
@@ -71,9 +81,11 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 4
         },
         {
             "name": "Auto Update",
@@ -82,9 +94,11 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 5
         },
         {
             "name": "Enable Crossplay",
@@ -93,9 +107,11 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "boolean"
+            ],
+            "sort": 6
         },
         {
             "name": "Beta Branch",
@@ -104,9 +120,10 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "max:30",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "max:30"
+            ],
+            "sort": 7
         },
         {
             "name": "Beta Password",
@@ -115,9 +132,10 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "max:30",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "max:30"
+            ],
+            "sort": 8
         },
         {
             "name": "Backup Interval",
@@ -126,9 +144,12 @@
             "default_value": "1800",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|min:0",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "min:0"
+            ],
+            "sort": 9
         },
         {
             "name": "Backup Count",
@@ -137,9 +158,12 @@
             "default_value": "4",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|min:0",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "min:0"
+            ],
+            "sort": 10
         },
         {
             "name": "Backup Shorttime",
@@ -148,9 +172,12 @@
             "default_value": "7200",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|min:0",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "min:0"
+            ],
+            "sort": 11
         },
         {
             "name": "Backup Longtime",
@@ -159,20 +186,24 @@
             "default_value": "43200",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|min:0",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "min:0"
+            ],
+            "sort": 12
         },
         {
             "name": "[System] Console Filter",
             "description": "Remove unwanted outputs from the console.",
             "env_variable": "CONSOLE_FILTER",
-            "default_value": "\/^\\(Filename:.*Line:[[:space:]]+[[:digit:]]+\\)$\/d; \/^([[:space:]]+)?$\/d",
+            "default_value": "/^\\(Filename:.*Line:[[:space:]]+[[:digit:]]+\\)$/d; /^([[:space:]]+)?$/d",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "string"
+            ],
+            "sort": 13
         },
         {
             "name": "[System] App ID",
@@ -181,20 +212,24 @@
             "default_value": "896660",
             "user_viewable": true,
             "user_editable": false,
-            "rules": "nullable|numeric",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "numeric"
+            ],
+            "sort": 14
         },
         {
             "name": "[System] LD Library Path",
             "description": "Required to load server libraries.",
             "env_variable": "LD_LIBRARY_PATH",
-            "default_value": ".\/linux64",
+            "default_value": "./linux64",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 15
         },
         {
             "name": "[System] Shutdown Command",
@@ -203,9 +238,12 @@
             "default_value": "kill -2 $!; wait;",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ],
+            "sort": 16
         },
         {
             "name": "ModPack",
@@ -214,9 +252,12 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "string|nullable",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "string",
+                "nullable"
+            ],
+            "sort": 17
         }
     ]
+
 }

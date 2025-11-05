@@ -15,9 +15,7 @@
         "Wine Latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
     },
     "file_denylist": [],
-    "startup_commands": {
-        "Default": "wine BoatGame\/Binaries\/Win64\/BoatGameServer-Win64-Shipping.exe -log  -port={{SERVER_PORT}} & BG_PID=$!; tail -c0 -F .\/BoatGame\/Saved\/Logs\/BoatGame.log --pid=$BG_PID"
-    },
+    "startup": "wine BoatGame\/Binaries\/Win64\/BoatGameServer-Win64-Shipping.exe -log  -port={{SERVER_PORT}} & BG_PID=$!; tail -c0 -F .\/BoatGame\/Saved\/Logs\/BoatGame.log --pid=$BG_PID",
     "config": {
         "files": "{\n    \"Saved\/PersistedData\/CustomConfig\/CustomHostServerUserSettings.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"HostServerDisplayName=\": \"HostServerDisplayName={{server.build.env.DISPLAY_NAME}}\",\n            \"HostServerPassword=\": \"HostServerPassword={{server.build.env.SERVER_PASSWORD}}\",\n            \"MaxPlayers=\": \"MaxPlayers={{server.build.env.MAX_PLAYERS}}\",\n            \"AutosaveTimerSeconds=\": \"AutosaveTimerSeconds={{server.build.env.{AUTO_SAVE_TIMER_SECONDS}}\"\n        }\n    }\n}",
         "startup": "{\n    \"done\": \"Game Server API initialized\"\n}",

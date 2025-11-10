@@ -1,0 +1,131 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "version": "PLCN_v3",
+        "update_url": null
+    },
+    "exported_at": "2025-11-02T10:25:41+00:00",
+    "name": "Voyagers of Nera",
+    "author": "quinten@pelican.dev",
+    "uuid": "ea67d6c6-3b4b-4987-b0ca-5514d86e3c16",
+    "description": " Voyagers of Nera is a cooperative survival-crafting game where you must survive a magical ocean world brimming with lost spirits and deadly monsters. Sail to distant islands, build beautiful villages and surf across the waves with up to 10 players. ",
+    "tags": [],
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "Wine Latest": "ghcr.io/parkervcp/yolks:wine_latest"
+    },
+    "file_denylist": [],
+    "startup_commands": {
+        "Default": "wine BoatGame/Binaries/Win64/BoatGameServer-Win64-Shipping.exe -log  -port={{SERVER_PORT}} & BG_PID=$!; tail -c0 -F ./BoatGame/Saved/Logs/BoatGame.log --pid=$BG_PID"
+    },
+    "config": {
+        "files": "{\n    \"Saved/PersistedData/CustomConfig/CustomHostServerUserSettings.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"HostServerDisplayName=\": \"HostServerDisplayName={{server.environment.DISPLAY_NAME}}\",\n            \"HostServerPassword=\": \"HostServerPassword={{server.environment.SERVER_PASSWORD}}\",\n            \"MaxPlayers=\": \"MaxPlayers={{server.environment.MAX_PLAYERS}}\",\n            \"AutosaveTimerSeconds=\": \"AutosaveTimerSeconds={{server.environment.{AUTO_SAVE_TIMER_SECONDS}}\"\n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"Game Server API initialized\"\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n## install game using steamcmd\r\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n#They need it here ..\r\n./steamcmd.sh +force_install_dir /mnt/server/BoatGame/Binaries/Win64/ +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update 1007 validate +quit\r\n\r\n## set up 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n# Define the file path\r\nFILE=\"/mnt/server/BoatGame/Saved/PersistedData/CustomConfig/CustomHostServerUserSettings.ini\"\r\n\r\n# Create the directory if it doesn't exist\r\nDIR=$(dirname \"$FILE\")\r\nif [ ! -d \"$DIR\" ]; then\r\n    echo \"Directory $DIR not found. Creating it...\"\r\n    mkdir -p \"$DIR\"\r\nfi\r\n\r\n# Check if the file exists\r\nif [ ! -f \"$FILE\" ]; then\r\n    echo \"File not found. Creating $FILE...\"\r\n\r\n    cat <<EOF > \"$FILE\"\r\n[/Script/BoatGame.BGCustomHostServerSettings]\r\nHostServerDisplayName=${DISPLAY_NAME}\r\nHostServerPassword=${SERVER_PASSWORD}\r\nMaxPlayers=${MAX_PLAYERS}\r\nAutosaveTimerSeconds=${AUTO_SAVE_TIMER_SECONDS}\r\nEOF\r\n\r\n    echo \"File created and settings written to $FILE.\"\r\nelse\r\n    echo \"File already exists: $FILE\"\r\nfi\r\n\r\nif [ ! -f \"/mnt/server/BoatGame/Binaries/Win64/steam_appid.txt\" ]; then\r\n    echo \"3937860\" > /mnt/server/BoatGame/Binaries/Win64/steam_appid.txt\r\nfi\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io/pelican-eggs/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "sort": 7,
+            "name": "Auto saveTimer Seconds",
+            "description": "How often your server will automatically save. It\u2019s not recommended to adjust this setting unless you specifically have a reason to.",
+            "env_variable": "AUTO_SAVE_TIMER_SECONDS",
+            "default_value": "300",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "int",
+                "between:10,900"
+            ]
+        },
+        {
+            "sort": 3,
+            "name": "Auto Update",
+            "description": "Automatically update the server on startup",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "boolean"
+            ]
+        },
+        {
+            "sort": 4,
+            "name": "Display Name",
+            "description": "The public name of your server other players will see when browsing servers.",
+            "env_variable": "DISPLAY_NAME",
+            "default_value": "My_Super_Cool_Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "alpha_dash",
+                "max:30"
+            ]
+        },
+        {
+            "sort": 6,
+            "name": "Max Players",
+            "description": "The maximum number of players allowed to be connected to your server at once.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "10",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "int",
+                "between:0,10"
+            ]
+        },
+        {
+            "sort": 5,
+            "name": "Server Password",
+            "description": "The password required for players to join your game.\n\nA blank value means the server will not be password-protected and is joinable by any player.",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "noonewilleverguessthis",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "alpha_dash"
+            ]
+        },
+        {
+            "sort": 1,
+            "name": "App ID",
+            "description": "",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "3937860",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "in:3937860"
+            ]
+        },
+        {
+            "sort": 2,
+            "name": "Windows Install",
+            "description": "",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "boolean",
+                "in:1"
+            ]
+        }
+    ]
+}

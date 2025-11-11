@@ -33,6 +33,9 @@ Example:\
 Server Port = 4711\
 Make sure you open UDP ports 4711-4712 in your firewall and bind the allocations to the Core Keeper Server.
 
+Alternatively, you can enable the Steam Datagram Relay (SDR) istead of using ports.
+Read more about it [here](https://partner.steamgames.com/doc/features/multiplayer/steamdatagramrelay).
+
 ## Requirements of RAM and storage
 
 | Req | Minimum | Recommend |

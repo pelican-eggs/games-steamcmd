@@ -76,6 +76,7 @@
 * [Palworld](palworld)
 * [Pavlov VR](pavlov_vr)
 * [PixARK](pixark)
+* [Plains Of Pain](plains_of_pain)
 * [Portal Knights](portal_knights)
 * [Post Scriptum](post_scriptum)
 * [Project Zomboid](project_zomboid)

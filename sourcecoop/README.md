@@ -7,12 +7,12 @@
 <table>
     <tr>
         <td align="center">
-            <a href="https://github.com/lilkingjr1">
+            <a href="https://github.com/redthirten">
                 <img src="https://avatars.githubusercontent.com/u/4533989" width="50px;" alt=""/><br /><sub><b>Red-Thirten</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=lilkingjr1" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=lilkingjr1" title="Maintains">🔨</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=redthirten" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=redthirten" title="Maintains">🔨</a>
         </td>
     </tr>
 </table>
@@ -38,7 +38,7 @@ From their [Github](https://github.com/ampreeT/SourceCoop):
   - Server Name
   - Max Players
   - Server Password
-    - Note: Clients may need to enter `password <your_password>` in their console before joining.
+    - Note: Clients may need to enter `password "<your_password>"` in their console before joining.
   - Starting Map
   - and Enable Friendly Fire
 - Fix for some maps potentially crashing on Linux via "[Advanced] Enable `mod_forcetouchdata`" Startup Variable.
@@ -59,10 +59,10 @@ From their [Github](https://github.com/ampreeT/SourceCoop):
 - Default server ports are listed below, but they can be changed freely.
 - RCON will share the Game port and is only required if the server owner enables/uses RCON.
 
-| Port | Default | Protocol |
-|---------|---------|---------|
-| Game | 27015 | UDP |
-| RCON | (Same as Game) | TCP |
+| Port | Default | Protocol | Required |
+|---------|---------|---------|---------|
+| **Game** | 27015 | UDP | **Yes** |
+| RCON | (Same as Game) | TCP | No |
 
 ## Manual Configuration Topics
 

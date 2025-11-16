@@ -1,0 +1,175 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2024-07-17T11:51:08+02:00",
+    "name": "Zombie Survival Game Online",
+    "author": "josdekurk@gmail.com",
+    "uuid": "6b6900fa-49fd-497b-982a-0cd3063adf76",
+    "description": "Zombie Survival Game Online is an open-world, post-apocalyptic, looter shooter. We aim to deliver a survival community experience that will entertain for years to come, utilizing a heavy passion for the genre & the years spent honing our development skills. Can you survive? Craft your story today!",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "Proton": "ghcr.io\/parkervcp\/steamcmd:proton"
+    },
+    "file_denylist": [],
+    "startup": "proton run  ZSGO\/Binaries\/Win64\/ZSGOServer-Win64-Shipping.exe -server -log  -port={{SERVER_PORT}} -queryport={{QUERY_PORT}} -multihome=0.0.0.0 & ZSGO_PID=$!; sleep 1; tail -c0 -F  \/home\/container\/ZSGO\/Saved\/Logs\/ZSGO.log --pid=$ZSGO_PID",
+    "config": {
+        "files": "{\n    \"ZSGO\/Content\/DedicatedServer\/ServerConfig.json\": {\n        \"parser\": \"json\",\n        \"find\": {\n            \"ServerName\": \"{{env.SERVER_NAME}}\",\n            \"WorldName\": \"{{env.WORLD_NAME}}\",\n            \"ServerPassword\": \"{{env.SERVER_PASSWORD}}\",\n            \"ServerMap\": \"{{env.SERVER_MAP}}\",\n            \"ValveAntiCheat\": \"{{env.ANTI_CHEAT}}\",\n            \"MaxPlayers\": \"{{env.MAX_PLAYERS}}\",\n            \"LAN\": \"{{env.LAN}}\",\n            \"AdvertiseServer\": \"{{env.ADVERTISE_SERVER}}\",\n            \"IsGSLTUsed\": \"{{env.USE_GSLT}}\",\n            \"SteamGSLT\": \"{{env.GSLT_TOKEN}}\"\n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"IpNetDriver listening on port\"\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server\/ZSGO\/Binaries\/Win64\/ +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update 1007 +quit\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "App ID",
+            "description": "",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "2536350",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|in:2536350",
+            "field_type": "text"
+        },
+        {
+            "name": "Windows Install",
+            "description": "",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Auto Update",
+            "description": "Auto Update a server on start",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Query Port",
+            "description": "",
+            "env_variable": "QUERY_PORT",
+            "default_value": "27015",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Name",
+            "description": "Changes the server name visible in the server list.",
+            "env_variable": "SERVER_NAME",
+            "default_value": "Default ZSGO Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|min:5|max:128",
+            "field_type": "text"
+        },
+        {
+            "name": "World Name",
+            "description": "Changes the world name, visible in the server list (currently does not do anything).",
+            "env_variable": "WORLD_NAME",
+            "default_value": "Zombie Survival Game Online",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|min:5|max:128",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Password",
+            "description": "Sets your server password. NoConfiguredPassword must be in this field for it to be a public, password-less server.",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "NoConiguredPassword",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|alpha_dash|max:128",
+            "field_type": "text"
+        },
+        {
+            "name": "Anti Cheat",
+            "description": "True or False. Enables VAC protection for your server.",
+            "env_variable": "ANTI_CHEAT",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:true,false",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Players",
+            "description": "Default 4. Can go up to 32 (we recommend a maximum of 20, however you can go higher. Do so at your own risk!).",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "4",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|between:1,32",
+            "field_type": "text"
+        },
+        {
+            "name": "LAN",
+            "description": "Sets whether the server is visible in the LAN server list only or not.",
+            "env_variable": "LAN",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:true,false",
+            "field_type": "text"
+        },
+        {
+            "name": "Advertise Server",
+            "description": "True or False. Sets whether the server will show up in any server list or not. Useful for if you want to have a public, password-less server, but require joining via IP address.",
+            "env_variable": "ADVERTISE_SERVER",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:true,false",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Map",
+            "description": "The map of the server",
+            "env_variable": "SERVER_MAP",
+            "default_value": "MainLevel",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Use GSLT",
+            "description": "If you want to use a steam GSLT token.",
+            "env_variable": "USE_GSLT",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:false,true",
+            "field_type": "text"
+        },
+        {
+            "name": "GSLT Token",
+            "description": "The Steam GSLT token, for this Use GSLT must be set to true.",
+            "env_variable": "GSLT_TOKEN",
+            "default_value": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        }
+    ]
+}

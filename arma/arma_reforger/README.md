@@ -1,8 +1,5 @@
 # Arma Reforger
 
-***Server version currently marked as early access by the Arma developers! Check back often for egg updates as more features are added to the server software.***
-___
-
 ## Authors / Contributors
 
 <!-- prettier-ignore-start -->
@@ -10,19 +7,19 @@ ___
 <table>
     <tr>
         <td align="center">
-            <a href="https://github.com/lilkingjr1">
+            <a href="https://github.com/redthirten">
                 <img src="https://avatars.githubusercontent.com/u/4533989" width="50px;" alt=""/><br /><sub><b>Red-Thirten</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=lilkingjr1" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=lilkingjr1" title="Maintains">🔨</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=redthirten" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=redthirten" title="Maintains">🔨</a>
         </td>
         <td align="center">
             <a href="https://github.com/Soljian">
                 <img src="https://avatars.githubusercontent.com/u/4036453" width="50px;" alt=""/><br /><sub><b>Soljian</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=Soljian" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Soljian" title="Contributor">💡</a>
         </td>
     </tr>
 </table>
@@ -59,12 +56,6 @@ ___
 ___
 
 ### Installation/System Requirements
-
-> [!IMPORTANT]
-> [As of 2024-11-27] A real, valid Steam account is required to install this game server.
-
-> [!WARNING]
-> Steam Guard **must** be completely **turned off** for the server to download correctly!
 
 |  | Bare Minimum | Recommended |
 |---------|---------|---------|

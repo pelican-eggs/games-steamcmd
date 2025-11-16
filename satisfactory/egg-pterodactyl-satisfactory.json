@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-02-17T19:50:53+01:00",
+    "exported_at": "2024-09-10T11:11:13-07:00",
     "name": "Satisfactory",
     "author": "red_thirten@yahoo.com",
     "description": "Satisfactory is a first-person open-world factory building game with a dash of exploration and combat. Play alone or with friends, explore an alien planet, create multi-story factories, and enter conveyor belt heaven!",
@@ -12,7 +12,7 @@
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io\/pastanetwork\/steamcmd:debian": "ghcr.io\/pastanetwork\/steamcmd:debian"
+        "ghcr.io\/pastanetwork\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
     "startup": ".\/Engine\/Binaries\/Linux\/*-Linux-Shipping FactoryGame -Port={{SERVER_PORT}}",

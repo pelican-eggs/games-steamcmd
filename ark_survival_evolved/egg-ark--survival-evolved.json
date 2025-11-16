@@ -121,7 +121,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ],
             "sort": 7
@@ -134,7 +133,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ],
             "sort": 8

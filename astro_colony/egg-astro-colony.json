@@ -160,7 +160,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ],
             "sort": 10
@@ -173,7 +172,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ],
             "sort": 11
@@ -186,7 +184,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ],
             "sort": 12
@@ -199,7 +196,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ],
             "sort": 13
@@ -212,7 +208,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ],
             "sort": 14

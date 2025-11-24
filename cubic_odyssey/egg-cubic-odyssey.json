@@ -4,7 +4,7 @@
         "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2025-11-23T09:40:00+00:00",
+    "exported_at": "2025-11-24T18:18:04+00:00",
     "name": "Cubic Odyssey",
     "author": "mads@mrnissen.com",
     "uuid": "98286014-aa2b-404a-adca-777252ab7986",
@@ -17,7 +17,7 @@
     },
     "file_denylist": [],
     "startup_commands": {
-        "Start server": "wine ./server/CubicOdysseyServer.exe QueryPort={{QUERY_PORT}}"
+        "Start server": "wine ./server/CubicOdysseyServer.exe"
     },
     "config": {
         "files": "{\n    \"config/server_config.txt\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"\\t\\tstartingPort\": \"\\t\\tstartingPort {{env.STARTING_PORT}}\",\n            \"\\t\\tendingPort\": \"\\t\\tendingPort {{env.ENDING_PORT}}\",\n            \"\\t\\tserverName\": \"\\t\\tserverName \\\"{{env.SERVER_NAME}}\\\"\",\n            \"\\t\\tserverPassword\": \"\\t\\tserverPassword \\\"{{env.SERVER_PASSWORD}}\\\"\",\n            \"\\t\\tmaxPlayers\": \"\\t\\tmaxPlayers {{env.MAX_PLAYERS}}\",\n            \"\\t\\tgameMode\": \"\\t\\tgameMode {{env.GAME_MODE}}\",\n            \"\\t\\tprivateServer\": \"\\t\\tprivateServer {{env.PRIVATE_SERVER}}\",\n            \"\\t\\tgalaxySeed\": \"\\t\\tgalaxySeed {{env.GALAXY_SEED}}\",\n            \"\\t\\tenableCrashDumps\": \"\\t\\tenableCrashDumps {{env.ENABLE_CRASH_DUMPS}}\",\n            \"\\t\\tallowRelaying\": \"\\t\\tallowRelaying {{env.ALLOW_RELAYING}}\",\n            \"\\t\\tenableLogging\": \"\\t\\tenableLogging {{env.ENABLE_LOGGING}}\"\n        }\n    }\n}",
@@ -74,7 +74,7 @@
             "name": "Ending Port",
             "description": "The maximum port to try to bind to starting from the port value",
             "env_variable": "ENDING_PORT",
-            "default_value": "27001",
+            "default_value": "27100",
             "user_viewable": true,
             "user_editable": true,
             "rules": [
@@ -130,33 +130,6 @@
             ]
         },
         {
-            "sort": 13,
-            "name": "PROTON_LOG",
-            "description": "",
-            "env_variable": "PROTON_LOG",
-            "default_value": "1",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": [
-                "boolean",
-                "required"
-            ]
-        },
-        {
-            "sort": 14,
-            "name": "[REQUIRED] Server Query Port",
-            "description": "This is the port that your clients will type in and use to connect to the lobby (not the game world). Ensure this port matches your externally forwarded port, and is distanced from other running Ground Branch servers in Pterodactyl (increments of 100 are recommended). This is also true for the Primary\\/Game Port!",
-            "env_variable": "QUERY_PORT",
-            "default_value": "27015",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": [
-                "required",
-                "integer",
-                "between:1024,65536"
-            ]
-        },
-        {
             "sort": 3,
             "name": "Server name",
             "description": "The name of the server",
@@ -203,7 +176,35 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "numeric"
+                "integer",
+                "between:1024,65535"
+            ]
+        },
+        {
+            "sort": 13,
+            "name": "Windows",
+            "description": "",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "boolean"
+            ]
+        },
+        {
+            "sort": 14,
+            "name": "[WINE] WINEDEBUG",
+            "description": "",
+            "env_variable": "WINEDEBUG",
+            "default_value": "-all",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "max:20",
+                "string"
             ]
         }
     ]

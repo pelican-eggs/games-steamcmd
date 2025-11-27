@@ -1,0 +1,173 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2025-11-27T15:32:24+00:00",
+    "name": "Cubic Odyssey",
+    "author": "mads@mrnissen.com",
+    "description": "Adventure, creation, and survival await!\nStep into a boundless open world where every planet, every system, and every moment is yours to shape. Explore a universe rich with life, ancient mysteries, and untamed beauty. Fight back the Red Darkness menace as you mine resources, craft tools, weapons, and build vehicles that are essential for your odyssey. Collaborate with friends to battle colossal threats and bring hope to the galaxy.",
+    "features": null,
+    "docker_images": {
+        "ghcr.io\/pelican-eggs\/yolks:wine_latest": "ghcr.io\/pelican-eggs\/yolks:wine_latest"
+    },
+    "file_denylist": [],
+    "startup": "wine .\/server\/CubicOdysseyServer.exe",
+    "image": null,
+    "config": {
+        "files": "{\n    \"config\/server_config.txt\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"\\t\\tstartingPort\": \"\\t\\tstartingPort {{env.STARTING_PORT}}\",\n            \"\\t\\tendingPort\": \"\\t\\tendingPort {{env.ENDING_PORT}}\",\n            \"\\t\\tserverName\": \"\\t\\tserverName \\\"{{env.SERVER_NAME}}\\\"\",\n            \"\\t\\tserverPassword\": \"\\t\\tserverPassword \\\"{{env.SERVER_PASSWORD}}\\\"\",\n            \"\\t\\tmaxPlayers\": \"\\t\\tmaxPlayers {{env.MAX_PLAYERS}}\",\n            \"\\t\\tgameMode\": \"\\t\\tgameMode {{env.GAME_MODE}}\",\n            \"\\t\\tprivateServer\": \"\\t\\tprivateServer {{env.PRIVATE_SERVER}}\",\n            \"\\t\\tgalaxySeed\": \"\\t\\tgalaxySeed {{env.GALAXY_SEED}}\",\n            \"\\t\\tenableCrashDumps\": \"\\t\\tenableCrashDumps {{env.ENABLE_CRASH_DUMPS}}\",\n            \"\\t\\tallowRelaying\": \"\\t\\tallowRelaying {{env.ALLOW_RELAYING}}\",\n            \"\\t\\tenableLogging\": \"\\t\\tenableLogging {{env.ENABLE_LOGGING}}\"\n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"Lobby Id: \"\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\n# steamcmd Base Installation Script\n#\nclear\nRED='\\\\033[0;31m'\nGREEN='\\\\033[0;32m'\nYELLOW='\\\\033[1;33m'\nBLUE='\\\\033[0;34m'\nNC='\\\\033[0m'\n\necho -e \"${BLUE}-------------------------------------------------${NC}\"\necho -e \"${YELLOW}Cubic Odyssey Installscript${NC}\"\necho -e \"${YELLOW}Egg by MrNissenDK ${NC}\"\necho -e \"${YELLOW}Install script from Enshrouded by gOOvER | https:\/\/goover.dev${NC}\"\necho -e \"${BLUE}-------------------------------------------------${NC}\"\n\n#apt -y update\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates jq dos2unix\n\necho -e \"${BLUE}-------------------------------------------------${NC}\"\necho -e \"${YELLOW}download and install steamcmd. please wait...${NC}\"\necho -e \"${BLUE}-------------------------------------------------${NC}\"\n\n## just in case someone removed the defaults.\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\n    echo -e \"steam user is not set.\\\\n\"\n    echo -e \"Using anonymous user.\\\\n\"\n    STEAM_USER=anonymous\n    STEAM_PASS=\"\"\n    STEAM_AUTH=\"\"\nelse\n    echo -e \"user set to ${STEAM_USER}\"\nfi\n\n## download and install steamcmd\ncd \/tmp\nmkdir -p \/mnt\/server\/steamcmd\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\ncd \/mnt\/server\/steamcmd\n\n# SteamCMD fails otherwise for some reason, even running as root.\n# This is changed at the end of the install process anyways.\nchown -R root:root \/mnt\nexport HOME=\/mnt\/server\necho -e \"${GREEN}..done..${NC}\"\n\n## install game using steamcmd\necho -e \"${BLUE}-------------------------------------------------${NC}\"\necho -e \"${YELLOW}install game using steamcmd. please wait...${NC}\"\necho -e \"${BLUE}-------------------------------------------------${NC}\"\n\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) $( [[ \"${STEAM_SDK}\" == \"1\" ]] && printf %s '+app_update 1007' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit\necho -e \"${GREEN}..done..${NC}\"\n\n## set up 32 bit libraries\nmkdir -p \/mnt\/server\/.steam\/sdk32\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\n\n## set up 64 bit libraries\nmkdir -p \/mnt\/server\/.steam\/sdk64\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\n\n# add below your custom commands if needed\n\nFILE=$HOME\/config\/server_config.txt\nif [ -f \"$FILE\" ]; then\n  echo -e \"server_config.txt found.\"\nelse  \n  echo -e \"No server_config.txt found. Moving default...\"\n  cp -f $FILE.sample $FILE\n  echo -e \".done..\"\nfi\n\n## install end\necho -e \"${BLUE}-------------------------------------------------${NC}\"\necho -e \"${GREEN}Installation completed...${NC}\"\necho -e \"${BLUE}-------------------------------------------------${NC}\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Allow relaying",
+            "description": "Whethere it should send data to creators",
+            "env_variable": "ALLOW_RELAYING",
+            "default_value": "FALSE",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "in:TRUE,FALSE",
+            "field_type": "text"
+        },
+        {
+            "name": "Enable crash dumps",
+            "description": "If server crash should it make a infomation file",
+            "env_variable": "ENABLE_CRASH_DUMPS",
+            "default_value": "FALSE",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "in:TRUE,FALSE",
+            "field_type": "text"
+        },
+        {
+            "name": "Enable logging",
+            "description": "If it should log everything",
+            "env_variable": "ENABLE_LOGGING",
+            "default_value": "FALSE",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "in:TRUE,FALSE",
+            "field_type": "text"
+        },
+        {
+            "name": "Ending Port",
+            "description": "The maximum port to try to bind to starting from the port value",
+            "env_variable": "ENDING_PORT",
+            "default_value": "27100",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "between:1024,65535|integer",
+            "field_type": "text"
+        },
+        {
+            "name": "Galaxy seed",
+            "description": "Seed of the galaxy",
+            "env_variable": "GALAXY_SEED",
+            "default_value": "21945875634",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "Game mode",
+            "description": "Sets the desired game mode, it's adventure by default",
+            "env_variable": "GAME_MODE",
+            "default_value": "ADVENTURE",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "in:CREATIVE,ADVENTURE",
+            "field_type": "text"
+        },
+        {
+            "name": "Max players",
+            "description": "Will set the maximum number of allowed players",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "48",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "Private server",
+            "description": "If you dont want it to be on the server list",
+            "env_variable": "PRIVATE_SERVER",
+            "default_value": "FALSE",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "in:TRUE,FALSE",
+            "field_type": "text"
+        },
+        {
+            "name": "Server name",
+            "description": "The name of the server",
+            "env_variable": "SERVER_NAME",
+            "default_value": "Cubic Odyssey Dedicated Server - Pelican",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string",
+            "field_type": "text"
+        },
+        {
+            "name": "Server password",
+            "description": "The code people need to use to join",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string",
+            "field_type": "text"
+        },
+        {
+            "name": "[STEAM] AppID",
+            "description": "",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "3858450",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|in:3858450",
+            "field_type": "text"
+        },
+        {
+            "name": "Starting Port",
+            "description": "Set the port to bind the game to, sample",
+            "env_variable": "STARTING_PORT",
+            "default_value": "27001",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "integer|between:1024,65535",
+            "field_type": "text"
+        },
+        {
+            "name": "Windows",
+            "description": "",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "[WINE] WINEDEBUG",
+            "description": "",
+            "env_variable": "WINEDEBUG",
+            "default_value": "-all",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|max:20|string",
+            "field_type": "text"
+        }
+    ]
+}

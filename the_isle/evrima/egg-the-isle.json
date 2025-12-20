@@ -23,7 +23,7 @@
     },
     "config": {
         "files": "{\n    \"\\/TheIsle\\/Saved\\/Config\\/LinuxServer\\/Game.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"ServerName\": \"ServerName={{server.environment.SERVER_NAME}}\",\n            \"MaxPlayerCount\": \"MaxPlayerCount={{server.environment.PLAYER_COUNT}}\",\n            \"MaxPlayers\": \"MaxPlayers={{server.environment.PLAYER_COUNT}}\",\n            \"bRconEnabled\": \"bRconEnabled={{server.environment.RCON}}\",\n            \"RconPort\": \"RconPort={{server.environment.RCON_PORT}}\",\n            \"RconPassword\": \"RconPassword={{server.environment.RCON_PASSWORD}}\",\n            \"bQueueEnabled\": \"bQueueEnabled={{server.environment.ENABLE_QUEUE}}\",\n            \"QueuePort\": \"QueuePort={{server.environment.QUEUE_PORT}}\",\n            \"discord\": \"discord={{server.environment.DISCORD}}\",\n            \"bEnableHumans\": \"bEnableHumans={{server.environment.HUMANS}}\",\n            \"bServerPassword\": \"bServerPassword={{server.environment.SERVER_PASSWORD_ENABLED}}\",\n            \"ServerPassword\": \"ServerPassword={{server.environment.SERVER_PASSWORD}}\",\n            \"bAllowReplay\": \"bAllowReplay={{server.environment.ALLOW_REPLAY}}\",\n            \"bServerDynamicWeather\": \"bServerDynamicWeather={{server.environment.DYNAMIC_WEATHER}}\"\n        }\n    }\n}",
-        "startup": "{\n    \"done\": \"Display: Session started succesfully!\"\n}",
+        "startup": "{\n    \"done\": \"Display: Session started successfully!\"\n}",
         "logs": "{}",
         "stop": "^^C"
     },

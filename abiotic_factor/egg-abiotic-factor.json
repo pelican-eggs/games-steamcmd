@@ -1,38 +1,41 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PLCN_v1",
+        "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2025-02-16T11:00:13+00:00",
+    "exported_at": "2025-12-25T10:06:37+00:00",
     "name": "Abiotic Factor",
     "author": "git@robsti.dev",
     "uuid": "e4316a24-7f8a-458a-a462-57d8f3f4b0cd",
     "description": "Abiotic Factor is a survival crafting experience for 1-6 players set in the depths of an underground research facility. Caught between paranormal containment failure, a military crusade, and chaos from a dozen realms, the world\u2019s greatest minds must survive against the universe\u2019s biggest threats.",
+    "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAFA3PEY8MlBGQUZaVVBfeMiCeG5uePWvuZHI////////////////////////////////////////////////////2wBDAVVaWnhpeOuCguv/////////////////////////////////////////////////////////////////////////wAARCAD6APoDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAECAwT/xAA0EAACAgEEAQIFAwIFBQEAAAAAAQIRIQMSMUFRYXETIjKBkQQzoUKxFCNScsFTYoLR8OH/xAAXAQEBAQEAAAAAAAAAAAAAAAAAAQID/8QAIBEBAQEAAgICAwEAAAAAAAAAAAERAhIhMUFRAxMyYf/aAAwDAQACEQMRAD8A5hMpktZAEMOEAEgMABNrgtpUmlhkFxykvDAhqnQhgAhgNIARaRKRaRG4dAMKI0VESRoTJFKyYDYiuVAAAQAABQIqhAIBiAAAAABDA0fCJKf9iUvJQVbRezyhcQvt8CTai4punyiKkBgEJGkFST8smEdz9FyWldtVgLGQxyrc9rtCoIBpBRVUFgSLSFFFqiOkKh0PAASS0W0JogyaJLksktGnOkAwDJUAwAOhDAKQihAIGMTAQAAGgllpCbHHkqr1Kt0sJ0vYgtu01Xdr/kW1vhESpL0tLe84X9wUEszfHSKi5SniSjS5FBODUnDCSX2oiTvCVRXBvpqOqnubefP8/wD3BhJJNpO0SVakdA8Bfg0hrDyVT5eAiqyxkagKQIFyRuGAWMBCK7oTAl12jOUaZqyWGeTPIZKaJK5kMBgIRQgoEUIIVCaKoGgsQOgGuAE1kcU3lITyVF4KqqpV3/YV+QABt3zgHhPKz6hSsmVKdxwgh9c2C8+DWO96UoRSa7ZnNJP5bp9MkoFCU8qLf2Da4v5k17nXBbIKPgz/AFMbipeMMrE5eWMd0uIt+xW2f/Tl+C/0v9f2NXNqajsbT7GL2rmbaxJNPwyluq1pyNv1FfCd89FL9v8A8Ri96596q2Nb3labor9NBbd756LlrxjJqm65aJh3rByS5TtdMfztWtORvqwWpC1zVpkaWv8ARDb4V2MO9Z1P/pyFtldbHfNHVqT2R3VZnp6nxNa6qo1z6jE7VzyTj9UWvcSj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",
+    "tags": [],
     "features": [
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io\/parkervcp\/steamcmd:proton": "ghcr.io\/parkervcp\/steamcmd:proton"
+        "Steamcmd Proton": "ghcr.io/pelican-eggs/steamcmd:proton"
     },
     "file_denylist": [],
-    "startup": "cd \/home\/container\/AbioticFactor\/Binaries\/Win64; proton run .\/AbioticFactorServer-Win64-Shipping.exe -log -useperfthreads -NoAsyncLoadingThread -MaxServerPlayers={{NUM_PLAYERS}} -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -ServerPassword=\"{{SERVER_PASSWORD}}\" -SteamServerName=\"{{SERVER_NAME}}\" & AF_PID=$!; tail -c0 -F \/home\/container\/AbioticFactor\/Saved\/Logs\/AbioticFactor.log --pid=$AF_PID",
+    "startup_commands": {
+        "Default": "cd /home/container/AbioticFactor/Binaries/Win64; proton run ./AbioticFactorServer-Win64-Shipping.exe -log -useperfthreads -NoAsyncLoadingThread -MaxServerPlayers={{NUM_PLAYERS}} -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -ServerPassword=\"{{SERVER_PASSWORD}}\" -SteamServerName=\"{{SERVER_NAME}}\" -SandboxIniPath=\"{{SANDBOX_INI_PATH}}\" & AF_PID=$!; tail -c0 -F /home/container/AbioticFactor/Saved/Logs/AbioticFactor.log --pid=$AF_PID"
+    },
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"LogInit: Display: Engine is initialized.\"\r\n}",
+        "startup": "{\n    \"done\": \"LogInit: Display: Engine is initialized.\"\n}",
         "logs": "{}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n##\r\n#\r\n# Variables\r\n# STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.\r\n# WINDOWS_INSTALL - if it's a windows server you want to install set to 1\r\n# SRCDS_APPID - steam app id found here - https:\/\/developer.valvesoftware.com\/wiki\/Dedicated_Servers_List\r\n# SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch\r\n# SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.\r\n# INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.\r\n# AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.\r\n#\r\n ##\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## download the default server settings file\r\nmkdir -p \/mnt\/server\/AbioticFactor\/Saved\/SaveGames\/Server\/Worlds\/Cascade\r\ncurl -sS -o \/mnt\/server\/AbioticFactor\/Saved\/SaveGames\/Server\/Worlds\/Cascade\/SandboxSettings.ini https:\/\/raw.githubusercontent.com\/pelican-eggs\/steamcmd\/main\/abiotic_factor\/SandboxSettings.ini\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
-            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "script": "#!/bin/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n# Image to install with is 'ghcr.io/parkervcp/installers:debian'\r\n\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n## install game using steamcmd\r\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## download the default server settings file\r\nmkdir -p /mnt/server/AbioticFactor/Saved/Config/WindowsServer/\r\ncurl -sS -o /mnt/server/AbioticFactor/Saved/Config/WindowsServer/SandboxSettings.ini https://raw.githubusercontent.com/DFJacob/AbioticFactorDedicatedServer/refs/heads/main/SandboxSettings.ini\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io/pelican-eggs/installers:debian",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
-            "sort": 1,
             "name": "[STEAM] SRCDS_APPID",
             "description": "Steam App ID",
             "env_variable": "SRCDS_APPID",
@@ -43,10 +46,10 @@
                 "required",
                 "numeric",
                 "in:2857200"
-            ]
+            ],
+            "sort": 1
         },
         {
-            "sort": 2,
             "name": "[STEAM] Auto Update",
             "description": "Should Auto Update",
             "env_variable": "AUTO_UPDATE",
@@ -55,10 +58,10 @@
             "user_editable": true,
             "rules": [
                 "boolean"
-            ]
+            ],
+            "sort": 2
         },
         {
-            "sort": 3,
             "name": "[SERVER] Server Name",
             "description": "Name of the server",
             "env_variable": "SERVER_NAME",
@@ -69,10 +72,10 @@
                 "required",
                 "string",
                 "max:64"
-            ]
+            ],
+            "sort": 3
         },
         {
-            "sort": 4,
             "name": "[STEAM] WINDOWS_INSTALL",
             "description": "",
             "env_variable": "WINDOWS_INSTALL",
@@ -82,10 +85,10 @@
             "rules": [
                 "boolean",
                 "in:1"
-            ]
+            ],
+            "sort": 4
         },
         {
-            "sort": 5,
             "name": "[SERVER] Server Password",
             "description": "Server access password",
             "env_variable": "SERVER_PASSWORD",
@@ -96,10 +99,10 @@
                 "required",
                 "string",
                 "max:30"
-            ]
+            ],
+            "sort": 5
         },
         {
-            "sort": 6,
             "name": "[SERVER] Query Port",
             "description": "Steam query port",
             "env_variable": "QUERY_PORT",
@@ -109,10 +112,10 @@
             "rules": [
                 "required",
                 "numeric"
-            ]
+            ],
+            "sort": 6
         },
         {
-            "sort": 7,
             "name": "[SERVER] Number of Players",
             "description": "Number of allowed player connections",
             "env_variable": "NUM_PLAYERS",
@@ -123,7 +126,22 @@
                 "required",
                 "numeric",
                 "between:1,32"
-            ]
+            ],
+            "sort": 7
+        },
+        {
+            "name": "[SERVER] Sandbox Ini Path",
+            "description": "Path to the sandbox ini file",
+            "env_variable": "SANDBOX_INI_PATH",
+            "default_value": "Config/WindowsServer/SandboxSettings.ini",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "max:255"
+            ],
+            "sort": 8
         }
     ]
 }

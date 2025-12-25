@@ -40,7 +40,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ],
             "sort": 1
@@ -53,7 +52,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ],
             "sort": 2
@@ -66,7 +64,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ],
             "sort": 3

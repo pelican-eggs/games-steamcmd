@@ -33,6 +33,7 @@
 * [Counter-Strike](counter_strike)
 * [Craftopia](craftopia)
 * [Cryofall](cryofall)
+* [Cubic Odyssey](cubic_odyssey)
 * [DayZ](dayz)
 * [DDNet](ddnet)
 * [Dead Matter](dead_matter)

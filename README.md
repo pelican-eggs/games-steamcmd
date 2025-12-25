@@ -67,6 +67,8 @@
 * [Myth of Empires](myth_of_empires)
 * [Necesse](necesse)
 * [Neos VR](neosvr)
+* [Night Of The Dead](night_of_the_dead)
+* [Nightingale](nightingale)
 * [No More Room in Hell](nmrih)
 * [No Love Lost](no_love_lost)
 * [No One Survived](no_one_survived)

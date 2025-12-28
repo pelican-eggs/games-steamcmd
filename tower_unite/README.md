@@ -21,5 +21,8 @@ Tower Unite requires a two port to be opened
 | Game (UDP)       | 7777    | 7777-7778 |
 | Query (UDP/TCP)  | 27015   | 27015-27050 | 
 
+## Disk Space
+
+This server uses by default arround 5GiB of disk space.
 
 

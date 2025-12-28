@@ -1,16 +1,25 @@
 # Tower Unite
 
-## Attention !!!!
-**THIS EGG IS DEPRECATED, SINCE THEY REMOVED COMMUNITY SERVERS. ONLY OFFICIAL SERVERS ARE ALLOWED**
+[Server Documentation](https://towerunite.com/guides/condo_dedicated_linux.html)
 
-## desctiption
-Every aspect of Tower Unite allows for online multiplayer interaction. It is a living and evolving online game world, driven by the community. Play games online with your friends, or make new friends from across the globe.
+## Description
+PLAY, CREATE, PARTY! Tower Unite is a community-based virtual world party game with online games, entertainment, activities, and absolutely NO microtransactions. 
+
+## Token
+
+This server needs two tokens
+
+1. From https://steamcommunity.com/dev/managegameservers with app id `394690` on a steam account that owns this game.
+2. From https://moderation.towerunite.com/manage_game_servers.php.
 
 ## Server Ports
 
-Tower Unite requires a single port to be opened
+Tower Unite requires a two port to be opened
 
-| Port    | default |
-|---------|---------|
-| Game    | 7778    |
-| Query   | 27016   |
+| Port    | default | Note    |
+|---------|---------| ------- |
+| Game (UDP)       | 7777    | 7777-7778 |
+| Query (UDP/TCP)  | 27015   | 27015-27050 | 
+
+
+

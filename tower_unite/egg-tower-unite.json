@@ -1,101 +1,152 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:59+00:00",
+    "exported_at": "2025-12-28T10:55:54+00:00",
     "name": "Tower Unite",
     "author": "teamwuffy@gmail.com",
     "uuid": "0682029c-8ac5-4b0c-9cc6-15b493407b92",
-    "description": "Tower Unite\r\n\r\nDefault Port: 7778\r\nDefault Query Port: 27016\r\n\r\nConfig Path: Tower\/Saved\/Config\/TowerServer.ini",
+    "description": "PLAY, CREATE, PARTY! Tower Unite is a community-based virtual world party game with online games, entertainment, activities, and absolutely NO microtransactions.",
+    "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQIAHAAcAAD/4QfmaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzE0NSA3OS4xNjM0OTksIDIwMTgvMDgvMTMtMTY6NDA6MjIgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iIHhtbG5zOmV4aWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20vZXhpZi8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6MjU3OGYwZjMtMDYxZi1hNTRiLTgwNjItOTgxMWI2YjY4OTk5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkZCMTZDOUVBREZDODExRTRBRDZFQjIwRjYxMjBGRkI3IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjI5NzRhN2E4LWVhNzUtMzc0Ny04ODFkLTJhY2ZjMDhkYjQwZCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDE3LTAyLTI0VDE1OjI4OjU3LTA4OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0wOS0xM1QwMzoxNToxNC0wNzowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAxOS0wOS0xM1QwMzoxNToxNC0wNzowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgdGlmZjpPcmllbnRhdGlvbj0iMSIgdGlmZjpYUmVzb2x1dGlvbj0iNzIwMDAwLzEwMDAwIiB0aWZmOllSZXNvbHV0aW9uPSI3MjAwMDAvMTAwMDAiIHRpZmY6UmVzb2x1dGlvblVuaXQ9IjIiIGV4aWY6Q29sb3JTcGFjZT0iNjU1MzUiIGV4aWY6UGl4ZWxYRGltZW5zaW9uPSIxMDAwIiBleGlmOlBpeGVsWURpbWVuc2lvbj0iMTAwMCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjc5MGVkNzY2LTZjZTktYmI0Mi05NGNlLWQxNjAwYzZlMzRkZSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyNTc4ZjBmMy0wNjFmLWE1NGItODA2Mi05ODExYjZiNjg5OTkiLz4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6YzY5NmY2YzItNWMxNy1mYjRhLTg5ZDUtMzQwOTFiMmQ3ODBmIiBzdEV2dDp3aGVuPSIyMDE3LTAyLTI0VDE1OjM1OjEzLTA4OjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjI5NzRhN2E4LWVhNzUtMzc0Ny04ODFkLTJhY2ZjMDhkYjQwZCIgc3RFdnQ6d2hlbj0iMjAxOS0wOS0xM1QwMzoxNToxNC0wNzowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKFdpbmRvd3MpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/bAEMAoG54jHhkoIyCjLSqoL7w///w3Nzw///////////////////////////////////////////////////////////bAEMBqrS08NLw///////////////////////////////////////////////////////////////////////////////AABEIA+gD6AMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAQIDBP/EACsQAQEAAQMCBAYDAQEBAAAAAAABEQIxMhJRIUFxgQMiYZGx0UKh4VITM//EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8A5gNoKigItRAAUWNxiNoCoIrSAIzWtLN3amwLWVyASiGQTzbmzHm0CoSgGU8yk3BoQFErTPmIsWUmyClTzXKeYiqIKlCioACAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAKAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOQDQKiglAAABrS0mlvCKyKggqAGPFfIiorJKVBGkpCgk3bZ0qCLKIC1JuZIo0lKICeZUm4NAgFItSAoVASqlVQAEAAAAAAAAAAAAAAAAAAAAAAABQUAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcsouDCgoAgCgBAb0ts6WmVEsUBkWxFQjTMWooigjJaqUF0lNK0ElVDIJV0lIotRUQVJuEUVKKghCkBUpQEVPNVAAQAAAAAAAAAAAAAAAAAAAFAUAAAAAAAAAGpovn4IMjfTMM3TZ9QQBQAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcxBRQAQBQWIsQaWVAGxmVpFEqpQSLSCoioArNaSgTYXyZQVFARZsjU2UQBApAii1AQKRFiipQQSKkVQAEAAAAAAAAAAAAAAAAAUVFAAAAAAAAGpo7oMtTR3akk2U0xJJNlBFBi6rNWN41NUvqBdMrF02beLoA5DpZLuzdNm3iqMgAAAAAAAAAAAAAAAAAAAAACgAIAAAAAAAAAAAAAAAAAAAAAADkKKCKigAAsRqIKrKgEqoDecs1JcLnKKsLCKDItiCACipVEGVEAXyRVARUEWJVihQRAqxFUEVKgRUiqAAgAAAAAAAAAAAAAKKAAAAAAAASZ2amjugzvs1NHdqTGyhiSSbKCKAAAA56udMZNXOioS2fVqapfpWTBg6DnLZt4+rU1S/Soq2S7s3RfJsByHSyXdm6OyoyAAAAAAAAAAAAAAKAAAAAIoCCgIKAgAAAAAAAAAAAAAAAAAOSoKKioAAA1GWoCooAqAFSbqQGorNqyoqpYoDItSKioqIKlCqJN2mYtARQEVFABEBUVQSqlAipFAAAAEAAAAABQAAFBFAAAAAAJLdmpo7oMyW7NTR3bANtgEUAAAAAAABz1c6GrnRUAFAACZm1amuefgyIOg5zM2rU1zz8EVbM7s3R2bActtx03S6OyowLfDdAAABQEUAAAAAAAAAAAAAAAAAQUBAAAAAAAAAAAAAAcwFBFqAAAsVIoKIoAAIsStQCotQFlaYWVFWpFqRUVFEEAUCigyKgCooCABFSKCFVkFikAAAAAAAAAAAAUAAAAAJLdm5onn4oMSW7NzR3aBQBAAAAAAAAAAAABz1c6GrnRUAFAAAAFABJmbVqa+/ggg2OeMbXDU1d4itM3T2XdQc7LN0dWbpnl4KjIWWbgAAAAAAAAAAAAAAAAAAAAAAIKAgoCAAAAAAAA5KiqIAAACxpmNAIoAIAVqMtTYEoUAAAysZagKAiiKlEIqQUAASKkUEAAhSKCFEBqBAAAAAAAAFBFAAAAACTN8G5ok38U0cvZtAARQAAAAAAAAAAAAAAAHPVzoaudFQAUAAAAUAABAAAxjbwWasbz3iKCy52VjHnPBeqzefZFaZumeXgsudlBzsxcUNfL2FQAAAAAAAAAAAAAAAAAAAAAAAAABBQEFQAAHMBRAAAAagQBRFAAERryZjQqACAAqNeTMaBMtSsmyDSUlKBFIKIKgBQBBUAgsQFQAUAAAAAAFAAAAQAAAAa0cvZtjRy9mxQBAAAAAAAAAAAAAAAABz1c6GrnRUAFAAAABUUAAABAVFAABdOypNlRXPXy9g18vYVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHKAVRAAFRYCxUUBFBEUQVYtSLQQAARQItSLQQAAyEBoRUBFSgKkFBK0gAIAQICgAAAKAACAAAAAAAADWjl7NsaOXs2igAAAAAAAAAAAAAAAAAOernQ1c6KgAoAAAAAAoAACAqAKACzZUmyornr5ewa+XsKgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkUFEAAWIsBRUBRAFSqlEWFWJRQABFKBFSAAAgQIKVZRAaSpKoEVIoIogAqAhCkBQUABAAAAAAAAAAAABrRy9m2NHL2bRQAAAAAAAAAAAAAAAAAHPVzoaudFQAUAAAAAAUAABAABQAWbKmnZUVz18vYNfL2FQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAByRUUAAGoiwFEUQRQEFQVqAgCKAAgNRKsAQAAgQAKAAAsVDIKioCgIJSKiigIAAAAAAAAAAAAAANaOXs2xo39m0UAAAAAAAAAAAAAAAAABz1c6GrnRUAFAAAAAAFEUABAAAVFBdOypp2VFc9fL2DXy9hUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcqi1FAUAVI0CCgAgCopAVFQAAAAFRUAAEFiKKIAgQIKqKAZEWAoCAgRRQEAAAAAAAAAAAAAFmm0F0b+zaTThUUAAAAAAAAAAAAAAAAABz1c6GrnRUAFAAAAAABUUAAABAABrTsqadlRWNfL2RdfL2RUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcqAoAARpIAoiiAAIsKQVUWoAAIECCqioICoKKiggqAECAtRUAILAMqhlApAiigIAAAAAAAAANTTb9AZWabW5pkUEmmRQRQYuvGqzHg1LLtQUAAAAAAAAAAAAAAAAAHPVzoaudFQAUAAAAAAFQBQAAEAAGtOypp2VFY1cvZF1cvZFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAcgFAARYqRQQUAAAqxlqAlFQAAAgsAqKgAACpFBFQAWIsABAFiKAACNRloABAAAAABqaO4MtTTfPwakk2UVJJFBAAAABz1c6mF1c6NITVZv4tzVLswmEwdRzmqz6tzVKiqAAAAAAAAAAAAADnq50NXOioAKAAAAAAAAKAAAgAA1p2VNOyorGrl7Iurl7IoACAAAoCCgIKCoKAgoCCgIKAgoCCgIKAgqAAAAAAA5AKAEEagAAAgAAqKKCAKigiLEUUEAVFQQikBQARFiKKACIoCgAI0zGgAEAWS3Zqae4M77LNHdvYRSTGwAAAAAAAAAOernQ1c6jURQADAATVZ9Y3NUvqwYymDoMS2fWNTVL9KiqAAAAAAAAADnq50NXOixABQAAAAAAABQAAEAAGtOypp2VFY1cvYNXL2/YoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4gKBBYIooIgqCgAEVIoCKCIKgoqKAigiCoKsCAIKAiooCKAiooCKUEjRp02tzTJv4oMyW7NTT3aEUAAAAAAAAAAAAABz1c6i6udRqIoAAACooCYUAls28VmqX6VEwg6DnLZs1NUu/gitAAAAAA56udDVzosQAUAAAAAAAAFRQAAAEGtOypp2VFY1cvb9hq5e37FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEBQWI1BBUAURRBFSgsKQooIAoAiRUiigICoqAoAAAARQQAAFA06bW5pk+po4tIoAgAAAAAAAAAAAAAAAA56udRdXOo1EUAAABUAUAAAABBJmbNTVPPwQBsc5mbVqa55+CK0ADnq50NXOixABQAAAAAAAAVFAAAAQa07KmnZUVjVy9v2Grl7fsAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcQFBqMtwQRQRBQVAAWAAACIKgqxUgAAIIoKqAAAIRUgKqAAqQB00cWmdHFplQAAAAAAAAAAAAAAAAAHPVzqLq51GoiiKAAAACgAAAAIAACVUUdAGVc9XOhq50WIAKAAAAAAAAAAKAAADWnZU07KyrGrl7fsNXL2/YAAoAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAOIDQsVI0ICCCgKgipBWkVEAAFSgoQWAIAgECKKiiCCooRUiggqVAipFUb0cWmdHFplQAAAAAAAAAAAAAAAAAHPVzqLq51GogqKAAAACgAAAAIAACKijoAyrnq50NXOixABQAAAAAAAAABQAAAa07KmnZWVY1cvb9hq5e37AAFABAAAAAAAAAAAAAAAAAAAAAAAAAAAABxBWhYqRoRBQRkURUWIsUUBARQREaRVUEQURQSkKRRQRBUoKKiwQEVAWBAG9HFpnRxaRQAAAAAAAAAAAAAAAAAHPVzqGrnRqIKigAAAAKigAAAAAICKijoAyrnq50NXOixABQAAAFABAAAABUUAAGtOypp2VlWNXL2/YauXt+wAAAAAAAUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBwVFaFikBFEEFEURKQqxVEUQRUAVAiigIIKAixFigAgIqAoACVUBQAb0cWmdHFpFAAAAAAAAAAAAAAAAAActXOhq50aiAAKAAAAqAKAAAAAAioDoAyrnq50NXOiwAFAAAAAAQAAAAABRAG9Oypp2VlWNXL2/apq5e37UAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHBYEaGopBEMIoCCoCNRlpQAQAASkKRRQEAAEVFAFQBFQFBQRGmQVUAb0bNM6OLSKAAAAAAAAAAAAAAAAAA5audDVzo1EAAUAAAAAFEUAAAABFQHQBlXPVzoaudFABQAAAAAAAEAAAAAAb07KmnZWVY1cvb9qmrl7ftQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcViLGhoQRFEUAoUEVI0CI0gAYASrEWAoAIKlBFSKCiAFSLSACgIigKADWji0zp2aRQAAAAAAAAAAAAAAAAAHLVzoaudGogAAqKAAAAAqKAAAAgIqA6AIrnq50NXOigAoAAAAAAACAAAAAAN6dlTTsrKsXl7ftS8vb9gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOLUZajQphRETCNAMi4SgRpmKCiKAADKxPNqAgoAlVKBFSKAmFASkKQFEAWoEBQAa0bNM6NmkUAAAAAAAAAAAAAAAAABy1c6GrnRqAAIKgCgAAAAAoCAAAioDoAiuernQ1c6KACgAAAAAAAAAIAAAA3p4qmnirKs3l7fsLy9v2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4xuMRtoURUQAAZrTNBYqRQTAoCKFBnzaSNAAAM1pmgRTSoIKgJSFWAAAlItSAoANadmmdGzSKAAAAAAAAAAAAAAAAAA5audDXzqNQUAQABQAAAAAFRUAABFQV0AQc9XOhq50UAFAAAAAAAAAAQAAABvTxVnTxaZVm8vb9heXt+wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHKNsRtUMIoCCmARFqA1AAUABKrOoDS0zpaAAAZrTNviKsUmyiIADN3WJ5tQEFQEpCrAVBQXRs0zo2aRQAAAAAAAAAAAAAAAAAHLXzqLr51GoKAIAAoigAAAAKggogKqKgOgCDnq50NXOigAAAoAAAAAAAAACAANaeLTOni0yrN5e37VLy9v2oAAAAAAAAAAAAAAAAAAAAAAAAAAAAIKAgoDlpaZiqjQmUyCjPUvUC1mLakBoFAAATUuWbRV0tM6VyCiZMohWLu3WPNVbmypDKCoJaonm0zN2gAQRKsRYAKlBrRxaZ0cWkUAAAAAAAAAAAAAAAAABy186i6+dRqCiKIAAKigAAACgCAAAADoAg56udF1c6igAAAAAAAAAoAAACAANaeLTOni0yrN5e37VLy9v2oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOULUyzlRchFQQaS6QZy3GLF00HSLhIqiKGARm7tM1NGpsZSbIg0h5Ig0ioDQgCpVhY0JpVJFASqlNAIU0FqQpo1o4tM6OLQAAAAAAAAAAAAAAAAAAOWvnUXXzqNQFRQAAABFAFAAAEAAAAHQBBjVzqLq51FAAAAAAAAAAABQAEAAa0cWmdHFplWby9v2qXl7ftQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeYQBcrlkB00tuel0BmxnHi2KLNlQBYZQyBWfNqs+bNF8kXyQF8kVICoUgNJCkQaS0StCmREFQRKNRFiAsCANaNmmdGzTUAAAAAAAAAAAAAAAAAAHLXzqLr51GoCoAoAAAKAAAAAgAAAA6AIMaudRdXOooACgAAAgAAAAAoAAACNaOLTOji0yrN5e37VLy9v2oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPKAAqANad3RyjcoNAKgKAgqAqYUARagAlIChSAKgCoUACoIoICgAogK3o4tM6OLSKAAAAAAAAAAAAAAAAAA5a+dRdfOo1AABQAAAFRQAAAEAAAAHQBBjVzqLq51FAAUAAAAAEAAAAAFAARrRxaZ0cWmVZvL2/apeXt+1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB5oWEawDAtiALKQBrqOplrCovUdSdKYBrqOpnBgG+o6mcGAa6kyzgwDVpKyA3klYAbysrnkzQdKjOTIY1RnJkG0ZyZBtEyZBqCZMiOmji0z8Pi0jQAAAAAAAAAAAAAAAAADlr51F186jUAAFAAAAVFAAAAQAAAAdAEGNXOournRVQAAAAAAAQAAAAAUAAa0cWmdHFpkZvL2/apeXt+1ABLQVMs5AaymTC4BMplrCWAdSysYFHQZlaQAAAAAAAAAAAAAAAABKlBrIxkByjTMaFSsN1miEVlqAjcrKwGgWKylIVMitGGZWgShazkFwuCKDOAtTICzCYSboq2GG5F6VRzwYbulIDODDVQEsSNs4ZVWWjDUR0+FwbZ+HxaRQAAAAAAAAAAAAAAAAAHLXzqLr51GoAAKAAAAqLNNvkAFmNxAAAAAAFdAERjVzoaudRVAUEAAFAQAAAQAAAUAAa0cWmdHFpkZvL2/apeXt+1AYu7aWAkIYQGxkBrKVEoKlhK0DDUqWIo6DErUqCgAAAAAAAAAAAAAlZtVKCDWAHEAVay0zREVAGorMXINZXLGTILqrIAsalZWAlRuxgG9LV2Y0tUGVkIqAkniVrSo1AAKw1WaIlTJakBpUEVUBYldfh8Wmfh8WhQAAAAAAAAAAAAAAAAAHLXzqLr51JLdo1AGpovn4NTRPPxNHNZLdo6SSbRU0Ymi+dWaJ6tCaGwAMfE2nqi/E2nqiwAAAAABXQY6tU7U6+8qIaudEtzqzFVQAAAAABFAQAQAAAUAAa0cWmdHFpkZvL2/apeXt+1AAArPm0z5g0AAzqaSgzFSKAWBKDKyrYijUqsStSoKAAAAAAAAAAADKLUyCiZAcVMLgUZq1BEBQIpAECoCgAophAylXCARcsijWTLIDeWtLnN3WbAoAJqc7W9TnQQgA3KrEbmwM0LuZUdvh8Gmfh8GkAAAAAAAAAAAAAAAAAAExM5x4qAAAAAAAAAMfE2nqi/E2nqiwAAAAFRRRFARQAAAAAAAAARUEAAAAAFGtHFpnRxaZGby9v2qXl7ftQAAGfNpm7g1BIoCVUoMxrDM3bBkWxAWUsRZQYGrEwosrTm1Kg0AAAAAAAAADLLTNAAUc41GWoilYw1WRFEUADIFQygKAC5XLIDWVYa8gZu6xmrKDVjLWUoLpdIxodAAAZrnWtVYBFFkBYtIlETzVJu1gV0+FwbY+HwbAAAAAAAAAAAAAAAAAAAAAAAAAAAABj4m09UX4m09UWAAAAKAAoigAAAAAAAAAAIqCAAAAACjWji0zo4tMjN5e37VLy9v2oAADN3aZoLFSKAlVKDPm3GPNqAqVQGTYoAuGfNqAzYjdZoLK05rKDYkqgAAAAAAzWa0zqUSCQBCIsRSstVkQXKACAAAAAAqAKZRQQAFistQG9LbOlQVnVVyzqoMWoUgLI1IkjSoiVWaBG2IuRXb4fFpj4fBtAAAAAAAAAAAAAAAAAAAAAAAAAAAABj4m09UX4m09UWAAAAKAAKigAAAAAAAAAAAAgAgAAAo1o4tM6OLTIzeXt+1S8vb9lBUylqA1lm0kLAJVyki4AyZMGAZy1KzYijplcueVyg0lTKZBaSoqiWrIzWpQTAtrOQalalc1lB0ElVAAAABmsam656lCBAGVjLURSpI0QEsZbrFESgAAuAQXCAAuAQVAAAGtLLegHSbGTyZVFY1NMatykRdJDGEVsYyuVGmKZQFioIrt8Pg2x8Lg2IAAAAAAAAAAAAAAAAAAAAAAAAAAAAx8TaeqL8TaeqLAAAAFAAURQAAAAAAAAAAAAQAQAAAUa0cWmdHFpkZvL2/aVby9v2AyNYZoEpaxkyDcq5YyZBvJlnKKLUTJlBVyysUAADIAESkoNYTC5ZtBRBBrKzUwA6dRlgBrJlAUtZrVZVCAAw1GViK0y0mAEsWCozgawmEEihaKlRTAiyNYZjUopYxY3WaCSLhdK0GMN6ImGtIi1lustIeTnd27swirGqzFyis0KCAAAAO/wuDbHwuDYAAAAAAAAAAAAAAAAAAAAAAAAAAAAMfE2nqi/E2nqiwAAABQABQAAAAAAAAAAAABABAABFRRvRxaZ0cWmRjVcavb9mU18vZnINZS1MgJgwKCYIqA0hlMqLhMLkQSRRMgomQGsGEyZBcGEymQawhkBcJgymRVwuGcrkRrBhMpkFwrOTKi1lbUgAAMkRUVYUgCKCgioIGBYimEq1kFi5QAtQAalXLKgN6WI3AWstIqM6nNrUygsVlRVQBBABRAHo+DwbY+DwbAAAAAAAAAAAAAAAAAAAAAAAAAAAABj4m09UX4m09UWAAAAKAAoAAAAAAAAAAAAACKggAACKN6OLTOji0yOXxOc9EPi8p6M5BRFgAYMABhQRUqZUaRMmQaQi4BAwIBBAUTJlRRFiAC4UQVABcAiAKIsFyioADCoRFaQQGhMpkFQFRQEUqKgCoAAoIooGltnS0CpQoOerdlaCAKKgqUEAEFEB6Pg8G2Pg/wDzbAAAAAAAAAAAAAAAAAAAAAAAAAAAABj4m09UX4m09UWAAAAKAAoAAAAAAAAAAAAABJnYXTvRE6adNbEGOmnTfo2LommYnioIOPxeU9GW/i8p6MKBABqLWTILFZyoFZUBMCoCxuMQyg3cM1MmVFLBMgigCLAgLFZAaEMgplkAtQAAAAFGViKypUVBEFQBUAVWVBRAUAEAQFjTMagrUVIqglVKgzYy0zQFiKAlAEAEAAdvha9OnRi1r/00d3nAej/00dz/ANNHdwAd/wD00dz/ANNHdwAeia9NuJWnn+Hzj0AAAAAAAAAAAAAAAAAAAAAAAx8TaeqL8TaeqLAAAAFAAUAAAAAAAAAAAAABdO9RdO9EaS6pp3qsfEmZPVBf/TT3P/TT3Z6E6Ab/APTT3P8A0092Og6AT4lmrVmdmW+lekHPC4b6Vwoxg6W8Kg59Jh0wmAYwdLpIYBz6Uw64TAMSGG7CQGOlOl1LAc8JhvC4BzwYbsWRRz6TDrhLEHPCyNSNYBzwYdMJhRhHTCdIOY6dKdKDA30nSDA30CjmQVFQoUGaFQRRAFEUFEAUQAABViNaQaUFUZqs1BErWGaCLEWCAAqACAAAAAoAADXw+ceh5/h849AAAAAAAAAAAAAAAAAAAAAAAMfE2nqi/E2nqiwAAABQAFAAAAAAAAAAAAAAXTvUXTvRGmdXk0zq8kAAAAAAAUBFAAAEFAQUBBQEFAQVAAAAAAUEFAQUBBQEFAQUB5xFFVKFBkAQABcGDJkFwdJk6gXpOlOpeoDpXoTqOoF6WpGeo6wbwYY616lFwdKdR1IGEulrqOqAx0nS3mGYDHSdLfVE6oDHSdLfUnUCdJ0r1HUCdJgyZBMGFUGcC1ZANE+eO7lpnzR1AAAAAAAAAAAAAAAAAAAAAABj4m09UdExOyjA3idjE7GjA3idjE7GjA3idjE7CsDeJ2MTsDCtYnYxOyDI1idjE7BrI1idjE7AyNYnYxOwMjWJ2MTsqMjWJ2MTsDDWneridgFZ1+TTOvyQABQAAAAAAAFEAUQEVABRAFEAAAFQBRAFEAUQBRAFQAUQAAB5wBQEAAEAAFRoAwChgwAILUyAGTIAZUEBMoKZTIC5MoAuVZjUAwNYTHiBgw1gwDNhIthIBhQyBhqTCSmVFnKOjj45zF6tff8ACK6jn1au/wCDOrv+BHQc86u/4M6u/wCAdBzzq7/gzr7/AIB0HPOvv+DOrv8AgHQc+rV3/CdWrv8AgHUcurV3/B1au/4B1HLq1d/wdWrv+AdRy6tXf8LnV3/AOg551d/wZ1d/wDoOedXf8GdXf8A6DnnV3/BnV3/AOg551d/wvzd/wDYx83f8Hzd/wDYx83f8Hzd/wDYx83f8JnV3/AOg551d/wAGdXf8A6DnnV3/AAZ1d/wDoOedXf8ABnV3/AOg551d/wAHzd/wDoMfN3/B83f8A2MfN3/B83f8A2MfN3/B83f8A2MfN3/B83f8A2zq8k+bv+DF87kFAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeZVwYEQwNSAzgw1gBnBhoBlUUABQABKi1AAAFIAlQAAAAUFkdNOlnTHWbIGDpUFTBgMiFjK5RRKmGgEwoCAiiimFQFAAAUQtZEVAVAEoKIAqsrEVQXAEUAMJhQVMCggAKAAAAmDCgiYMKAYMABgAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABywYUVlnC4UAwYFwCYMNYMCudiN6mAAAAASoUAAgKlVKCAAAALEa0wHTRHRnTPBpFAASstIIgqKiUKSW7QCKdOrtTF7UVFh03suL2QAxexi9gUMXsW43AymV3TAILi9jF7KiC4vYxewM1LW+m9k6b2FYyuWum9mcIGVlTBgGsnUk02+S9N7CnUsp02eSyAoHsAHsAAewAePYAAAA9gA9jx7AB7Hj2ADx7AAAAHsAHj2PHsAHj2PHsAHj2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAc8DQqMioIsXLIK1lMoAmplagAAAAM0ABUUBlTAILgwCDWDAJG9MTDpoiDUUBQABmtJYIyLhFRK18LzRrR5itgIAAAADn8TeOjGrlANMakRqbAAAAAAAM6tPm0l2oMYXCzYBZsqTZQTVxqRdXGpAWbqk3UEuzOnZq7M6dgWbtMzdoBi8q2x/OgoE3FWeCgIAAAAM6uP2aZ1cfsBAgKs2VJsogAAAAADN7i6uN9EmwAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADnkyCsgAAAAAM1CmRUVMLIigCoGAARVwDKtYMAzgw0AmDCgJI6aWI6RBQBQAAABMKAmDxm1woInzd/wfN3/CgLNlSbKCarjT4M/N3/AAuvj9iAnzf9fgxc5tyoKNTaMtTaCDOq2TwaZ17e4J83f8Hzf9fhQE+b/r8Nac48UWbAqXaql2oM6dlSbKKs2VJsoiauNSLq41ICzdUm6gl2Z07NXZnTsCzdpmbtAMfzrbH86Ck3CbitACMXN1b0xe9+5edUExe9+5i9791BUxe9+5jvbVAAAWbKk2URnXnwxcJi97911eQCYve/cxe9+6gq6dlSbKImrjfRmbNauN9GZsCgCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOYCsguDAILhAChQYqRVGkjTOTIioAAALFSKCiKCAAAARuVmNYQXK5ZwlFbyM+J4g0M5Mg0M5XIKJlcgAAs2VJsojOvj9iGvj9iAACizaIs2gis69vdpnXt7gACizZFmwipdqqXagzp2VJsoqzZUmyiM6uNIauNICzdUm6gl2Z07NXZnTsCzdpmbtAMfzrbH86Ck3CbitACCKAgoCM6dm2NOwKAKs2VJsojOqbHs0Az7Hs0Ak2UATVxvozNmtXG+iTYAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABnBhVETBhQVMI0zYImYlqeZVGSgCKAAAAALFSKAAAAAAC6XSOelvKCs1cs2itRWcniC1JGa1poi4MKCsXdYnmWiNjMXIrU2VJsojOvj9iGvj9iAACizaIs2gis69vdpnVMzwAD2PYUWbJ7LNhFS7VUu1BnTsqadlFWbKk2URnVxpF1eOmpM9gWbqk3UEuzOnZryZksmwLN2mZu0Ax/OtsfzoKTcJuK0AIxZnVTpheVUE6YdMUFTpigAACzZUmyiAzr2906frfvQbGJMXOa0CgzqmYCarnwnv+lSTwUUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASql2BjzNRN01KjIAAAAAAAKZSLgFEwAogCiKBKuUhUVYuGY1kGpFYyuQTWzpNVNINytM5TIh5pvSkBqAYBubRU07RQZ18fsQ18fsQAAUWbRFl8hFAAAAAAS7VWNVz8s9wJspAVZsrMuGhAAAAAAAABj+datkmazp73egpNwFaElyogAAAAzq4/ZpnVx+wAQFWbKk2URnXtPUNe09QBZ2QFaEURm+FFszEgAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACKigAAM6lrGqgRNVZyZAAVAAAAAAFipFARUBUVICiiLhCqzRSKkXIAmUyBViTxawIAioZajJLgHTAkqoJnV5Uzq7/0KCXqu9WUQGhJVFCzIAnjNqfN3/pQE+bv/R83f+lAT5u/9Hzd/wClAT5r/KkmFAAAExZtVAT5u/8AUPm7/wBRQE+bv/UPm7/1FAT5u/8AUPm7/wBRQE+bv/UPm7/hQE6fHN8aoAAAlh83f8KAnzd/6h83f+ooInzd/wCofN3/AKigJ83f+oYt3qgoACfN5U+bv/UUBMW71QAABPHyp83f+ooCfN3/AKhM+agAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAICgAAAiooAAIzqjbGsHOkQBUFwCC4MAimDAAYMCLFZXIrSJkyKtIlpkRrJlkwLq5S1ek6RNZyZW6UwAYWFsBJ4NysbtTSDWEkzZCXDU3gNdGnsdGns0CM9GnsxNXjY6uF5X1B0TLMrU8QN1k8RZuC9M7GIoCYjMuY256b4A0AKskwYhNooiYhiKAmIYigJiGIoCYhiKAzsNMwAAVZDEJsoiYiavDDTOvy9QABVhiE2URMQxFATEMRQExDEUBMQxFAZvhcCauU9FABQMGIoCYhiKAmIYigJiGIoCXElqRdXG+jM2BQBQAAAAAAAAAAAAAAAAAAAAAAEBRFBBQAAAARFQyKozkyIrGtcpfENczDeDAaw1KWJYDRhnKyqNYMJk6hFGeo6hVwYZ6jILhKZRFVqRhcg1hWMmRMdBjqOoMbyzqwzkFAAWVuWOS5BvUmi/NPVnK6Oc9QegAQcLyvq7uF5X1AWXCUgrpLlZu57N6LmiNgAOU2dXLTPAGpVZXINTaKk2igAzq1WXEBoYzq+n2/0zq+n2/0GxjOr6fb/AEzq88A2AAx/KtsfyoKAKs2VJsogzr8vVpnX5eoAAqzZWfGbYTOr6fb/AERsYzq+n2/1ZbnxwDQAAMTVqvYGxjOr6fb/AEzq+n2/0DVynoqeNuaopN2mZu0IAADnLqv8vwvzf9X+gbGPm/6v9Hzf9X+gbGPm/wCr/R83/V/oGtXG+jM2MW72qAAKAAAAAAAAAAAAAACAAACoAoAAAAAAAAAAAjGTKCoAAAAAAJhQGbEw2YF1zGrEwiouEalETpXpaFGcM10rFQiRrCRrIJhKtqCosiyNYE1nB0tCmp0nS0BrPSdLSoOdi6J80bwsmLBWwBByx431dXHPzX1AsZbrOBUy38Pkxhv4fIHUAQc9Ozo56dgFAGptFSbRQGLz9m2Lz9gUAUKFBoAQY/lW2P5UFAFWbKk2UQZ1+Xq0zr8vUAAUAAJuE3BoARGdOzTOnYFAFAAJu0zN2hAAGNOyk02GKAGKYooGKYoAAAAAAAAAAAAAAAACAAAAAAAAqKAAAAAAAAIAA5gKgAAAAAAAAAAYAGbEw2mBdZyspYmEGrWKuUFFJGpASRZFVUQUEQVAAAFyiguVl8YyTeCuoCA42eN9XZzm99QYng1uWJsBYujmsuTTPmFdABBz0XwdHCUHSjM1KDc2ipNooDGrn7NsaufsCjOcLKKpQoNACDH8q2x/KgoAqzZUmyiDOvy9Wmdfl6gACgABNwm4NACIzp2aZ07AoAoABN2mZu0IAgKAAAAl2qpdqDM2VJsooAAAAAAAAACAAAAAAAACgIoAAAAAAAAAACAAOSoqoAAAAAAKiwFwljUEVgasRUQABMNYMAx0nS6YXCKxNLWFwoM4MNAMi4MAhgwAmBRREawmBEWcoYJygOoCKOXnfV1cfO+oLlKoqM7N6Lms2L8PmK6gIDzx6HngNLKzCiu02ipOM9FEGNXL2bc9fL2Bm+NbmzE8a6CgFBoAQY/lW2P5UFAFWbKk2UQZ1+Xq0zr8vUAAUAAJuE3BoARGdOzTOnYFAFAAJu0zN2hAAHOS2b37rj637mnZRUx9b9zH1v3UBMfW/c6frfuoAAAAAAAAAAACAAAAACgIKACKAAAAAAAAAAIAAAA5iKqAAAAAAAALKuWQVowkrSCYMNAJgUFAAAAAAAAEUBMCgMimBEWbwwTeA2AAzdEty0Az0T6nRPq0Az0T6k0yXLQAAA4yeDrdnPT4wGUrdjGoV308Z6RU08Z6RRBy+Jy9nVz18/YDTGkiihQoNACDH8q2x/KgoAqzZUmyiDOvy9Wmdfl6gACgABNwm4NACIzp2aZ07AoAoABN2mZuoigAzNOPNcfVQEx9TH1UBMfUx9VAZsxM5F1cb6MzYFAFAAAAAQFQAAAAAURQQUBBUBRFAAAAAAAAAAEAAcxFVAAAAAAAFwCC4XArLUXAgKAoAAAAAAAAAAAAAAAAACy5ViwzqnaiNjHVe0+/+HVe0+/+A2MdV7T7/wCHVf8An+/8BsY67/z/AH/h13/n+/8AAbGOu/8AP9/4nVqv0A+Jq8Omb+bEuG5EsAzmM3dcYJAdZxnorn12eR/6X/n+/wDAdHPXz9j/ANL/AM/3/jNt1XNBcrlkFbyMrkR0GOq9p9/8Oq9p9/8AAbY/lTqvaff/AAmd6CgCrNlZzZtE6r2n3/wRtnX5eqdV7T7/AOFtuMzAKAKAAE3AGhjqvaff/Dqvaff/AARpnTsdV7QkxAUAUAAWXKJgRsYzq7SnVe0+/wDgNjHVe0+/+HVe0+/+A2MdV7T7/wCHVe0+/wDgNjHVe0+/+HVe0+/+A1q430ZmxbbMYhAUAUAAQAAAAAAAAAAAAAAAAAURQAAAAAAAAAAclRVZAwuAQawuBcZwuFEEwuFBUUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEUBMGFBERpMAiyGFBMJdLQK54G8JYIyp0rICYWRoAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAFQABQAAAEBRAFAAAAAEZkMKCgAAAAoAIoAAAigAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIqAAAAAAAAAAAAAAAAAAAqAAAACgACAgCiAAAoAAACoAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//9k=",
+    "tags": [],
     "features": [
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
+        "Steamcmd Debian": "ghcr.io/pelican-eggs/steamcmd:debian"
     },
     "file_denylist": [],
-    "startup": ".\/Tower\/Binaries\/Linux\/TowerServer-Linux-Shipping -log -Port={{SERVER_PORT}} -MULTIHOME=0.0.0.0 -TowerServerINI=..\/..\/Saved\/Config\/TowerServer.ini",
+    "startup_commands": {
+        "Default": "./Tower/Binaries/Linux/TowerServer-Linux-Shipping {{GAME_MAP}} -log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -nosteamclient"
+    },
     "config": {
-        "files": "{\r\n    \"Tower\/Saved\/Config\/TowerServer.ini\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"MaxPlayers\": \"{{server.build.env.SERVER_MAX_PLAYER}}\",\r\n            \"ServerTitle\": \"{{server.build.env.SERVER_TITLE}}\",\r\n            \"SteamLoginToken\": \"{{server.build.env.STEAM_LOGIN_TOKEN}}\",\r\n            \"AdminSteamID\": \"{{server.build.env.STEAM_ADMIN_ID}}\"\r\n        }\r\n    }\r\n}",
-        "startup": "{\r\n    \"done\": \"Match State Changed from EnteringMap to WaitingToStart\"\r\n}",
+        "files": "{\n    \"Tower/Saved/Config/LinuxServer/TowerServer.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"ServerTitle=\": \"ServerTitle={{server.environment.SERVER_TITLE}}\",\n            \"MaxPlayers=\": \"MaxPlayers={{server.environment.MAX_PLAYERS}}\",\n            \"SteamLoginToken=\": \"SteamLoginToken={{server.environment.STEAM_LOGIN_TOKEN}}\",\n            \"TowerLoginToken=\": \"TowerLoginToken={{server.environment.TOWER_LOGIN_TOKEN}}\",\n            \"CondoAutoSave=\": \"CondoAutoSave={{server.environment.AUTO_SAVE}}\"          \n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"LogNet: GameNetDriver SteamNetDriver_0 IpNetDriver listening on port\"\n}",
         "logs": "{}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n##\r\n#\r\n# Variables\r\n# STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.\r\n# WINDOWS_INSTALL - if it's a windows server you want to install set to 1\r\n# SRCDS_APPID - steam app id found here - https:\/\/developer.valvesoftware.com\/wiki\/Dedicated_Servers_List\r\n# SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch\r\n# SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.\r\n# INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.\r\n# AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.\r\n#\r\n ##\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\ncd mnt\/server\r\n\r\nmkdir -p Tower\/Saved\/Config\r\nmkdir -p Tower\/Binaries\/Linux\r\n\r\nmv \/mnt\/server\/steamcmd\/linux64\/steamclient.so \/mnt\/server\/Tower\/Binaries\/Linux\r\n\r\ncat <<EOF >> Tower\/Saved\/Config\/TowerServer.ini\r\n[\/script\/towernetworking.dedicatedserveroptions]\r\nMaxPlayers=$SERVER_MAX_PLAYER\r\nServerTitle=$SERVER_TITLE\r\nSteamLoginToken=$STEAM_LOGIN_TOKEN\r\n\r\n[Administration]\r\nAdminSteamID=$STEAM_ADMIN_ID\r\nEOF\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
-            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "script": "#!/bin/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n# Image to install with is 'ghcr.io/parkervcp/installers:debian'\r\n\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n## install game using steamcmd\r\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\nmkdir -p /mnt/server/Tower/Saved/Config/LinuxServer/\r\n\r\nif [ ! -f /mnt/server/Tower/Saved/Config/LinuxServer/TowerServer.ini ]; then\r\n    echo \"Generating a default config file\"\r\n    curl -sSL -o /mnt/server/Tower/Saved/Config/LinuxServer/TowerServer.ini https://pastebin.com/raw/zy9XTc7m\r\nfi\r\n\r\ncp /mnt/server/linux64/steamclient.so /mnt/server/Tower/Binaries/Linux/steamclient.so\r\n\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io/pelican-eggs/installers:debian",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
-            "name": "Steam Login Token",
-            "description": "Login and generate a token for the app-id: 394690\r\nhttps:\/\/steamcommunity.com\/dev\/managegameservers",
-            "env_variable": "STEAM_LOGIN_TOKEN",
-            "default_value": "",
+            "sort": 9,
+            "name": "Auto Save",
+            "description": "Enables the auto save system, which will periodically save the condo data after changes have been made.",
+            "env_variable": "AUTO_SAVE",
+            "default_value": "True",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:100",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "in:True,False"
+            ]
         },
         {
-            "name": "Steam Admin ID",
-            "description": "Note that your admin id is only a number!",
-            "env_variable": "STEAM_ADMIN_ID",
-            "default_value": "",
+            "sort": 2,
+            "name": "Auto Update",
+            "description": "Automatically update the server on startup",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|max:76561202255233023",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ]
         },
         {
-            "name": "Server Title",
-            "description": "",
-            "env_variable": "SERVER_TITLE",
-            "default_value": "Tower Unite Server",
+            "sort": 4,
+            "name": "Game Map",
+            "description": "The Condo map your Dedicated Condo will use.",
+            "env_variable": "GAME_MAP",
+            "default_value": "/Game/Maps/C_Condo",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:512",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "in:/Game/Maps/C_Condo,/Game/Maps/C_House,/Game/Maps/C_SmoothDirt,/Game/Maps/C_Lobby1,/Game/Maps/C_SmoothAutumn,/Game/Maps/C_Underwater,/Game/Maps/C_Highrise,/Game/Maps/C_Studio,/Game/Maps/C_Theatre,/Game/Maps/C_Courtyard,/Game/Maps/C_IcePlanet"
+            ]
         },
         {
+            "sort": 6,
             "name": "Max Players",
-            "description": "",
-            "env_variable": "SERVER_MAX_PLAYER",
-            "default_value": "40",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|integer|max:512",
-            "sort": null,
-            "field_type": "text"
+            "description": "Set the max players (2 - 64) (default 32)",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "32",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "integer",
+                "between:2,64"
+            ]
         },
         {
+            "sort": 3,
+            "name": "Query Port",
+            "description": "",
+            "env_variable": "QUERY_PORT",
+            "default_value": "27016",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "integer",
+                "between:1024,65535"
+            ]
+        },
+        {
+            "sort": 5,
+            "name": "Server Title",
+            "description": "Set the title of the server",
+            "env_variable": "SERVER_TITLE",
+            "default_value": "My Dedicated Condo",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string"
+            ]
+        },
+        {
+            "sort": 1,
             "name": "App ID",
             "description": "",
             "env_variable": "SRCDS_APPID",
             "default_value": "439660",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:439660",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "in:439660"
+            ]
         },
         {
-            "name": "Auto Update",
-            "description": "Auto update the server on startup.",
-            "env_variable": "AUTO_UPDATE",
-            "default_value": "1",
+            "sort": 7,
+            "name": "Steam Login Token",
+            "description": "Sets the token to grant you a static Steam ID.\nhttps://steamcommunity.com/dev/managegameservers: APP_ID:394690",
+            "env_variable": "STEAM_LOGIN_TOKEN",
+            "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string"
+            ]
+        },
+        {
+            "sort": 8,
+            "name": "Tower Login Token",
+            "description": "Allows you to connect to Tower Unite's condo server list.\nhttps://moderation.towerunite.com/manage_game_servers.php",
+            "env_variable": "TOWER_LOGIN_TOKEN",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string"
+            ]
         }
     ]
 }

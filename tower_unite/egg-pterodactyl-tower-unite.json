@@ -1,73 +1,93 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
-        "update_url": null,
-        "version": "PTDL_v2"
+        "version": "PTDL_v2",
+        "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:59+00:00",
+    "exported_at": "2025-12-28T10:55:54+00:00",
     "name": "Tower Unite",
     "author": "teamwuffy@gmail.com",
-    "description": "Tower Unite\r\n\r\nDefault Port: 7778\r\nDefault Query Port: 27016\r\n\r\nConfig Path: Tower/Saved/Config/TowerServer.ini",
+    "description": "PLAY, CREATE, PARTY! Tower Unite is a community-based virtual world party game with online games, entertainment, activities, and absolutely NO microtransactions.",
     "features": [
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io/parkervcp/steamcmd:debian": "ghcr.io/parkervcp/steamcmd:debian"
+        "Steamcmd Debian": "ghcr.io\/pelican-eggs\/steamcmd:debian"
     },
     "file_denylist": [],
-    "startup": "./Tower/Binaries/Linux/TowerServer-Linux-Shipping -log -Port={{SERVER_PORT}} -MULTIHOME=0.0.0.0 -TowerServerINI=../../Saved/Config/TowerServer.ini",
+    "startup": ".\/Tower\/Binaries\/Linux\/TowerServer-Linux-Shipping {{GAME_MAP}} -log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -nosteamclient",
     "config": {
-        "files": "{\r\n    \"Tower/Saved/Config/TowerServer.ini\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"MaxPlayers\": \"{{server.build.env.SERVER_MAX_PLAYER}}\",\r\n            \"ServerTitle\": \"{{server.build.env.SERVER_TITLE}}\",\r\n            \"SteamLoginToken\": \"{{server.build.env.STEAM_LOGIN_TOKEN}}\",\r\n            \"AdminSteamID\": \"{{server.build.env.STEAM_ADMIN_ID}}\"\r\n        }\r\n    }\r\n}",
+        "files": "{\n    \"Tower\/Saved\/Config\/LinuxServer\/TowerServer.ini\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"ServerTitle=\": \"ServerTitle={{server.build.env.SERVER_TITLE}}\",\n            \"MaxPlayers=\": \"MaxPlayers={{server.build.env.MAX_PLAYERS}}\",\n            \"SteamLoginToken=\": \"SteamLoginToken={{server.build.env.STEAM_LOGIN_TOKEN}}\",\n            \"TowerLoginToken=\": \"TowerLoginToken={{server.build.env.TOWER_LOGIN_TOKEN}}\",\n            \"CondoAutoSave=\": \"CondoAutoSave={{server.build.env.AUTO_SAVE}}\"          \n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"LogNet: GameNetDriver SteamNetDriver_0 IpNetDriver listening on port\"\n}",
         "logs": "{}",
-        "startup": "{\r\n    \"done\": \"Match State Changed from EnteringMap to WaitingToStart\"\r\n}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "container": "ghcr.io/parkervcp/installers:debian",
-            "entrypoint": "bash",
-            "script": "#!/bin/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n# Image to install with is 'ghcr.io/parkervcp/installers:debian'\r\n\r\n##\r\n#\r\n# Variables\r\n# STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.\r\n# WINDOWS_INSTALL - if it's a windows server you want to install set to 1\r\n# SRCDS_APPID - steam app id found here - https://developer.valvesoftware.com/wiki/Dedicated_Servers_List\r\n# SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch\r\n# SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.\r\n# INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.\r\n# AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.\r\n#\r\n ##\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n## install game using steamcmd\r\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] \u0026\u0026 printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\ncd mnt/server\r\n\r\nmkdir -p Tower/Saved/Config\r\nmkdir -p Tower/Binaries/Linux\r\n\r\nmv /mnt/server/steamcmd/linux64/steamclient.so /mnt/server/Tower/Binaries/Linux\r\n\r\ncat \u003c\u003cEOF \u003e\u003e Tower/Saved/Config/TowerServer.ini\r\n[/script/towernetworking.dedicatedserveroptions]\r\nMaxPlayers=$SERVER_MAX_PLAYER\r\nServerTitle=$SERVER_TITLE\r\nSteamLoginToken=$STEAM_LOGIN_TOKEN\r\n\r\n[Administration]\r\nAdminSteamID=$STEAM_ADMIN_ID\r\nEOF\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\""
+            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\nmkdir -p \/mnt\/server\/Tower\/Saved\/Config\/LinuxServer\/\r\n\r\nif [ ! -f \/mnt\/server\/Tower\/Saved\/Config\/LinuxServer\/TowerServer.ini ]; then\r\n    echo \"Generating a default config file\"\r\n    curl -sSL -o \/mnt\/server\/Tower\/Saved\/Config\/LinuxServer\/TowerServer.ini https:\/\/pastebin.com\/raw\/zy9XTc7m\r\nfi\r\n\r\ncp \/mnt\/server\/linux64\/steamclient.so \/mnt\/server\/Tower\/Binaries\/Linux\/steamclient.so\r\n\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io\/pelican-eggs\/installers:debian",
+            "entrypoint": "bash"
         }
     },
     "variables": [
         {
-            "name": "Steam Login Token",
-            "description": "Login and generate a token for the app-id: 394690\r\nhttps://steamcommunity.com/dev/managegameservers",
-            "env_variable": "STEAM_LOGIN_TOKEN",
-            "default_value": "",
+            "name": "Auto Save",
+            "description": "Enables the auto save system, which will periodically save the condo data after changes have been made.",
+            "env_variable": "AUTO_SAVE",
+            "default_value": "True",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:100",
+            "rules": "in:True,False",
             "field_type": "text"
         },
         {
-            "name": "Steam Admin ID",
-            "description": "Note that your admin id is only a number!",
-            "env_variable": "STEAM_ADMIN_ID",
-            "default_value": "",
+            "name": "Auto Update",
+            "description": "Automatically update the server on startup",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|integer|max:76561202255233023",
+            "rules": "boolean",
             "field_type": "text"
         },
         {
-            "name": "Server Title",
-            "description": "",
-            "env_variable": "SERVER_TITLE",
-            "default_value": "Tower Unite Server",
+            "name": "Game Map",
+            "description": "The Condo map your Dedicated Condo will use.",
+            "env_variable": "GAME_MAP",
+            "default_value": "\/Game\/Maps\/C_Condo",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:512",
+            "rules": "in:\/Game\/Maps\/C_Condo,\/Game\/Maps\/C_House,\/Game\/Maps\/C_SmoothDirt,\/Game\/Maps\/C_Lobby1,\/Game\/Maps\/C_SmoothAutumn,\/Game\/Maps\/C_Underwater,\/Game\/Maps\/C_Highrise,\/Game\/Maps\/C_Studio,\/Game\/Maps\/C_Theatre,\/Game\/Maps\/C_Courtyard,\/Game\/Maps\/C_IcePlanet",
             "field_type": "text"
         },
         {
             "name": "Max Players",
+            "description": "Set the max players (2 - 64) (default 32)",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "32",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "integer|between:2,64",
+            "field_type": "text"
+        },
+        {
+            "name": "Query Port",
             "description": "",
-            "env_variable": "SERVER_MAX_PLAYER",
-            "default_value": "40",
-            "user_viewable": false,
+            "env_variable": "QUERY_PORT",
+            "default_value": "27016",
+            "user_viewable": true,
             "user_editable": false,
-            "rules": "required|integer|max:512",
+            "rules": "integer|between:1024,65535",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Title",
+            "description": "Set the title of the server",
+            "env_variable": "SERVER_TITLE",
+            "default_value": "My Dedicated Condo",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
             "field_type": "text"
         },
         {
@@ -77,17 +97,27 @@
             "default_value": "439660",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:439660",
+            "rules": "in:439660",
             "field_type": "text"
         },
         {
-            "name": "Auto Update",
-            "description": "Auto update the server on startup.",
-            "env_variable": "AUTO_UPDATE",
-            "default_value": "1",
+            "name": "Steam Login Token",
+            "description": "Sets the token to grant you a static Steam ID.\nhttps:\/\/steamcommunity.com\/dev\/managegameservers: APP_ID:394690",
+            "env_variable": "STEAM_LOGIN_TOKEN",
+            "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Tower Login Token",
+            "description": "Allows you to connect to Tower Unite's condo server list.\nhttps:\/\/moderation.towerunite.com\/manage_game_servers.php",
+            "env_variable": "TOWER_LOGIN_TOKEN",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
             "field_type": "text"
         }
     ]

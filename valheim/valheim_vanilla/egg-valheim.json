@@ -2,9 +2,9 @@
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PLCN_v3",
-        "update_url": null
+        "update_url": "https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/valheim/valheim_vanilla/egg-valheim.json"
     },
-    "exported_at": "2026-01-03T15:23:29+00:00",
+    "exported_at": "2026-01-03T15:30:59+00:00",
     "name": "Valheim",
     "author": "magi1053@outlook.com",
     "uuid": "af693402-1618-49e0-8678-0818aae9b92e",

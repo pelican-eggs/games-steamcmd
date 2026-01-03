@@ -2,9 +2,9 @@
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
         "version": "PLCN_v3",
-        "update_url": null
+        "update_url": "https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/valheim/valheim_plus/egg-valheim-plus-mod.json"
     },
-    "exported_at": "2026-01-03T15:23:08+00:00",
+    "exported_at": "2026-01-03T15:31:07+00:00",
     "name": "Valheim Plus Mod",
     "author": "eggs@goover.dev",
     "uuid": "196a69bf-0137-4315-bff9-295051b3dd94",

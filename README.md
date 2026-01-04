@@ -20,6 +20,7 @@
   * [Arma 3](arma/arma3)
   * [Arma Reforger](arma/arma_reforger)
 * [Assetto Corsa](assetto_corsa)
+* [Automobilista 2](automobilista_2)
 * [Astro Colony](astro_colony)
 * [Avorion](avorion)
 * [Barotrauma](barotrauma)

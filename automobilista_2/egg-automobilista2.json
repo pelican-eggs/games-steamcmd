@@ -4,7 +4,7 @@
         "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2026-01-04T14:05:03+00:00",
+    "exported_at": "2026-01-04T14:47:19+00:00",
     "name": "Automobilista 2",
     "author": "admin@theorderofdarkness.eu",
     "uuid": "1d013000-1cd9-4cc7-ba73-2d19a459292d",
@@ -67,11 +67,12 @@
             "env_variable": "QUERY_PORT",
             "default_value": "",
             "user_viewable": true,
-            "user_editable": true,
+            "user_editable": false,
             "rules": [
                 "string",
                 "required",
-                "max:20"
+                "max:20",
+                "between:1024,65656"
             ]
         },
         {
@@ -123,11 +124,12 @@
             "env_variable": "STEAM_PORT",
             "default_value": "",
             "user_viewable": true,
-            "user_editable": true,
+            "user_editable": false,
             "rules": [
                 "required",
                 "string",
-                "max:20"
+                "max:20",
+                "between:1024,65656"
             ]
         },
         {

@@ -12,18 +12,18 @@ Automobilista 2 required at least 2GiB.
 
 ## Server Ports
 
-Automobilista 2 requires three ports to run. Hostport is always the default Allocation Port!
+Automobilista 2 requires Main port + 2 ports to run.
 
-| Port        | default |
-|-------------|---------|
-| SteamPort   | 8766   |
-| Hostport(Default Allocation Port)    | 27015   |
-| queryPort   | 27016   |
-
+| Port        | default | Notes |
+|-------------|---------|---------|
+| SteamPort   | 8766    | Required |
+| Hostport    | 27015   | Primary Port in Panel |
+| queryPort   | 27016   | Required |
 
 ### Notes
 
 All Ports can be changed
 
 Co-authored-by: Daniel Barton <danielb@purpleflaghosting.com>
+
 

@@ -12,7 +12,7 @@ Automobilista 2 required at least 2GiB.
 
 ## Server Ports
 
-Automobilista 2 requires Main port + 2 ports to run.
+Automobilista 2 requires the Main Port + 2 additional ports to run.
 
 | Port        | default | Notes |
 |-------------|---------|---------|
@@ -25,5 +25,6 @@ Automobilista 2 requires Main port + 2 ports to run.
 All Ports can be changed
 
 Co-authored-by: Daniel Barton <danielb@purpleflaghosting.com>
+
 
 

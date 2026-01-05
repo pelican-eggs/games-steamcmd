@@ -55,7 +55,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ]
         },
@@ -81,7 +80,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": [
-                "required",
                 "boolean"
             ]
         },

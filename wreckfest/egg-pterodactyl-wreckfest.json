@@ -1,0 +1,122 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-01-05T17:19:48+00:00",
+    "name": "Wreckfest",
+    "author": "djjoker13@gmail.com",
+    "description": "Wreckfest is a demolition derby themed racing game with soft-body damage modeling, sophisticated driving dynamics and in-depth vehicle upgrading, featuring both demolition derbies and more traditional track races. It\u2019s all about fun, breakneck racing and over-the-top crashes.",
+    "features": null,
+    "docker_images": {
+        "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
+    },
+    "file_denylist": [],
+    "startup": "rm -f server_console.log && touch server_console.log && tail -F server_console.log & xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' wine .\/Wreckfest_x64.exe -s server_config={{CONFIG_PATH}} -server_set game_port={{GAME_PORT}} -server_set query_port={{QUERY_PORT}} -server_set steam_port={{STEAM_PORT}} -s server_name=\"{{SERVER_NAME}}\" -s password=\"{{SERVER_PASSWORD}}\" -server_set log=server_console.log",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Server connected\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\napt -y update\r\napt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates tar winbind\r\n\r\n# Steam Login Defaults\r\nSTEAM_USER=${STEAM_USER:-anonymous}\r\nSTEAM_PASS=${STEAM_PASS:-}\r\nSTEAM_AUTH=${STEAM_AUTH:-}\r\n\r\n## download and install steamcmd\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Install steamcmd\"\r\necho \"-----------------------------------------\"\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Install game\"\r\necho \"-----------------------------------------\"\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} validate +quit\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n## install end\r\n\r\n# Wreckfest Config Download\r\ncd \/mnt\/server\r\nCONFIG_URL=\"https:\/\/raw.githubusercontent.com\/EvilGenius13\/Wreckfest-Egg\/main\/server_config.cfg\"\r\nif [ ! -z \"$CONFIG_URL\" ]; then\r\n    if [ ! -f \"server_config.cfg\" ]; then\r\n        echo \"Downloading config from GitHub...\"\r\n        curl -sSL -o server_config.cfg \"$CONFIG_URL\"\r\n    else\r\n        echo \"Config file already exists, skipping download.\"\r\n    fi\r\nfi\r\n\r\necho \"-----------------------------------------\"\r\necho \"Installation Complete\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Game Port",
+            "description": "Port for game connection.",
+            "env_variable": "GAME_PORT",
+            "default_value": "33540",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|min:1024|max:65535",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Port",
+            "description": "Port for Steam connection.",
+            "env_variable": "STEAM_PORT",
+            "default_value": "27015",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|min:1024|max:65535",
+            "field_type": "text"
+        },
+        {
+            "name": "Query Port",
+            "description": "Port for server queries.",
+            "env_variable": "QUERY_PORT",
+            "default_value": "27016",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|min:1024|max:65535",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Name",
+            "description": "Server Name.",
+            "env_variable": "SERVER_NAME",
+            "default_value": "Wreckfest Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:63",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Password",
+            "description": "Join Password.",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:31",
+            "field_type": "text"
+        },
+        {
+            "name": "Config Path",
+            "description": "Config file name.",
+            "env_variable": "CONFIG_PATH",
+            "default_value": "server_config.cfg",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "App ID",
+            "description": "Steam App ID.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "361580",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Windows Install",
+            "description": "Set to 1 for Windows.",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Auto Update",
+            "description": "Update on start.",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        }
+    ]
+}

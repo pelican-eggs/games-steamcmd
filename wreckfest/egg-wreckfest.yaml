@@ -1,0 +1,199 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: 'https://github.com/pelican-eggs/games-steamcmd/main/wreckfest/egg-wreckfest.yaml'
+exported_at: '2026-01-10T08:54:50+00:00'
+name: Wreckfest
+author: djjoker13@gmail.com
+uuid: 65629478-7422-4a8f-81b4-0864410bebe6
+description: |-
+  Wreckfest is a demolition derby themed racing game with soft-body damage modeling, sophisticated
+  driving dynamics and in-depth vehicle upgrading, featuring both demolition derbies and more
+  traditional track races. It’s all about fun, breakneck racing and over-the-top crashes.
+image: 'data:image/jpeg;base64,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'
+tags: {  }
+features: {  }
+docker_images:
+  'Wine Latest': 'ghcr.io/pelican-eggs/yolks:wine_latest'
+file_denylist: {  }
+startup_commands:
+  Default: 'rm -f server_console.log && touch server_console.log && xvfb-run --auto-servernum wine ./Wreckfest_x64.exe -s server_config={{CONFIG_PATH}} -server_set game_port={{SERVER_PORT}} -server_set query_port={{QUERY_PORT}} -server_set steam_port={{STEAM_PORT}} -s server_name="{{SERVER_NAME}}" -s password="{{SERVER_PASSWORD}}" -server_set log=server_console.log  & WR_PID=$!; tail -c0 -F  /home/container/server_console.log --pid=$WR_PID'
+config:
+  files: {  }
+  startup:
+    done: 'Server connected'
+  logs: {  }
+  stop: ^C
+scripts:
+  installation:
+    script: |-
+      #!/bin/bash
+      # steamcmd Base Installation Script
+      #
+      # Server Files: /mnt/server
+      # Image to install with is 'ghcr.io/parkervcp/installers:debian'
+
+      ##
+      #
+      # Variables
+      # STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.
+      # WINDOWS_INSTALL - if it's a windows server you want to install set to 1
+      # SRCDS_APPID - steam app id found here - https://developer.valvesoftware.com/wiki/Dedicated_Servers_List
+      # SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch
+      # SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.
+      # INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.
+      # AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.
+      #
+       ##
+
+      # Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.
+      #apt -y update
+      #apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates
+
+      ## just in case someone removed the defaults.
+      if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
+          echo -e "steam user is not set."
+          echo -e "Using anonymous user."
+          STEAM_USER=anonymous
+          STEAM_PASS=""
+          STEAM_AUTH=""
+      else
+          echo -e "user set to ${STEAM_USER}"
+      fi
+
+      ## download and install steamcmd
+      cd /tmp
+      mkdir -p /mnt/server/steamcmd
+      curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+      tar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd
+      mkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing
+      cd /mnt/server/steamcmd
+
+      # SteamCMD fails otherwise for some reason, even running as root.
+      # This is changed at the end of the install process anyways.
+      chown -R root:root /mnt
+      export HOME=/mnt/server
+
+      ## install game using steamcmd
+      ./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ "${WINDOWS_INSTALL}" == "1" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s "-beta ${SRCDS_BETAID}" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s "-betapassword ${SRCDS_BETAPASS}" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6
+
+      ## set up 32 bit libraries
+      mkdir -p /mnt/server/.steam/sdk32
+      cp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so
+
+      ## set up 64 bit libraries
+      mkdir -p /mnt/server/.steam/sdk64
+      cp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so
+
+      ## add below your custom commands if needed
+      cd /mnt/server
+      CONFIG_URL="https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/main/wreckfest/server_config.cfg"
+      if [ ! -z "$CONFIG_URL" ]; then
+          if [ ! -f "server_config.cfg" ]; then
+              echo "Downloading config from GitHub..."
+              curl -sSL -o server_config.cfg "$CONFIG_URL"
+          else
+              echo "Config file already exists, skipping download."
+          fi
+      fi
+
+      ## install end
+      echo "-----------------------------------------"
+      echo "Installation completed..."
+      echo "-----------------------------------------"
+    container: 'ghcr.io/pelican-eggs/installers:debian'
+    entrypoint: bash
+variables:
+  -
+    name: 'App ID'
+    description: 'Steam App ID.'
+    env_variable: SRCDS_APPID
+    default_value: 361580
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - 'in:361580'
+    sort: 6
+  -
+    name: 'Auto Update'
+    description: 'Automatically update on start.'
+    env_variable: AUTO_UPDATE
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - boolean
+    sort: 8
+  -
+    name: 'Config Path'
+    description: 'Config file name.'
+    env_variable: CONFIG_PATH
+    default_value: server_config.cfg
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+    sort: 5
+  -
+    name: 'Query Port'
+    description: 'Port for server queries.'
+    env_variable: QUERY_PORT
+    default_value: 27016
+    user_viewable: true
+    user_editable: false
+    rules:
+      - required
+      - integer
+      - 'between:1024,65535'
+    sort: 2
+  -
+    name: 'Server Name'
+    description: 'Server Name.'
+    env_variable: SERVER_NAME
+    default_value: 'Wreckfest Server'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:63'
+    sort: 3
+  -
+    name: 'Server Password'
+    description: 'Join Password.'
+    env_variable: SERVER_PASSWORD
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+      - 'max:31'
+    sort: 4
+  -
+    name: 'Steam Port'
+    description: 'Port for Steam connection.'
+    env_variable: STEAM_PORT
+    default_value: 27015
+    user_viewable: true
+    user_editable: false
+    rules:
+      - required
+      - integer
+      - 'between:1024,65535'
+    sort: 1
+  -
+    name: 'Windows Install'
+    description: 'Set to 1 for Windows.'
+    env_variable: WINDOWS_INSTALL
+    default_value: 1
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - boolean
+    sort: 7

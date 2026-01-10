@@ -1,18 +1,16 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
-        "version": "PLCN_v1",
+        "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2026-01-08T23:04:10+00:00",
+    "exported_at": "2026-01-10T08:54:47+00:00",
     "name": "Wreckfest",
     "author": "djjoker13@gmail.com",
-    "uuid": "65629478-7422-4a8f-81b4-0864410bebe6",
-    "description": "Wreckfest is a demolition derby themed racing game with soft-body damage modeling, sophisticated driving dynamics and in-depth vehicle upgrading, featuring both demolition derbies and more traditional track races. It\u2019s all about fun, breakneck racing and over-the-top crashes.",
-    "tags": [],
-    "features": [],
+    "description": "Wreckfest is a demolition derby themed racing game with soft-body damage modeling, sophisticated driving dynamics and in-depth vehicle upgrading, featuring both demolition derbies and more traditional track races. It’s all about fun, breakneck racing and over-the-top crashes.",
+    "features": null,
     "docker_images": {
-        "ghcr.io\/pelican-eggs\/yolks:wine_latest": "ghcr.io\/pelican-eggs\/yolks:wine_latest"
+        "Wine Latest": "ghcr.io\/pelican-eggs\/yolks:wine_latest"
     },
     "file_denylist": [],
     "startup": "rm -f server_console.log && touch server_console.log && xvfb-run --auto-servernum wine .\/Wreckfest_x64.exe -s server_config={{CONFIG_PATH}} -server_set game_port={{SERVER_PORT}} -server_set query_port={{QUERY_PORT}} -server_set steam_port={{STEAM_PORT}} -s server_name=\"{{SERVER_NAME}}\" -s password=\"{{SERVER_PASSWORD}}\" -server_set log=server_console.log  & WR_PID=$!; tail -c0 -F  \/home\/container\/server_console.log --pid=$WR_PID",
@@ -37,25 +35,18 @@
             "default_value": "361580",
             "user_viewable": false,
             "user_editable": false,
-            "rules": [
-                "required",
-                "string",
-                "in:361580"
-            ],
-            "sort": 6
+            "rules": "required|string|in:361580",
+            "field_type": "text"
         },
         {
             "name": "Auto Update",
-            "description": "Update on start.",
+            "description": "Automatically update on start.",
             "env_variable": "AUTO_UPDATE",
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": [
-                "required",
-                "boolean"
-            ],
-            "sort": 8
+            "rules": "required|boolean",
+            "field_type": "text"
         },
         {
             "name": "Config Path",
@@ -64,24 +55,18 @@
             "default_value": "server_config.cfg",
             "user_viewable": true,
             "user_editable": true,
-            "rules": [
-                "required",
-                "string"
-            ],
-            "sort": 5
+            "rules": "required|string",
+            "field_type": "text"
         },
         {
             "name": "Query Port",
             "description": "Port for server queries.",
             "env_variable": "QUERY_PORT",
             "default_value": "27016",
-            "user_viewable": false,
+            "user_viewable": true,
             "user_editable": false,
-            "rules": [
-                "required",
-                "integer"
-            ],
-            "sort": 2
+            "rules": "required|integer|between:1024,65535",
+            "field_type": "text"
         },
         {
             "name": "Server Name",
@@ -90,12 +75,8 @@
             "default_value": "Wreckfest Server",
             "user_viewable": true,
             "user_editable": true,
-            "rules": [
-                "required",
-                "string",
-                "max:63"
-            ],
-            "sort": 3
+            "rules": "required|string|max:63",
+            "field_type": "text"
         },
         {
             "name": "Server Password",
@@ -104,25 +85,18 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": [
-                "nullable",
-                "string",
-                "max:31"
-            ],
-            "sort": 4
+            "rules": "nullable|string|max:31",
+            "field_type": "text"
         },
         {
             "name": "Steam Port",
             "description": "Port for Steam connection.",
             "env_variable": "STEAM_PORT",
             "default_value": "27015",
-            "user_viewable": false,
+            "user_viewable": true,
             "user_editable": false,
-            "rules": [
-                "required",
-                "integer"
-            ],
-            "sort": 1
+            "rules": "required|integer|between:1024,65535",
+            "field_type": "text"
         },
         {
             "name": "Windows Install",
@@ -131,11 +105,8 @@
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": [
-                "required",
-                "boolean"
-            ],
-            "sort": 7
+            "rules": "required|boolean",
+            "field_type": "text"
         }
     ]
 }

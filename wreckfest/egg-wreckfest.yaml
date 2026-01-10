@@ -52,10 +52,8 @@ scripts:
 
       ## just in case someone removed the defaults.
       if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
-          echo -e "steam user is not set.
-      "
-          echo -e "Using anonymous user.
-      "
+          echo -e "steam user is not set."
+          echo -e "Using anonymous user."
           STEAM_USER=anonymous
           STEAM_PASS=""
           STEAM_AUTH=""

@@ -137,5 +137,6 @@
 * [VEIN](vein)
 * [Voyagers of Nera](voyagers_of_nera)
 * [Wreckfest](wreckfest)
+* [Wreckfest 2](wreckfest_2)
 * [Wurm Unlimited](wurm_unlimited/)
 * [Zombie Survival Game Online](zombie_survival_game_online/)

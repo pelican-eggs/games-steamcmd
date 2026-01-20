@@ -1,7 +1,7 @@
 _comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
 meta:
   version: PLCN_v3
-  update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/team_fortress2/egg-team-fortress2.yaml'
+  update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/team_fortress_2/egg-team-fortress2.yaml'
 exported_at: '2025-10-31T12:31:09+00:00'
 name: 'Team Fortress 2'
 author: panel@example.com

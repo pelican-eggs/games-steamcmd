@@ -1,7 +1,8 @@
 # Star Rupture
 
-> [!DANGER]
-> Keep in mind that the game is still in EARLY ACESS : be it the server or client
+> [!IMPORTANT]
+> Keep in mind that the game is still in EARLY ACCESS : be it the server or client
+
 
 StarRupture is a first-person open world base-building game with advanced combat and tons of exploration. Play alone or in a group on this sublime and ever-changing planet, extract and manage resources, create your complex industrial system and fight off hordes of alien monsters. Developed by Creepy Jar.
 
@@ -14,8 +15,9 @@ StarRupture is a first-person open world base-building game with advanced combat
 
 ## Setting up your server after installation
 
-> [!DANGER]
+> [!IMPORTANT]
 > Keep in mind that the game is still in EARLY ACESS : be it the server or client
+
 
 > [!WARNING]
 > The game is still in early access and the dedicated server can be buggy
@@ -32,7 +34,10 @@ After that a new windows will appear where :
 - You can add a password to prevent unwelcomed connections to the game session
 - You can create a new game session
 - You can load a game session
-- You can load a game session
+
+Input the game session name you want and create the game : either you'll get a windows telling you the session is created but if you don't get it don't worry : check the server logs. You'll see the server creating the world.
+
+After it's creation you can quit the manager (esc) and join your server.
 
 > [!WARNING]
-> The game session is sensitive : no special charaters, no space
+> The game session name is sensitive : no special charaters, no space

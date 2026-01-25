@@ -15,7 +15,7 @@
         "ghcr.io\/parkervcp\/steamcmd:proton": "ghcr.io\/parkervcp\/steamcmd:proton"
     },
     "file_denylist": [],
-    "startup": "rm .\/StarRupture\/Saved\/Logs\/StarRupture.log; proton run .\/StarRupture\/Binaries\/Win64\/StarRuptureServerEOS-Win64-Shipping.exe -Log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -ServerName=\"{{SERVER_NAME}}\" -MULTIHOME=0.0.0.0 & SR_PID=$!; tail -c0 -F .\/StarRupture\/Saved\/Logs\/StarRupture.log --pid=$SR_PID",
+    "startup": "proton run .\/StarRupture\/Binaries\/Win64\/StarRuptureServerEOS-Win64-Shipping.exe -Log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -ServerName=\"{{SERVER_NAME}}\" -MULTIHOME=0.0.0.0 & SR_PID=$!; tail -c0 -F .\/StarRupture\/Saved\/Logs\/StarRupture.log --pid=$SR_PID",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Engine is initialized\"\r\n}",

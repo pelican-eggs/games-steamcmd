@@ -19,7 +19,7 @@
     },
     "file_denylist": [],
     "startup_commands": {
-        "Default": "rm .\/StarRupture\/Saved\/Logs\/StarRupture.log; proton run .\/StarRupture\/Binaries\/Win64\/StarRuptureServerEOS-Win64-Shipping.exe -Log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -ServerName=\"{{SERVER_NAME}}\" -MULTIHOME=0.0.0.0 & SR_PID=$!; tail -c0 -F .\/StarRupture\/Saved\/Logs\/StarRupture.log --pid=$SR_PID"
+        "Default": "proton run .\/StarRupture\/Binaries\/Win64\/StarRuptureServerEOS-Win64-Shipping.exe -Log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -ServerName=\"{{SERVER_NAME}}\" -MULTIHOME=0.0.0.0 & SR_PID=$!; tail -c0 -F .\/StarRupture\/Saved\/Logs\/StarRupture.log --pid=$SR_PID"
     },
     "config": {
         "files": "{}",

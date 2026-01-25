@@ -1,134 +1,52 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:05:09+00:00",
+    "exported_at": "2026-01-25T16:04:27+00:00",
     "name": "Stationeers",
     "author": "eggs@goover.dev",
     "uuid": "25563afc-89db-4e03-8dc2-cfd6571e6fb6",
     "description": "Stationeers Server",
+    "image": null,
+    "tags": [],
     "features": [
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io\/parkervcp\/steamcmd:ubuntu": "ghcr.io\/parkervcp\/steamcmd:ubuntu"
+        "ghcr.io/parkervcp/steamcmd:ubuntu": "ghcr.io/parkervcp/steamcmd:ubuntu"
     },
     "file_denylist": [],
-    "startup": "stty cols 80 rows 24; .\/rocketstation_DedicatedServer.x86_64  -loadlatest \"{{SAVE_NAME}}\" {{WORLD_NAME}} -settings ServerName \"{{SERVER_NAME}}\" StartLocalHost true ServerVisible true GamePort {{SERVER_PORT}} UpdatePort {{UPDATE_PORT}} AutoSave {{AUTOSAVE}} SaveInterval {{SAVE_INTERVAL}} ServerPassword {{SERVER_PASSWD}} ServerMaxPlayers {{MAX_PLAYERS}} UPNPEnabled {{UPNP}} ;2>&1",
+    "startup_commands": {
+        "Default": "stty cols 80 rows 24; ./rocketstation_DedicatedServer.x86_64 -file start \"{{STATION_NAME}}\" {{WORLD_ID}} {{DIFFICULTY}} {{START_CONDITION}} {{START_LOCATION}} -settings StartLocalHost true ServerVisible true GamePort {{SERVER_PORT}} UPNPEnabled {{UPNP}} ServerName \"{{STATION_NAME}}\" ServerPassword \"{{SERVER_PASSWD}}\" ServerMaxPlayers {{MAX_PLAYERS}} AutoSave {{AUTOSAVE}} SaveInterval {{SAVE_INTERVAL}} ServerAuthSecret \"{{SERVER_AUTH_SECRET}}\" UpdatePort {{UPDATE_PORT}} AutoPauseServer {{AUTO_PAUSE}} UseSteamP2P {{USE_STEAM_P2_P}} LocalIpAddress 0.0.0.0 ;2>&1"
+    },
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"World load complete\"\r\n}",
+        "startup": "{\n    \"done\": \"Host override address provided:\"\n}",
         "logs": "{}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\n##\r\n#\r\n# Variables\r\n# STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.\r\n# WINDOWS_INSTALL - if it's a windows server you want to install set to 1\r\n# SRCDS_APPID - steam app id found here - https:\/\/developer.valvesoftware.com\/wiki\/Dedicated_Servers_List\r\n# SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch\r\n# SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.\r\n# INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.\r\n# AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.\r\n#\r\n ##\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## install game using steamcmd\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
-            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "script": "#!/bin/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n# Image to install with is 'ghcr.io/parkervcp/installers:debian'\r\n\r\n##\r\n#\r\n# Variables\r\n# STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.\r\n# WINDOWS_INSTALL - if it's a windows server you want to install set to 1\r\n# SRCDS_APPID - steam app id found here - https://developer.valvesoftware.com/wiki/Dedicated_Servers_List\r\n# SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch\r\n# SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.\r\n# INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.\r\n# AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.\r\n#\r\n ##\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n## install game using steamcmd\r\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io/parkervcp/installers:debian",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
-            "name": "Server Name",
-            "description": "",
-            "env_variable": "SERVER_NAME",
-            "default_value": "Pterodactyl Hosted Server",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:100",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "World Name",
-            "description": "Available Maps: Moon, Mars, Europa, Europa2, Mimas, Vulcan, Vulcan2, Space, Loulan, Venus",
-            "env_variable": "WORLD_NAME",
-            "default_value": "moon",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string|in:,Moon,Mars,Europa,Europa2,Mimas,Vulcan,Vulcan2,Space,Loulan,Venus",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Max Players",
-            "description": "",
-            "env_variable": "MAX_PLAYERS",
-            "default_value": "10",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer|between:1,30",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Server Password",
-            "description": "",
-            "env_variable": "SERVER_PASSWD",
-            "default_value": "",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "string|nullable",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Save Name",
-            "description": "Name of the save of your world.\r\nAuto save & auto load worlds on server startup.",
-            "env_variable": "SAVE_NAME",
-            "default_value": "stationeers_1",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Auto Save",
-            "description": "Turn Autosave on and off",
-            "env_variable": "AUTOSAVE",
-            "default_value": "true",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Save Interval",
-            "description": "Sets the server\u2019s auto-save interval in seconds.",
-            "env_variable": "SAVE_INTERVAL",
-            "default_value": "300",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "UPNP",
-            "description": "",
-            "env_variable": "UPNP",
+            "name": "Auto Pause Server",
+            "description": "Weather the server should auto pause or not if no players are connected",
+            "env_variable": "AUTO_PAUSE",
             "default_value": "false",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:true,false",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Steam App ID",
-            "description": "Required for automatic updates.",
-            "env_variable": "SRCDS_APPID",
-            "default_value": "600760",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|integer",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "string",
+                "in:true,false"
+            ],
+            "sort": 9
         },
         {
             "name": "Auto Update",
@@ -137,20 +55,24 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "boolean",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "boolean"
+            ],
+            "sort": 1
         },
         {
-            "name": "Update Port",
-            "description": "",
-            "env_variable": "UPDATE_PORT",
-            "default_value": "27014",
+            "name": "AutoSave",
+            "description": "Turn Autosave on and off",
+            "env_variable": "AUTOSAVE",
+            "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:50",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
+            "sort": 5
         },
         {
             "name": "Beta Branch",
@@ -159,9 +81,185 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "nullable|string",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "nullable",
+                "string"
+            ],
+            "sort": 2
+        },
+        {
+            "name": "Difficulty",
+            "description": "Creative, Easy, Normal, Stationeer",
+            "env_variable": "DIFFICULTY",
+            "default_value": "Normal",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "string",
+                "in:Creative,Easy,Normal,Stationeer"
+            ],
+            "sort": 11
+        },
+        {
+            "name": "Map",
+            "description": "Available Maps: Lunar, Mars2, Europa3, MimasHerschel, Vulcan, Venus",
+            "env_variable": "WORLD_ID",
+            "default_value": "Mars2",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string",
+                "in:Lunar,Mars2,Europa3,MimasHerschel,Vulcan,Venus"
+            ],
+            "sort": 10
+        },
+        {
+            "name": "Max Players",
+            "description": "",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "10",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "integer",
+                "between:1,30"
+            ],
+            "sort": 3
+        },
+        {
+            "name": "Save Interval",
+            "description": "Time in seconds between each autosave. Shouldn't be below 60 sec.",
+            "env_variable": "SAVE_INTERVAL",
+            "default_value": "300",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "integer",
+                "between:60,604800"
+            ],
+            "sort": 6
+        },
+        {
+            "name": "Server Auth Secret",
+            "description": "",
+            "env_variable": "SERVER_AUTH_SECRET",
+            "default_value": "changechange",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "string",
+                "max:128"
+            ],
+            "sort": 8
+        },
+        {
+            "name": "Server Password",
+            "description": "",
+            "env_variable": "SERVER_PASSWD",
+            "default_value": "change",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "string",
+                "nullable"
+            ],
+            "sort": 7
+        },
+        {
+            "name": "Start Condition",
+            "description": "DefaultStart, DefaultStartCommunity, Brutal, BrutalCommunity",
+            "env_variable": "START_CONDITION",
+            "default_value": "DefaultStart",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "string",
+                "in: DefaultStart,DefaultStartCommunity,Brutal,BrutalCommunity"
+            ],
+            "sort": 12
+        },
+        {
+            "name": "Start Location",
+            "description": "Highly depend on Map! Search trough https://stationeers-wiki.com/Dedicated_Server_Guide World types to get exact Location IDs",
+            "env_variable": "START_LOCATION",
+            "default_value": "MarsSpawnButchersFlat",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "string",
+                "max:100"
+            ],
+            "sort": 13
+        },
+        {
+            "name": "Station Name",
+            "description": "Name of the save of your world.\r\nAuto save & auto load worlds on server startup.",
+            "env_variable": "STATION_NAME",
+            "default_value": "Pelican Hosted Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:100"
+            ],
+            "sort": 4
+        },
+        {
+            "name": "Steam App ID",
+            "description": "Required for automatic updates.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "600760",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "integer"
+            ],
+            "sort": 16
+        },
+        {
+            "name": "UPNP",
+            "description": " Enable or disable UniversalPlugAndPlay (Auto port forwarding, your router must support)",
+            "env_variable": "UPNP",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
+            "sort": 14
+        },
+        {
+            "name": "Update Port",
+            "description": "Steam update port. Unclear if this is actually used by the game at the moment.",
+            "env_variable": "UPDATE_PORT",
+            "default_value": "27015",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:5"
+            ],
+            "sort": 15
+        },
+        {
+            "name": "UseSteamP2P",
+            "description": "Weather the server should allow SteamP2P connections. Keep this disabled. ",
+            "env_variable": "USE_STEAM_P2_P",
+            "default_value": "false",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "string",
+                "in:true,false"
+            ],
+            "sort": 17
         }
     ]
 }

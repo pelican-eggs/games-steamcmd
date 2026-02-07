@@ -4,10 +4,10 @@
         "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2026-01-24T21:07:14+01:00",
+    "exported_at": "2026-02-07T22:43:26+01:00",
     "name": "StarRupture",
     "author": "volyzos@gmail.com",
-    "uuid": "b6d7c9fa-5726-4048-9edf-107d171ffc6e",
+    "uuid": "6ada221a-76a4-471f-a2f7-0b890c37df70",
     "description": "StarRupture is a first-person open world base-building game with advanced combat and tons of exploration. Play alone or in a group on this sublime and ever-changing planet, extract and manage resources, create your complex industrial system and fight off hordes of alien monsters. Developed by Creepy Jar.",
     "image": null,
     "tags": [],
@@ -19,17 +19,17 @@
     },
     "file_denylist": [],
     "startup_commands": {
-        "Default": "proton run .\/StarRupture\/Binaries\/Win64\/StarRuptureServerEOS-Win64-Shipping.exe -Log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -ServerName=\"{{SERVER_NAME}}\" -MULTIHOME=0.0.0.0 & SR_PID=$!; tail -c0 -F .\/StarRupture\/Saved\/Logs\/StarRupture.log --pid=$SR_PID"
+        "Default": "proton run .\/StarRupture\/Binaries\/Win64\/StarRuptureServerEOS-Win64-Shipping.exe -Log -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -RCWebControlDisable -RCWebInterfaceDisable & SR_PID=$!; tail -c0 -F .\/StarRupture\/Saved\/Logs\/StarRupture.log --pid=$SR_PID"
     },
     "config": {
-        "files": "{}",
-        "startup": "{\r\n    \"done\": \"Engine is initialized\"\r\n}",
+        "files": "{\r\n    \"DSSettings.txt\": {\r\n        \"parser\": \"json\",\r\n        \"find\": {\r\n            \"SessionName\": \"{{server.environment.DSS_SERVER_NAME}}\",\r\n            \"SaveGameInterval\": \"{{server.environment.DSS_SAVE_INTERVAL}}\",\r\n            \"StartNewGame\": \"{{server.environment.DSS_CREATE_NEW_GAME}}\",\r\n            \"LoadSavedGame\": \"{{server.environment.DSS_LOAD_SAVED_GAME}}\",\r\n            \"SaveGameName\": \"{{server.environment.DSS_SAVE_FILE_NAME}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"LogCommonSession: OnUpdateSessionComplete(SessionName: GameSession, bWasSuccessful: true\"\r\n}",
         "logs": "{}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# StarRupture Dedicated Server Installation Script\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\necho \"-----------------------------------------\"\r\necho \"StarRupture Dedicated Server Installer\"\r\necho \"Proton Version\"\r\necho \"-----------------------------------------\"\r\n\r\n## Set Steam user for anonymous login\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"Steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"User set to ${STEAM_USER}\"\r\nfi\r\n\r\n## Download and install SteamCMD\r\necho \"-----------------------------------------\"\r\necho \"Installing SteamCMD...\"\r\necho \"-----------------------------------------\"\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## Install game server using SteamCMD\r\necho \"-----------------------------------------\"\r\necho \"Installing StarRupture Dedicated Server...\"\r\necho \"-----------------------------------------\"\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) validate +quit\r\n\r\n## Set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## Set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## Installation complete\r\necho \"-----------------------------------------\"\r\necho \"Installation completed!\"\r\necho \"-----------------------------------------\"",
+            "script": "#!\/bin\/bash\r\n# StarRupture Dedicated Server Installation Script\r\n# Server Files: \/mnt\/server\r\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\r\n\r\necho \"-----------------------------------------\"\r\necho \"StarRupture Dedicated Server Installer\"\r\necho \"Proton Version\"\r\necho \"-----------------------------------------\"\r\n\r\n## Set Steam user for anonymous login\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"Steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"User set to ${STEAM_USER}\"\r\nfi\r\n\r\n## Download and install SteamCMD\r\necho \"-----------------------------------------\"\r\necho \"Installing SteamCMD...\"\r\necho \"-----------------------------------------\"\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\nmkdir -p \/mnt\/server\/steamapps\r\ncd \/mnt\/server\/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n## Install game server using SteamCMD\r\necho \"-----------------------------------------\"\r\necho \"Installing StarRupture Dedicated Server...\"\r\necho \"-----------------------------------------\"\r\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) validate +quit\r\n\r\n## Set up 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## Set up 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## create DSSettings.txt\r\nif [ ! -f \/mnt\/server\/DSSettings.txt ]; then\r\n    echo \"Creating default DSSettings.txt\"\r\n    cat << EOF > \/mnt\/server\/DSSettings.txt\r\n    {\r\n        \"SessionName\": \"StarRuptureServer\",\r\n        \"SaveGameInterval\": \"300\",\r\n        \"StartNewGame\": \"false\",\r\n        \"LoadSavedGame\": \"true\",\r\n        \"SaveGameName\": \"AutoSave0.sav\"\r\n    }\r\nEOF\r\nfi\r\n\r\n## Installation complete\r\necho \"-----------------------------------------\"\r\necho \"Installation completed!\"\r\necho \"-----------------------------------------\"",
             "container": "ghcr.io\/parkervcp\/installers:debian",
             "entrypoint": "bash"
         }
@@ -91,7 +91,7 @@
         {
             "name": "Server Name",
             "description": "The display name of your server.",
-            "env_variable": "SERVER_NAME",
+            "env_variable": "DSS_SERVER_NAME",
             "default_value": "A Pterodactyl Hosted StarRupture Server",
             "user_viewable": true,
             "user_editable": true,
@@ -103,16 +103,16 @@
             "sort": 5
         },
         {
-            "name": "Max Players",
-            "description": "Maximum number of players allowed on the server. StarRupture supports up to 4 players in co-op.",
-            "env_variable": "MAX_PLAYERS",
-            "default_value": "4",
+            "name": "Load saved game",
+            "description": "DSSettings option to load an existing save. (Must be the opposite of Create new game)",
+            "env_variable": "DSS_LOAD_SAVED_GAME",
+            "default_value": "false",
             "user_viewable": true,
             "user_editable": true,
             "rules": [
                 "required",
-                "numeric",
-                "between:1,4"
+                "string",
+                "in:true,false"
             ],
             "sort": 6
         },
@@ -128,6 +128,46 @@
                 "string"
             ],
             "sort": 7
+        },
+        {
+            "name": "Create new game",
+            "description": "DSSettings option to force the creation of a new game. (Must be the opposite of Create new game)\r\nOnce a game and a save is created, you have to disable create game and load game instead to avoid problems",
+            "env_variable": "DSS_CREATE_NEW_GAME",
+            "default_value": "true",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "in:true,false"
+            ],
+            "sort": 8
+        },
+        {
+            "name": "Game Save interval",
+            "description": "Time between automatic saves in seconds",
+            "env_variable": "DSS_SAVE_INTERVAL",
+            "default_value": "300",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "numeric"
+            ],
+            "sort": 9
+        },
+        {
+            "name": "Save filename",
+            "description": "The save file filename on the disk. Useful if you create\/import multiple saves and want to load a specific one.\r\n(Must end with .sav)",
+            "env_variable": "DSS_SAVE_FILE_NAME",
+            "default_value": "AutoSave0.sav",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 10
         }
     ]
 }

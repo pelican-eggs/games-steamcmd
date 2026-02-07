@@ -1,43 +1,50 @@
 # Star Rupture
 
 > [!IMPORTANT]
-> Keep in mind that the game is still in EARLY ACCESS : be it the server or client
-
+> Keep in mind that the game is still in EARLY ACCESS
 
 StarRupture is a first-person open world base-building game with advanced combat and tons of exploration. Play alone or in a group on this sublime and ever-changing planet, extract and manage resources, create your complex industrial system and fight off hordes of alien monsters. Developed by Creepy Jar.
 
 ## Required Ports
 
-|Port|default|
-|----|-------|
-|7777|Game|
-|27015|ServerQuery|
+|Port|default|          |
+|----|-------|----------|
+|7777|Game| madatory |
+|27015|ServerQuery| optional |
 
-## Setting up your server after installation
+## Installing the server
+
+When using the egg to create the server and if this is the first time you install the game, ensure that the "create new game" variable is set to **true** and the "load saved game" variable to **false**.
+
+Launch the server creation and wait for the installation to finish.
+
+When the installation is done stop the server.
+
+Set the "load saved game" variable to **true** while setting the "create new game" variable to **false**
 
 > [!IMPORTANT]
-> Keep in mind that the game is still in EARLY ACESS : be it the server or client
+> If you want to password protect the game session follow the instructions below
 
+1. Go to https://starrupture-utilities.com/passwords/
+2. Enter a strong password into the Player Join Password field
+3. Click "Encrypt"
+4. Copy the json content (use the "Copy PlayerPassword.json" button)
+5. Use the Files explorer of the pterodactyl/pelican server and create a file named "PlayerPassword.json" in the server root
+6. Paste the json content into the file
 
-> [!WARNING]
-> The game is still in early access and the dedicated server can be buggy
-> There are times where it appears that the game is not loaded in the management window but it is
-> In case the game tells you that the server got multiple IP (especially after doing some management), just shut down the server a couple of minutes so that Steam Master server remove it from the list
-> All the necessary debugging informations are available in this discussion : [https://steamcommunity.com/app/1631270/discussions/0/684116375920420939](https://steamcommunity.com/app/1631270/discussions/0/684116375920420939)
+> [!IMPORTANT]
+> If you want to password protect the server management (disabled for now) follow the instructions below
 
-After installing the game, the server cannot be joined immediatly and you have to create your game session (like Satisfactory or Icarus).
+1. Go to https://starrupture-utilities.com/passwords/
+2. Enter a strong password into the Admin Password field
+3. Click "Encrypt"
+4. Copy the json content (use the "Copy Password.json" button)
+5. Use the Files explorer of the pterodactyl/pelican server and create a file named "Password.json" in the server root
+6. Paste the json content into the file
 
-To do so you : a client who owns the game must launch it then go to "Manager server".
-The game will ask for a password to protect the server management that will create a password.json on the server
+**Launch the game an enjoy !**
 
-After that a new windows will appear where :
-- You can add a password to prevent unwelcomed connections to the game session
-- You can create a new game session
-- You can load a game session
-
-Input the game session name you want and create the game : either you'll get a windows telling you the session is created but if you don't get it don't worry : check the server logs. You'll see the server creating the world.
-
-After it's creation you can quit the manager (esc) and join your server.
-
-> [!WARNING]
-> The game session name is sensitive : no special charaters, no space
+> [!IMPORTANT]
+> Keep in mind that the game is still in EARLY ACCESS
+> All the necessary debugging informations are available in this discussion: [https://steamcommunity.com/app/1631270/discussions/0/684116375920420939](https://steamcommunity.com/app/1631270/discussions/0/684116375920420939)
+> You can also read the dedicated page in this unofficial wiki: https://wiki.starrupture-utilities.com/en/dedicated-server

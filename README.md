@@ -108,6 +108,7 @@
   * [Torch](space_engineers/torch)
 * [Squad](squad)
 * [Starbound](starbound)
+* [StarRupture](star_rupture)
 * [Stationeers](stationeers)
   * [Vanilla](stationeers/stationeers_vanilla)
   * [BepInEx](stationeers/stationeers_bepinex)

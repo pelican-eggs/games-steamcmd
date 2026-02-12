@@ -1,0 +1,173 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: 'https://github.com/pelican-eggs/games-steamcmd/main/wreckfest_2/egg-wreckfest2.yaml'
+exported_at: '2026-01-12T02:47:19+00:00'
+name: 'Wreckfest 2'
+author: djjoker13@gmail.com
+uuid: 327fd1a8-05cb-4d12-a45d-70e7df4ebbce
+description: |-
+  Ready for mayhem? Wreckfest is back, offering the best in full-contact racing with unrivaled
+  destruction! Witness head-to-head battles as you tear apart rival vehicles bit by bit. Powered by
+  the enhanced physics engine, developed by the creators of Wreckfest & FlatOut!
+image: null
+tags: {  }
+features: {  }
+docker_images:
+  'Wine Latest': 'ghcr.io/pelican-eggs/yolks:wine_latest'
+file_denylist: {  }
+startup_commands:
+  Default: 'rm -f server.log && touch server.log && xvfb-run --auto-servernum wine ./Wreckfest2.exe --server --save-dir=./defaults & WR_PID=$!; tail -c0 -F  /home/container/server.log --pid=$WR_PID'
+config:
+  files:
+    defaults/server_config.scnf:
+      parser: json
+      find:
+        'net server config.0.name': '{{server.build.env.SERVER_NAME}}'
+        'net server config.0.password': '{{server.build.env.SERVER_PASSWORD}}'
+        'net server config.0.game port': '{{server.build.default.port}}'
+  startup:
+    done: 'Server Started'
+  logs: {  }
+  stop: ^C
+scripts:
+  installation:
+    script: |-
+      #!/bin/bash
+      # steamcmd Base Installation Script
+      #
+      # Server Files: /mnt/server
+      # Image to install with is 'ghcr.io/parkervcp/installers:debian'
+
+      ##
+      #
+      # Variables
+      # STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.
+      # WINDOWS_INSTALL - if it's a windows server you want to install set to 1
+      # SRCDS_APPID - steam app id found here - https://developer.valvesoftware.com/wiki/Dedicated_Servers_List
+      # SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch
+      # SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.
+      # INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.
+      # AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.
+      #
+       ##
+
+      # Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.
+      #apt -y update
+      #apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates
+
+      ## just in case someone removed the defaults.
+      if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
+          echo -e "steam user is not set.
+      "
+          echo -e "Using anonymous user.
+      "
+          STEAM_USER=anonymous
+          STEAM_PASS=""
+          STEAM_AUTH=""
+      else
+          echo -e "user set to ${STEAM_USER}"
+      fi
+
+      ## download and install steamcmd
+      cd /tmp
+      mkdir -p /mnt/server/steamcmd
+      curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+      tar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd
+      mkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing
+      cd /mnt/server/steamcmd
+
+      # SteamCMD fails otherwise for some reason, even running as root.
+      # This is changed at the end of the install process anyways.
+      chown -R root:root /mnt
+      export HOME=/mnt/server
+
+      ## install game using steamcmd
+      ./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ "${WINDOWS_INSTALL}" == "1" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s "-beta ${SRCDS_BETAID}" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s "-betapassword ${SRCDS_BETAPASS}" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6
+
+      ## set up 32 bit libraries
+      mkdir -p /mnt/server/.steam/sdk32
+      cp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so
+
+      ## set up 64 bit libraries
+      mkdir -p /mnt/server/.steam/sdk64
+      cp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so
+
+      ## add below your custom commands if needed
+      mkdir -p /mnt/server/defaults
+      cd /mnt/server/defaults
+      CONFIG_URL="https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/main/wreckfest_2/server_config.scnf"
+      if [ ! -z "$CONFIG_URL" ]; then
+          if [ ! -f "/defaults/server_config.scnf" ]; then
+              echo "Downloading config from GitHub..."
+              curl -sSL -o server_config.scnf "$CONFIG_URL"
+          else
+              echo "Config file already exists, skipping download."
+          fi
+      fi
+
+      ## install end
+      echo "-----------------------------------------"
+      echo "Installation completed..."
+      echo "-----------------------------------------"
+    container: 'ghcr.io/pelican-eggs/installers:debian'
+    entrypoint: bash
+variables:
+  -
+    name: 'APP ID'
+    description: 'Steam App ID.'
+    env_variable: SRCDS_APPID
+    default_value: 3519390
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'in:3519390'
+    sort: 1
+  -
+    name: 'Auto Update'
+    description: 'Automatically update on start.'
+    env_variable: AUTO_UPDATE
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - boolean
+    sort: 2
+  -
+    name: 'Server Name'
+    description: 'Server Name.'
+    env_variable: SERVER_NAME
+    default_value: 'Wreckfest 2 Server'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:63'
+    sort: 4
+  -
+    name: 'Server Password'
+    description: 'Server Password.'
+    env_variable: SERVER_PASSWORD
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+      - 'max:31'
+    sort: 5
+  -
+    name: 'Windows Install'
+    description: 'Set to 1 for Windows.'
+    env_variable: WINDOWS_INSTALL
+    default_value: 1
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - boolean
+    sort: 3

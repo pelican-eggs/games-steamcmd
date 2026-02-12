@@ -1,0 +1,32 @@
+{
+    "bbmeta": "scnf v0 n1",
+    "net server config": [
+        {
+            "bbmeta": "ncnf v2 n1",
+            "name": "Wreckfest 2 Server",
+            "description": "Welcome to my server ",
+            "password": "",
+            "log file name": "../server.log",
+            "game port": 27015
+        }
+    ],
+    "game server config": [
+        {
+            "bbmeta": "gcnf v3 n1",
+            "cup settings": [
+                {
+                    "bbmeta": "mros v1 n1",
+                    "point distribution": "30;27;25;20;19;18;17;16;15;14;13;12;11;10;9;8;7;6;5;4;3;2;1;0",
+                    "start order": "random",
+                    "points for best lap time": 0,
+                    "points for highest score": 0,
+                    "last race multiplier": 1,
+                    "number of races": 5
+                }
+            ],
+            "event loop name": "default_loop",
+            "countdown time": 100000,
+            "flags": "leader enabled"
+        }
+    ]
+}

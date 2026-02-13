@@ -1,32 +1,36 @@
 {
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
     "meta": {
-        "version": "PTDL_v2",
+        "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:05:11+00:00",
-    "name": "Subnautica",
+    "exported_at": "2026-01-25T04:11:33+00:00",
+    "name": "Subnautica-Nitrox",
     "author": "tueye@tuworld.de",
     "uuid": "1edc68bc-7654-4012-a994-591bc01b705b",
     "description": "Subnautica is an open world survival action-adventure video game developed and published by Unknown Worlds Entertainment. In it, players are free to explore the ocean on an alien planet, known as planet 4546B, after their spaceship, the Aurora, crashes on the planet's surface.\r\n\r\nNote: NitroxMod version >=1.7.0.0 is required",
+    "image": null,
+    "tags": [],
     "features": [
         "steam_disk_space"
     ],
     "docker_images": {
-        "ghcr.io\/parkervcp\/yolks:mono_latest": "ghcr.io\/parkervcp\/yolks:mono_latest"
+        "ghcr.io/parkervcp/yolks:dotnet_9": "ghcr.io/parkervcp/yolks:dotnet_9"
     },
     "file_denylist": [],
-    "startup": "mono .\/nitrox\/NitroxServer-Subnautica.exe",
+    "startup_commands": {
+        "Default": "cp -f ./server.cfg ./Nitrox/saves/${SAVE_NAME}/server.cfg && dotnet ./nitrox/Nitrox.Server.Subnautica.dll --save ${SAVE_NAME}"
+    },
     "config": {
-        "files": "{\r\n    \"server.cfg\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"ServerPort\": \"{{server.build.default.port}}\",\r\n            \"SaveInterval\": \"{{server.build.env.SAVE_INTERVAL}}\",\r\n            \"DisableAutoSave\": \"{{server.build.env.SAVE_DISABLE}}\",\r\n            \"SaveName\": \"{{server.build.env.SAVE_NAME}}\",\r\n            \"ServerPassword\": \"{{server.build.env.SUBNAUTICA_PASSWORD}}\",\r\n            \"AdminPassword\": \"{{server.build.env.SUBNAUTICA_ADMIN_PASSWORD}}\",\r\n            \"GameMode\": \"{{server.build.env.SERVER_MODE}}\",\r\n            \"AutoPortForward\": \"{{server.build.env.PORTFORWARD_ENABLE}}\",\r\n            \"SerializerMode\": \"{{server.build.env.SERIALIZER_MODE}}\"\r\n        }\r\n    }\r\n}",
-        "startup": "{\r\n    \"done\": \"Server started\"\r\n}",
+        "files": "{\n    \"server.cfg\": {\n        \"parser\": \"properties\",\n        \"find\": {\n            \"ServerPort\": \"{{server.allocations.default.port}}\",\n            \"SaveInterval\": \"{{server.environment.SAVE_INTERVAL}}\",\n            \"DisableAutoSave\": \"{{server.environment.SAVE_DISABLE}}\",\n            \"ServerPassword\": \"{{server.environment.SUBNAUTICA_PASSWORD}}\",\n            \"AdminPassword\": \"{{server.environment.SUBNAUTICA_ADMIN_PASSWORD}}\",\n            \"GameMode\": \"{{server.environment.SERVER_MODE}}\",\n            \"AutoPortForward\": \"{{server.environment.PORTFORWARD_ENABLE}}\",\n            \"SerializerMode\": \"{{server.environment.SERIALIZER_MODE}}\",\n            \"CreateFullEntityCache\":\"{{server.environment.CACHE_ENTITIES}}\",\n            \"KeepInventoryOnDeath\":\"{{server.environment.KEEP_INVENTORY}}\"\n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"Server started\"\n}",
         "logs": "{}",
-        "stop": "stop"
+        "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# Installation Script\r\n#\r\n# Install dependencies\r\ndpkg --add-architecture i386\r\napt update\r\napt -y --no-install-recommends install curl jq unzip libstdc++6 ca-certificates libsdl2-2.0-0:i386\r\n\r\n## Get latest Nitrox-Mod build\r\n#latest_NitroxMod=$(curl --silent \"https:\/\/api.github.com\/repos\/SubnauticaNitrox\/Nitrox\/releases\/latest\" | grep '\"tag_name\":' | sed -E 's\/.*\"([^\"]+)\".*\/\\1\/')\r\n\r\n#if [ -z \"${NITROX_VERSION}\" ] || [ \"${NITROX_VERSION}\" == \"latest\" ]; then\r\n#  DL_VERSION=$latest_NitroxMod\r\n#else\r\n#  DL_VERSION=${NITROX_VERSION}\r\n#fi\r\n\r\n## get release info and download links\r\nGITHUB_PACKAGE=\"SubnauticaNitrox\/Nitrox\"\r\nVERSION=${NITROX_VERSION}\r\nMATCH=\"Nitrox\"\r\n\r\nLATEST_JSON=$(curl --silent \"https:\/\/api.github.com\/repos\/${GITHUB_PACKAGE}\/releases\/latest\")\r\nRELEASES=$(curl --silent \"https:\/\/api.github.com\/repos\/${GITHUB_PACKAGE}\/releases\")\r\n\r\nif [ -z \"${VERSION}\" ] || [ \"${VERSION}\" == \"latest\" ]; then\r\n    DOWNLOAD_URL=$(echo ${LATEST_JSON} | jq .assets | jq -r .[].browser_download_url | grep -i ${MATCH})\r\nelse\r\n    VERSION_CHECK=$(echo ${RELEASES} | jq -r --arg VERSION \"${VERSION}\" '.[] | select(.tag_name==$VERSION) | .tag_name')\r\n    if [ \"${VERSION}\" == \"${VERSION_CHECK}\" ]; then\r\n        DOWNLOAD_URL=$(echo ${RELEASES} | jq -r --arg VERSION \"${VERSION}\" '.[] | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i ${MATCH})\r\n    else\r\n        echo -e \"defaulting to latest release\"\r\n        DOWNLOAD_URL=$(echo ${LATEST_JSON} | jq .assets | jq -r .[].browser_download_url)\r\n    fi\r\nfi\r\n\r\n\r\n## download and install steamcmd\r\ncd \/tmp\r\nmkdir -p \/mnt\/server\/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\r\ncd \/mnt\/server\/steamcmd\r\n\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server\r\n\r\n\r\n## Install game using steamcmd\r\nGUARDCODE=\"${STEAM_GUARDCODE}\"\r\nif [ -z $GUARDCODE ]\r\nthen\r\n    echo \"\"\r\n    echo \"### You did not specify a Steam Guardcode\"\r\n    echo \"### A new one should be send to you shortly\"\r\n    echo \"### Enter it in the startup-config after this installation is finished and reinstall the Server\"\r\n    sleep 10\r\n    timeout 60 .\/steamcmd.sh +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +quit\r\n    exit 1\r\nfi\r\n\r\n[ ! -d \"$HOME\/subnautica\" ] && mkdir $HOME\/subnautica\r\n.\/steamcmd.sh +set_steam_guard_code ${STEAM_GUARDCODE} +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +@sSteamCmdForcePlatformType windows +force_install_dir $HOME\/subnautica +app_update ${APPID} ${EXTRA_FLAGS} validate +quit\r\nstatus=$?\r\n\r\nif [ $status -ne 0 ]\r\nthen\r\n    echo \"\"\r\n    echo \"### The Download was not successful\"\r\n    echo \"### Probably the entered Guardcode was wrong\"\r\n    echo \"### A new one should be send to you shortly\"\r\n    echo \"### Enter it in the startup-config after this installation is finished and reinstall the Server\"\r\n    sleep 10\r\n    sleep 10\r\n    timeout 30 .\/steamcmd.sh +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +quit\r\n    exit 1\r\nfi\r\n\r\n\r\n## set up 32 bit libraries\r\nmkdir -p $HOME\/.steam\/sdk32\r\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p $HOME\/.steam\/sdk64\r\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\r\n\r\n## Download and extract Nitrox\r\n[ -d \"$HOME\/nitrox\" ] && rm -r $HOME\/nitrox\r\nmkdir $HOME\/nitrox\r\ncd $HOME\/nitrox\r\ncurl -sL $DOWNLOAD_URL -o Nitrox.zip\r\nunzip $HOME\/nitrox\/Nitrox.zip\r\n\r\n\r\n## Create path files to Subnautica Install-Dir. Needed for versions pre 1.6.0\r\necho \"\/home\/container\/subnautica\" > $HOME\/path.txt\r\n\r\n## Create mono registry entry for Subnautica Install-Dir. Needed for versions since 1.6.0\r\nmkdir -p $HOME\/.mono\/registry\/CurrentUser\r\n    cat <<EOT > $HOME\/.mono\/registry\/CurrentUser\/values.xml\r\n    <values>\r\n    <value name=\"SOFTWARE\\Nitrox\\PreferredGamePath\"\r\n    type=\"string\">\/home\/container\/subnautica<\/value>\r\n    <\/values>\r\nEOT\r\n\r\n\r\n## Create config\r\nif [ -e $HOME\/server.cfg ]; then\r\n    echo \"server settings exists\"\r\nelse\r\n    echo \"writing server default settings\"\r\n    cat <<EOT > $HOME\/server.cfg\r\n    # Server settings can be changed here\r\n    # Set to true to Cache entities for the whole map on next run. \r\n    # WARNING! Will make server load take longer on the cache run but players will gain a performance boost when entering new areas.\r\n    CreateFullEntityCache=False\r\n    # Leave blank for a random spawn position\r\n    Seed=\r\n    ServerPort=11000\r\n    # Measured in milliseconds\r\n    SaveInterval=120000\r\n    # Command to run following a successful world save (e.g. .exe, .bat, or PowerShell script). \r\n    PostSaveCommandPath=\r\n    MaxConnections=100\r\n    InitialSyncTimeout=300000\r\n    DisableConsole=False\r\n    DisableAutoSave=False\r\n    SaveName=world\r\n    ServerPassword=\r\n    AdminPassword=PleaseChangeMe\r\n    # Possible values: SURVIVAL, FREEDOM, HARDCORE, CREATIVE\r\n    GameMode=SURVIVAL\r\n    # Possible values: PROTOBUF, JSON\r\n    SerializerMode=JSON\r\n    # Possible values: NONE, PLAYER, MODERATOR, ADMIN, CONSOLE\r\n    DefaultPlayerPerm=PLAYER\r\n    #\r\n    # Default player stats below here\r\n    DefaultOxygenValue=45\r\n    DefaultMaxOxygenValue=45\r\n    DefaultHealthValue=80\r\n    DefaultHungerValue=50.5\r\n    DefaultThirstValue=90.5\r\n    # Recommended to keep at 0.1f which is the default starting value. If set to 0 then new players are cured by default.\r\n    DefaultInfectionValue=0.1\r\n    # If set to true, the server will try to open port on your router via UPnP\r\n    AutoPortForward=False\r\nEOT\r\nfi",
-            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "script": "#!/bin/bash\r\n# Installation Script\r\n#\r\n# Install dependencies\r\ndpkg --add-architecture i386\r\napt update\r\napt -y --no-install-recommends install curl jq unzip libstdc++6 ca-certificates libsdl2-2.0-0:i386\r\n\r\n## Get latest Nitrox-Mod build\r\n#latest_NitroxMod=$(curl --silent \"https://api.github.com/repos/SubnauticaNitrox/Nitrox/releases/latest\" | grep '\"tag_name\":' | sed -E 's/.*\"([^\"]+)\".*/\\1/')\r\n\r\n#if [ -z \"${NITROX_VERSION}\" ] || [ \"${NITROX_VERSION}\" == \"latest\" ]; then\r\n#  DL_VERSION=$latest_NitroxMod\r\n#else\r\n#  DL_VERSION=${NITROX_VERSION}\r\n#fi\r\n\r\n## get release info and download links\r\nGITHUB_PACKAGE=\"SubnauticaNitrox/Nitrox\"\r\nVERSION=${NITROX_VERSION}\r\nMATCH=\"Linux_x64\"\r\n\r\nLATEST_JSON=$(curl --silent \"https://api.github.com/repos/${GITHUB_PACKAGE}/releases/latest\")\r\nRELEASES=$(curl --silent \"https://api.github.com/repos/${GITHUB_PACKAGE}/releases\")\r\n\r\nif [ -z \"${VERSION}\" ] || [ \"${VERSION}\" == \"latest\" ]; then\r\n    DOWNLOAD_URL=$(echo ${LATEST_JSON} | jq .assets | jq -r .[].browser_download_url | grep -i ${MATCH})\r\nelse\r\n    VERSION_CHECK=$(echo ${RELEASES} | jq -r --arg VERSION \"${VERSION}\" '.[] | select(.tag_name==$VERSION) | .tag_name')\r\n    if [ \"${VERSION}\" == \"${VERSION_CHECK}\" ]; then\r\n        DOWNLOAD_URL=$(echo ${RELEASES} | jq -r --arg VERSION \"${VERSION}\" '.[] | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i ${MATCH})\r\n    else\r\n        echo -e \"defaulting to latest release\"\r\n        DOWNLOAD_URL=$(echo ${LATEST_JSON} | jq .assets | jq -r .[].browser_download_url)\r\n    fi\r\nfi\r\n\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\ncd /mnt/server/steamcmd\r\n\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n\r\n## Install game using steamcmd\r\nGUARDCODE=\"${STEAM_GUARDCODE}\"\r\nif [ -z $GUARDCODE ]\r\nthen\r\n    echo \"\"\r\n    echo \"### You did not specify a Steam Guardcode\"\r\n    echo \"### A new one should be send to you shortly\"\r\n    echo \"### Enter it in the startup-config after this installation is finished and reinstall the Server\"\r\n    sleep 10\r\n    timeout 60 ./steamcmd.sh +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +quit\r\n    exit 1\r\nfi\r\n\r\n[ ! -d \"$HOME/subnautica\" ] && mkdir $HOME/subnautica\r\n./steamcmd.sh +set_steam_guard_code ${STEAM_GUARDCODE} +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +@sSteamCmdForcePlatformType windows +force_install_dir $HOME/subnautica +app_update ${APPID} ${EXTRA_FLAGS} validate +quit\r\nstatus=$?\r\n\r\nif [ $status -ne 0 ]\r\nthen\r\n    echo \"\"\r\n    echo \"### The Download was not successful\"\r\n    echo \"### Probably the entered Guardcode was wrong\"\r\n    echo \"### A new one should be send to you shortly\"\r\n    echo \"### Enter it in the startup-config after this installation is finished and reinstall the Server\"\r\n    sleep 10\r\n    sleep 10\r\n    timeout 30 ./steamcmd.sh +login ${STEAM_USERNAME} ${STEAM_PASSWORD} +quit\r\n    exit 1\r\nfi\r\n\r\n\r\n## set up 32 bit libraries\r\nmkdir -p $HOME/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p $HOME/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## Download and extract Nitrox\r\n[ -d \"$HOME/nitrox\" ] && rm -r $HOME/nitrox\r\nmkdir $HOME/nitrox\r\ncd $HOME/nitrox\r\ncurl -sL $DOWNLOAD_URL -o Nitrox.zip\r\nunzip $HOME/nitrox/Nitrox.zip\r\n\r\nmkdir -p $HOME/Nitrox/saves/${SAVE_NAME} \r\n\r\nSAVE_NAME=\"${SAVE_NAME}\"\r\n## Create config\r\nif [ -e $HOME/server.cfg ]; then\r\n    cp -f $HOME/server.cfg $HOME/Nitrox/saves/$SAVE_NAME/server.cfg\r\nelse\r\n    echo \"writing server default settings\"\r\n    cat <<EOT > $HOME/Nitrox/saves/$SAVE_NAME/server.cfg\r\n    CreateFullEntityCache=$CACHE_ENTITIES\r\n    Seed=\r\n    ServerPort=$Server.build.default.port\r\n    SaveInterval=$SAVE_INTERVAL\r\n    PostSaveCommandPath=\r\n    MaxConnections=100\r\n    InitialSyncTimeout=300000\r\n    DisableConsole=False\r\n    KeepInventoryOnDeath=$KEEP_INVENTORY\r\n    DisableAutoSave=$SAVE_DISABLE\r\n    ServerPassword=$SUBNAUTICA_PASSWORD\r\n    AdminPassword=$SUBNAUTICA_ADMIN_PASSWORD\r\n    GameMode=$SERVER_MODE\r\n    SerializerMode=$SERIALIZER_MODE\r\n    DefaultPlayerPerm=PLAYER\r\n    DefaultOxygenValue=45\r\n    DefaultMaxOxygenValue=45\r\n    DefaultHealthValue=80\r\n    DefaultHungerValue=50.5\r\n    DefaultThirstValue=90.5\r\n    DefaultInfectionValue=0.1\r\n    AutoPortForward=$PORTFORWARD_ENABLE\r\nEOT\r\nfi\r\n\r\necho \"Install Script Finished.\"",
+            "container": "ghcr.io/parkervcp/installers:debian",
             "entrypoint": "bash"
         }
     },
@@ -38,97 +42,12 @@
             "default_value": "264710",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|numeric|digits_between:1,6",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Steam-Username",
-            "description": "Your Steam-Account SUername",
-            "env_variable": "STEAM_USERNAME",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:64",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Steam-Password",
-            "description": "Your Steam Account Password",
-            "env_variable": "STEAM_PASSWORD",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:64",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Steam-GuardCode",
-            "description": "Yout Steam Guard Code",
-            "env_variable": "STEAM_GUARDCODE",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string|max:6",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Nitrox Version",
-            "description": "Which version of Nitrox to install and use. Use the version e.g. 1.5.0.1 or latest for the newest release",
-            "env_variable": "NITROX_VERSION",
-            "default_value": "latest",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|between:3,12",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Auto Save Interval",
-            "description": "Time between auto saves specified in milliseconds",
-            "env_variable": "SAVE_INTERVAL",
-            "default_value": "120000",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|numeric|digits_between:6,7",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Disable Auto Save",
-            "description": "Disables Auto Save: False \/ True",
-            "env_variable": "SAVE_DISABLE",
-            "default_value": "False",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:True,False",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Save Name",
-            "description": "The save name for the server.",
-            "env_variable": "SAVE_NAME",
-            "default_value": "world",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "alpha_dash|between:1,100",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Server Password",
-            "description": "Password neccessary for connecting to the Server",
-            "env_variable": "SUBNAUTICA_PASSWORD",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string|between:3,12",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "numeric",
+                "digits_between:1,6"
+            ],
+            "sort": 1
         },
         {
             "name": "Admin Password",
@@ -137,20 +56,12 @@
             "default_value": "PleaseChangeMe",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|between:3,16",
-            "sort": null,
-            "field_type": "text"
-        },
-        {
-            "name": "Game Mode",
-            "description": "Game Mode setting: SURVIVAL, FREEDOM, HARDCORE, CREATIVE",
-            "env_variable": "SERVER_MODE",
-            "default_value": "SURVIVAL",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:SURVIVAL,FREEDOM,HARDCORE,CREATIVE",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "between:3,16"
+            ],
+            "sort": 2
         },
         {
             "name": "Auto Portforward via UPnP",
@@ -159,9 +70,135 @@
             "default_value": "False",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:True,False",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:True,False"
+            ],
+            "sort": 3
+        },
+        {
+            "name": "Auto Save Interval",
+            "description": "Time between auto saves specified in milliseconds",
+            "env_variable": "SAVE_INTERVAL",
+            "default_value": "120000",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "numeric",
+                "digits_between:6,7"
+            ],
+            "sort": 4
+        },
+        {
+            "name": "Cache-Entities",
+            "description": "Set to true to Cache entities for the whole map on next run. \nWARNING! Will make server load take longer on the cache run but players will gain a performance boost when entering new areas.",
+            "env_variable": "CACHE_ENTITIES",
+            "default_value": "False",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "in:True,False"
+            ],
+            "sort": 16
+        },
+        {
+            "name": "Disable Auto Save",
+            "description": "Disables Auto Save: False / True",
+            "env_variable": "SAVE_DISABLE",
+            "default_value": "False",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "in:True,False"
+            ],
+            "sort": 5
+        },
+        {
+            "name": "Extra Flags",
+            "description": "Extra flags for steamcmd download. Do not edit",
+            "env_variable": "EXTRA_FLAGS",
+            "default_value": "",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "string",
+                "max:20"
+            ],
+            "sort": 6
+        },
+        {
+            "name": "Game Mode",
+            "description": "Game Mode setting: SURVIVAL, FREEDOM, HARDCORE, CREATIVE",
+            "env_variable": "SERVER_MODE",
+            "default_value": "SURVIVAL",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "in:SURVIVAL,FREEDOM,HARDCORE,CREATIVE"
+            ],
+            "sort": 7
+        },
+        {
+            "name": "Install-Path",
+            "description": "DO NOT CHANGE",
+            "env_variable": "SUBNAUTICA_INSTALLATION_PATH",
+            "default_value": "/home/container/subnautica",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 15
+        },
+        {
+            "name": "Keep-Inventory",
+            "description": "Keep Inventory on Death",
+            "env_variable": "KEEP_INVENTORY",
+            "default_value": "False",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "string",
+                "required",
+                "in:True,False"
+            ],
+            "sort": 17
+        },
+        {
+            "name": "Nitrox Version",
+            "description": "Which version of Nitrox to install and use. Use the version e.g. 1.5.0.1 or latest for the newest release",
+            "env_variable": "NITROX_VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "between:3,12"
+            ],
+            "sort": 8
+        },
+        {
+            "name": "Save Name",
+            "description": "The save name for the server.",
+            "env_variable": "SAVE_NAME",
+            "default_value": "world",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "alpha_dash",
+                "between:1,100"
+            ],
+            "sort": 9
         },
         {
             "name": "Serializer Mode",
@@ -170,20 +207,68 @@
             "default_value": "JSON",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|in:PROTOBUF,JSON",
-            "sort": null,
-            "field_type": "text"
+            "rules": [
+                "required",
+                "string",
+                "in:PROTOBUF,JSON"
+            ],
+            "sort": 10
         },
         {
-            "name": "Extra Flags",
-            "description": "Extra flags for steamcmd download. Do not edit",
-            "env_variable": "EXTRA_FLAGS",
-            "default_value": "-beta legacy",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|string|max:20",
-            "sort": null,
-            "field_type": "text"
+            "name": "Server Password",
+            "description": "Password neccessary for connecting to the Server",
+            "env_variable": "SUBNAUTICA_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string",
+                "between:3,12"
+            ],
+            "sort": 11
+        },
+        {
+            "name": "Steam-GuardCode",
+            "description": "Yout Steam Guard Code",
+            "env_variable": "STEAM_GUARDCODE",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string",
+                "max:6"
+            ],
+            "sort": 12
+        },
+        {
+            "name": "Steam-Password",
+            "description": "Your Steam Account Password",
+            "env_variable": "STEAM_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:64"
+            ],
+            "sort": 13
+        },
+        {
+            "name": "Steam-Username",
+            "description": "Your Steam-Account SUername",
+            "env_variable": "STEAM_USERNAME",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:64"
+            ],
+            "sort": 14
         }
     ]
 }

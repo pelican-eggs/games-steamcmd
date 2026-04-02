@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/runescape_dragonwilds\/pterodactyl-egg-runescape-dragonwilds.json"
     },
-    "exported_at": "2026-04-01T21:34:13+00:00",
+    "exported_at": "2026-04-02T00:10:32+00:00",
     "name": "RuneScape: Dragonwilds",
     "author": "neil@shrug.games",
     "description": "RuneScape: Dragonwilds is a co-op survival RPG set in the world of RuneScape.\nUp to 6 players can explore, craft, build, and battle together on a dedicated\nserver. RAM recommendation is 2 GB base + 1 GB per player (8 GB for a full\n6-player server).",
@@ -15,7 +15,7 @@
         "ghcr.io\/pelican-eggs\/steamcmd:sniper": "ghcr.io\/pelican-eggs\/steamcmd:sniper"
     },
     "file_denylist": [],
-    "startup": "RSDragonwilds\/Binaries\/Linux\/RSDragonwildsServer-Linux-Shipping -log -port={{SERVER_PORT}}",
+    "startup": "./RSDragonwilds\/Binaries\/Linux\/RSDragonwildsServer-Linux-Shipping -log -port={{SERVER_PORT}}",
     "config": {
         "files": "{\n    \"RSDragonwilds\\\/Saved\\\/Config\\\/LinuxServer\\\/DedicatedServer.ini\": {\n        \"parser\": \"ini\",\n        \"find\": {\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].OwnerId\": \"{{server.build.env.OWNER_ID}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].ServerName\": \"{{server.build.env.SERVER_NAME}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].DefaultWorldName\": \"{{server.build.env.DEFAULT_WORLD_NAME}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].AdminPassword\": \"{{server.build.env.ADMIN_PASSWORD}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].WorldPassword\": \"{{server.build.env.WORLD_PASSWORD}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].MaxPlayers\": \"{{server.build.env.MAX_PLAYERS}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].AdministratorList\": \"({{server.build.env.ADMINISTRATOR_LIST}})\"\n        }\n    }\n}",
         "startup": "{\n    \"done\": \"CREATE SESSION - Advertise\"\n}",

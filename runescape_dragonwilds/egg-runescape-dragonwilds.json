@@ -4,7 +4,7 @@
         "version": "PLCN_v3",
         "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/runescape_dragonwilds\/egg-runescape-dragonwilds.json"
     },
-    "exported_at": "2026-04-01T21:34:13+00:00",
+    "exported_at": "2026-04-02T00:10:32+00:00",
     "name": "RuneScape: Dragonwilds",
     "author": "neil@shrug.games",
     "uuid": "4acf76da-d6da-4ce5-99e9-aa702a1356e9",
@@ -19,7 +19,7 @@
     },
     "file_denylist": [],
     "startup_commands": {
-        "Default": "RSDragonwilds/Binaries/Linux/RSDragonwildsServer-Linux-Shipping -log -port={{SERVER_PORT}}"
+        "Default": "./RSDragonwilds/Binaries/Linux/RSDragonwildsServer-Linux-Shipping -log -port={{SERVER_PORT}}"
     },
     "config": {
         "files": "{\n    \"RSDragonwilds\\/Saved\\/Config\\/LinuxServer\\/DedicatedServer.ini\": {\n        \"parser\": \"ini\",\n        \"find\": {\n            \"[\\/Script\\/Dominion.DedicatedServerSettings].OwnerId\": \"{{server.environment.OWNER_ID}}\",\n            \"[\\/Script\\/Dominion.DedicatedServerSettings].ServerName\": \"{{server.environment.SERVER_NAME}}\",\n            \"[\\/Script\\/Dominion.DedicatedServerSettings].DefaultWorldName\": \"{{server.environment.DEFAULT_WORLD_NAME}}\",\n            \"[\\/Script\\/Dominion.DedicatedServerSettings].AdminPassword\": \"{{server.environment.ADMIN_PASSWORD}}\",\n            \"[\\/Script\\/Dominion.DedicatedServerSettings].WorldPassword\": \"{{server.environment.WORLD_PASSWORD}}\",\n            \"[\\/Script\\/Dominion.DedicatedServerSettings].MaxPlayers\": \"{{server.environment.MAX_PLAYERS}}\",\n            \"[\\/Script\\/Dominion.DedicatedServerSettings].AdministratorList\": \"({{server.environment.ADMINISTRATOR_LIST}})\"\n        }\n    }\n}",

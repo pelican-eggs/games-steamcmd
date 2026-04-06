@@ -9,7 +9,9 @@
     "author": "melethainiel.aerin@gmail.com",
     "uuid": "165ead11-926d-4b3b-a5d8-86c73d09427c",
     "description": "A game of aerospace industry and interplanetary exploration.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:proton": "ghcr.io\/parkervcp\/steamcmd:proton"

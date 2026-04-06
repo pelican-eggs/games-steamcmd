@@ -9,7 +9,9 @@
     "author": "josdekurk@gmail.com",
     "uuid": "f0ba2df0-dadc-40b9-bc97-225fb74e427b",
     "description": "Myth of Empires is a multiplayer war sandbox game featuring a high degree of freedom. Players must survive, craft, create, and lead troops in their quest to conquer territory and build their own empire.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:proton": "ghcr.io\/parkervcp\/steamcmd:proton"

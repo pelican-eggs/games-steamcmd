@@ -9,7 +9,9 @@
     "author": "josdekurk@gmail.com",
     "uuid": "d74ed598-09c5-4ce9-a8e1-5391ab221a1c",
     "description": "A strategy\/action RPG. Create a character, engage in diplomacy, craft, trade and conquer new lands in a vast medieval sandbox. Raise armies to lead into battle and command and fight alongside your troops in massive real-time battles using a deep but intuitive skill-based combat system.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"

@@ -9,7 +9,9 @@
     "author": "red_thirten@yahoo.com",
     "uuid": "51f46f7b-481b-4142-ae1a-dbf34810c13f",
     "description": "SourceCoop is a cooperative server-side-only mod for multi-player Source Engine games (like Black Mesa), that enables players to play together on single-player campaigns or maps. This Egg currently supports official Black Mesa maps only, but can be easily modified to support more (see Egg README for details).",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

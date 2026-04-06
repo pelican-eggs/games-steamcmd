@@ -9,7 +9,9 @@
     "author": "parker@parkervcp.com",
     "uuid": "4000c33b-91a2-4d50-8a1f-f998b334ad6e",
     "description": "Vanilla Unturned with the included RockerMod.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

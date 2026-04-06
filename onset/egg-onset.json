@@ -9,7 +9,9 @@
     "author": "parker@parkervcp.com",
     "uuid": "fcc63cec-034c-4a5b-893b-7e3d2ec558ff",
     "description": "Onset is an open world multiplayer sandbox without predefined goals. Create and host your very own experience in Onset using scripting functions. Whether that is Roleplay, Cops and Robbers or classic Freeroam. Or just enjoy the different gamemodes created by other players.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

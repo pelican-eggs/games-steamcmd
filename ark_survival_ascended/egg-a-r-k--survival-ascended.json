@@ -9,7 +9,9 @@
     "author": "blood@darkartsgaming.com",
     "uuid": "e9a600eb-3f06-44bf-bcbc-47fe70fa774e",
     "description": "ARK is reimagined from the ground-up into the next-generation of video game technology with Unreal Engine 5! Form a tribe, tame & breed hundreds of unique dinosaurs and primeval creatures, explore, craft, build, and fight your way to the top of the food-chain. Your new world awaits!",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

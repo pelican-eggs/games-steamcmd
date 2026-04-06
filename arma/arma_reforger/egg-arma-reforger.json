@@ -9,7 +9,9 @@
     "author": "red_thirten@yahoo.com",
     "uuid": "7c4dc3db-fac9-4d2d-8551-0c266e85cc50",
     "description": "Experience authentic Cold War combat and join friends in the struggle for a sprawling, 51 km\u00b2 mid-Atlantic island \u2014 or take on the role of Game Master and create your very own scenarios for others to enjoy.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

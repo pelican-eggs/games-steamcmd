@@ -9,7 +9,9 @@
     "author": "espeon@espeon.dev",
     "uuid": "59df7369-fc98-4961-9f08-18008c7f78eb",
     "description": "Neos VR is a metaverse engineered for the unknown! It\u2019s one of the most versatile and feature rich metaverses for virtual reality, designed so everybody can find something interesting or useful to do in a social setting.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "Mono": "ghcr.io\/parkervcp\/yolks:mono_latest"

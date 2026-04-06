@@ -9,7 +9,9 @@
     "author": "josdekurk@gmail.com",
     "uuid": "6b6900fa-49fd-497b-982a-0cd3063adf76",
     "description": "Zombie Survival Game Online is an open-world, post-apocalyptic, looter shooter. We aim to deliver a survival community experience that will entertain for years to come, utilizing a heavy passion for the genre & the years spent honing our development skills. Can you survive? Craft your story today!",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

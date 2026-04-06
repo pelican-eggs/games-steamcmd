@@ -9,7 +9,9 @@
     "author": "admin@softwarenoob.com",
     "uuid": "f954d04d-fcec-4a97-b240-c5fa35aecfcd",
     "description": "Modiverse provides a sandbox environment with the ability to create and play mods such as TTT, Deathrun, FortWars, RP, and more! Use the many sandbox tools to build complex worlds with props, lights, thrusters, wheels, and much much more!",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

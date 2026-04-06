@@ -9,7 +9,9 @@
     "author": "imkringle@proton.me",
     "uuid": "a72d51a1-c75f-4763-86d2-2f540b76cefe",
     "description": "Grab your ragtag crew & take up the Nectar Raiding trade on a dangerous planet that\u2019s become all the rage! In this PvPvE extraction game for 1-10 players, compete against enemy crews to harvest as much Nectar as possible before night falls. But watch out, you're not the only one roaming this planet!",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -9,7 +9,9 @@
     "author": "josdekurk@gmail.com",
     "uuid": "8920a965-8d17-44e1-8e82-b5a5abc083d2",
     "description": "Custom Assetto Corsa server with focus on freeroam",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "Dotnet_8": "ghcr.io\/parkervcp\/yolks:dotnet_8"

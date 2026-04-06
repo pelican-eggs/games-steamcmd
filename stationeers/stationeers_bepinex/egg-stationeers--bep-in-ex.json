@@ -9,7 +9,9 @@
     "author": "eggs@goover.dev",
     "uuid": "948f1577-6568-4edd-8fd8-d63155a0bf96",
     "description": "Stationeers Server with very basic BepInEx support",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

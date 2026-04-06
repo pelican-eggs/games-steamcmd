@@ -9,7 +9,9 @@
     "author": "info@goover.de",
     "uuid": "3006493a-5e02-4afe-b63a-1248fea77e8e",
     "description": "Egg for SCP: Secret Laboratory Dedicated Linux Server with Exiled Plugin Framework",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

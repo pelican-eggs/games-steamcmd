@@ -9,7 +9,9 @@
     "author": "eggs@goover.dev",
     "uuid": "ac8271cf-8176-4bfe-a2bb-8de031ec86f5",
     "description": "Space Engineers is a voxel-based sandbox game set in space and on planets.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -9,7 +9,9 @@
     "author": "imkringle@proton.me",
     "uuid": "06952f66-fa22-4afd-bc67-558bbcbf5d97",
     "description": "Want to play the hardest cooperative 2D platformer ever? Want to finish no map ever? Want to be in pain for hours and cry, getting nothing in return? Come play DDNet with a large community of other sufferers!",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

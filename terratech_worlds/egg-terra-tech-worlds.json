@@ -9,7 +9,9 @@
     "author": "durzo@durzo.io",
     "uuid": "5272071f-e6af-40e7-a19a-08264aa45a6f",
     "description": "TerraTech Worlds",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -9,7 +9,9 @@
     "author": "avalongamecs@gmail.com",
     "uuid": "30eaf1c9-e5e0-4fc3-9a4b-1390de54dc0e",
     "description": "No More Room In Hell",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

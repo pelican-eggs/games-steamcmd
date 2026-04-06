@@ -9,7 +9,9 @@
     "author": "theblitzbat@gmail.com",
     "uuid": "e3986111-0725-4ccd-b131-528873df84df",
     "description": "Frozen Flame Dedicated Server",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"

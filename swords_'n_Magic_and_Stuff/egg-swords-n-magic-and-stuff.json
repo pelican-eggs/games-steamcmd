@@ -10,7 +10,9 @@
     "uuid": "7f358d3f-6269-474f-9c7c-2eb08ca180fb",
     "description": "Grab your friends and set out for adventure in a world of swords, magic, and stuff. Discover tons of cool loot, uncover hidden secrets, and meet new friends and foes along the way. Make your mark and find a place to call home in this cute, multiplayer, open world RPG",
     "image": null,
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "Wine": "ghcr.io/parkervcp/yolks:wine_latest"

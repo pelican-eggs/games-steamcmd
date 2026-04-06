@@ -9,7 +9,9 @@
     "author": "brycea@terrahost.cloud",
     "uuid": "a0574872-4d56-4eb1-8359-ea748c52d1bf",
     "description": "Hurtworld is a hardcore multiplayer survival FPS with a focus on deep survival progression that doesn't become trivial once you establish some basic needs. Built for hardcore gamers, Hurtworld aims to punish.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

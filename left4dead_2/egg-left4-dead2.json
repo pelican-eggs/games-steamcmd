@@ -9,7 +9,9 @@
     "author": "pterodactyl@mazoyer.eu",
     "uuid": "bb4e0919-946b-4486-836f-61b116e2e4e6",
     "description": "Left 4 Dead 2 is set in the aftermath of a worldwide pandemic of a disease nicknamed the \"Green Flu\", which rapidly transforms humans into zombie-like creatures and mutated forms that demonstrate extreme aggression towards non-infected beings. A few humans are immune to the disease, while some of those who are infected have no symptoms. The Civil Emergency and Defense Agency (CEDA) and the U.S. military create safe zones to attempt to evacuate as many survivors as possible.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

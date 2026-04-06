@@ -9,7 +9,9 @@
     "author": "brycea@terrahost.cloud",
     "uuid": "aa97e69d-d83a-4cc3-9769-c7f401d04e1f",
     "description": "Conan Exiles is an open-world survival game set in the brutal lands of Conan the Barbarian. Survive in a savage world, build your kingdom, and dominate your enemies in brutal combat and epic warfare.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -9,7 +9,9 @@
     "author": "josdekurk@gmail.com",
     "uuid": "def9c34f-1988-46bc-bd4f-9e8fe00919cd",
     "description": "Build, quest, and conquer across an infinite procedurally generated world. Play alone or with friends as you establish a settlement and explore deep dungeons, fight monsters and bosses, mine rare ores, craft magical equipment, recruit specialists for your colony, and more!",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

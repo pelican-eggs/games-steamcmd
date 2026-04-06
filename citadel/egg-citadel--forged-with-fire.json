@@ -9,7 +9,9 @@
     "author": "eggs@goover.dev",
     "uuid": "ff961d60-89cf-4b77-bf97-20254bc465bb",
     "description": "Citadel: Forged With Fire is a massive online sandbox RPG set in the mystical world of Ignus. Featuring magic, spellcasting, building, exploring and crafting as you fight to make a name for yourself and achieve notoriety across the land.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

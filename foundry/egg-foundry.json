@@ -9,7 +9,9 @@
     "author": "eggs@goover.dev",
     "uuid": "91705781-6ef4-49a7-8655-8da3b89aa99f",
     "description": "Build a factory optimized to perfection or an artistic masterpiece in an infinite voxel world. Mine and harvest resources, automate your ever-growing production lines and manage complex systems while researching your way to mechanical mastery in FOUNDRY.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

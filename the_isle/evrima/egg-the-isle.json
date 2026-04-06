@@ -10,7 +10,9 @@
     "uuid": "6fbfb5fe-d337-44b9-bcc7-5bad094b4df8",
     "description": "The Isle is an open beta with an open-world survival game where players choose from three factions in an attempt to survive a fierce island. Hunt. Prey. Survive.",
     "image": null,
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

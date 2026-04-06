@@ -9,7 +9,9 @@
     "author": "limmek@swedon.se",
     "uuid": "4d507bc2-78ab-4669-b6c4-df631463e623",
     "description": "Explore endless Universe and create the most efficient constellation of colonies. Build conveyor systems to automate production. Take care of Astronauts and their needs! Establish new colonies as part of intergalactic simulation.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [],
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"

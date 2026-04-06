@@ -9,7 +9,9 @@
     "author": "eggs@goover.dev",
     "uuid": "aee8698f-35b9-4853-a2e2-f462d27c8e97",
     "description": "Rising World is a voxel based open-world sandbox game, featuring a procedurally generated world, playable in single and multi-player.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

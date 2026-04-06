@@ -9,7 +9,9 @@
     "author": "avalongamecs@gmail.com",
     "uuid": "bf18486b-8770-49f2-8944-f85e708a31ee",
     "description": "Fistful of Frags",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -9,7 +9,9 @@
     "author": "josdekurk@gmail.com",
     "uuid": "cdaca155-24a1-4828-a742-1c1085a9674a",
     "description": "VEIN is a post-apocalyptic survival multiplayer sandbox game. Gather supplies to survive, explore abandoned buildings, combat bandits, defend your home, assist friendly NPCs, and rebuild society with friends.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"

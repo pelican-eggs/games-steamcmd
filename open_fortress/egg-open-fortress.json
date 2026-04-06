@@ -9,7 +9,9 @@
     "author": "espeon@espeon.dev",
     "uuid": "f57ae673-2031-4283-b1fb-fb326c3df757",
     "description": "Open Fortress is a free Team Fortress 2 mod that introduces new gamemodes, weapons, characters, maps, and more to the world of TF2.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

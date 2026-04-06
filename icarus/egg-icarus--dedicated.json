@@ -9,7 +9,9 @@
     "author": "bolverblitz@ebg.pw",
     "uuid": "7f2f0676-3d0c-457f-a3aa-b2af40966698",
     "description": "Icarus is a survival game that with dedicated servers as a public beta",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

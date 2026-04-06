@@ -9,7 +9,9 @@
     "author": "parker@parkervcp.com",
     "uuid": "c439661f-b5c8-4e82-80f7-9c1ac6559b6d",
     "description": "Starbound takes place in a two-dimensional, procedurally generated universe which the player is able to explore in order to obtain new weapons, armor, and items, and to visit towns and villages inhabited by various intelligent lifeforms.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

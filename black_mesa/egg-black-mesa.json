@@ -9,7 +9,9 @@
     "author": "avalongamecs@gmail.com",
     "uuid": "56cb5b08-cc0c-4a82-9f55-e93012129a06",
     "description": "Black Mesa is a 2020 first-person shooter game. It is a third-party remake of Half-Life (1998) made in the Source game engine.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -9,7 +9,9 @@
     "author": "eggs@goover.dev",
     "uuid": "a294e71d-cb35-42a1-89e0-4688c8199d53",
     "description": "The only survival crafting game set in the Fourth Age of Middle-earth\u2122. Embark on an epic journey to reclaim the Dwarven homeland of Moria, and explore, craft, and build in procedurally generated worlds. Play as a solo adventurer, or join friends in co-op gameplay for up to 8 players.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -9,7 +9,9 @@
     "author": "kristoffer.norman@bahnhof.se",
     "uuid": "b7a88721-15c1-4081-beed-e3add926a372",
     "description": "7 days to die server",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

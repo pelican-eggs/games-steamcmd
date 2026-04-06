@@ -9,7 +9,9 @@
     "author": "diedyesterdaywashere@gmail.com",
     "uuid": "d1a66298-9b14-4a95-a182-c93fc1d33e22",
     "description": "BATTALION: Legacy recaptures the core of classic shooters in the final iteration of Battalion 1944. Return to the simple days of playing first person shooters with your friends. Grab your bolt action rifle in 'rifles only' mode or compete in 5v5 Search and Destroy.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

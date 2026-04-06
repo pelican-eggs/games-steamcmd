@@ -9,7 +9,9 @@
     "author": "vapokrocks@gmail.com",
     "uuid": "a2db5dc5-a5b6-4a24-a78c-5913c367b202",
     "description": "Enshrouded is a game of survival, crafting, and Action RPG combat, set within a sprawling voxel-based continent. As you journey across the mountains and deserts of an open world, you are free to choose your path and shape your destiny.  Credit to gOOvER for the help with the proton image which seems to be performing better over the wine egg.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

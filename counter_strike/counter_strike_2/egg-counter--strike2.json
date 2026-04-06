@@ -9,7 +9,9 @@
     "author": "admin@ballaual.de",
     "uuid": "d2991753-0db4-4b68-9f5d-11f997019b78",
     "description": "For over two decades, Counter-Strike has offered an elite competitive experience, one shaped by millions of players from across the globe. And now the next chapter in the CS story is about to begin. This is Counter-Strike 2.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

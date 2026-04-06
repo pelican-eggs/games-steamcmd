@@ -9,7 +9,9 @@
     "author": "eggs@goover.dev",
     "uuid": "cdab0d81-2c29-416e-9766-4e7c17a55533",
     "description": "The Front is a survival open-world crafting shooter. You play the role of a resistance fighter sent back in time to stop the rise of a tyrannical empire.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

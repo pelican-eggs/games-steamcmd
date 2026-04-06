@@ -9,7 +9,9 @@
     "author": "trey@chazx.cc",
     "uuid": "bc531988-8d28-45fb-9220-19b7ae2a1988",
     "description": "Mordhau is a multiplayer medieval hack 'n slash video game, developed by Slovenian independent studio Triternion, with a prominent aspect of skill-based competitive play and customization.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

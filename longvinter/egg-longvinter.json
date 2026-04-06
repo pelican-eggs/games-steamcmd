@@ -9,7 +9,9 @@
     "author": "tueye@tuworld.de",
     "uuid": "7d890b9b-8ba3-401f-9ca3-d03d12404844",
     "description": "Longvinter is a multiplayer, third-person sandbox game that implements Crafting, Farming, Building, Trading, and PVP.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

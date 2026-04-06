@@ -9,7 +9,9 @@
     "author": "pteroducktyl@yildri.nl",
     "uuid": "4f3fdfa0-cb76-4548-892d-6f9dc66adcae",
     "description": "Sven Co-op is a co-operative game originally based around Valve Software's Half-Life. In this game players must work together against computer controlled enemies and solve puzzles as a team.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

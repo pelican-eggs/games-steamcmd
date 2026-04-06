@@ -9,7 +9,9 @@
     "author": "josdekurk@gmail.com",
     "uuid": "faa03e33-c16b-484d-b247-37e22bf95c8a",
     "description": "The world of Elysia needs YOU! Join this cooperative, 3D sandbox action RPG to level up your character, craft epic weapons, conquer enemies in real-time, and build almost anything! Craft your adventure. Forge your hero. Become the ultimate Portal Knight!",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -9,7 +9,9 @@
     "author": "josdekurk@gmail.com",
     "uuid": "97567451-7e0a-46ec-98f0-a670881785cf",
     "description": "After a rampant viral outbreak causes global society to collapse, you must survive the harsh wilderness of the Canadian Rockies amidst vast hordes of Infected and rival survivors.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:proton": "ghcr.io\/parkervcp\/steamcmd:proton"

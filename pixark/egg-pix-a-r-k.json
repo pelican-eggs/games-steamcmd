@@ -9,7 +9,9 @@
     "author": "hello@venatus.digital",
     "uuid": "d39c0f20-5b37-4e28-aa49-9f629424c011",
     "description": "A simple Docker container with Wine to run PixARK using Pterodactyl Panel",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

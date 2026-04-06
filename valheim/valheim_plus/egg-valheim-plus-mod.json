@@ -10,7 +10,9 @@
     "uuid": "196a69bf-0137-4315-bff9-295051b3dd94",
     "description": "A brutal exploration and survival game for 1-10 players, set in a procedurally-generated purgatory inspired by viking culture.",
     "image": null,
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

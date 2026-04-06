@@ -9,7 +9,9 @@
     "author": "iamkubi@gmail.com",
     "uuid": "f717abc8-3ff1-469f-8b6c-e1e4688aea79",
     "description": "Join a world where you design, create and pilot your own air sea rescue service. Release your inner hero as you battle fierce storms out at sea to rescue those in need.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

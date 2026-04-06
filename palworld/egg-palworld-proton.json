@@ -9,7 +9,9 @@
     "author": "josdekurk@gmail.com",
     "uuid": "6b1ab0c0-7e4f-437a-acc4-2952515d279e",
     "description": "Fight, farm, build and work alongside mysterious creatures called \"Pals\" in this completely new multiplayer, open world survival and crafting game!",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

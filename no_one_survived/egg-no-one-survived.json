@@ -9,7 +9,9 @@
     "author": "josdekurk@gmail.com",
     "uuid": "7b329d96-d3e9-40ab-82fe-6ba425c75c12",
     "description": "This is a multiplayer cooperative open world construction survival sandbox game, where you and your friends must find supplies and build shelters in this world. You have to keep an eye on your character's needs state at all times, a bad state is likely to lead to death.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [],
     "docker_images": {
         "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"

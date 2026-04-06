@@ -9,7 +9,9 @@
     "author": "parker@parkervcp.com",
     "uuid": "2d71abbe-5e06-4cc7-863f-b1f7a2fe5a36",
     "description": "This option allows modifying the startup arguments and other details to run a custom HLDS based game on the panel.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -9,7 +9,9 @@
     "author": "eggs@goover.dev",
     "uuid": "3a1450cf-20a8-4fa9-98d1-f38c9f1b5636",
     "description": "Empyrion: Galactic Survival dedicated server",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/yolks:wine_staging": "ghcr.io\/parkervcp\/yolks:wine_staging"

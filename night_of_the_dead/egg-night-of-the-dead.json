@@ -9,7 +9,9 @@
     "author": "marshals@gmail.com",
     "uuid": "08b518e7-fa75-4db9-9fdc-07fc9bc35c28",
     "description": "Build defenses against nightly waves of zombies. Survive and escape the island.",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

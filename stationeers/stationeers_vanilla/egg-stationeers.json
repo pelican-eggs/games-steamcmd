@@ -9,7 +9,9 @@
     "author": "eggs@goover.dev",
     "uuid": "25563afc-89db-4e03-8dc2-cfd6571e6fb6",
     "description": "Stationeers Server",
-    "tags": ["steamcmd"],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

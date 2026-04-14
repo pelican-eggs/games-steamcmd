@@ -18,16 +18,19 @@ Discord: https://discord.gg/empyrion
 
 ### Special Note
 
+If you are experiencing problems with the playfield server, increase the “TimeoutBootingPfServer” in the /empyrion/dedicated.yaml file
+
 This server have NO Autoupdate. Dont change the AUTO_UPDATE Variable to 1, else server is broken.
 
 ### Server Ports
 
-Empyrion requires up to 2 ports
+Empyrion requires 1 port to run (the one required is marked with *), but if you want the server to be listed in the game browser or to make it accessible via telnet from a remote client, you must open the ports listed below.
 
-| Port    | default       |
-|---------|---------------|
-| Game    |     27015     |
-| Telnet     |     27020     |
+| Port          | default       |
+|---------------|---------------|
+| Game*         |     30000     |
+| Server listing|  30001-30003  |
+| Telnet        |     30004     |
 
 ### Installation/System Requirements
 

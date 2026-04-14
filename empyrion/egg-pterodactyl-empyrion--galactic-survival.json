@@ -1,30 +1,30 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
-        "update_url": null,
-        "version": "PTDL_v2"
+        "version": "PTDL_v2",
+        "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:10+00:00",
+    "exported_at": "2025-02-25T15:02:57+01:00",
     "name": "Empyrion: Galactic Survival",
     "author": "eggs@goover.dev",
     "description": "Empyrion: Galactic Survival dedicated server",
     "features": null,
     "docker_images": {
-        "ghcr.io/parkervcp/yolks:wine_staging": "ghcr.io/parkervcp/yolks:wine_staging"
+        "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
     },
     "file_denylist": [],
-    "startup": "cd empyrion; WINEDLLOVERRIDES=\"mscoree,mshtml=\" wine ./DedicatedServer/EmpyrionDedicated.exe -batchmode -log -logFile ./logs/current.log \u0026 echo -e \"Checking on telnet connection\" \u0026\u0026 until nc -z 127.0.0.1 ${TELNET_PORT}; do echo -e \"Waiting on telnet connection...\"; sleep 5; done \u0026\u0026 $( [[ -z ${TELNET_PWD} ]] \u0026\u0026 printf %s \"telnet -E 127.0.0.1 ${TELNET_PORT}\")",
+    "startup": "cd empyrion; WINEDLLOVERRIDES=\"mscoree,mshtml=\" wine .\/DedicatedServer\/EmpyrionDedicated.exe -batchmode -nographics -log -logFile .\/logs\/current.log & echo -e \"Checking on telnet connection\" && until nc -z 127.0.0.1 ${TELNET_PORT}; do echo -e \"Waiting on telnet connection...\"; sleep 5; done && $( [[ -z ${TELNET_PWD} ]] && printf %s \"telnet -E 127.0.0.1 ${TELNET_PORT}\")",
     "config": {
-        "files": "{\r\n    \"empyrion/dedicated.yaml\": {\r\n        \"parser\": \"yaml\",\r\n        \"find\": {\r\n            \"ServerConfig.Srv_Port\": \"{{server.build.default.port}}\",\r\n            \"ServerConfig.Srv_Name\": \"{{env.SRV_NAME}}\",\r\n            \"ServerConfig.Srv_Password\": \"{{env.SRV_PWD}}\",\r\n            \"ServerConfig.Srv_MaxPlayers\": \"{{env.MAX_PLAYERS}}\",\r\n            \"ServerConfig.Tel_Enabled\": \"{{env.TELNET_ENABLED}}\",\r\n            \"ServerConfig.Tel_Port\": \"{{env.TELNET_PORT}}\",\r\n            \"ServerConfig.Srv_Description\": \"{{env.SRV_DESC}}\",\r\n            \"GameConfig.Seed\": \"{{env.SEED}}\"\r\n        }\r\n    }\r\n}",
-        "logs": "{}",
+        "files": "{\r\n    \"empyrion\/dedicated.yaml\": {\r\n        \"parser\": \"yaml\",\r\n        \"find\": {\r\n            \"ServerConfig.Srv_Port\": \"{{server.build.default.port}}\",\r\n            \"ServerConfig.Srv_Name\": \"{{env.SRV_NAME}}\",\r\n            \"ServerConfig.Srv_Password\": \"{{env.SRV_PWD}}\",\r\n            \"ServerConfig.Srv_MaxPlayers\": \"{{env.MAX_PLAYERS}}\",\r\n            \"ServerConfig.Tel_Enabled\": \"{{env.TELNET_ENABLED}}\",\r\n            \"ServerConfig.Tel_Port\": \"{{env.TELNET_PORT}}\",\r\n            \"ServerConfig.Srv_Description\": \"{{env.SRV_DESC}}\",\r\n            \"GameConfig.Seed\": \"{{env.SEED}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Connected to 127.0.0.1.\"\r\n}",
+        "logs": "{}",
         "stop": "saveandexit 0"
     },
     "scripts": {
         "installation": {
-            "container": "ghcr.io/parkervcp/installers:debian",
-            "entrypoint": "bash",
-            "script": "#!/bin/bash\r\n# Empyrion Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n\r\napt update\r\napt -y install curl unzip\r\ncd /tmp\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\nmkdir -p /mnt/server/steam\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steam\r\n\r\nexport HOME=/mnt/server\r\n\r\nmkdir -p /mnt/server/empyrion\r\nmkdir -p /mnt/server/Logs\r\nmkdir -p /mnt/server/empyrion/logs\r\ntouch /mnt/server/empyrion/logs/current.log\r\n\r\ncd /mnt/server/steam\r\nchown -R root:root /mnt\r\n\r\nif [ \"${VERSION}\" == \"experimental\" ]; then\r\n    ./steamcmd.sh +force_install_dir /mnt/server/empyrion +login anonymous +@sSteamCmdForcePlatformType windows +app_update 530870 -beta experimental validate +quit\r\nelse\r\n    ./steamcmd.sh +force_install_dir /mnt/server/empyrion +login anonymous +@sSteamCmdForcePlatformType windows +app_update 530870 validate +quit\r\nfi\r\n\r\n## setup 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v /mnt/server/steam/linux32/steamclient.so /mnt/server/.steam/sdk32/steamclient.so\r\n\r\n## setup 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v /mnt/server/steam/linux64/steamclient.so /mnt/server/.steam/sdk64/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\""
+            "script": "#!\/bin\/bash\r\n# Empyrion Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n\r\napt update\r\napt -y install curl unzip\r\ncd \/tmp\r\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\r\nmkdir -p \/mnt\/server\/steam\r\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steam\r\n\r\nexport HOME=\/mnt\/server\r\n\r\nmkdir -p \/mnt\/server\/empyrion\r\nmkdir -p \/mnt\/server\/Logs\r\nmkdir -p \/mnt\/server\/empyrion\/logs\r\ntouch \/mnt\/server\/empyrion\/logs\/current.log\r\n\r\ncd \/mnt\/server\/steam\r\nchown -R root:root \/mnt\r\n\r\nif [ \"${VERSION}\" == \"experimental\" ]; then\r\n    .\/steamcmd.sh +force_install_dir \/mnt\/server\/empyrion +login anonymous +@sSteamCmdForcePlatformType windows +app_update 530870 -beta experimental validate +quit\r\nelse\r\n    .\/steamcmd.sh +force_install_dir \/mnt\/server\/empyrion +login anonymous +@sSteamCmdForcePlatformType windows +app_update 530870 validate +quit\r\nfi\r\n\r\n## setup 32 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk32\r\ncp -v \/mnt\/server\/steam\/linux32\/steamclient.so \/mnt\/server\/.steam\/sdk32\/steamclient.so\r\n\r\n## setup 64 bit libraries\r\nmkdir -p \/mnt\/server\/.steam\/sdk64\r\ncp -v \/mnt\/server\/steam\/linux64\/steamclient.so \/mnt\/server\/.steam\/sdk64\/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
         }
     },
     "variables": [
@@ -65,7 +65,7 @@
             "default_value": "true",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|regex:/^(?:true)?(?:false)?\\b/",
+            "rules": "required|string|regex:\/^(?:true)?(?:false)?\\b\/",
             "field_type": "text"
         },
         {
@@ -90,7 +90,7 @@
         },
         {
             "name": "Server Description",
-            "description": "Server info between the \" \", can contain [b]bold[/b] text or a [u][url=empyriongame.com]link[/url][/u] up to 127 chars.",
+            "description": "Server info between the \" \", can contain [b]bold[\/b] text or a [u][url=empyriongame.com]link[\/url][\/u] up to 127 chars.",
             "env_variable": "SRV_DESC",
             "default_value": "Empyrion Galactic Survival Dedicated Server running on Pterodactyl Panel",
             "user_viewable": true,
@@ -132,10 +132,10 @@
             "name": "WINETRICKS_RUN",
             "description": "",
             "env_variable": "WINETRICKS_RUN",
-            "default_value": "vcrun2019 dotnet48",
+            "default_value": "",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
+            "rules": "nullable|string|max:20",
             "field_type": "text"
         },
         {

@@ -19,7 +19,7 @@
     },
     "file_denylist": [],
     "startup_commands": {
-        "Default": "wine ./WindroseServer.exe & WS_PID=$! ; tail -c0 -F ./R5/Saved/Logs/WindroseServer.log --pid=$WS_PID"
+        "Default": "wine ./WindroseServer.exe & WS_PID=$! ; while [ ! -f ./R5/Saved/Logs/R5.log ]; do sleep 1; done; tail -c0 -F ./R5/Saved/Logs/R5.log --pid=$WS_PID"
     },
     "config": {
         "files": "{\n    \"R5\\/ServerDescription.json\": {\n        \"parser\": \"json\",\n        \"find\": {\n            \"ServerDescription_Persistent.ServerName\": \"{{server.environment.SERVER_NAME}}\",\n            \"ServerDescription_Persistent.InviteCode\": \"{{server.environment.INVITE_CODE}}\",\n            \"ServerDescription_Persistent.IsPasswordProtected\": \"{{server.environment.IS_PASSWORD_PROTECTED}}\",\n            \"ServerDescription_Persistent.Password\": \"{{server.environment.SERVER_PASSWORD}}\",\n            \"ServerDescription_Persistent.MaxPlayerCount\": \"{{server.environment.MAX_PLAYERS}}\"\n        }\n    }\n}",

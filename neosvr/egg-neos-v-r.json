@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:25+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "NeosVR",
     "author": "espeon@espeon.dev",
     "uuid": "59df7369-fc98-4961-9f08-18008c7f78eb",
     "description": "Neos VR is a metaverse engineered for the unknown! It\u2019s one of the most versatile and feature rich metaverses for virtual reality, designed so everybody can find something interesting or useful to do in a social setting.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "Mono": "ghcr.io\/parkervcp\/yolks:mono_latest"

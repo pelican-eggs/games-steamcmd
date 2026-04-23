@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:56+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "TerraTech Worlds",
     "author": "durzo@durzo.io",
     "uuid": "5272071f-e6af-40e7-a19a-08264aa45a6f",
     "description": "TerraTech Worlds",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

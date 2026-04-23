@@ -4,10 +4,13 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-05-15T10:45:13+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Squad Wine",
     "author": "liviupas12@gmail.com",
     "description": "Squad is a realism-based military tactical first-person shooter video game developed and published by Canadian indie developer Offworld Industries exclusively through the Steam distribution platform. It is a spiritual successor to the Project Reality modification for Battlefield 2.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

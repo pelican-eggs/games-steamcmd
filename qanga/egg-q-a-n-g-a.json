@@ -4,11 +4,14 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-11-29T10:28:41+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "QANGA",
     "author": "josdekurk@gmail.com",
     "uuid": "7c7a14bb-51a4-4efd-91c5-991cf426a135",
     "description": "QANGA: Dive into a sci-fi adventure of exploration and resilience across the cosmos. Merge your mind with a state-of-the-art cyborg crafted by ICLab's Industry labs, and journey through this expansive universe! ",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

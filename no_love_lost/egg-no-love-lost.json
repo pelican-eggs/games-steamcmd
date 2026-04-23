@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:27+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "No Love Lost",
     "author": "imkringle@proton.me",
     "uuid": "a72d51a1-c75f-4763-86d2-2f540b76cefe",
     "description": "Grab your ragtag crew & take up the Nectar Raiding trade on a dangerous planet that\u2019s become all the rage! In this PvPvE extraction game for 1-10 players, compete against enemy crews to harvest as much Nectar as possible before night falls. But watch out, you're not the only one roaming this planet!",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

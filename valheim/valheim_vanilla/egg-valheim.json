@@ -4,13 +4,15 @@
         "version": "PLCN_v3",
         "update_url": "https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/valheim/valheim_vanilla/egg-valheim.json"
     },
-    "exported_at": "2026-01-03T15:30:59+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Valheim",
     "author": "magi1053@outlook.com",
     "uuid": "af693402-1618-49e0-8678-0818aae9b92e",
     "description": "A brutal exploration and survival game for 1-10 players, set in a procedurally-generated purgatory inspired by viking culture.",
     "image": null,
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-07-15T18:56:46+02:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Palworld",
     "author": "admin@ballaual.de",
     "uuid": "ca527103-3e6e-4fa0-9a1f-ea468e314293",
     "description": "Fight, farm, build and work alongside mysterious creatures called \"Pals\" in this completely new multiplayer, open world survival and crafting game!",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

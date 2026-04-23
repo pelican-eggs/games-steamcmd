@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:37+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Quake Live",
     "author": "patz.michael@gmail.com",
     "uuid": "6a8f06a9-ff12-4a2d-9c11-2f9c67d8b0bf",
     "description": "Quake Live is a first-person shooter video game by id Software. It is an updated version of Quake III Arena that was originally designed as a free-to-play game launched via a web browser plug-in. On September 17, 2014, the game was re-launched as a standalone title on Steam.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -4,12 +4,14 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-08-16T22:43:10+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Brickadia",
     "author": "felinusfish@gmail.com",
     "uuid": "3ee993b6-124a-4260-85fe-b622ebddded7",
     "description": "Brickadia is a new multiplayer brick building sandbox game that gives you all the tools to create and play, your way. Build and invent with your friends, drive a car through space, create your own interactive experiences, or blow it all to smithereens!",
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [],
     "docker_images": {
         "Mono": "ghcr.io\/parkervcp\/yolks:mono_latest"

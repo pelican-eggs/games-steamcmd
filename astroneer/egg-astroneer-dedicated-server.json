@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:03:55+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Astroneer Dedicated Server",
     "author": "melethainiel.aerin@gmail.com",
     "uuid": "165ead11-926d-4b3b-a5d8-86c73d09427c",
     "description": "A game of aerospace industry and interplanetary exploration.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:proton": "ghcr.io\/parkervcp\/steamcmd:proton"

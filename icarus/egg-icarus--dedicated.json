@@ -4,11 +4,14 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-02-09T16:12:54+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Icarus-Dedicated",
     "author": "bolverblitz@ebg.pw",
     "uuid": "7f2f0676-3d0c-457f-a3aa-b2af40966698",
     "description": "Icarus is a survival game that with dedicated servers as a public beta",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

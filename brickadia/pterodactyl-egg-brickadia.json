@@ -8,7 +8,6 @@
     "name": "Brickadia",
     "author": "felinusfish@gmail.com",
     "description": "Brickadia is a new multiplayer brick building sandbox game that gives you all the tools to create and play, your way. Build and invent with your friends, drive a car through space, create your own interactive experiences, or blow it all to smithereens!",
-    "tags": [],
     "features": [],
     "docker_images": {
         "Mono": "ghcr.io\/parkervcp\/yolks:mono_latest"

@@ -4,12 +4,14 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-04-27T07:05:06+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Conan Exiles",
     "author": "brycea@terrahost.cloud",
     "uuid": "aa97e69d-d83a-4cc3-9769-c7f401d04e1f",
     "description": "Conan Exiles is an open-world survival game set in the brutal lands of Conan the Barbarian. Survive in a savage world, build your kingdom, and dominate your enemies in brutal combat and epic warfare.",
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

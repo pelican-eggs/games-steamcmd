@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:05:09+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Stationeers (BepInEx)",
     "author": "eggs@goover.dev",
     "uuid": "948f1577-6568-4edd-8fd8-d63155a0bf96",
     "description": "Stationeers Server with very basic BepInEx support",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

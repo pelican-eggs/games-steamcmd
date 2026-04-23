@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:03:44+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Colony Survival",
     "author": "josdekurk@gmail.com",
     "uuid": "0b59b4fb-febe-4e1d-ac40-bd24e287a491",
     "description": "Colony Survival is a unique first-person strategy game developed by a two-man team. Build your own colony in a voxel world. Command guards, farmers, miners and other colonists. Defend your colony against the horde of monsters that attacks every night!",
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "SteamCMD": "ghcr.io\/parkervcp\/steamcmd:debian"

@@ -4,11 +4,14 @@
         "version": "PLCN_v1",
         "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/satisfactory\/egg-satisfactory.json"
     },
-    "exported_at": "2024-04-04T10:49:13-07:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Satisfactory",
     "author": "red_thirten@yahoo.com",
     "uuid": "dafdb96a-e8c1-449f-a6ae-b7ba209c05ff",
     "description": "Satisfactory is a first-person open-world factory building game with a dash of exploration and combat. Play alone or with friends, explore an alien planet, create multi-story factories, and enter conveyor belt heaven!",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

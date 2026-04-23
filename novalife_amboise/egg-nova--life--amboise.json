@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:31+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Nova-Life: Amboise",
     "author": "josdekurk@gmail.com",
     "uuid": "11891380-2d66-4c25-a8fc-80a2379676c3",
     "description": "Nova-Life: Amboise is a multiplayer role-play simulation video game. Create your character and start your second life!",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

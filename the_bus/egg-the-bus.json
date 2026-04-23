@@ -4,12 +4,14 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-07-14T16:15:15+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "The Bus",
     "author": "quinten@pelican.dev",
     "uuid": "f09e6a44-649c-4b91-ba78-e3a2add48c8b",
     "description": "The Bus is the next generation of city bus driving simulation. Sell tickets and transport passengers with various buses on different lines across the German capital Berlin on a realistic scale of 1:1. ",
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

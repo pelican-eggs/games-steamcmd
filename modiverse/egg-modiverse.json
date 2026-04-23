@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:21+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Modiverse",
     "author": "admin@softwarenoob.com",
     "uuid": "f954d04d-fcec-4a97-b240-c5fa35aecfcd",
     "description": "Modiverse provides a sandbox environment with the ability to create and play mods such as TTT, Deathrun, FortWars, RP, and more! Use the many sandbox tools to build complex worlds with props, lights, thrusters, wheels, and much much more!",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

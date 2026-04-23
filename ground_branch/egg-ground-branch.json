@@ -4,12 +4,14 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-07-27T12:53:37+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Ground Branch",
     "author": "red_thirten@yahoo.com",
     "uuid": "8294a38b-f31b-4a4b-bfd7-3aaea63d67b8",
     "description": "From one of the developers behind the original Rainbow Six\u00ae and Ghost Recon\u00ae games, comes a thinking-man's first-person shooter featuring in-depth character and weapon customization. Take your time. Think ahead. Get the job done.",
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [],
     "docker_images": {
         "Wine [Staging]": "ghcr.io\/parkervcp\/yolks:wine_staging"

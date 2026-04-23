@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:25+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Necesse",
     "author": "josdekurk@gmail.com",
     "uuid": "def9c34f-1988-46bc-bd4f-9e8fe00919cd",
     "description": "Build, quest, and conquer across an infinite procedurally generated world. Play alone or with friends as you establish a settlement and explore deep dungeons, fight monsters and bosses, mine rare ores, craft magical equipment, recruit specialists for your colony, and more!",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

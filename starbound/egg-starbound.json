@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:05:08+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Starbound",
     "author": "parker@parkervcp.com",
     "uuid": "c439661f-b5c8-4e82-80f7-9c1ac6559b6d",
     "description": "Starbound takes place in a two-dimensional, procedurally generated universe which the player is able to explore in order to obtain new weapons, armor, and items, and to visit towns and villages inhabited by various intelligent lifeforms.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

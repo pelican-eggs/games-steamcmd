@@ -4,12 +4,14 @@
         "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2025-11-02T11:29:03+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Nightingale",
     "author": "quinten@pelican.dev",
     "uuid": "01e7a042-e6c0-4701-957b-3834c84fa281",
     "description": "Nightingale is an open world survival crafting game, where you\u2019ll adventure across the mysterious and dangerous Fae Realms. As a daring Realmwalker, you\u2019ll defeat monstrous enemies, survive hostile environments, and build elaborate estates in a visually stunning Gaslamp Fantasy world. ",
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

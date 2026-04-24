@@ -1,0 +1,186 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/runescape_dragonwilds/egg-runescape-dragonwilds.yaml'
+exported_at: '2026-04-23T23:56:48+00:00'
+name: 'RuneScape: Dragonwilds'
+author: red_thirten@yahoo.com
+uuid: ff7f85a8-81d2-491c-a724-d01672329070
+description: |-
+  RuneScape: Dragonwilds is a co-op survival RPG set in the world of RuneScape. Up to 6 players can
+  explore, craft, build, and battle together on a dedicated server. RAM recommendation is 2 GB base +
+  1 GB per player (8 GB for a full 6-player server).
+image: 'data:image/png;base64,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'
+tags:
+  - steamcmd
+features:
+  - steam_disk_space
+docker_images:
+  'ghcr.io/pelican-eggs/steamcmd:debian': 'ghcr.io/pelican-eggs/steamcmd:debian'
+file_denylist: {  }
+startup_commands:
+  Default: './RSDragonwilds/Binaries/Linux/RSDragonwildsServer-Linux-Shipping -log -port={{SERVER_PORT}} -ini:Game:[/Script/Engine.GameSession]:MaxPlayers={{MAX_PLAYERS}}'
+config:
+  files:
+    RSDragonwilds/Saved/Config/LinuxServer/DedicatedServer.ini:
+      parser: ini
+      find:
+        '[/Script/Dominion.DedicatedServerSettings].OwnerId': '{{server.environment.OWNER_ID}}'
+        '[/Script/Dominion.DedicatedServerSettings].ServerName': '{{server.environment.SERVER_NAME}}'
+        '[/Script/Dominion.DedicatedServerSettings].DefaultWorldName': '{{server.environment.DEFAULT_WORLD_NAME}}'
+        '[/Script/Dominion.DedicatedServerSettings].AdminPassword': '{{server.environment.ADMIN_PASSWORD}}'
+        '[/Script/Dominion.DedicatedServerSettings].WorldPassword': '{{server.environment.WORLD_PASSWORD}}'
+  startup:
+    done: 'CREATE SESSION - Advertise'
+  logs: {  }
+  stop: ^C
+scripts:
+  installation:
+    script: |-
+      #!/bin/bash
+
+      ## File: RuneScape Dragonwilds Egg - egg-runescape-dragonwilds.yaml
+      ## Authors: David Wolfe (Red-Thirten)
+      ## Date: 2026/04/23
+      ## License: MIT License
+      ## Image to install with is 'ghcr.io/pelican-eggs/installers:debian'
+
+      # Download and install SteamCMD
+      export HOME=/mnt/server
+      cd /tmp
+      mkdir -p $HOME/steamcmd $HOME/steamapps
+      curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+      tar -xzvf steamcmd.tar.gz -C $HOME/steamcmd
+      cd $HOME/steamcmd
+
+      # SteamCMD fails otherwise for some reason, even running as root.
+      # This is changed at the end of the install process anyways.
+      chown -R root:root /mnt
+
+      # Install/Verify game server using SteamCMD
+      ./steamcmd.sh +force_install_dir $HOME +login anonymous +app_update ${SRCDS_APPID} validate +quit
+
+      # Set up 32 and 64 bit libraries
+      mkdir -p $HOME/.steam/sdk{32,64}
+      cp -v linux32/steamclient.so /mnt/server/.steam/sdk32/steamclient.so
+      cp -v linux64/steamclient.so /mnt/server/.steam/sdk64/steamclient.so
+
+      ## RuneScape Dragonwilds Setup
+      # Check for successful installation & ensure binary is executable
+      BINARY_DIR=$HOME/RSDragonwilds/Binaries/Linux
+      BINARY_NAME=RSDragonwildsServer-Linux-Shipping
+      if [[ -f $BINARY_DIR/$BINARY_NAME ]]; then
+          chmod +x $BINARY_DIR/$BINARY_NAME
+          echo -e "\nRuneScape Dragonwilds Dedicated Server successfully installed!\n"
+          exit 0
+      else
+          echo -e "\n\nSteamCMD failed to install the RuneScape Dragonwilds Dedicated Server!"
+          echo -e "\tTry reinstalling the server again.\n"
+          exit 1
+      fi
+    container: 'ghcr.io/pelican-eggs/installers:debian'
+    entrypoint: /bin/bash
+variables:
+  -
+    name: 'Admin Password'
+    description: |-
+      Anyone who knows this password can enter the Server Management tab in the Pause Menu > Settings
+      menu. They will be considered as Admins until the Admin Password is changed again. You can see the
+      list of people who have used the Admin Password to enter the Server Management screen by going to
+      Files > RSDragonwilds > Saved > Config > Linux > DedicatedServer.ini.
+    env_variable: ADMIN_PASSWORD
+    default_value: 'CHANGE ME TO A SECURE PASSWORD!'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+    sort: 5
+  -
+    name: 'Automatic Updates'
+    description: 'Quickly checks for any server updates on startup, and updates if necessary. (1 Enable | 0 Disable)'
+    env_variable: AUTO_UPDATE
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - boolean
+    sort: 1
+  -
+    name: 'Default World Name'
+    description: |-
+      The name of the world created on first startup. Players search for your server by this world name in
+      the Public tab of the Worlds screen (case-sensitive). Uploaded worlds will ignore this setting and
+      use their own name instead.
+    env_variable: DEFAULT_WORLD_NAME
+    default_value: 'Default World'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:32'
+    sort: 3
+  -
+    name: 'Max Players'
+    description: 'Maximum number of players (1-6).'
+    env_variable: MAX_PLAYERS
+    default_value: 6
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - integer
+      - 'between:1,6'
+    sort: 7
+  -
+    name: 'Server Name'
+    description: 'The name of your server. Displayed as "Created By" in the in-game server browser.'
+    env_variable: SERVER_NAME
+    default_value: Dragonwilds
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:16'
+    sort: 4
+  -
+    name: 'World Password'
+    description: |-
+      Optional password players must enter to join your server. Will supersede any password stored in the
+      world. Can be left empty if you want anyone to be able to join your world.
+    env_variable: WORLD_PASSWORD
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+    sort: 6
+  -
+    name: '[Required] Owner ID'
+    description: |-
+      Your RuneScape: Dragonwilds Player ID. It can be found in game at the bottom of the Settings Menu.
+      Use the copy button to add it to your clipboard. The server will not start without your owner ID!
+    env_variable: OWNER_ID
+    default_value: CHANGEME000000000000000000000000
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - alpha_num
+      - 'size:32'
+    sort: 2
+  -
+    name: '[System] Dedicated Server App ID'
+    description: 'Steam App ID used for installation and updates.'
+    env_variable: SRCDS_APPID
+    default_value: 4019830
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - integer
+      - 'in:4019830'
+    sort: 8

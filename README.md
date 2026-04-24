@@ -90,6 +90,7 @@
   * [Legacy Java](rising_world/legacy)
   * [Unity](rising_world/unity)
 * [Risk Of Rain 2](risk_of_rain_2)
+* [RuneScape: Dragonwilds](runescape_dragonwilds)
 * [Rust](rust)
   * [Autowipe](rust/rust_autowipe)
   * [Staging](rust/rust_staging)

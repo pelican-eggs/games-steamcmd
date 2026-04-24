@@ -1,0 +1,114 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-04-23T23:56:48+00:00",
+    "name": "RuneScape: Dragonwilds",
+    "author": "red_thirten@yahoo.com",
+    "description": "RuneScape: Dragonwilds is a co-op survival RPG set in the world of RuneScape. Up to 6 players can\nexplore, craft, build, and battle together on a dedicated server. RAM recommendation is 2 GB base +\n1 GB per player (8 GB for a full 6-player server).",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "ghcr.io\/pelican-eggs\/steamcmd:debian": "ghcr.io\/pelican-eggs\/steamcmd:debian"
+    },
+    "file_denylist": {},
+    "startup": ".\/RSDragonwilds\/Binaries\/Linux\/RSDragonwildsServer-Linux-Shipping -log -port={{SERVER_PORT}} -ini:Game:[\/Script\/Engine.GameSession]:MaxPlayers={{MAX_PLAYERS}}",
+    "config": {
+        "files": "{\n    \"RSDragonwilds\\\/Saved\\\/Config\\\/LinuxServer\\\/DedicatedServer.ini\": {\n        \"parser\": \"ini\",\n        \"find\": {\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].OwnerId\": \"{{server.build.env.OWNER_ID}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].ServerName\": \"{{server.build.env.SERVER_NAME}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].DefaultWorldName\": \"{{server.build.env.DEFAULT_WORLD_NAME}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].AdminPassword\": \"{{server.build.env.ADMIN_PASSWORD}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].WorldPassword\": \"{{server.build.env.WORLD_PASSWORD}}\"\n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"CREATE SESSION - Advertise\"\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\n\n## File: RuneScape Dragonwilds Egg - egg-runescape-dragonwilds.yaml\n## Authors: David Wolfe (Red-Thirten)\n## Date: 2026\/04\/23\n## License: MIT License\n## Image to install with is 'ghcr.io\/pelican-eggs\/installers:debian'\n\n# Download and install SteamCMD\nexport HOME=\/mnt\/server\ncd \/tmp\nmkdir -p $HOME\/steamcmd $HOME\/steamapps\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C $HOME\/steamcmd\ncd $HOME\/steamcmd\n\n# SteamCMD fails otherwise for some reason, even running as root.\n# This is changed at the end of the install process anyways.\nchown -R root:root \/mnt\n\n# Install\/Verify game server using SteamCMD\n.\/steamcmd.sh +force_install_dir $HOME +login anonymous +app_update ${SRCDS_APPID} validate +quit\n\n# Set up 32 and 64 bit libraries\nmkdir -p $HOME\/.steam\/sdk{32,64}\ncp -v linux32\/steamclient.so \/mnt\/server\/.steam\/sdk32\/steamclient.so\ncp -v linux64\/steamclient.so \/mnt\/server\/.steam\/sdk64\/steamclient.so\n\n## RuneScape Dragonwilds Setup\n# Check for successful installation & ensure binary is executable\nBINARY_DIR=$HOME\/RSDragonwilds\/Binaries\/Linux\nBINARY_NAME=RSDragonwildsServer-Linux-Shipping\nif [[ -f $BINARY_DIR\/$BINARY_NAME ]]; then\n    chmod +x $BINARY_DIR\/$BINARY_NAME\n    echo -e \"\\nRuneScape Dragonwilds Dedicated Server successfully installed!\\n\"\n    exit 0\nelse\n    echo -e \"\\n\\nSteamCMD failed to install the RuneScape Dragonwilds Dedicated Server!\"\n    echo -e \"\\tTry reinstalling the server again.\\n\"\n    exit 1\nfi",
+            "container": "ghcr.io\/pelican-eggs\/installers:debian",
+            "entrypoint": "\/bin\/bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Admin Password",
+            "description": "Anyone who knows this password can enter the Server Management tab in the Pause Menu > Settings\nmenu. They will be considered as Admins until the Admin Password is changed again. You can see the\nlist of people who have used the Admin Password to enter the Server Management screen by going to\nFiles > RSDragonwilds > Saved > Config > Linux > DedicatedServer.ini.",
+            "env_variable": "ADMIN_PASSWORD",
+            "default_value": "CHANGE ME TO A SECURE PASSWORD!",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Automatic Updates",
+            "description": "Quickly checks for any server updates on startup, and updates if necessary. (1 Enable | 0 Disable)",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": 1,
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Default World Name",
+            "description": "The name of the world created on first startup. Players search for your server by this world name in\nthe Public tab of the Worlds screen (case-sensitive). Uploaded worlds will ignore this setting and\nuse their own name instead.",
+            "env_variable": "DEFAULT_WORLD_NAME",
+            "default_value": "Default World",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:32",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Players",
+            "description": "Maximum number of players (1-6).",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": 6,
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|between:1,6",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Name",
+            "description": "The name of your server. Displayed as \"Created By\" in the in-game server browser.",
+            "env_variable": "SERVER_NAME",
+            "default_value": "Dragonwilds",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:16",
+            "field_type": "text"
+        },
+        {
+            "name": "World Password",
+            "description": "Optional password players must enter to join your server. Will supersede any password stored in the\nworld. Can be left empty if you want anyone to be able to join your world.",
+            "env_variable": "WORLD_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "[Required] Owner ID",
+            "description": "Your RuneScape: Dragonwilds Player ID. It can be found in game at the bottom of the Settings Menu.\nUse the copy button to add it to your clipboard. The server will not start without your owner ID!",
+            "env_variable": "OWNER_ID",
+            "default_value": "CHANGEME000000000000000000000000",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|alpha_num|size:32",
+            "field_type": "text"
+        },
+        {
+            "name": "[System] Dedicated Server App ID",
+            "description": "Steam App ID used for installation and updates.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": 4019830,
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|integer|in:4019830",
+            "field_type": "text"
+        }
+    ]
+}

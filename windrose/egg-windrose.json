@@ -4,7 +4,7 @@
         "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2026-04-14T13:14:23+00:00",
+    "exported_at": "2026-05-08T18:37:21+00:00",
     "name": "Windrose",
     "author": "nezorflame@gmail.com",
     "uuid": "bfb5da30-2c05-4e11-b05a-d1f1da31b279",
@@ -15,26 +15,41 @@
         "steam_disk_space"
     ],
     "docker_images": {
-        "Wine Staging": "ghcr.io/parkervcp/yolks:wine_staging"
+        "SteamCMD Proton": "ghcr.io/parkervcp/steamcmd:proton"
     },
     "file_denylist": [],
     "startup_commands": {
-        "Default": "wine ./WindroseServer.exe & WS_PID=$! ; while [ ! -f ./R5/Saved/Logs/R5.log ]; do sleep 1; done; tail -c0 -F ./R5/Saved/Logs/R5.log --pid=$WS_PID"
+        "Default": "PROTON_DISABLE_XALIA=1 proton run ./R5/Binaries/Win64/WindroseServer-Win64-Shipping.exe & WS_PID=$! ; while [ ! -f ./R5/Saved/Logs/R5.log ]; do sleep 1; done; tail -c0 -F ./R5/Saved/Logs/R5.log --pid=$WS_PID"
     },
     "config": {
-        "files": "{\n    \"R5\\/ServerDescription.json\": {\n        \"parser\": \"json\",\n        \"find\": {\n            \"ServerDescription_Persistent.ServerName\": \"{{server.environment.SERVER_NAME}}\",\n            \"ServerDescription_Persistent.InviteCode\": \"{{server.environment.INVITE_CODE}}\",\n            \"ServerDescription_Persistent.IsPasswordProtected\": \"{{server.environment.IS_PASSWORD_PROTECTED}}\",\n            \"ServerDescription_Persistent.Password\": \"{{server.environment.SERVER_PASSWORD}}\",\n            \"ServerDescription_Persistent.MaxPlayerCount\": \"{{server.environment.MAX_PLAYERS}}\"\n        }\n    }\n}",
+        "files": "{\n    \"R5\\/ServerDescription.json\": {\n        \"parser\": \"json\",\n        \"find\": {\n            \"ServerDescription_Persistent.ServerName\": \"{{server.environment.SERVER_NAME}}\",\n            \"ServerDescription_Persistent.InviteCode\": \"{{server.environment.INVITE_CODE}}\",\n            \"ServerDescription_Persistent.IsPasswordProtected\": \"{{server.environment.IS_PASSWORD_PROTECTED}}\",\n            \"ServerDescription_Persistent.Password\": \"{{server.environment.SERVER_PASSWORD}}\",\n            \"ServerDescription_Persistent.MaxPlayerCount\": \"{{server.environment.MAX_PLAYERS}}\",\n            \"ServerDescription_Persistent.UserSelectedRegion\": \"{{server.environment.SERVER_REGION}}\",\n            \"ServerDescription_Persistent.UseDirectConnection\": \"{{server.environment.USE_DIRECT_CONNECTION}}\",\n            \"ServerDescription_Persistent.DirectConnectionServerPort\": \"{{server.environment.DIRECT_CONNECTION_PORT}}\"\n        }\n    }\n}",
         "startup": "{\n    \"done\": \"UEngine::LoadMap Load map complete\"\n}",
         "logs": "{}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!/bin/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n# Image to install with is 'ghcr.io/parkervcp/installers:debian'\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n## install game using steamcmd (Windows dedicated server)\r\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} +@sSteamCmdForcePlatformType windows +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit\r\n\r\n## set up 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## Create default R5/ServerDescription.json if it does not exist\r\n## The server auto-creates this on first start; we pre-create it so the panel\r\n## can apply variable values (ServerName, InviteCode, etc.) from the first boot.\r\nmkdir -p /mnt/server/R5\r\nFILE=/mnt/server/R5/ServerDescription.json\r\nif [ -f \"$FILE\" ]; then\r\n    echo \"R5/ServerDescription.json already exists, skipping creation.\"\r\nelse\r\n    echo \"Creating default R5/ServerDescription.json...\"\r\n    cat > \"$FILE\" <<'EOF'\r\n{\r\n    \"Version\": 1,\r\n    \"DeploymentId\": \"\",\r\n    \"ServerDescription_Persistent\": {\r\n        \"PersistentServerId\": \"\",\r\n        \"InviteCode\": \"server1\",\r\n        \"IsPasswordProtected\": false,\r\n        \"Password\": \"\",\r\n        \"ServerName\": \"Windrose Server\",\r\n        \"WorldIslandId\": \"\",\r\n        \"MaxPlayerCount\": 4,\r\n        \"P2pProxyAddress\": \"127.0.0.1\"\r\n    }\r\n}\r\nEOF\r\nfi\r\n\r\n## install end\r\necho \"Installation completed!\"\r\n",
+            "script": "#!/bin/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n# Image to install with is 'ghcr.io/parkervcp/installers:debian'\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n## install game using steamcmd (Windows dedicated server)\r\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} +@sSteamCmdForcePlatformType windows +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit\r\n\r\n## set up 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## Create default R5/ServerDescription.json if it does not exist\r\n## The server auto-creates this on first start; we pre-create it so the panel\r\n## can apply variable values (ServerName, InviteCode, etc.) from the first boot.\r\nmkdir -p /mnt/server/R5\r\nFILE=/mnt/server/R5/ServerDescription.json\r\nif [ -f \"$FILE\" ]; then\r\n    echo \"R5/ServerDescription.json already exists, skipping creation.\"\r\nelse\r\n    echo \"Creating default R5/ServerDescription.json...\"\r\n    cat > \"$FILE\" <<'EOF'\r\n{\r\n    \"Version\": 1,\r\n    \"DeploymentId\": \"\",\r\n    \"ServerDescription_Persistent\": {\r\n        \"PersistentServerId\": \"\",\r\n        \"InviteCode\": \"server1\",\r\n        \"IsPasswordProtected\": false,\r\n        \"Password\": \"\",\r\n        \"ServerName\": \"Windrose Server\",\r\n        \"WorldIslandId\": \"\",\r\n        \"MaxPlayerCount\": 4,\r\n        \"UserSelectedRegion\": \"\",\r\n        \"P2pProxyAddress\": \"0.0.0.0\",\r\n        \"UseDirectConnection\": false,\r\n        \"DirectConnectionServerAddress\": \"\",\r\n        \"DirectConnectionServerPort\": 7777,\r\n        \"DirectConnectionProxyAddress\": \"0.0.0.0\",\r\n        \"AutoLoadLatestBackupIfHasBroken\": true\r\n    }\r\n}\r\nEOF\r\nfi\r\n\r\n## install end\r\necho \"Installation completed!\"\r\n",
             "container": "ghcr.io/parkervcp/installers:debian",
             "entrypoint": "bash"
         }
     },
     "variables": [
+        {
+            "sort": 4,
+            "name": "[SERVER] Direct Connection Port",
+            "description": "TCP/UDP port used when Use Direct Connection is true. Must be open on both protocols. Default 7777. Has no effect when direct connection is disabled.",
+            "env_variable": "DIRECT_CONNECTION_PORT",
+            "default_value": "7777",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "integer",
+                "min:1024",
+                "max:65535"
+            ]
+        },
         {
             "sort": 2,
             "name": "[SERVER] Invite Code",
@@ -51,7 +66,7 @@
             ]
         },
         {
-            "sort": 3,
+            "sort": 5,
             "name": "[SERVER] Password Protected",
             "description": "Set to true to require a password to join, false for open access.",
             "env_variable": "IS_PASSWORD_PROTECTED",
@@ -65,7 +80,7 @@
             ]
         },
         {
-            "sort": 5,
+            "sort": 7,
             "name": "[SERVER] Max Players",
             "description": "Maximum simultaneous players allowed. Up to 4 is recommended for best performance; 10 players is supported with adequate hardware (>=16 GB RAM).",
             "env_variable": "MAX_PLAYERS",
@@ -94,7 +109,7 @@
             ]
         },
         {
-            "sort": 4,
+            "sort": 6,
             "name": "[SERVER] Server Password",
             "description": "Password required to join the server. Only used when Password Protected is set to true.",
             "env_variable": "SERVER_PASSWORD",
@@ -109,6 +124,20 @@
         },
         {
             "sort": 8,
+            "name": "[SERVER] Region",
+            "description": "Preferred matchmaking/relay region. Allowed: SEA, CIS, EU (EU covers both EU and NA). Leave empty for automatic latency-based selection.",
+            "env_variable": "SERVER_REGION",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string",
+                "in:,SEA,CIS,EU"
+            ]
+        },
+        {
+            "sort": 11,
             "name": "[STEAM] Steam App ID",
             "description": "Steam App ID for the Windrose Dedicated Server.",
             "env_variable": "SRCDS_APPID",
@@ -122,7 +151,7 @@
             ]
         },
         {
-            "sort": 9,
+            "sort": 12,
             "name": "[STEAM] Beta Branch ID",
             "description": "Name of the beta branch to install. Leave empty for the default (stable) branch.",
             "env_variable": "SRCDS_BETAID",
@@ -135,7 +164,7 @@
             ]
         },
         {
-            "sort": 10,
+            "sort": 13,
             "name": "[STEAM] Beta Branch Password",
             "description": "Password for the beta branch, if required.",
             "env_variable": "SRCDS_BETAPASS",
@@ -148,35 +177,23 @@
             ]
         },
         {
-            "sort": 12,
-            "name": "[WINE] Wine Debug Level",
-            "description": "Wine debug output verbosity. Set to -all to suppress noise.",
-            "env_variable": "WINEDEBUG",
-            "default_value": "-all",
-            "user_viewable": false,
-            "user_editable": false,
+            "sort": 3,
+            "name": "[SERVER] Use Direct Connection",
+            "description": "Set true to use direct TCP/UDP sockets (DirectConnectionServerPort must be reachable). Set false to use ICE/P2P punch-through (default). Most hosted setups should keep this false unless players cannot connect via invite code.",
+            "env_variable": "USE_DIRECT_CONNECTION",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
             "rules": [
                 "required",
-                "string"
+                "string",
+                "in:true,false"
             ]
         },
         {
-            "sort": 11,
-            "name": "[WINE] Winetricks Packages",
-            "description": "Winetricks packages to install on first startup. Required for the server to run.",
-            "env_variable": "WINETRICKS_RUN",
-            "default_value": "vcrun2022",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": [
-                "nullable",
-                "string"
-            ]
-        },
-        {
-            "sort": 6,
+            "sort": 9,
             "name": "[WORLD] World Name",
-            "description": "Display name for the server world. The first world is auto-created on initial startup. To rename an existing world, edit WorldDescription.WorldName in the WorldDescription.json file.",
+            "description": "Display name for the server world. The first world is auto-created on initial startup. To rename an existing world, stop the server and edit WorldDescription.WorldName in R5/Saved/SaveProfiles/Default/RocksDB/<version>/Worlds/<worldId>/WorldDescription.json (a copy is also kept under RocksDB_v2_Backups/).",
             "env_variable": "WORLD_NAME",
             "default_value": "Windrose World",
             "user_viewable": true,
@@ -188,7 +205,7 @@
             ]
         },
         {
-            "sort": 7,
+            "sort": 10,
             "name": "[WORLD] World Preset Type",
             "description": "Gameplay difficulty preset for the world. Valid values: Easy, Medium, Hard. Custom world parameters (mob multipliers, combat difficulty, etc.) must be edited manually in WorldDescription.json.",
             "env_variable": "WORLD_PRESET_TYPE",

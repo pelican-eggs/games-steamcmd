@@ -13,11 +13,13 @@ Server App ID: `4129620`
 
 ## Configuration
 
+Read this [official guide](https://playwindrose.com/dedicated-server-guide/) on how to configure the server.
+Some important info:
+
 - Configuration is stored in `ServerDescription.json` (server name, invite code, password, max players) and per-world `WorldDescription.json` files (world name, difficulty preset, custom parameters).
-- World saves are located at: `R5\Saved\SaveProfiles\Default\RocksDB\{GameVersion}\Worlds\`
+- World saves are located at: `R5\Saved\SaveProfiles\Default\RocksDB\{GameVersion}\Worlds\` (a copy is also kept under `RocksDB_v2_Backups/`)
 - Up to **4 players** is recommended for stable performance.
-- Read this [official guide](https://playwindrose.com/dedicated-server-guide/) on how to configure the server.
 
 ## Server Ports
 
-The dedicated server uses **NAT punch-through / UPnP** for connectivity — fixed port assignment is not supported. Ensure UPnP is enabled on your router, or configure port forwarding manually.
+Use either the invite code system (in which case you don't need to directly make an allocation) or DirectIP options on server setup (make sure to match the port with your designated allocation).

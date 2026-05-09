@@ -7,17 +7,17 @@
     "exported_at": "2026-04-23T23:56:48+00:00",
     "name": "RuneScape: Dragonwilds",
     "author": "red_thirten@yahoo.com",
-    "description": "RuneScape: Dragonwilds is a co-op survival RPG set in the world of RuneScape. Up to 6 players can\nexplore, craft, build, and battle together on a dedicated server. RAM recommendation is 2 GB base +\n1 GB per player (8 GB for a full 6-player server).",
+    "description": "RuneScape: Dragonwilds is a co-op survival RPG set in the world of RuneScape. Up to 6 players can explore, craft, build, and battle together on a dedicated server. RAM recommendation is 2 GB base + 1 GB per player (8 GB for a full 6-player server).",
     "features": [
         "steam_disk_space"
     ],
     "docker_images": {
         "ghcr.io\/pelican-eggs\/steamcmd:debian": "ghcr.io\/pelican-eggs\/steamcmd:debian"
     },
-    "file_denylist": {},
+    "file_denylist": [],
     "startup": ".\/RSDragonwilds\/Binaries\/Linux\/RSDragonwildsServer-Linux-Shipping -log -port={{SERVER_PORT}} -ini:Game:[\/Script\/Engine.GameSession]:MaxPlayers={{MAX_PLAYERS}}",
     "config": {
-        "files": "{\n    \"RSDragonwilds\\\/Saved\\\/Config\\\/LinuxServer\\\/DedicatedServer.ini\": {\n        \"parser\": \"ini\",\n        \"find\": {\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].OwnerId\": \"{{server.build.env.OWNER_ID}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].ServerName\": \"{{server.build.env.SERVER_NAME}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].DefaultWorldName\": \"{{server.build.env.DEFAULT_WORLD_NAME}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].AdminPassword\": \"{{server.build.env.ADMIN_PASSWORD}}\",\n            \"[\\\/Script\\\/Dominion.DedicatedServerSettings].WorldPassword\": \"{{server.build.env.WORLD_PASSWORD}}\"\n        }\n    }\n}",
+        "files": "{\n    \"RSDragonwilds\/Saved\/Config\/LinuxServer\/DedicatedServer.ini\": {\n        \"parser\": \"ini\",\n        \"find\": {\n            \"[\/Script\/Dominion.DedicatedServerSettings].OwnerId\": \"{{server.build.env.OWNER_ID}}\",\n            \"[\/Script\/Dominion.DedicatedServerSettings].ServerName\": \"{{server.build.env.SERVER_NAME}}\",\n            \"[\/Script\/Dominion.DedicatedServerSettings].DefaultWorldName\": \"{{server.build.env.DEFAULT_WORLD_NAME}}\",\n            \"[\/Script\/Dominion.DedicatedServerSettings].AdminPassword\": \"{{server.build.env.ADMIN_PASSWORD}}\",\n            \"[\/Script\/Dominion.DedicatedServerSettings].WorldPassword\": \"{{server.build.env.WORLD_PASSWORD}}\"\n        }\n    }\n}",
         "startup": "{\n    \"done\": \"CREATE SESSION - Advertise\"\n}",
         "logs": "{}",
         "stop": "^C"
@@ -31,43 +31,33 @@
     },
     "variables": [
         {
-            "name": "Admin Password",
-            "description": "Anyone who knows this password can enter the Server Management tab in the Pause Menu > Settings\nmenu. They will be considered as Admins until the Admin Password is changed again. You can see the\nlist of people who have used the Admin Password to enter the Server Management screen by going to\nFiles > RSDragonwilds > Saved > Config > Linux > DedicatedServer.ini.",
-            "env_variable": "ADMIN_PASSWORD",
-            "default_value": "CHANGE ME TO A SECURE PASSWORD!",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
             "name": "Automatic Updates",
             "description": "Quickly checks for any server updates on startup, and updates if necessary. (1 Enable | 0 Disable)",
             "env_variable": "AUTO_UPDATE",
-            "default_value": 1,
+            "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
             "field_type": "text"
         },
         {
+            "name": "[Required] Owner ID",
+            "description": "Your RuneScape: Dragonwilds Player ID. It can be found in game at the bottom of the Settings Menu. Use the copy button to add it to your clipboard. The server will not start without your owner ID!",
+            "env_variable": "OWNER_ID",
+            "default_value": "CHANGEME000000000000000000000000",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|alpha_num|size:32",
+            "field_type": "text"
+        },
+        {
             "name": "Default World Name",
-            "description": "The name of the world created on first startup. Players search for your server by this world name in\nthe Public tab of the Worlds screen (case-sensitive). Uploaded worlds will ignore this setting and\nuse their own name instead.",
+            "description": "The name of the world created on first startup. Players search for your server by this world name in the Public tab of the Worlds screen (case-sensitive). Uploaded worlds will ignore this setting and use their own name instead.",
             "env_variable": "DEFAULT_WORLD_NAME",
             "default_value": "Default World",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:32",
-            "field_type": "text"
-        },
-        {
-            "name": "Max Players",
-            "description": "Maximum number of players (1-6).",
-            "env_variable": "MAX_PLAYERS",
-            "default_value": 6,
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|integer|between:1,6",
             "field_type": "text"
         },
         {
@@ -81,8 +71,18 @@
             "field_type": "text"
         },
         {
+            "name": "Admin Password",
+            "description": "Anyone who knows this password can enter the Server Management tab in the Pause Menu > Settings menu. They will be considered as Admins until the Admin Password is changed again. You can see the list of people who have used the Admin Password to enter the Server Management screen by going to Files > RSDragonwilds > Saved > Config > Linux > DedicatedServer.ini.",
+            "env_variable": "ADMIN_PASSWORD",
+            "default_value": "CHANGE ME TO A SECURE PASSWORD!",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
             "name": "World Password",
-            "description": "Optional password players must enter to join your server. Will supersede any password stored in the\nworld. Can be left empty if you want anyone to be able to join your world.",
+            "description": "Optional password players must enter to join your server. Will supersede any password stored in the world. Can be left empty if you want anyone to be able to join your world.",
             "env_variable": "WORLD_PASSWORD",
             "default_value": "",
             "user_viewable": true,
@@ -91,20 +91,20 @@
             "field_type": "text"
         },
         {
-            "name": "[Required] Owner ID",
-            "description": "Your RuneScape: Dragonwilds Player ID. It can be found in game at the bottom of the Settings Menu.\nUse the copy button to add it to your clipboard. The server will not start without your owner ID!",
-            "env_variable": "OWNER_ID",
-            "default_value": "CHANGEME000000000000000000000000",
+            "name": "Max Players",
+            "description": "Maximum number of players (1-6).",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "6",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|alpha_num|size:32",
+            "rules": "required|integer|between:1,6",
             "field_type": "text"
         },
         {
             "name": "[System] Dedicated Server App ID",
             "description": "Steam App ID used for installation and updates.",
             "env_variable": "SRCDS_APPID",
-            "default_value": 4019830,
+            "default_value": "4019830",
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|integer|in:4019830",

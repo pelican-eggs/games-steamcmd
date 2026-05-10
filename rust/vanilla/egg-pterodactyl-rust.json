@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2026-02-20T08:29:15+00:00",
+    "exported_at": "2026-05-10T01:48:20+00:00",
     "name": "Rust",
     "author": "panel@example.com",
     "description": "The only aim in Rust is to survive. To do this you will need to overcome struggles such as hunger,\nthirst and cold. Build a fire. Build a shelter. Kill animals for meat. Protect yourself from other\nplayers, and kill them for meat. Create alliances with other players and form a town. Do whatever it\ntakes to survive.",
@@ -24,7 +24,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!/bin/bash\n# steamcmd Base Installation Script\n#\n# Server Files: /mnt/server\n\n\n## just in case someone removed the defaults.\nif [ \"${STEAM_USER}\" == \"\" ]; then\n    echo -e \"steam user is not set.\n\"\n    echo -e \"Using anonymous user.\n\"\n    STEAM_USER=anonymous\n    STEAM_PASS=\"\"\n    STEAM_AUTH=\"\"\nelse\n    echo -e \"user set to ${STEAM_USER}\"\nfi\n\n## download and install steamcmd\ncd /tmp\nmkdir -p /mnt/server/steamcmd\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\ncd /mnt/server/steamcmd\n\n# SteamCMD fails otherwise for some reason, even running as root.\n# This is changed at the end of the install process anyways.\nchown -R root:root /mnt\nexport HOME=/mnt/server\n\n## install game using steamcmd\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} +app_update ${SRCDS_APPID} ${EXTRA_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\n\n## set up 32 bit libraries\nmkdir -p /mnt/server/.steam/sdk32\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\n\n## set up 64 bit libraries\nmkdir -p /mnt/server/.steam/sdk64\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\n\n## seed server.cfg for Pelican config.files parser.\n## the parser overrides existing lines but does NOT append missing ones,\n## so we have to seed placeholder lines on first install. on subsequent\n## boots Wings rewrites these with the live env values from the panel.\nmkdir -p /mnt/server/server/rust/cfg\nCFG=/mnt/server/server/rust/cfg/server.cfg\nif [ ! -s \"$CFG\" ] || ! grep -q '^server.hostname ' \"$CFG\"; then\n  cat > \"$CFG\" <<'SEED_EOF'\nserver.hostname \"default\"\nserver.description \"default\"\nserver.url \"\"\nserver.headerimage \"\"\nserver.logoimage \"\"\nserver.level \"Procedural Map\"\nserver.worldsize 4500\nserver.seed 12345\nserver.tags \"\"\nserver.levelurl \"\"\nSEED_EOF\n  echo \"  [seed] server.cfg pre-populated for Pelican file parser\"\nelse\n  echo \"  [seed] server.cfg already has hostname line; skip\"\nfi",
+            "script": "#!/bin/bash\n# steamcmd Base Installation Script\n#\n# Server Files: /mnt/server\n\n\n## just in case someone removed the defaults.\nif [ \"${STEAM_USER}\" == \"\" ]; then\n    echo -e \"steam user is not set.\n\"\n    echo -e \"Using anonymous user.\n\"\n    STEAM_USER=anonymous\n    STEAM_PASS=\"\"\n    STEAM_AUTH=\"\"\nelse\n    echo -e \"user set to ${STEAM_USER}\"\nfi\n\n## download and install steamcmd\ncd /tmp\nmkdir -p /mnt/server/steamcmd\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\ncd /mnt/server/steamcmd\n\n# SteamCMD fails otherwise for some reason, even running as root.\n# This is changed at the end of the install process anyways.\nchown -R root:root /mnt\nexport HOME=/mnt/server\n\n## install game using steamcmd\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} +app_update ${SRCDS_APPID} ${EXTRA_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\n\n## set up 32 bit libraries\nmkdir -p /mnt/server/.steam/sdk32\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\n\n## set up 64 bit libraries\nmkdir -p /mnt/server/.steam/sdk64\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\n\n## Pelican config.files parser için server.cfg seed satırları\n## Parser bulamadığı satırı SKIP ediyor; bu satırlar olmadan hostname/description Rust'a ulaşmaz.\nmkdir -p /mnt/server/server/rust/cfg\nCFG=/mnt/server/server/rust/cfg/server.cfg\nif [ ! -s \"$CFG\" ] || ! grep -q '^server.hostname ' \"$CFG\"; then\n  cat > \"$CFG\" <<'SEED_EOF'\nserver.hostname \"default\"\nserver.description \"default\"\nserver.url \"\"\nserver.headerimage \"\"\nserver.logoimage \"\"\nserver.level \"Procedural Map\"\nserver.worldsize 4500\nserver.seed 12345\nserver.tags \"\"\nserver.levelurl \"\"\nSEED_EOF\n  echo \"  [seed] server.cfg pre-populated for Pelican file parser\"\nelse\n  echo \"  [seed] server.cfg already has hostname line; skip\"\nfi\n\n",
             "container": "ghcr.io/pelican-eggs/installers:debian",
             "entrypoint": "bash"
         }
@@ -102,7 +102,7 @@
             "env_variable": "MAX_PLAYERS",
             "default_value": "40",
             "user_viewable": true,
-            "user_editable": true,
+            "user_editable": false,
             "rules": "required|integer",
             "sort": 8,
             "field_type": "text"
@@ -230,13 +230,13 @@
         },
         {
             "name": "Server Tags",
-            "description": "Steam server browser keywords (comma-separated). Examples: weekly,vanilla,solo,duo,monthly,tr.",
+            "description": "Steam server browser tagleri (virgulle ayir). Or: weekly,vanilla,solo",
             "env_variable": "SERVER_TAGS",
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:128",
-            "sort": 19,
+            "sort": 100,
             "field_type": "text"
         }
     ]

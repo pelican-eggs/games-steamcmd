@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2026-05-10T01:59:16+00:00",
+    "exported_at": "2026-05-10T02:18:05+00:00",
     "name": "Rust Autowipe",
     "author": "support@pterodactyl.io",
     "description": "The only aim in Rust is to survive. To do this you will need to overcome struggles such as hunger, thirst and cold. Build a fire. Build a shelter. Kill animals for meat. Protect yourself from other players, and kill them for meat. Create alliances with other players and form a town. Do whatever it takes to survive.",
@@ -222,7 +222,7 @@
         },
         {
             "name": "Server Tags",
-            "description": "Steam server browser keywords (comma-separated). Examples: weekly,vanilla,solo,duo,monthly,tr.",
+            "description": "Steam server browser keywords (comma-separated, lowercase, max 4 shown). Categories: wipe schedule (monthly, biweekly, weekly), difficulty (vanilla, hardcore, softcore), gameplay (pve, roleplay, creative, minigame, training, battlefield, broyale, builds, tut), modding (modded, oxide, carbon), region (na, sa, eu, wa, ea, oc, af). Use one tag per category — see https:\/\/wiki.facepunch.com\/rust\/server-browser-tags",
             "env_variable": "SERVER_TAGS",
             "default_value": "",
             "user_viewable": true,

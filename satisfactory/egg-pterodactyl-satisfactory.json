@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-09-10T11:11:13-07:00",
+    "exported_at": "2024-04-04T10:49:13-07:00",
     "name": "Satisfactory",
     "author": "red_thirten@yahoo.com",
     "description": "Satisfactory is a first-person open-world factory building game with a dash of exploration and combat. Play alone or with friends, explore an alien planet, create multi-story factories, and enter conveyor belt heaven!",
@@ -15,7 +15,7 @@
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"
     },
     "file_denylist": [],
-    "startup": ".\/Engine\/Binaries\/Linux\/*-Linux-Shipping FactoryGame -Port={{SERVER_PORT}}",
+    "startup": ".\/Engine\/Binaries\/Linux\/*-Linux-Shipping FactoryGame -Port={{SERVER_PORT}} -ReliablePort={{RELIABLE_PORT}}",
     "config": {
         "files": "{\r\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Game.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"[\/Script\/Engine.GameSession].MaxPlayers\": \"{{server.build.env.MAX_PLAYERS}}\"\r\n        }\r\n    },\r\n    \"FactoryGame\/Saved\/Config\/LinuxServer\/Engine.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"[\/Script\/FactoryGame.FGSaveSession].mNumRotatingAutosaves\": \"{{server.build.env.NUM_AUTOSAVES}}\",\r\n            \"[\/Script\/OnlineSubsystemUtils.IpNetDriver].InitialConnectTimeout\": \"{{server.build.env.INIT_CONNECT_TIMEOUT}}\",\r\n            \"[\/Script\/OnlineSubsystemUtils.IpNetDriver].ConnectionTimeout\": \"{{server.build.env.CONNECT_TIMEOUT}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Engine Initialization\"\r\n}",
@@ -31,6 +31,16 @@
     },
     "variables": [
         {
+            "name": "[Host] Reliable Messaging Port",
+            "description": "This port is required for the initial handshake between clients and the server. When connecting, clients should connect to the server's primary port; NOT this port.",
+            "env_variable": "RELIABLE_PORT",
+            "default_value": "8888",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|integer|min:0|max:65535",
+            "field_type": "text"
+        },
+        {
             "name": "Automatic Updates",
             "description": "Quickly checks for any server updates on startup, and updates if necessary. (1 Enable | 0 Disable)",
             "env_variable": "AUTO_UPDATE",
@@ -38,16 +48,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
-            "field_type": "text"
-        },
-        {
-            "name": "[Repair] Validate Server Files",
-            "description": "Leave empty (no value) for OFF or type \"true\" or \"1\" for ON. Validates all server files when Automatic Updates is enabled. Note: This will significantly increase server startup times, so it is recommended to only enable this when needed.",
-            "env_variable": "VALIDATE",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "string|nullable",
             "field_type": "text"
         },
         {
@@ -101,7 +101,17 @@
             "field_type": "text"
         },
         {
-            "name": "[Advanced] Satisfactory Dedicated Server App ID",
+            "name": "[Repair] Validate Server Files",
+            "description": "Leave empty (no value) for OFF or type \"true\" or \"1\" for ON. Validates all server files when Automatic Updates is enabled. Note: This will significantly increase server startup times, so it is recommended to only enable this when needed.",
+            "env_variable": "VALIDATE",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string|nullable",
+            "field_type": "text"
+        },
+        {
+            "name": "[System] Satisfactory Dedicated Server App ID",
             "description": "Steam App ID used for installation and updates.",
             "env_variable": "SRCDS_APPID",
             "default_value": "1690800",

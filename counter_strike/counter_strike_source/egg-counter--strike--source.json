@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:02+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Counter-Strike: Source",
     "author": "diedyesterdaywashere@gmail.com",
     "uuid": "d2ad7d3f-9817-4e53-9944-d1f43fd910e8",
     "description": "Counter-Strike: Source blends Counter-Strike's award-winning teamplay action with the advanced technology of Source\u2122 technology.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"

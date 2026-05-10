@@ -57,7 +57,7 @@
             "default_value": "0",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|boolean",
+            "rules": "boolean",
             "field_type": "text"
         }
     ]

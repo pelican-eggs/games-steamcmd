@@ -1,9 +1,9 @@
 # Satisfactory
 
 > [!IMPORTANT]
-> ***Updating for v1.0?***
+> ***Updating for v1.1?***
 > - Ensure any existing servers have the updated Startup Command applied!
-> - TCP is now required! (See [Server Ports](#server-ports) for details)
+> - A new TCP port is now required! (See [Server Ports](#server-ports) for details)
 > - While not required, it's recommended existing servers delete the `LinuxServer` directory under `~/FactoryGame/Saved/Config/` to remove depreciated settings, and reconfigure the settings via the in-game Server Manager.
 ___
 
@@ -14,59 +14,59 @@ ___
 <table>
     <tr>
         <td align="center">
-            <a href="https://github.com/lilkingjr1">
+            <a href="https://github.com/redthirten">
                 <img src="https://avatars.githubusercontent.com/u/4533989" width="50px;" alt=""/><br /><sub><b>Red-Thirten</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=lilkingjr1" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=lilkingjr1" title="Maintains">🔨</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=redthirten" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=redthirten" title="Maintains">🔨</a>
         </td>
         <td align="center">
             <a href="https://github.com/iamkubi">
                 <img src="https://avatars.githubusercontent.com/u/6176191" width="50px;" alt=""/><br /><sub><b>Kubi</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=iamkubi" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=iamkubi" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=iamkubi" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=iamkubi" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/matthewpi">
                 <img src="https://avatars.githubusercontent.com/u/26559841" width="50px;" alt=""/><br /><sub><b>matthewpi</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=matthewpi" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=matthewpi" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=matthewpi" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=matthewpi" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/Software-Noob">
                 <img src="https://avatars.githubusercontent.com/u/10975908" width="50px;" alt=""/><br /><sub><b>Software-Noob</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=Software-Noob" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=Software-Noob" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Software-Noob" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Software-Noob" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/Zarklord">
                 <img src="https://avatars.githubusercontent.com/u/1622280" width="50px;" alt=""/><br /><sub><b>Zarklord</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=Zarklord" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=Zarklord" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Zarklord" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Zarklord" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/AlienXAXS">
                 <img src="https://avatars.githubusercontent.com/u/1773445" width="50px;" alt=""/><br /><sub><b>AlienXAXS</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=AlienXAXS" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=AlienXAXS" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/gOOvER">
                 <img src="https://avatars.githubusercontent.com/u/116325?v=4" width="50px;" alt=""/><br /><sub><b>gOOvER</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=gOOvER" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=gOOvER" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=gOOvER" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=gOOvER" title="Contributor">💡</a>
         </td>
     </tr>
 </table>
@@ -100,9 +100,17 @@ ___
 | Port | Default | Protocol | Required | Notes |
 |---------|---------|---------|---------|---------|
 | **Primary** | 7777 | UDP & TCP | **Yes** | Clients connect using this port. UDP is un-encrypted game traffic. TCP is also required for the in-game Server Manager & API, and it is TLS encrypted. |
+| Reliable Messaging | 8888 | TCP | **Yes** | Required for Satisfactory v1.1 and above. Must be allocated to the server and specified in the associated Startup Variable. |
 
 > [!TIP]
-> \*Your internal ports **must match** your external ports on your network (ie. you can't have an external port of 7778 forwarded to your 7777 internal port; they must match). (\*Testing needed after v1.0 release)
+> ~~\*Your internal ports **must match** your external ports on your network (ie. you can't have an external port of 7778 forwarded to your 7777 internal port; they must match). (\*Testing needed after v1.0 release)~~\
+> \
+> **TODO**: This is no longer explicitly true and needs to be reworded to support the following:
+> - Clients must connect to the correct port, but port remapping (e.g., via NAT/firewall rules) can break this.
+> - To address this, the server now communicates the listening port to clients during the initial handshake.
+> - If external port remapping is used, the server must be aware of the external port via:
+> - The `ExternalPortRangeBegin` config setting (for remapped ranges).
+> - The `-ExternalReliablePort=` command-line parameter (for explicitly mapped ports).
 
 ___
 

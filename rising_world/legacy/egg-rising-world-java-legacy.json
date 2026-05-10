@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:41+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Rising World Java Legacy",
     "author": "eggs@goover.dev",
     "uuid": "b60efdb2-7468-4c7e-8653-d075048111a0",
     "description": "Rising World is a voxel based open-world sandbox game, featuring a procedurally generated world, playable in single and multi-player.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

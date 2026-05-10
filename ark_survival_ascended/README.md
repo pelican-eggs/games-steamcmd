@@ -13,21 +13,21 @@ ARK is reimagined from the ground-up into the next-generation of video game tech
                 <img src="https://avatars.githubusercontent.com/u/133905860" width="50px;" alt=""/><br /><sub><b>Blood Shot</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=dagbs" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=dagbs" title="Maintains">🔨</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=dagbs" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=dagbs" title="Maintains">🔨</a>
         <td align="center">
             <a href="https://github.com/gOOvER">
                 <img src="https://avatars.githubusercontent.com/u/116325" width="50px;" alt=""/><br /><sub><b>gOOvER</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=gOOvER" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=gOOvER" title="Codes">💻</a>
         </td>
         <td align="center">
             <a href="https://github.com/hackles">
                 <img src="https://avatars.githubusercontent.com/u/30584261" width="50px;" alt=""/><br /><sub><b>heckler</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=hackles" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=hackles" title="Codes">💻</a>
         </td>
         </td>
         <td align="center">
@@ -35,28 +35,28 @@ ARK is reimagined from the ground-up into the next-generation of video game tech
                 <img src="https://avatars.githubusercontent.com/u/5745907" width="50px;" alt=""/><br /><sub><b>Brandon</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=Log1x" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Log1x" title="Codes">💻</a>
         </td>  
         <td align="center">
             <a href="https://github.com/Ballaual">
                 <img src="https://avatars.githubusercontent.com/u/38478976" width="50px;" alt=""/><br /><sub><b>Alexander Ballauf</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=Ballaual" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=Ballaual" title="Codes">💻</a>
         </td> 
         <td align="center">
             <a href="https://github.com/MachinegunMarty">
                 <img src="https://avatars.githubusercontent.com/u/20025119" width="50px;" alt=""/><br /><sub><b>MachinegunMartyf</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=MachinegunMarty" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=MachinegunMarty" title="Contributor">💡</a>
         </td>
         <td align="center">
             <a href="https://github.com/That411Guy">
                 <img src="https://avatars.githubusercontent.com/u/100328348" width="50px;" alt=""/><br /><sub><b>That411Guy</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=That411Guy" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=That411Guy" title="Codes">💻</a>
         </td>         
     </tr>
 </table>
@@ -103,6 +103,4 @@ Note: The Peer port is not an option that can be set and will always be +1 from 
 | Port            | Default |
 | --------------- | ------- |
 | Game            | 7777    |
-| Peer   (Game+1) | 7778    |
-| Query           | 27015   |
 | RCON (optional) | 37015   |

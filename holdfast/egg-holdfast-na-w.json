@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:19+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Holdfast NaW",
     "author": "ankit@bmghosting.com",
     "uuid": "3b1b473a-3271-4adf-b6ff-1e203ba2ca21",
     "description": "Holdfast: Nations at War",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

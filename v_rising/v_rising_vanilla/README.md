@@ -7,20 +7,20 @@
 <table>
     <tr>
         <td align="center">
-            <a href="https://github.com/lilkingjr1">
+            <a href="https://github.com/redthirten">
                 <img src="https://avatars.githubusercontent.com/u/4533989" width="50px;" alt=""/><br /><sub><b>Red-Thirten</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=lilkingjr1" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=lilkingjr1" title="Maintains">🔨</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=redthirten" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=redthirten" title="Maintains">🔨</a>
         </td>
         <td align="center">
             <a href="https://github.com/kapatheus">
                 <img src="https://avatars.githubusercontent.com/u/59861026" width="50px;" alt=""/><br /><sub><b>Kapatheus</b></sub>
             </a>
             <br />
-            <a href="https://github.com/parkervcp/eggs/commits?author=kapatheus" title="Codes">💻</a>
-            <a href="https://github.com/parkervcp/eggs/commits?author=kapatheus" title="Contributor">💡</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=kapatheus" title="Codes">💻</a>
+            <a href="https://github.com/pelican-eggs/games-steamcmd/commits?author=kapatheus" title="Contributor">💡</a>
         </td>
     </tr>
 </table>

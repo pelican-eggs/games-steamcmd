@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:56+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Team Fortress 2 Classic",
     "author": "eggs@scattergun.io",
     "uuid": "d080e7b0-bcb5-4e68-a13f-c21c1c95ba45",
     "description": "Team Fortress 2 Classic is a free mod of the 2007 game Team Fortress 2, developed by Eminoma and utilizing the Source engine.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

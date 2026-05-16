@@ -18,7 +18,7 @@ docker_images:
   SteamCMD: 'ghcr.io/pelican-eggs/steamcmd:debian'
 file_denylist: {  }
 startup_commands:
-  Default: 'cd ConanSandbox/Binaries/Linux/ && ./ConanSandboxServer-Linux-Shipping ConanSandbox -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -RconPort={{RCON_PORT}} -ServerName=\"{{SRV_NAME}}\" -ServerPassword=\"{{SRV_PW}}\" -console -log'
+  Default: 'cd ConanSandbox/Binaries/Linux/ && chmod +x ConanSandboxServer-Linux-Shipping && ./ConanSandboxServer-Linux-Shipping ConanSandbox -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -RconPort={{RCON_PORT}} -ServerName=\"{{SRV_NAME}}\" -ServerPassword=\"{{SRV_PW}}\" -console -log'
 config:
   files: {  }
   startup:

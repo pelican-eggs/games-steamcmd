@@ -28,7 +28,7 @@
 * [Brickadia](brickadia)
 * [Citadel: Forged with Fire](citadel)
 * [Colony Survival](colony_survival)
-* [Conan Exiles](conan_exiles)
+* [Conan Exiles / Enhanced](conan_exiles)
 * [Core Keeper](core_keeper)
 * [Counter-Strike](counter_strike)
 * [Craftopia](craftopia)

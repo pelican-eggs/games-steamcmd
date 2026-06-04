@@ -5,5 +5,4 @@ Counter-Strike is a series of multiplayer tactical first-person shooter video ga
 ## Counter-Strike Titles
 
 - [Counter-Strike: Source](counter_strike_source)
-- [Counter-Strike: Global-Offensive]() this egg ships with the panel
 - [Counter-Strike 2](counter_strike_2)

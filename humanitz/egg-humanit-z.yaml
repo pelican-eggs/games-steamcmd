@@ -1,0 +1,420 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: null
+exported_at: '2026-06-06T21:31:44+00:00'
+name: HumanitZ
+author: engels74@cccp.ps
+uuid: 8b0f6f01-ec9e-4bc9-b341-6e0425894847
+description: |-
+  HumanitZ is a co-op, isometric, open world survival game in a world ended by the zombie outbreak. As
+  one of the few human survivors, try to last as long as “humanly” possible. The past can’t be
+  changed, but you can make a difference today for the future of humanity.
+icon: null
+tags:
+  - steamcmd
+features: null
+docker_images:
+  'ghcr.io/parkervcp/steamcmd:debian': 'ghcr.io/parkervcp/steamcmd:debian'
+file_denylist: {  }
+startup_commands:
+  Default: '[ -f ./ini-merge.sh ] && bash ./ini-merge.sh HumanitZServer/REF_GameServerSettings.ini HumanitZServer/GameServerSettings.ini || true; ./HumanitZServer/Binaries/Linux/HumanitZServer-Linux-Shipping HumanitZServer -log -port={{SERVER_PORT}} -queryport={{QUERY_PORT}} -steamservername="{{SERVER_NAME}}"'
+config:
+  files:
+    HumanitZServer/GameServerSettings.ini:
+      parser: ini
+      find:
+        '[Host Settings].ServerName': '{{server.environment.SERVER_NAME}}'
+        '[Host Settings].Password': '{{server.environment.PASSWORD}}'
+        '[Host Settings].SaveName': '{{server.environment.SAVE_NAME}}'
+        '[Host Settings].SearchID': '{{server.environment.SEARCH_ID}}'
+        '[Host Settings].AdminPass': '{{server.environment.ADMIN_PASS}}'
+        '[Host Settings].MaxPlayers': '{{server.environment.MAX_PLAYERS}}'
+        '[Host Settings].ReserveSlots': '{{server.environment.RESERVE_SLOTS}}'
+        '[Host Settings].RCONEnabled': '{{server.environment.RCON_ENABLED}}'
+        '[Host Settings].RConPort': '{{server.environment.RCON_PORT}}'
+        '[Host Settings].RCONPass': '{{server.environment.RCON_PASS}}'
+  startup:
+    done: 'Session created!'
+  logs: {  }
+  stop: ^C
+scripts:
+  installation:
+    script: |-
+      #!/bin/bash
+      # steamcmd Base Installation Script
+      #
+      # Server Files: /mnt/server
+      # Image to install with is 'ghcr.io/parkervcp/installers:debian'
+
+      ##
+      #
+      # Variables
+      # STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.
+      # WINDOWS_INSTALL - if it's a windows server you want to install set to 1
+      # SRCDS_APPID - steam app id found here - https://developer.valvesoftware.com/wiki/Dedicated_Servers_List
+      # SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch
+      # SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.
+      # INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.
+      # AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.
+      #
+       ##
+
+      # Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.
+      #apt -y update
+      #apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates
+
+      ## just in case someone removed the defaults.
+      if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
+          echo -e "steam user is not set.\n"
+          echo -e "Using anonymous user.\n"
+          STEAM_USER=anonymous
+          STEAM_PASS=""
+          STEAM_AUTH=""
+      else
+          echo -e "user set to ${STEAM_USER}"
+      fi
+
+      ## download and install steamcmd
+      cd /tmp
+      mkdir -p /mnt/server/steamcmd
+      curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+      tar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd
+      mkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing
+      cd /mnt/server/steamcmd
+
+      # SteamCMD fails otherwise for some reason, even running as root.
+      # This is changed at the end of the install process anyways.
+      chown -R root:root /mnt
+      export HOME=/mnt/server
+
+      ## install game using steamcmd
+      ./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ "${WINDOWS_INSTALL}" == "1" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s "-beta ${SRCDS_BETAID}" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s "-betapassword ${SRCDS_BETAPASS}" ) ${INSTALL_FLAGS} validate +quit 
+
+      ## set up 32 bit libraries
+      mkdir -p /mnt/server/.steam/sdk32
+      cp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so
+
+      ## set up 64 bit libraries
+      mkdir -p /mnt/server/.steam/sdk64
+      cp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so
+
+      ## making server files executable
+      chmod +x /mnt/server/HumanitZServer/Binaries/Linux/HumanitZServer-Linux-Shipping
+
+      ## ship the additive ini-merge helper so the live config can absorb new
+      ## reference keys without overwriting player edits. It also runs on every
+      ## boot via the startup command; running it here keeps installs and
+      ## reinstalls in sync immediately.
+      cat > /mnt/server/ini-merge.sh << 'INIMERGE_EOF'
+      #!/usr/bin/env bash
+      # ini-merge.sh - additively merge missing keys from a reference INI into a live INI.
+      #
+      # Usage: ini-merge.sh <reference.ini> <live.ini>
+      #
+      # Behaviour:
+      #   - Adds ONLY keys that exist in <reference.ini> but are absent from <live.ini>.
+      #   - Never edits, reorders, or deletes keys already present in <live.ini>
+      #     (user edits are always preserved).
+      #   - New keys are appended to the end of their matching section, using the
+      #     reference file's default value. Sections absent from the live file are
+      #     appended whole.
+      #   - Idempotent: a second run with no upstream changes is a no-op.
+      #   - Non-fatal by design: any problem is logged and the script exits 0 so it
+      #     can never block server boot. The live file is only replaced via an atomic
+      #     rename, and only after a one-shot backup (<live>.bak).
+      set -u
+
+      REF="${1:-}"
+      LIVE="${2:-}"
+
+      log() { printf '[ini-merge] %s\n' "$*"; }
+
+      [ -n "$REF" ] && [ -n "$LIVE" ] || { log "usage: ini-merge.sh <reference.ini> <live.ini>; skipping"; exit 0; }
+      command -v awk >/dev/null 2>&1 || { log "awk not found; skipping merge"; exit 0; }
+      [ -f "$REF" ]  || { log "reference '$REF' not found; nothing to merge"; exit 0; }
+
+      # No live config yet: seed it wholesale from the reference and stop.
+      if [ ! -f "$LIVE" ]; then
+          if cp -- "$REF" "$LIVE"; then log "seeded '$LIVE' from reference"; else log "seed of '$LIVE' failed"; fi
+          exit 0
+      fi
+
+      TMP="$(mktemp "${LIVE}.merge.XXXXXX" 2>/dev/null)" || { log "mktemp failed; skipping merge"; exit 0; }
+
+      awk -v ref="$REF" '
+          function trim(s){ sub(/^[ \t\r]+/,"",s); sub(/[ \t\r]+$/,"",s); return s }
+          function isheader(t){ return (t ~ /^\[.*\]$/) }
+          function secname(t){ sub(/^\[[ \t]*/,"",t); sub(/[ \t]*\][ \t]*$/,"",t); return t }
+          function flush(s,   c,a,i){
+              if (s in flushed) return
+              flushed[s]=1
+              if (!(s in missList)) return
+              c=split(missList[s],a,SUBSEP)
+              for (i=1;i<=c;i++) print a[i]
+          }
+          function flushblanks(   i){
+              for (i=1;i<=nb;i++) print blanks[i]
+              nb=0
+          }
+          BEGIN{
+              cur=""
+              while ((getline line < ref) > 0){
+                  t=trim(line)
+                  if (t=="" || t ~ /^[;#]/) continue
+                  if (isheader(t)){ cur=secname(t); refsec[cur]=1; continue }
+                  p=index(t,"=")
+                  if (p==0) continue
+                  k=trim(substr(t,1,p-1))
+                  if (k=="") continue
+                  refKeyLine[cur SUBSEP k]=t
+                  if ((cur SUBSEP k) in refSeen) continue
+                  refSeen[cur SUBSEP k]=1
+                  refKeys[cur]=refKeys[cur] (refKeys[cur]==""?"":SUBSEP) k
+              }
+              close(ref)
+          }
+          { lines[++nl]=$0 }
+          END{
+              # Pass A: record keys already present in the live file, per section.
+              cur=""
+              for (i=1;i<=nl;i++){
+                  t=trim(lines[i])
+                  if (isheader(t)){ cur=secname(t); livesec[cur]=1 }
+                  else if (t!="" && t !~ /^[;#]/){
+                      p=index(t,"=")
+                      if (p>0){ k=trim(substr(t,1,p-1)); if (k!="") have[cur SUBSEP k]=1 }
+                  }
+              }
+              # Compute missing keys per section, preserving reference order.
+              for (s in refKeys){
+                  c=split(refKeys[s],a,SUBSEP)
+                  for (i=1;i<=c;i++){
+                      k=a[i]
+                      if (!((s SUBSEP k) in have)){
+                          missList[s]=missList[s] (missList[s]==""?"":SUBSEP) refKeyLine[s SUBSEP k]
+                          missSec[s]=1
+                      }
+                  }
+              }
+              # Emit live file verbatim; insert each section`s missing keys at its end.
+              # Blank lines are buffered so new keys land after the last real line of a
+              # section rather than after its trailing blank line.
+              cur=""; nb=0
+              for (i=1;i<=nl;i++){
+                  line=lines[i]; t=trim(line)
+                  if (t==""){ blanks[++nb]=line; continue }
+                  if (isheader(t)){
+                      flush(cur)
+                      flushblanks()
+                      cur=secname(t)
+                      print line
+                  } else {
+                      flushblanks()
+                      print line
+                  }
+              }
+              flush(cur)
+              flushblanks()
+              # Append sections that do not exist in the live file at all.
+              for (s in missSec){
+                  if (!(s in livesec) && !(s in flushed)){
+                      print ""
+                      print "[" s "]"
+                      flush(s)
+                  }
+              }
+          }
+      ' "$LIVE" > "$TMP" 2>/dev/null || { log "merge step failed; original kept"; rm -f -- "$TMP"; exit 0; }
+
+      if [ ! -s "$TMP" ]; then
+          log "merge produced empty output; original kept (safety)"
+          rm -f -- "$TMP"
+          exit 0
+      fi
+
+      if cmp -s "$TMP" "$LIVE"; then
+          log "no new keys to merge"
+          rm -f -- "$TMP"
+          exit 0
+      fi
+
+      cp -- "$LIVE" "${LIVE}.bak" 2>/dev/null || true
+      if mv -f -- "$TMP" "$LIVE"; then
+          log "merged new reference keys into $(basename "$LIVE") (backup: $(basename "$LIVE").bak)"
+      else
+          log "could not write merged file; original kept"
+          rm -f -- "$TMP"
+      fi
+      exit 0
+      INIMERGE_EOF
+      chmod +x /mnt/server/ini-merge.sh
+      bash /mnt/server/ini-merge.sh /mnt/server/HumanitZServer/REF_GameServerSettings.ini /mnt/server/HumanitZServer/GameServerSettings.ini || true
+
+      ## install end
+      echo "-----------------------------------------"
+      echo "Installation completed..."
+      echo "-----------------------------------------"
+    container: 'ghcr.io/parkervcp/installers:debian'
+    entrypoint: bash
+variables:
+  -
+    name: '[RCON] RCON Enabled'
+    description: 'Enable RCON. Also enables server ping display in the browser.'
+    env_variable: RCON_ENABLED
+    default_value: false
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'in:true,false'
+    sort: 10
+  -
+    name: '[RCON] RCON Password'
+    description: 'RCON password'
+    env_variable: RCON_PASS
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+    sort: 12
+  -
+    name: '[RCON] RCON Port'
+    description: 'TCP port for RCON'
+    env_variable: RCON_PORT
+    default_value: 8888
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - numeric
+    sort: 11
+  -
+    name: '[REQUIRED] Steam App ID'
+    description: 'Steam App ID of HumanitZ Server'
+    env_variable: SRCDS_APPID
+    default_value: 2728330
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - 'in:2728330'
+    sort: 13
+  -
+    name: '[REQUIRED] Steam Beta Branch'
+    description: |-
+      Required: app 2728330 has NO public-branch depot; the Linux server files are only published on the
+      'linuxbranch' beta. Do not change.
+    env_variable: SRCDS_BETAID
+    default_value: linuxbranch
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - 'in:linuxbranch'
+    sort: 14
+  -
+    name: '[Server] Admin Password'
+    description: 'Admin password. Use /adminaccess <password> in game.'
+    env_variable: ADMIN_PASS
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+    sort: 7
+  -
+    name: '[Server] Auto Update'
+    description: 'Enable automatic updates on boot'
+    env_variable: AUTO_UPDATE
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - boolean
+    sort: 1
+  -
+    name: '[Server] Max Players'
+    description: 'Maximum number of players allowed'
+    env_variable: MAX_PLAYERS
+    default_value: 16
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - numeric
+    sort: 8
+  -
+    name: '[Server] Reserved Slots'
+    description: 'Slots reserved for players listed in F_ReservedSlots.txt. 0 disables.'
+    env_variable: RESERVE_SLOTS
+    default_value: 0
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - numeric
+    sort: 9
+  -
+    name: '[Server] Save Name'
+    description: 'Name of the save file for the server'
+    env_variable: SAVE_NAME
+    default_value: DedicatedSaveMP
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+    sort: 5
+  -
+    name: '[Server] Search ID'
+    description: |-
+      Server pool/search bucket. 'HumanitZ_Dedicated' is the default public pool. A custom value hides the
+      server from default listings (find via Search ID).
+    env_variable: SEARCH_ID
+    default_value: HumanitZ_Dedicated
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+    sort: 6
+  -
+    name: '[Server] Server Name'
+    description: "In-game/browser server name. Avoid the word 'Official' or the server may not list."
+    env_variable: SERVER_NAME
+    default_value: 'HumanitZ [Dedicated]'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+    sort: 3
+  -
+    name: '[Server] Server Password'
+    description: 'Server join password (leave blank for none)'
+    env_variable: PASSWORD
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+    sort: 4
+  -
+    name: '[Server] Steam Query Port'
+    description: 'Steam Query Port'
+    env_variable: QUERY_PORT
+    default_value: 27015
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - numeric
+    sort: 2

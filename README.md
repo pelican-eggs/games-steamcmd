@@ -22,6 +22,7 @@
 * [Assetto Corsa](assetto_corsa)
 * [Astro Colony](astro_colony)
 * [Avorion](avorion)
+* [Banana Shooter](banana_shooter)
 * [Barotrauma](barotrauma)
 * [BATTALION: Legacy](/battalion_legacy)
 * [Black Mesa](black_mesa)

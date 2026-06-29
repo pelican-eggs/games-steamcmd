@@ -125,6 +125,7 @@
 * [The Isle](the_isle)
   * [Evrima](the_isle/evrima)
 * [The Front](thefront)
+* [The Ship: Murder Party](the_ship)
 * [Tower Unite](tower_unite)
 * [Truck Simulator](truck-simulator)
   * [American Truck Simulator](truck-simulator/american-truck-simulator)

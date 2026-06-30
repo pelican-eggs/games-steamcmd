@@ -1,134 +1,124 @@
 {
-  "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
-  "meta": {
-    "version": "PTDL_v2",
-    "update_url": null
-  },
-  "exported_at": "2026-06-29T23:36:34+02:00",
-  "name": "The Ship: Murder Party",
-  "author": "noreply@zyiks.eu",
-  "description": "The Ship: Murder Party dedicated server. The native Linux server is broken on modern systems, so this runs the Windows dedicated server under Wine. Requires a licensed Steam account (anonymous is refused).",
-  "features": [
-    "steam_disk_space"
-  ],
-  "docker_images": {
-    "ghcr.io/parkervcp/yolks:wine_latest": "ghcr.io/parkervcp/yolks:wine_latest"
-  },
-  "file_denylist": [],
-  "startup": "python3 -u /home/container/udplog.py 27500 & NCPID=$!; grep -q rcon_password /home/container/ship/cfg/server.cfg 2>/dev/null || echo \"rcon_password \\\"{{RCON_PASSWORD}}\\\"\" >> /home/container/ship/cfg/server.cfg; wine srcds.exe -console +log on +logaddress_add 127.0.0.1:27500 +rcon_password \"{{RCON_PASSWORD}}\" -game ship -port {{SERVER_PORT}} +map {{SRCDS_MAP}} +maxplayers {{MAX_PLAYERS}} +ip 0.0.0.0 -strictportbind & SRVPID=$!; until rcon -a 127.0.0.1:{{SERVER_PORT}} -p \"{{RCON_PASSWORD}}\" \"echo ready\" </dev/null >/dev/null 2>&1; do kill -0 $SRVPID 2>/dev/null || { kill $NCPID 2>/dev/null; exit; }; sleep 3; done; rcon -a 127.0.0.1:{{SERVER_PORT}} -p \"{{RCON_PASSWORD}}\"; kill $NCPID 2>/dev/null",
-  "config": {
-    "files": "{}",
-    "startup": "{\n    \"done\": \"Started map\"\n}",
-    "logs": "{}",
-    "stop": "^C"
-  },
-  "scripts": {
-    "installation": {
-      "script": "#!/bin/bash\n# The Ship: Murder Party - Windows-server-under-Wine install script\n#\n# Server Files: /mnt/server\n# Install image: ghcr.io/parkervcp/installers:debian\n#\n# The Ship's NATIVE LINUX dedicated server is broken on modern systems (heap\n# corruption -> crashes during map load, \"futex facility\" abort on new glibc),\n# so this egg installs and runs the WINDOWS dedicated server under Wine instead.\n#\n# Vars: STEAM_USER, STEAM_PASS, STEAM_AUTH (licensed account that OWNS The Ship -\n#       anonymous returns \"No subscription\"), SRCDS_APPID=2403, INSTALL_FLAGS.\n\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\n    echo -e \"steam user is not set.\\n\"\n    echo -e \"Using anonymous user (note: app 2403 requires a licensed account).\\n\"\n    STEAM_USER=anonymous\n    STEAM_PASS=\"\"\n    STEAM_AUTH=\"\"\nelse\n    echo -e \"user set to ${STEAM_USER}\"\nfi\n\ncd /tmp\nmkdir -p /mnt/server/steamcmd\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\nmkdir -p /mnt/server/steamapps # fix steamcmd disk write error when this folder is missing\ncd /mnt/server/steamcmd\n\nchown -R root:root /mnt\nexport HOME=/mnt/server\n\n## Force the WINDOWS platform - the native Linux build of The Ship is non-functional.\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} ${INSTALL_FLAGS} validate +quit\n\n## steam client libraries (used by steamcmd; harmless for the wine runtime)\nmkdir -p /mnt/server/.steam/sdk32\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so 2>/dev/null || true\nmkdir -p /mnt/server/.steam/sdk64\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so 2>/dev/null || true\n\n## UDP log listener: Source forwards live log events via UDP (logaddress); this prints\n## them to the console (Wine block-buffers srcds stdout, so the UDP path is what streams live).\ncat > /mnt/server/udplog.py <<'PYEOF'\nimport socket, sys\nport = int(sys.argv[1]) if len(sys.argv) > 1 else 27500\ns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\ns.bind((\"127.0.0.1\", port))\nwhile True:\n    data, _ = s.recvfrom(4096)\n    line = bytes(b for b in data if 9 <= b < 127 or b == 10).decode(\"ascii\", \"replace\")\n    sys.stdout.write(line.rstrip(\"\\n\") + \"\\n\")\n    sys.stdout.flush()\nPYEOF\n\necho \"-----------------------------------------\"\necho \"Installation completed...\"\necho \"-----------------------------------------\"\n",
-      "container": "ghcr.io/parkervcp/installers:debian",
-      "entrypoint": "/bin/bash"
-    }
-  },
-  "variables": [
-    {
-      "name": "Auto-update server",
-      "description": "Enable / disable auto-updating the server on restart.",
-      "env_variable": "AUTO_UPDATE",
-      "default_value": "1",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "boolean",
-      "field_type": "text"
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
     },
-    {
-      "name": "Wine architecture",
-      "description": "Forces a 32-bit Wine prefix. The Ship's srcds.exe is 32-bit and will not run in a 64-bit prefix. Do not change.",
-      "env_variable": "WINEARCH",
-      "default_value": "win32",
-      "user_viewable": false,
-      "user_editable": false,
-      "rules": "required|string|in:win32",
-      "field_type": "text"
+    "exported_at": "2026-06-30T20:39:14+02:00",
+    "name": "The Ship: Murder Party",
+    "author": "noreply@zyiks.eu",
+    "description": "The Ship: Murder Party dedicated server. The native Linux server is broken on modern systems, so this runs the Windows dedicated server under Wine. Requires a licensed Steam account (anonymous is refused).",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
     },
-    {
-      "name": "Windows install",
-      "description": "Forces SteamCMD to install/update the Windows server files (run under Wine). Do not change - the native Linux server is broken.",
-      "env_variable": "WINDOWS_INSTALL",
-      "default_value": "1",
-      "user_viewable": false,
-      "user_editable": false,
-      "rules": "required|string|in:1",
-      "field_type": "text"
+    "file_denylist": [],
+    "startup": "python3 -u \/home\/container\/udplog.py 27500 & NCPID=$!; grep -q rcon_password \/home\/container\/ship\/cfg\/server.cfg 2>\/dev\/null || echo \"rcon_password \\\"{{RCON_PASSWORD}}\\\"\" >> \/home\/container\/ship\/cfg\/server.cfg; wine srcds.exe -console +log on +logaddress_add 127.0.0.1:27500 +rcon_password \"{{RCON_PASSWORD}}\" -game ship -port {{SERVER_PORT}} +map {{SRCDS_MAP}} +maxplayers {{MAX_PLAYERS}} +ip 0.0.0.0 -strictportbind & SRVPID=$!; until rcon -a 127.0.0.1:{{SERVER_PORT}} -p \"{{RCON_PASSWORD}}\" \"echo ready\" <\/dev\/null >\/dev\/null 2>&1; do kill -0 $SRVPID 2>\/dev\/null || { kill $NCPID 2>\/dev\/null; exit; }; sleep 3; done; rcon -a 127.0.0.1:{{SERVER_PORT}} -p \"{{RCON_PASSWORD}}\"; kill $NCPID 2>\/dev\/null",
+    "config": {
+        "files": "{}",
+        "startup": "{\n    \"done\": \"Started map\"\n}",
+        "logs": "{}",
+        "stop": "^C"
     },
-    {
-      "name": "Steam User",
-      "description": "Steam account that OWNS The Ship. Anonymous is refused (No subscription).",
-      "env_variable": "STEAM_USER",
-      "default_value": "",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "nullable|string",
-      "field_type": "text"
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\n# The Ship: Murder Party - Windows-server-under-Wine install script\n#\n# Server Files: \/mnt\/server\n# Install image: ghcr.io\/parkervcp\/installers:debian\n#\n# The Ship's NATIVE LINUX dedicated server is broken on modern systems (heap\n# corruption -> crashes during map load, \"futex facility\" abort on new glibc),\n# so this egg installs and runs the WINDOWS dedicated server under Wine instead.\n#\n# Vars: STEAM_USER, STEAM_PASS, STEAM_AUTH (licensed account that OWNS The Ship -\n#       anonymous returns \"No subscription\"), SRCDS_APPID=2403, INSTALL_FLAGS.\n\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\n    echo -e \"steam user is not set.\\n\"\n    echo -e \"Using anonymous user (note: app 2403 requires a licensed account).\\n\"\n    STEAM_USER=anonymous\n    STEAM_PASS=\"\"\n    STEAM_AUTH=\"\"\nelse\n    echo -e \"user set to ${STEAM_USER}\"\nfi\n\ncd \/tmp\nmkdir -p \/mnt\/server\/steamcmd\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\nmkdir -p \/mnt\/server\/steamapps # fix steamcmd disk write error when this folder is missing\ncd \/mnt\/server\/steamcmd\n\nchown -R root:root \/mnt\nexport HOME=\/mnt\/server\n\n## Force the WINDOWS platform - the native Linux build of The Ship is non-functional.\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} ${INSTALL_FLAGS} validate +quit\n\n## steam client libraries (used by steamcmd; harmless for the wine runtime)\nmkdir -p \/mnt\/server\/.steam\/sdk32\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so 2>\/dev\/null || true\nmkdir -p \/mnt\/server\/.steam\/sdk64\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so 2>\/dev\/null || true\n\n## UDP log listener: Source forwards live log events via UDP (logaddress); this prints\n## them to the console (Wine block-buffers srcds stdout, so the UDP path is what streams live).\ncat > \/mnt\/server\/udplog.py <<'PYEOF'\nimport socket, sys\nport = int(sys.argv[1]) if len(sys.argv) > 1 else 27500\ns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\ns.bind((\"127.0.0.1\", port))\nwhile True:\n    data, _ = s.recvfrom(4096)\n    line = bytes(b for b in data if 9 <= b < 127 or b == 10).decode(\"ascii\", \"replace\")\n    sys.stdout.write(line.rstrip(\"\\n\") + \"\\n\")\n    sys.stdout.flush()\nPYEOF\n\necho \"-----------------------------------------\"\necho \"Installation completed...\"\necho \"-----------------------------------------\"\n",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "\/bin\/bash"
+        }
     },
-    {
-      "name": "Steam Password",
-      "description": "Password for the Steam account. Steam Guard must be OFF (headless SteamCMD cannot complete email Guard).",
-      "env_variable": "STEAM_PASS",
-      "default_value": "",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "nullable|string",
-      "field_type": "text"
-    },
-    {
-      "name": "Steam Auth (Guard code)",
-      "description": "Steam Guard code if required. Normally left blank with Guard off.",
-      "env_variable": "STEAM_AUTH",
-      "default_value": "",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "nullable|string",
-      "field_type": "text"
-    },
-    {
-      "name": "RCON password",
-      "description": "Password for sending console commands from the panel via RCON. Set this to something secret.",
-      "env_variable": "RCON_PASSWORD",
-      "default_value": "changeme",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "required|string|max:64",
-      "field_type": "text"
-    },
-    {
-      "name": "Map",
-      "description": "Default map to load on start (e.g. batavier, atalanta, huronian).",
-      "env_variable": "SRCDS_MAP",
-      "default_value": "batavier",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "nullable|string",
-      "field_type": "text"
-    },
-    {
-      "name": "Max Players",
-      "description": "Maximum player slots.",
-      "env_variable": "MAX_PLAYERS",
-      "default_value": "8",
-      "user_viewable": true,
-      "user_editable": true,
-      "rules": "required|integer|between:1,32",
-      "field_type": "text"
-    },
-    {
-      "name": "App ID",
-      "description": "Steam app id for The Ship Dedicated Server. Do not modify.",
-      "env_variable": "SRCDS_APPID",
-      "default_value": "2403",
-      "user_viewable": false,
-      "user_editable": false,
-      "rules": "required|string|in:2403",
-      "field_type": "text"
-    }
-  ]
+    "variables": [
+        {
+            "name": "Auto-update server",
+            "description": "Enable \/ disable auto-updating the server on restart.",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Windows install",
+            "description": "Forces SteamCMD to install\/update the Windows server files (run under Wine). Do not change - the native Linux server is broken.",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|in:1",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam User",
+            "description": "Steam account that OWNS The Ship. Anonymous is refused (No subscription).",
+            "env_variable": "STEAM_USER",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Password",
+            "description": "Password for the Steam account. Steam Guard must be OFF (headless SteamCMD cannot complete email Guard).",
+            "env_variable": "STEAM_PASS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Auth (Guard code)",
+            "description": "Steam Guard code if required. Normally left blank with Guard off.",
+            "env_variable": "STEAM_AUTH",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "RCON password",
+            "description": "Password for sending console commands from the panel via RCON. Set this to something secret.",
+            "env_variable": "RCON_PASSWORD",
+            "default_value": "changeme",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:64",
+            "field_type": "text"
+        },
+        {
+            "name": "Map",
+            "description": "Default map to load on start (e.g. batavier, atalanta, huronian).",
+            "env_variable": "SRCDS_MAP",
+            "default_value": "batavier",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Players",
+            "description": "Maximum player slots.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "8",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|between:1,32",
+            "field_type": "text"
+        },
+        {
+            "name": "App ID",
+            "description": "Steam app id for The Ship Dedicated Server. Do not modify.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "2403",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|in:2403",
+            "field_type": "text"
+        }
+    ]
 }

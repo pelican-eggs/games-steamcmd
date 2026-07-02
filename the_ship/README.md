@@ -14,17 +14,14 @@ The Ship requires a single game port. It can be changed to any other.
 |------|---------|
 | Game | 27015   |
 
-## Steam Download [SteamStore](https://store.steampowered.com/app/2400/The_Ship_Murder_Party/)
-
 ## Notes
 
 - **Runs the Windows server under Wine.** The Ship's native Linux dedicated server is broken
   on modern systems: it crashes during map load:
   - `The futex facility returned an unexpected error code` abort on glibc >= 2.34)
   - or some unexplained memory corruption if ran with a lower glibc version
-- You cannot issue commands over the panel, but you can still view logs, since scrds over wine
-  has compatibility issues.
-- A licensed Steam account is required.
+- You cannot issue commands via the console due to the server being wrapped under Wine, but you can still view logs.
+- A Steam account that owns the game is required to download the server.
 
 ### Variables
 

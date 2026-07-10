@@ -141,7 +141,7 @@
             "field_type": "text"
         },
         {
-            "name": "Connection Platfrom",
+            "name": "Crossplay Platforms",
             "description": "Comma-separated list of platforms allowed to connect. Valid values: Steam, Xbox, PS5, Mac. Example: Steam,Xbox,PS5,Mac",
             "env_variable": "CROSSPLAY_PLATFORMS",
             "default_value": "Steam,Xbox,PS5,Mac",

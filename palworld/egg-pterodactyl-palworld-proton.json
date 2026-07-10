@@ -142,12 +142,12 @@
         },
         {
             "name": "Connection Platfrom",
-            "description": "The platform players will be able to connect from",
-            "env_variable": "ALLOW_CONNECT_PLATFORM",
-            "default_value": "Steam",
+            "description": "Comma-separated list of platforms allowed to connect. Valid values: Steam, Xbox, PS5, Mac. Example: Steam,Xbox,PS5,Mac",
+            "env_variable": "CROSSPLAY_PLATFORMS",
+            "default_value": "Steam,Xbox,PS5,Mac",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:Steam,Xbox",
+            "rules": "nullable|string",
             "field_type": "text"
         }
     ]

@@ -1,0 +1,233 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: null
+exported_at: '2026-07-11T16:15:38+00:00'
+name: Palworld
+author: admin@ballaual.de
+uuid: ca527103-3e6e-4fa0-9a1f-ea468e314293
+description: |-
+  Fight, farm, build and work alongside mysterious creatures called "Pals" in this completely new
+  multiplayer, open world survival and crafting game!
+icon: null
+tags:
+  - steamcmd
+features:
+  - steam_disk_space
+docker_images:
+  SteamCMD_Debian: 'ghcr.io/parkervcp/steamcmd:debian'
+file_denylist:
+  - PalServer.sh
+startup_commands:
+  Default: './PalworldServerConfigParser; (while read cmd; do rcon -s -a "localhost:$RCON_PORT" -p "$ADMIN_PASSWORD" "$cmd";done) < /dev/stdin & /home/container/Pal/Binaries/Linux/PalServer-Linux-Shipping Pal -publiclobby -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS -port={{SERVER_PORT}} -publicport={{SERVER_PORT}} -servername="{{SERVER_NAME}}" -players={{MAX_PLAYERS}} $(if [ -n "$SERVER_PASSWORD" ]; then echo "-serverpassword=\"${SERVER_PASSWORD}\""; fi) -adminpassword="{{ADMIN_PASSWORD}}" -rcon'
+config:
+  files: {  }
+  startup:
+    done: 'Setting breakpad minidump AppID = 2394010'
+  logs: {  }
+  stop: 'shutdown 15'
+scripts:
+  installation:
+    script: |-
+      #!/bin/bash
+      # steamcmd Base Installation Script
+      #
+      # Server Files: /mnt/server
+      # Image to install with is 'ghcr.io/parkervcp/installers:debian'
+
+
+      # Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.
+      #apt -y update
+      #apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates
+
+      ## just in case someone removed the defaults.
+      if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
+          echo -e "steam user is not set.\n"
+          echo -e "Using anonymous user.\n"
+          STEAM_USER=anonymous
+          STEAM_PASS=""
+          STEAM_AUTH=""
+      else
+          echo -e "user set to ${STEAM_USER}"
+      fi
+
+      ## download and install steamcmd
+      cd /tmp
+      mkdir -p /mnt/server/steamcmd
+      curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+      tar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd
+      mkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing
+      cd /mnt/server/steamcmd
+
+      # SteamCMD fails otherwise for some reason, even running as root.
+      # This is changed at the end of the install process anyways.
+      chown -R root:root /mnt
+      export HOME=/mnt/server
+
+      ## install game using steamcmd
+      ./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ "${WINDOWS_INSTALL}" == "1" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s "-beta ${SRCDS_BETAID}" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s "-betapassword ${SRCDS_BETAPASS}" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6
+
+      ## set up 32 bit libraries
+      mkdir -p /mnt/server/.steam/sdk32
+      cp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so
+
+      ## set up 64 bit libraries
+      mkdir -p /mnt/server/.steam/sdk64
+      cp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so
+      ## add below your custom commands if needed
+
+      ## copy template config file
+      echo "Copy template config file into config folder!"
+      if [ -f "/mnt/server/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini" ]; then
+          echo "Config file already exitis, backing up and overwriting with a new one"
+          mv /mnt/server/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini /mnt/server/Pal/Saved/Config/LinuxServer/PalWorldSettings_$(date +"%Y%m%d%H%M%S").ini
+          cp /mnt/server/DefaultPalWorldSettings.ini /mnt/server/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
+      else
+          echo "Creating new config file"
+          mkdir -p /mnt/server/Pal/Saved/Config/LinuxServer
+          cp /mnt/server/DefaultPalWorldSettings.ini /mnt/server/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
+      fi
+
+      cd /mnt/server
+      # Download self made replace tool
+      echo "Downloading config parser application"
+      curl -sSL -o PalworldServerConfigParser https://github.com/pelican-eggs/Palworld-Config-Parser-Tool/releases/latest/download/PalworldServerConfigParser-linux-amd64
+      chmod +x PalworldServerConfigParser
+      ## install end
+      echo "-----------------------------------------"
+      echo "Installation completed..."
+      echo "-----------------------------------------"
+    container: 'ghcr.io/parkervcp/installers:debian'
+    entrypoint: bash
+variables:
+  -
+    name: 'App ID'
+    description: 'Do not edit!'
+    env_variable: SRCDS_APPID
+    default_value: 2394010
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - 'in:2394010'
+    sort: 1
+  -
+    name: 'Auto Update'
+    description: 'Auto update the server on start.'
+    env_variable: AUTO_UPDATE
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - boolean
+    sort: 2
+  -
+    name: 'Max Players'
+    description: ''
+    env_variable: MAX_PLAYERS
+    default_value: 32
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - numeric
+      - 'between:1,32'
+    sort: 3
+  -
+    name: 'Admin Password'
+    description: |-
+      If specified, players must provide this password (via the in-game chat or RCON) to gain access to
+      administrator commands on the server.
+    env_variable: ADMIN_PASSWORD
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - alpha_dash
+      - 'between:1,30'
+    sort: 4
+  -
+    name: 'Public IP'
+    description: "Set this to the server public ip address.\r\nOnly needed if the allocation is a local ip, else the allocate ip will be used automatically"
+    env_variable: PUBLIC_IP
+    default_value: ''
+    user_viewable: true
+    user_editable: false
+    rules:
+      - nullable
+      - string
+    sort: 5
+  -
+    name: 'Server Name'
+    description: ''
+    env_variable: SERVER_NAME
+    default_value: 'A Pterodactyl hosted Palworld Server'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:64'
+    sort: 6
+  -
+    name: 'Server Password'
+    description: 'If specified, players must provide this password to join the server.'
+    env_variable: SERVER_PASSWORD
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - alpha_dash
+      - 'between:1,30'
+    sort: 7
+  -
+    name: 'RCON Port'
+    description: 'Does not need to be allocated!'
+    env_variable: RCON_PORT
+    default_value: 25575
+    user_viewable: true
+    user_editable: false
+    rules:
+      - required
+      - numeric
+    sort: 8
+  -
+    name: 'Enable RCON'
+    description: 'Must Be ON'
+    env_variable: RCON_ENABLE
+    default_value: 'True'
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - 'in:True'
+    sort: 9
+  -
+    name: 'Server Description'
+    description: 'The description of the server.'
+    env_variable: SERVER_DESCRIPTION
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+      - 'max:128'
+    sort: 10
+  -
+    name: 'Crossplay Platforms'
+    description: |-
+      Comma-separated list of platforms allowed to connect. Valid values: Steam, Xbox, PS5, Mac. Example:
+      Steam,Xbox,PS5,Mac
+    env_variable: CROSSPLAY_PLATFORMS
+    default_value: 'Steam,Xbox,PS5,Mac'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+    sort: 11

@@ -46,9 +46,6 @@ ___
 | Host OS | Most stable 64-bit Linux OS branches should work. | Using the latest kernel version for your installed OS can prevent some edge-case installation/boot issues. |
 | Game Ownership | Not required | --- |
 
-> [!WARNING]
-> If you wish to have the server accessible via LAN, you may need to configure a NAT reflection in your router. This is because the server only relays its public IP to Epic Online Services (EOS), and the client will only connect to the IP given by EOS. This may be fixed client-side in the near future.
-
 ___
 
 ### Server Ports
@@ -63,9 +60,9 @@ ___
 
 Please see the [official documentation](https://dragonwilds.runescape.com/news/how-to-dedicated-servers#:~:text=join%20and%20enjoy!-,WORLD%20MANAGEMENT,-When%20a%20Dedicated) for instructions on:
 
-1. Moving a world to the dedicated server
-2. Creating a new world with custom settings
-    - eg. PVP, Creative, etc...
+- Moving a world to the dedicated server
+- Creating a new world with custom settings
+  - eg. PVP, Creative, etc...
 
 ___
 
@@ -75,6 +72,11 @@ ___
 2. In game, go to the Public tab of the Worlds screen.
 3. In the search bar, enter your **exact** World name, **case sensitive**.
 4. Press Enter, and your server should appear for joining.
+
+> [!NOTE]
+> If you wish to join the server via LAN, you will have to use the **Direct** tab of the Worlds screen.
+>
+> *(This is because the server only relays its **public** IP to Epic Online Services (EOS), and the client connects to the IP given by EOS by default.)*
 
 ___
 

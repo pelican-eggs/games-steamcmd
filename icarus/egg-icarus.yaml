@@ -1,0 +1,142 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/icarus/egg-icarus.yaml'
+exported_at: '2026-06-14T08:23:40+00:00'
+name: Icarus
+author: bolverblitz@ebg.pw
+uuid: 7f2f0676-3d0c-457f-a3aa-b2af40966698
+description: 'Icarus is a survival game that with dedicated servers as a public beta'
+icon: 'data:image/jpeg;base64,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'
+tags:
+  - steamcmd
+features:
+  - steam_disk_space
+docker_images:
+  'Wine Latest': 'ghcr.io/pelican-eggs/yolks:wine_latest'
+file_denylist: {  }
+startup_commands:
+  Default: 'wine ./Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe -Log -SteamServerName="{{SERVER_NAME}}" -PORT="{{SERVER_PORT}}" -QueryPort="{{QUERY_PORT}}" & ICARUS_PID=$!; tail -c0 -F /home/container/Icarus/Saved/Logs/Icarus.log --pid=$ICARUS_PID'
+config:
+  files: {  }
+  startup:
+    done:
+      - '(Engine Initialization) Total time:'
+      - 'Game Engine Initialized'
+  logs: {  }
+  stop: ^C
+scripts:
+  installation:
+    script: |-
+      #!/bin/bash
+
+      ## License: MIT License
+      ## Image to install with is 'ghcr.io/parkervcp/installers:debian'
+
+      if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
+          echo -e "steam user is not set.\n"
+          echo -e "Using anonymous user.\n"
+          STEAM_USER=anonymous
+          STEAM_PASS=""
+          STEAM_AUTH=""
+      else
+          echo -e "user set to ${STEAM_USER}"
+      fi
+
+      ## download and install steamcmd
+      cd /tmp
+      mkdir -p /mnt/server/steamcmd
+      curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+      tar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd
+      mkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing
+      cd /mnt/server/steamcmd
+
+      # SteamCMD fails otherwise for some reason, even running as root.
+      # This is changed at the end of the install process anyways.
+      chown -R root:root /mnt
+      export HOME=/mnt/server
+
+      ## install game using steamcmd
+      ./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ "${WINDOWS_INSTALL}" == "1" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} validate +quit
+
+      ## set up 32 bit libraries
+      mkdir -p /mnt/server/.steam/sdk32
+      cp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so
+
+      ## set up 64 bit libraries
+      mkdir -p /mnt/server/.steam/sdk64
+      cp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so
+
+      FILE=/mnt/server/Icarus/Saved/Config/ServerSettings.ini
+      if [ -f "$FILE" ]; then
+          echo "Config already exist skipping"
+      else 
+          echo "Config does not yet exist, making one"
+          mkdir -p /mnt/server/Icarus/Saved/Config/
+          cd /mnt/server/Icarus/Saved/Config/
+          curl -sSL -o ServerSettings.ini https://raw.githubusercontent.com/RocketWerkz/IcarusDedicatedServer/main/ServerSettings.ini
+      fi
+
+      ## install end
+      echo "-----------------------------------------"
+      echo "Installation completed..."
+      echo "-----------------------------------------"
+    container: 'ghcr.io/pelican-eggs/installers:debian'
+    entrypoint: /bin/bash
+variables:
+  -
+    sort: 3
+    name: 'Auto Update'
+    description: 'Disabling or enabling automated updates on boot'
+    env_variable: AUTO_UPDATE
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - boolean
+  -
+    sort: 2
+    name: '[REQUIRED] Server Query Port'
+    description: 'UDP port for Steam server list features.'
+    env_variable: QUERY_PORT
+    default_value: 27015
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - integer
+      - 'between:1024,65536'
+  -
+    sort: 1
+    name: 'Server Name'
+    description: ''
+    env_variable: SERVER_NAME
+    default_value: IcarusEGG
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:32'
+  -
+    sort: 5
+    name: SRCDS_APPID
+    description: 'steam app id found here - https://developer.valvesoftware.com/wiki/Dedicated_Servers_List'
+    env_variable: SRCDS_APPID
+    default_value: 2089300
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - 'in:2089300'
+  -
+    sort: 4
+    name: 'Windows Install Flag'
+    description: 'Required for windows game server installs'
+    env_variable: WINDOWS_INSTALL
+    default_value: 1
+    user_viewable: false
+    user_editable: false
+    rules:
+      - 'in:1'

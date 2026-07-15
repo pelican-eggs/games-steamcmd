@@ -1,6 +1,6 @@
 # Game Eggs (SteamCMD)
 
-#### This is a collection of Eggs for game servers that use SteamCMD to install.
+#### This is a collection of Eggs for game servers that use SteamCMD to install
 
 > [!NOTE]
 >
@@ -10,7 +10,7 @@
 
 ---
 
-### Collection Directory (Alphabetical):
+### Collection Directory (Alphabetical)
 
 * [7 Days To Die](7_days_to_die)
 * [Abiotic Factor](abiotic_factor/)
@@ -140,6 +140,7 @@
   * [Plus Mod](valheim/valheim_plus)
 * [VEIN](vein)
 * [Voyagers of Nera](voyagers_of_nera)
+* [Windrose](windrose)
 * [Wreckfest](wreckfest)
 * [Wreckfest 2](wreckfest_2)
 * [Wurm Unlimited](wurm_unlimited/)

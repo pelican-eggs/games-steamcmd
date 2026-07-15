@@ -94,8 +94,6 @@ World saves are the only data critical to a full restore — game binaries are r
 # Ignore all game files
 *
 # Keep save data
-!RSDragonwilds/
-!RSDragonwilds/Saved/
 !RSDragonwilds/Saved/SaveGames/
 !RSDragonwilds/Saved/Config/
 !RSDragonwilds/Saved/Logs/

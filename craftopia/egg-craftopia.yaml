@@ -1,0 +1,127 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/craftopia/egg-craftopia.yaml'
+exported_at: '2026-06-08T08:13:53+00:00'
+name: Craftopia
+author: eggs@goover.dev
+uuid: 6304c348-83aa-420a-aa84-15a52d995964
+description: |-
+  Craftopia is the brand new multiplayer survival action game made in Japan. We combined many features
+  we find enjoyable, such as hunting, farming, hack-and-slash, building, automation to develop this
+  game.
+icon: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQIAHAAcAAD/2wBDADUlKC8oITUvKy88OTU/UIVXUElJUKN1e2GFwarLyL6qurfV8P//1eL/5re6////////////zv//////////////2wBDATk8PFBGUJ1XV53/3Lrc////////////////////////////////////////////////////////////////////wAARCADXAcwDAREAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAECAwQF/8QANBAAAgIBAwMDAwIFAwUBAAAAAAECEQMSITEEQVETImEycYGRoQUzQlKxFCPBJDRictHx/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAfEQEBAQADAQEBAQEBAAAAAAAAARECITESQVEDYXH/2gAMAwEAAhEDEQA/AOE9DmAAAAAAAAAGAABQAAABUFboiV14YKvk58qsjRwa3omtYlxGphNNFRUGSrHTAxW4nNL04OVWvgvGbcL04ZzU51F0m+TtJkcrddahGdSklt+5ytx0zWkmpJozOlTx9yhwprfkUgj08E7asXnT5jlzQUcklHZI68bsc+Uys0aRSI0pIKpRIK0gNIitYYrXgzeWLhenbpbjRUsWlfInLRDRUFAFAOgFQAAgABABQgEAUEFANRfgmqehdiaNYQpGLVkWZUmUIDxj0uQAAAAAAAAAAAoAAAAAHGVBLGscsotNbMzieOrH1KkvcqZzvDG5yEsyi+CziXliVmjJ77WX5qfUbQjF8MxbW5G0aXcwrDqcyjDSt2+xvhx71nlXL06TbVHXkxx9dSaicvW/Ap0MXQm2BSeloDX1EZxdTOEckaosthZrknDTLjY7S652YUU3wFjSMG1dGbVaRg26olqt1jVU0Y+lHpIfQtKlRFEY0vli1DaAxnGmbl0TRQUAAACCEAAIoQAAUBccer4M24Y1UIpcHPa0qlVAToiuw2gbIABMozlkinyanGs65uo6daXKC38GuPL8rNn7HHR1ZIKAAAAAAAACgAAAAAYQAXF1uRK0eRONNEw1le5oaRnJcMmJ43x5qj7mYvFucv6xnkbza4mpOsTe9Xj2XFEpGmq0ZaCYFpkU+SAA1hwZrUZ5kqp9zfFKmKpbFqRrCSSM2NL1WjOC07IqggAAE5JclzRnKWo3JgVAFBSCEUAC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'
+tags:
+  - steamcmd
+features:
+  - steam_disk_space
+docker_images:
+  'SteamCMD Debian': 'ghcr.io/pelican-egggs/steamcmd:debian'
+file_denylist: {  }
+startup_commands:
+  Default: ./Craftopia.x86_64
+config:
+  files:
+    ServerSetting.ini:
+      parser: ini
+      find:
+        GameWorld.name: '{{server.environment.WORLD_NAME}}'
+        Host.port: '{{server.allocations.default.port}}'
+  startup:
+    done: 'World is loaded!'
+  logs: {  }
+  stop: ^C
+scripts:
+  installation:
+    script: |-
+      #!/bin/bash
+      # steamcmd Base Installation Script
+      #
+      # Server Files: /mnt/server
+      # Image to install with is 'ghcr.io/parkervcp/installers:debian'
+
+      ##
+
+      ## just in case someone removed the defaults.
+      if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
+          echo -e "steam user is not set.\n"
+          echo -e "Using anonymous user.\n"
+          STEAM_USER=anonymous
+          STEAM_PASS=""
+          STEAM_AUTH=""
+      else
+          echo -e "user set to ${STEAM_USER}"
+      fi
+
+      ## download and install steamcmd
+      cd /tmp
+      mkdir -p /mnt/server/steamcmd
+      curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+      tar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd
+      mkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing
+      cd /mnt/server/steamcmd
+
+      # SteamCMD fails otherwise for some reason, even running as root.
+      # This is changed at the end of the install process anyways.
+      chown -R root:root /mnt
+      export HOME=/mnt/server
+
+      ## install game using steamcmd
+      ./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ "${WINDOWS_INSTALL}" == "1" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s "-beta ${SRCDS_BETAID}" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s "-betapassword ${SRCDS_BETAPASS}" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6
+
+      ## set up 32 bit libraries
+      mkdir -p /mnt/server/.steam/sdk32
+      cp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so
+
+      ## set up 64 bit libraries
+      mkdir -p /mnt/server/.steam/sdk64
+      cp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so
+
+      cd /mnt/server
+      FILE=/mnt/server/ServerSetting.ini
+      if [ -f "$FILE" ]; then
+          echo "Config file exist"
+      else 
+          echo "Config file does not exist, making one"
+          cd /mnt/server
+          curl -sSL -o ServerSetting.ini https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/craftopia/ServerSetting.ini
+      fi
+
+      echo "install finished"
+    container: 'ghcr.io/pelican-eggs/installers:debian'
+    entrypoint: bash
+variables:
+  -
+    name: SRCDS_APPID
+    description: ''
+    env_variable: SRCDS_APPID
+    default_value: 1670340
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - 'in:1670340'
+    sort: 1
+  -
+    name: 'Auto Update'
+    description: ''
+    env_variable: AUTO_UPDATE
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - boolean
+    sort: 2
+  -
+    name: 'World Name'
+    description: ''
+    env_variable: WORLD_NAME
+    default_value: 'Panel Server'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:50'
+    sort: 3

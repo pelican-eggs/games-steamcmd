@@ -17,11 +17,11 @@
         "steam_disk_space"
     ],
     "docker_images": {
-        "Steamcmd Proton": "ghcr.io/pelican-eggs/steamcmd:proton"
+        "Wine": "ghcr.io/pelican-eggs/yolks:wine_latest"
     },
     "file_denylist": [],
     "startup_commands": {
-        "Default": "cd /home/container/AbioticFactor/Binaries/Win64; proton run ./AbioticFactorServer-Win64-Shipping.exe -log -useperfthreads -NoAsyncLoadingThread -MaxServerPlayers={{NUM_PLAYERS}} -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -ServerPassword=\"{{SERVER_PASSWORD}}\" -SteamServerName=\"{{SERVER_NAME}}\" -SandboxIniPath=\"{{SANDBOX_INI_PATH}}\" & AF_PID=$!; tail -c0 -F /home/container/AbioticFactor/Saved/Logs/AbioticFactor.log --pid=$AF_PID"
+        "Default": "cd /home/container/AbioticFactor/Binaries/Win64; wine ./AbioticFactorServer-Win64-Shipping.exe -log -useperfthreads -NoAsyncLoadingThread -MaxServerPlayers={{NUM_PLAYERS}} -Port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -ServerPassword=\"{{SERVER_PASSWORD}}\" -SteamServerName=\"{{SERVER_NAME}}\" -SandboxIniPath=\"{{SANDBOX_INI_PATH}}\" & AF_PID=$!; tail -c0 -F /home/container/AbioticFactor/Saved/Logs/AbioticFactor.log --pid=$AF_PID"
     },
     "config": {
         "files": "{}",

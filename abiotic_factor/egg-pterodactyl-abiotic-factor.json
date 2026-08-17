@@ -2,7 +2,7 @@
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
         "version": "PTDL_v2",
-        "update_url": null
+        "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/abiotic_factor\/egg-pterodactyl-abiotic-factor.json"
     },
     "exported_at": "2026-08-03T07:48:24+00:00",
     "name": "Abiotic Factor",

@@ -4,11 +4,14 @@
         "version": "PLCN_v1",
         "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/v_rising\/v_rising_bepinex\/egg-v-rising-bep-in-ex.json"
     },
-    "exported_at": "2024-12-26T09:56:26+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "V Rising BepInEx",
     "author": "red_thirten@yahoo.com",
     "uuid": "e0c3ba57-2351-4cf6-9bbb-dac5032ce8a0",
     "description": "Awaken as a vampire. Hunt for blood in nearby settlements to regain your strength and evade the scorching sun to survive. Raise your castle and thrive in an ever-changing open world full of mystery. Gain allies online and conquer the land of the living.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

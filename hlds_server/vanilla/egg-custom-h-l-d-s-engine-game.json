@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:07+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Custom HLDS Engine Game",
     "author": "parker@parkervcp.com",
     "uuid": "2d71abbe-5e06-4cc7-863f-b1f7a2fe5a36",
     "description": "This option allows modifying the startup arguments and other details to run a custom HLDS based game on the panel.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

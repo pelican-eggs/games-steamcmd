@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:51+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Solace Crafting",
     "author": "eggs@goover.dev",
     "uuid": "e2cf3c9a-0fe0-4737-9c5f-d7f6ba9b91a8",
     "description": "Open-world fantasy survival RPG. Borderless distance-based difficulty with player built fast-travel, modular-building, and town management.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/games:source": "ghcr.io\/parkervcp\/games:source"

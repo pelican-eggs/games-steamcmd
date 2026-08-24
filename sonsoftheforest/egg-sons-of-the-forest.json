@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:52+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Sons Of The Forest",
     "author": "eggs@goover.dev",
     "uuid": "6b7638cd-8f9d-4e88-b9ca-8d6433d6a32e",
     "description": "Sons of the Forest is a horror survival game and sequel to The Forest by Endnight Games, Ltd.. Sent to find a missing billionaire on a remote island, you find yourself in a cannibal-infested hellscape. Craft, build, and struggle to survive, alone or with friends.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -4,13 +4,15 @@
         "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2025-12-20T05:12:18+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "The Isle",
     "author": "fredrik.johansenfuun@gmail.com",
     "uuid": "6fbfb5fe-d337-44b9-bcc7-5bad094b4df8",
     "description": "The Isle is an open beta with an open-world survival game where players choose from three factions in an attempt to survive a fierce island. Hunt. Prey. Survive.",
     "image": null,
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

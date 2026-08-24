@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:21+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Squad",
     "author": "brycea@terrahost.cloud",
     "uuid": "be38adb9-fe94-4658-befd-73b6d72c4717",
     "description": "Squad is a 50 vs 50 multiplayer first-person shooter that aims to capture combat realism through communication and teamplay. Major features include vehicle-based combined arms gameplay, large scale environments, base building, and integrated positional VoIP for proximity talking & radio.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

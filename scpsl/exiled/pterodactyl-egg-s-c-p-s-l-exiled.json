@@ -1,0 +1,74 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-06-08T07:39:34+00:00",
+    "name": "SCP:SL - Exiled",
+    "author": "info@goover.de",
+    "description": "Egg for SCP: Secret Laboratory Dedicated Linux Server with Exiled Plugin Framework",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "Mono latest": "ghcr.io\/parkervcp\/yolks:mono_latest"
+    },
+    "file_denylist": [],
+    "startup": ".\/LocalAdmin {{SERVER_PORT}}",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Waiting for players..\"\r\n}",
+        "logs": "{}",
+        "stop": "EXIT"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\n# steamcmd Base Installation Script\n#\n# Server Files: \/mnt\/server\n\n#apt -y update\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\n\n## just in case someone removed the defaults.\nif [ \"${STEAM_USER}\" == \"\" ]; then\n    echo -e \"steam user is not set.\\n\"\n    echo -e \"Using anonymous user.\\n\"\n    STEAM_USER=anonymous\n    STEAM_PASS=\"\"\n    STEAM_AUTH=\"\"\nelse\n    echo -e \"user set to ${STEAM_USER}\"\nfi\n\n## download and install steamcmd\ncd \/tmp\nmkdir -p \/mnt\/server\/steamcmd\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\ncd \/mnt\/server\/steamcmd\n\n# SteamCMD fails otherwise for some reason, even running as root.\n# This is changed at the end of the install process anyways.\nchown -R root:root \/mnt\nexport HOME=\/mnt\/server\n\n## install game using steamcmd\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\n\n## set up 32 bit libraries\nmkdir -p \/mnt\/server\/.steam\/sdk32\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\n\n## set up 64 bit libraries\nmkdir -p \/mnt\/server\/.steam\/sdk64\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\n\nmkdir -p $HOME\/.config\n\n# Install Exiled\n\n## get release info and download links\nLATEST_JSON=$(curl --silent \"https:\/\/api.github.com\/repos\/ExMod-Team\/EXILED\/releases\/latest\")\nRELEASES=$(curl --silent \"https:\/\/api.github.com\/repos\/ExMod-Team\/EXILED\/releases\")\n\nif [ -z \"${VERSION}\" ] || [ \"${VERSION}\" == \"latest\" ]; then\n    DOWNLOAD_URL=$(echo ${LATEST_JSON} | jq .assets | jq -r .[].browser_download_url | grep -i Exiled.tar.gz)\nelse\n    VERSION_CHECK=$(echo ${RELEASES} | jq -r --arg VERSION \"${VERSION}\" '.[] | select(.tag_name==$VERSION) | .tag_name')\n    if [ \"${VERSION}\" == \"${VERSION_CHECK}\" ]; then\n        DOWNLOAD_URL=$(echo ${RELEASES} | jq -r --arg VERSION \"${VERSION}\" '.[] | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i Exiled.tar.gz)\n    else\n        echo -e \"defaulting to latest release\"\n        DOWNLOAD_URL=$(echo ${LATEST_JSON} | jq .assets | jq -r .[].browser_download_url)\n    fi\nfi\nif [ ! -z \"${DOWNLOAD_URL}\" ]; then\n    if curl --output \/dev\/null --silent --head --fail ${DOWNLOAD_URL}; then\n        echo -e \"link is valid. setting download link to ${DOWNLOAD_URL}\"\n        DOWNLOAD_LINK=${DOWNLOAD_URL}\n    else\n        echo -e \"link is invalid closing out\"\n        exit 2\n    fi\nfi\n\ncurl -sSL -o Exiled.tar.gz ${DOWNLOAD_LINK}\ntar -xzvmf Exiled.tar.gz\nrm -rf Exiled.tar.gz\n\ncp -r \"SCP Secret Laboratory\" \/mnt\/server\/.config\/\nrm -rf \"SCP Secret Laboratory\"\ncp -r EXILED \/mnt\/server\/.config\/\nrm -rf EXILED\necho \"-----------------------------------------\"\necho \"Installation completed...\"\necho \"-----------------------------------------\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "SRCDS_APPID",
+            "description": "",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "996560",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|string|in:996560",
+            "field_type": "text"
+        },
+        {
+            "name": "Dotnet Bundle",
+            "description": "Only used for EXILED Framework Updater.",
+            "env_variable": "DOTNET_BUNDLE_EXTRACT_BASE_DIR",
+            "default_value": ".\/dotnet-bundle",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Version",
+            "description": "",
+            "env_variable": "VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Auto Update",
+            "description": "",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "boolean",
+            "field_type": "text"
+        }
+    ]
+}

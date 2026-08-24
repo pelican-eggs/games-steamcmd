@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:09+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Dead Matter",
     "author": "josdekurk@gmail.com",
     "uuid": "97567451-7e0a-46ec-98f0-a670881785cf",
     "description": "After a rampant viral outbreak causes global society to collapse, you must survive the harsh wilderness of the Canadian Rockies amidst vast hordes of Infected and rival survivors.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:proton": "ghcr.io\/parkervcp\/steamcmd:proton"

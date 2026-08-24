@@ -8,7 +8,6 @@
     "name": "Ground Branch",
     "author": "red_thirten@yahoo.com",
     "description": "From one of the developers behind the original Rainbow Six® and Ghost Recon® games, comes a thinking-man's first-person shooter featuring in-depth character and weapon customization. Take your time. Think ahead. Get the job done.",
-    "tags": [],
     "features": [],
     "docker_images": {
         "Wine [Staging]": "ghcr.io\/parkervcp\/yolks:wine_staging"

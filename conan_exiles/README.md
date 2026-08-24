@@ -6,15 +6,8 @@ Conan Exiles is online multiplayer survival game set in the lands of Conan the B
 
 ## Minimum RAM warning
 
-This server requires about 4096m to run properly.
+This server requires about 6144m to run properly.
 
-### Update notice
-
-If you are updating from an old copy of the egg you will need to remove the `.wine` folder. 
-
-An example error message you may be seeing is that `MSVCP140.dll` is missing.
-
----
 
 ## Server Ports
 
@@ -27,6 +20,15 @@ Ports required to run the server in a table format.
 | UDP Server query| 27015  |
 | RCON| 25575 |
 
+## Conan Exiles Legacy
+
+### Update notice
+
+If you are updating from an old copy of the egg you will need to remove the `.wine` folder. 
+
+An example error message you may be seeing is that `MSVCP140.dll` is missing.
+
+---
 
 ## Mods
 

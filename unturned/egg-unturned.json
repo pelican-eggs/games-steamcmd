@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:05:03+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Unturned",
     "author": "parker@parkervcp.com",
     "uuid": "4000c33b-91a2-4d50-8a1f-f998b334ad6e",
     "description": "Vanilla Unturned with the included RockerMod.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

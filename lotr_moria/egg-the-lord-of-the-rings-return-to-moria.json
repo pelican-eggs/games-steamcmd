@@ -4,11 +4,14 @@
         "version": "PLCN_v1",
         "update_url": "https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/lotr_moria\/egg-pelican-lotr-return-to-moria.json"
     },
-    "exported_at": "2025-02-16T14:23:18+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "The Lord of the Rings: Return to Moria",
     "author": "eggs@goover.dev",
     "uuid": "a294e71d-cb35-42a1-89e0-4688c8199d53",
     "description": "The only survival crafting game set in the Fourth Age of Middle-earth\u2122. Embark on an epic journey to reclaim the Dwarven homeland of Moria, and explore, craft, and build in procedurally generated worlds. Play as a solo adventurer, or join friends in co-op gameplay for up to 8 players.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

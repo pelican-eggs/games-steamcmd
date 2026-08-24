@@ -1,0 +1,114 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-07-02T22:01:05+02:00",
+    "name": "The Ship: Murder Party",
+    "author": "noreply@zyiks.eu",
+    "description": "The Ship: Murder Party dedicated server. The native Linux server is broken on modern systems, so this runs the Windows dedicated server under Wine. Requires a licensed Steam account (anonymous is refused).",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"
+    },
+    "file_denylist": [],
+    "startup": "wine srcds.exe -console -condebug -conclearlog -game ship +log on +map {{SRCDS_MAP}} +maxplayers {{MAX_PLAYERS}} -port {{SERVER_PORT}} +ip 0.0.0.0 -strictportbind & SRVPID=$!; tail -c0 -F \/home\/container\/ship\/console.log --pid=$SRVPID",
+    "config": {
+        "files": "{}",
+        "startup": "{\n    \"done\": \"Started map\"\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\n# The Ship dedicated server install. Runs the Windows server under Wine, the native Linux build is broken.\n\n## just in case someone removed the defaults.\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\n    echo -e \"steam user is not set.\\n\"\n    echo -e \"Using anonymous user (app 2403 needs a licensed account though).\\n\"\n    STEAM_USER=anonymous\n    STEAM_PASS=\"\"\n    STEAM_AUTH=\"\"\nelse\n    echo -e \"user set to ${STEAM_USER}\"\nfi\n\n## download and install steamcmd\ncd \/tmp\nmkdir -p \/mnt\/server\/steamcmd\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\ncd \/mnt\/server\/steamcmd\n\nchown -R root:root \/mnt\nexport HOME=\/mnt\/server\n\n## install game using steamcmd, forcing the windows platform\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} ${INSTALL_FLAGS} validate +quit\n\n## set up steam client libraries\nmkdir -p \/mnt\/server\/.steam\/sdk32\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so 2>\/dev\/null || true\nmkdir -p \/mnt\/server\/.steam\/sdk64\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so 2>\/dev\/null || true\n\necho \"install complete\"\n",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "\/bin\/bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Auto-update server",
+            "description": "Enable \/ disable auto-updating the server on restart.",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Windows install",
+            "description": "Forces SteamCMD to install\/update the Windows server files (run under Wine). Do not change - the native Linux server is broken.",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|in:1",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam User",
+            "description": "Steam account that OWNS The Ship. Anonymous is refused (No subscription).",
+            "env_variable": "STEAM_USER",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Password",
+            "description": "Password for the Steam account. Steam Guard must be OFF (headless SteamCMD cannot complete email Guard).",
+            "env_variable": "STEAM_PASS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Auth (Guard code)",
+            "description": "Steam Guard code if required. Normally left blank with Guard off.",
+            "env_variable": "STEAM_AUTH",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Map",
+            "description": "Default map to load on start (e.g. batavier, atalanta, huronian).",
+            "env_variable": "SRCDS_MAP",
+            "default_value": "batavier",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Players",
+            "description": "Maximum player slots.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "8",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|between:1,32",
+            "field_type": "text"
+        },
+        {
+            "name": "App ID",
+            "description": "Steam app id for The Ship Dedicated Server. Do not modify.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "2403",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|in:2403",
+            "field_type": "text"
+        }
+    ]
+}

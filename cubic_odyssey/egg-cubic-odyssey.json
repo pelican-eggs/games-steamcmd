@@ -4,13 +4,15 @@
         "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2025-12-25T09:29:43+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Cubic Odyssey",
     "author": "mads@mrnissen.com",
     "uuid": "98286014-aa2b-404a-adca-777252ab7986",
     "description": "Adventure, creation, and survival await!\nStep into a boundless open world where every planet, every system, and every moment is yours to shape. Explore a universe rich with life, ancient mysteries, and untamed beauty. Fight back the Red Darkness menace as you mine resources, craft tools, weapons, and build vehicles that are essential for your odyssey. Collaborate with friends to battle colossal threats and bring hope to the galaxy.",
     "image": null,
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

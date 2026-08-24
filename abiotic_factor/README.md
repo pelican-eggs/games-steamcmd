@@ -8,8 +8,8 @@ Official server documentation: https://github.com/DFJacob/AbioticFactorDedicated
 
 |   File    |  Purpose  |   Path  |
 |-----------|---------|---------|
-| SandboxSettings.ini | General game configuration | /home/container/AbioticFactor/Saved/SaveGames/Server/Worlds/Cascade/SandboxSettings.ini |
-| Admin.ini | Server moderator settings | /home/container/AbioticFactor/Saved/SaveGames/Server/Admin.ini |
+| SandboxSettings.ini | General game configuration | `AbioticFactor/Saved/Config/WindowsServer/SandboxSettings.ini` |
+| Admin.ini | Server moderator settings | `AbioticFactor/Saved/SaveGames/Server/Admin.ini` |
 
 ## Server Ports
 

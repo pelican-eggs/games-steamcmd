@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:24+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Mount & Blade II: Bannerlord",
     "author": "josdekurk@gmail.com",
     "uuid": "d74ed598-09c5-4ce9-a8e1-5391ab221a1c",
     "description": "A strategy\/action RPG. Create a character, engage in diplomacy, craft, trade and conquer new lands in a vast medieval sandbox. Raise armies to lead into battle and command and fight alongside your troops in massive real-time battles using a deep but intuitive skill-based combat system.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/yolks:wine_latest": "ghcr.io\/parkervcp\/yolks:wine_latest"

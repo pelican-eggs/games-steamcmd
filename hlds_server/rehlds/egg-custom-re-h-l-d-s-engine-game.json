@@ -4,12 +4,14 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-04-16T22:31:35+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Custom ReHLDS Engine Game",
     "author": "shigbeard@ndlee.com",
     "uuid": "936bb359-8a0b-47e7-bd57-110ed3afb166",
     "description": "This option allows modifying the startup arguments and other details to run a custom HLDS based game on the panel, substituting the official Valve engine binaries with the ReHLDS binaries.",
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

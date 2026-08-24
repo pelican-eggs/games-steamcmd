@@ -4,12 +4,14 @@
         "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2025-11-02T10:25:41+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Voyagers of Nera",
     "author": "quinten@pelican.dev",
     "uuid": "ea67d6c6-3b4b-4987-b0ca-5514d86e3c16",
     "description": " Voyagers of Nera is a cooperative survival-crafting game where you must survive a magical ocean world brimming with lost spirits and deadly monsters. Sail to distant islands, build beautiful villages and surf across the waves with up to 10 players. ",
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:19+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Hurtworld",
     "author": "brycea@terrahost.cloud",
     "uuid": "a0574872-4d56-4eb1-8359-ea748c52d1bf",
     "description": "Hurtworld is a hardcore multiplayer survival FPS with a focus on deep survival progression that doesn't become trivial once you establish some basic needs. Built for hardcore gamers, Hurtworld aims to punish.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

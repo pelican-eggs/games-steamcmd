@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:41+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Risk of Rain 2",
     "author": "alex.chang-lam@protonmail.com",
     "uuid": "6846de1e-6b95-4fba-afee-3eecfede9164",
     "description": "Risk of Rain 2 dedicated server.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

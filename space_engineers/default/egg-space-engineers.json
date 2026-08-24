@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:54+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Space Engineers",
     "author": "eggs@goover.dev",
     "uuid": "ac8271cf-8176-4bfe-a2bb-8de031ec86f5",
     "description": "Space Engineers is a voxel-based sandbox game set in space and on planets.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

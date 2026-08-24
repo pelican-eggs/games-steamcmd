@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:50+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Soldat",
     "author": "eggs@goover.dev",
     "uuid": "db399bf1-dd25-4cb2-b7df-8045f65054dc",
     "description": "Soldat is a unique 2D (side-view) multiplayer action game. It has been influenced by the best of games such as Liero, Worms, Quake, and Counter-Strike and provides a fast-paced gaming experience with tons of blood and flesh. Soldiers fight against each other in 2D battle arenas using a deadly arsenal of military weapons, across 7 default game modes. It features 18 different weapons and 60 maps to frag away on, with full support for user created content.\r\n\r\nSteam: https:\/\/store.steampowered.com\/app\/638490\/Soldat\/",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

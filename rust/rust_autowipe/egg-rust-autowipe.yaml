@@ -4,7 +4,7 @@ meta:
   update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/rust/rust_autowipe/egg-rust-autowipe.yaml'
 exported_at: '2026-05-10T02:18:05+00:00'
 name: 'Rust Autowipe'
-author: support@pelican.dev
+author: team@pelican.dev
 uuid: dbcbbfc1-cacd-45e7-99f0-2257739d4fe3
 description: |-
   The only aim in Rust is to survive. To do this you will need to overcome struggles such as hunger,

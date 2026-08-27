@@ -12,7 +12,7 @@
         "steam_disk_space"
     ],
     "docker_images": {
-        "bmghosting/pelican-holdfast": "bmghosting/pelican-holdfast"
+        "bmghosting/pterodactyl-holdfast": "bmghosting/pterodactyl-holdfast"
     },
     "file_denylist": [],
     "startup": "\"./holdfastnaw-dedicated/Holdfast NaW\" -startserver -batchmode -nographics -screen-width 320 -screen-height 240 -screen-quality Fastest -framerate {{FPSMAX}} --serverheadless -serverConfigFilePath holdfastnaw-dedicated/configs/{{SERVER_CONFIG_PATH}} -logFile holdfastnaw-dedicated/logs_output/output_{{SERVER_CONFIG_PATH}} -logArchivesDirectory holdfastnaw-dedicated/{{SERVER_LOG_ARCHIVE_PATH}}/ -adminCommandsLogFilePath holdfastnaw-dedicated/logs_adminactions/admin_{{SERVER_CONFIG_PATH}} -playersLogFilePath holdfastnaw-dedicated/logs_playerlogin/players_{{SERVER_CONFIG_PATH}} -scoreboardLogFilePath holdfastnaw-dedicated/logs_score/scorelog_{{SERVER_CONFIG_PATH}} -chatLogFilePath holdfastnaw-dedicated/logs_chat/chatlog_{{SERVER_CONFIG_PATH}} -workshopDataPath holdfastnaw-dedicated/workshop -micSpammersPlayersFilePath holdfastnaw-dedicated/micspammers.txt -mutedVoipPlayersFilePath holdfastnaw-dedicated/mutedplayersvoip.txt -mutedChatPlayersFilePath holdfastnaw-dedicated/mutedplayerschat.txt -bannedPlayersFilePath holdfastnaw-dedicated/bannedplayers.txt -p {{SERVER_PORT}} -l \"94.130.66.231\" -o 7101",

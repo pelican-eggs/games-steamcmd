@@ -29,7 +29,7 @@ Set the "load saved game" variable to **true** while setting the "create new gam
 2. Enter a strong password into the Player Join Password field
 3. Click "Encrypt"
 4. Copy the json content (use the "Copy PlayerPassword.json" button)
-5. Use the Files explorer of the pelican/pelican server and create a file named "PlayerPassword.json" in the server root
+5. Use the Files explorer of the pterodactyl/pelican server and create a file named "PlayerPassword.json" in the server root
 6. Paste the json content into the file
 
 > [!IMPORTANT]
@@ -39,7 +39,7 @@ Set the "load saved game" variable to **true** while setting the "create new gam
 2. Enter a strong password into the Admin Password field
 3. Click "Encrypt"
 4. Copy the json content (use the "Copy Password.json" button)
-5. Use the Files explorer of the pelican/pelican server and create a file named "Password.json" in the server root
+5. Use the Files explorer of the pterodactyl/pelican server and create a file named "Password.json" in the server root
 6. Paste the json content into the file
 
 **Launch the game an enjoy !**

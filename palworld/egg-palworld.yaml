@@ -163,7 +163,7 @@ variables:
     name: 'Server Name'
     description: ''
     env_variable: SERVER_NAME
-    default_value: 'A Pterodactyl hosted Palworld Server'
+    default_value: 'A Pelican hosted Palworld Server'
     user_viewable: true
     user_editable: true
     rules:

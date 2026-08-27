@@ -34,7 +34,7 @@ We have a collection of [existing install script snippets](https://github.com/pe
 
 ## Step 1
 
-### Be aware of the Pelican/Pterodactyl install process
+### Be aware of the Pelican/Pelican install process
 
 The install process is fairly simple once you know it.
 

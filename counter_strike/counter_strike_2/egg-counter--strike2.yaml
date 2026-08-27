@@ -168,7 +168,7 @@ variables:
     name: 'Server Name'
     description: 'Sets the server name listed in the steam server browser.'
     env_variable: SERVER_NAME
-    default_value: 'A Pterodactyl hosted CS2 Server'
+    default_value: 'A Pelican hosted CS2 Server'
     user_viewable: true
     user_editable: true
     rules:

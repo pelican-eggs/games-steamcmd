@@ -1,5 +1,5 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PELICAN PANEL - PELICAN.DEV",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
@@ -64,7 +64,7 @@
             "name": "Server Name",
             "description": "ARK server name",
             "env_variable": "SESSION_NAME",
-            "default_value": "A Pterodactyl Hosted ARK Server",
+            "default_value": "A Pelican Hosted ARK Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:128",

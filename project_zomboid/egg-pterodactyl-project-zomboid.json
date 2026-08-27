@@ -34,7 +34,7 @@
             "name": "Server Name",
             "description": "The internal server name used for save/ config files.",
             "env_variable": "SERVER_NAME",
-            "default_value": "Pterodactyl",
+            "default_value": "Pelican",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|alpha_num|max:64",

@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > **(September 2025) *This Egg has just been majorly updated.*** Please see [How to Update Egg](#how-to-update-egg) to avoid any migration issues!\
 > \
-> If you need time to update, you can continue using the old Egg with this image for the time being: `ghcr.io/ptero-eggs/games:arma3`
+> If you need time to update, you can continue using the old Egg with this image for the time being: `ghcr.io/peli-eggs/games:arma3`
 ___
 
 ## Authors / Contributors
@@ -162,7 +162,7 @@ If you already have an Arma 3 Egg installed on your panel, there are a couple th
 - If you use a custom Arma3Profile file, **its location and name has changed**. You can move the contents of your old Arma3Profile to its new location at: `/home/container/.local/share/Arma 3 - Other Profiles/server/server.Arma3Profile`
 - The Startup Command has changed, but does not update across all your existing servers. Servers will still boot with their old Startup Command, but will not operate as intended. Servers will have to be manually updated to the new Startup Command via the Startup tab.
 
-#### Pterodactyl specific
+#### Pelican specific
 - Startup Variables have been completely re-hauled. While most existing variables have retained their Environment Variable names, some have been completely changed or removed. Simply updating your existing Egg with this Egg may lead to Startup Variables being terribly out of order and cluttered. Therefore, the following steps are recommended to avoid this:
   1. Inform your end-users that some Startup Variable values may be lost and must be reconfigured.
   2. Change the name of your existing Arma 3 Egg to "Arma 3 (Old)".

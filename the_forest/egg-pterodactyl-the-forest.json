@@ -44,7 +44,7 @@
             "name": "Server Name",
             "description": "Name of the server, appears in Steam browser.",
             "env_variable": "SERVER_NAME",
-            "default_value": "Pterodactyl Forest Server",
+            "default_value": "Pelican Forest Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:64",

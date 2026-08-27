@@ -80,7 +80,7 @@
             "name": "Server Name",
             "description": "Server name (shows up in server list)",
             "env_variable": "SRV_NAME",
-            "default_value": "Pterodactyl hosted Server",
+            "default_value": "Pelican hosted Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": [

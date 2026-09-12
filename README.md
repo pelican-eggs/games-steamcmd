@@ -116,6 +116,7 @@
   * [BepInEx](stationeers/stationeers_bepinex)
 * [Stormworks: Build and Rescue](stormworks)
 * [Subnautica: Nitrox Mod](subnautica_nitrox_mod)
+* [Subsistence](subsistence)
 * [Sven Co-op](svencoop)
 * [Swords 'n Magic and Stuff](swords_'n_Magic_and_Stuff)
 * [Team Fortress 2 Classic](team_fortress_2_classic)

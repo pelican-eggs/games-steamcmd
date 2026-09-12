@@ -1,23 +1,22 @@
 # Subsistence
 
-Subsistence is an open-world sandbox survival game centered around base building, hunting, farming, and defending against AI hunters and other players. Steam app 1362640.
+[Subsistence](https://store.steampowered.com/app/418030/Subsistence/) is an open-world, sandbox, first-person, solo or co-op survival game. Build a base, hunt for food, defend against AI hunters, and compete or cooperate with other players.
 
-The dedicated server is Windows-only (UDK.exe / Unreal Engine 3), so this egg installs the Windows depot through SteamCMD and runs it under Wine + Xvfb using the Pelican Wine yolk.
+The dedicated server (Steam app `1362640`) is Windows-only (UDK.exe / Unreal Engine 3), so this egg installs the Windows depot through SteamCMD and runs it under Wine + Xvfb using the Pelican Wine yolk (`ghcr.io/pelican-eggs/yolks:wine_latest`).
 
-Official server documentation: https://steamcommunity.com/sharedfiles/filedetails/?id=2201638184
+Official server setup guide: https://steamcommunity.com/sharedfiles/filedetails/?id=2201638184
 
 ### Configuration files
 
-|   File    |  Purpose  |   Path  |
-|-----------|-----------|---------|
-| UDKDedServerSettings.ini | Server name, difficulty, PvP rules, base decay, mods | `UDKGame/Config/UDKDedServerSettings.ini` |
+| File | Purpose | Path |
+|------|---------|------|
+| UDKDedServerSettings.ini | Server settings (name, difficulty, PvP rules, base decay, mods, etc.) | `UDKGame/Config/UDKDedServerSettings.ini` |
 
 ## Server Ports
 
-| Name  | Default | Protocol |
-|-------|---------|----------|
-| Game  | 7777    | UDP/TCP  |
-| Peer  | 7778    | UDP/TCP  |
-| Query | 27015   | UDP      |
+| Name  | Default |
+|-------|---------|
+| Game  | 7777    |
+| Query | 27015   |
 
-Allocate the game port, the query port so the server appears in the in-game list, and game port + 1 (7778) for UE3 peer traffic.
+Allocate the game port and the query port (so the server appears in the in-game list).

@@ -2,7 +2,7 @@ _comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
 meta:
   version: PLCN_v3
   update_url: null
-exported_at: '2026-09-12T23:23:23+00:00'
+exported_at: '2026-09-13T00:35:18+00:00'
 name: Subsistence
 author: syyyn84@gmail.com
 uuid: eba19c87-5f0f-4063-939b-3e7d288c07c3
@@ -25,7 +25,7 @@ docker_images:
   'ghcr.io/pelican-eggs/yolks:wine_staging': 'ghcr.io/pelican-eggs/yolks:wine_staging'
 file_denylist: {  }
 startup_commands:
-  Default: "xvfb-run --auto-servernum --server-args='-screen 0 1024x768x16' wine /home/container/Binaries/Win64/UDK.exe server coldmap1?steamsockets -log -Port={{SERVER_PORT}} -ini:UDKEngine:OnlineSubsystemSteamworks.OnlineSubsystemSteamworks.QueryPort={{QUERY_PORT}}"
+  Default: "rm -f /home/container/UDKGame/Logs/Launch.log; xvfb-run --auto-servernum --server-args='-screen 0 1024x768x16' wine /home/container/Binaries/Win64/UDK.exe server coldmap1?steamsockets -log -FORCELOGFLUSH -Port={{SERVER_PORT}}   -ini:UDKEngine:OnlineSubsystemSteamworks.OnlineSubsystemSteamworks.QueryPort={{QUERY_PORT}} & UDK_PID=$!; tail -F /home/container/UDKGame/Logs/Launch.log --pid=$UDK_PID"
 config:
   files:
     UDKGame/Config/UDKDedServerSettings.ini:

@@ -74,7 +74,7 @@
             "name": "Server Name",
             "description": "The name that will be displayed in the server browser list",
             "env_variable": "hostname",
-            "default_value": "Pterodactyl Server",
+            "default_value": "Pelican Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:32",

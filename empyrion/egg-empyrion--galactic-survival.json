@@ -102,7 +102,7 @@
             "name": "Server Description",
             "description": "Server info between the \" \", can contain [b]bold[\/b] text or a [u][url=empyriongame.com]link[\/url][\/u] up to 127 chars.",
             "env_variable": "SRV_DESC",
-            "default_value": "Empyrion Galactic Survival Dedicated Server running on Pterodactyl Panel",
+            "default_value": "Empyrion Galactic Survival Dedicated Server running on Pelican Panel",
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:127",

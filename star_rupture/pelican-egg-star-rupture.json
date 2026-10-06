@@ -92,7 +92,7 @@
             "name": "Server Name",
             "description": "The display name of your server.",
             "env_variable": "DSS_SERVER_NAME",
-            "default_value": "A Pterodactyl Hosted StarRupture Server",
+            "default_value": "A Pelican Hosted StarRupture Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": [

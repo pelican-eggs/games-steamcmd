@@ -82,7 +82,7 @@
             "name": "Server List Name",
             "description": "The name of the server in the Server List",
             "env_variable": "SERVER_LIST_NAME",
-            "default_value": "A Pterodactyl server",
+            "default_value": "A Pelican server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:128",

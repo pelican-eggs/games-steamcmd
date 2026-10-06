@@ -121,7 +121,7 @@
             "name": "Cluster Description",
             "description": "This will show up in the server details area on the \u201cBrowse Games\u201d screen.",
             "env_variable": "CLUSTER_DESC",
-            "default_value": "A Pterodactyl Hosted Server",
+            "default_value": "A Pelican Hosted Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": [

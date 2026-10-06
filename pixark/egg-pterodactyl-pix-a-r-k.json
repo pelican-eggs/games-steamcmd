@@ -7,7 +7,7 @@
     "exported_at": "2024-06-01T00:04:34+00:00",
     "name": "PixARK",
     "author": "hello@venatus.digital",
-    "description": "A simple Docker container with Wine to run PixARK using Pterodactyl Panel",
+    "description": "A simple Docker container with Wine to run PixARK using Pelican Panel",
     "features": [
         "steam_disk_space"
     ],
@@ -15,7 +15,7 @@
         "ghcr.io/parkervcp/yolks:wine_devel": "ghcr.io/parkervcp/yolks:wine_devel"
     },
     "file_denylist": [],
-    "startup": "wine64 ./ShooterGame/Binaries/Win64/PixARKServer.exe \"CubeWorld_Light?listen?DelayRegisterServer=True?bRawSockets=True?SessionName=\"{{SRV_NAME}}\"?AltSaveDirectoryName=PteroPixArk?ServerPassword={{ARK_PASSWORD}}?ServerAdminPassword={{ARK_ADMIN_PASSWORD}}?MaxPlayers={{MAX_PLAYERS}}?RCONEnabled=True?RCONPort={{RCPORT}}\" -Seed=12345 -OreSeed=1234 -ConfigsUseAltDir -server -gameplaylogging -log -CULTUREFORCOOKING=en -NoBattlEye -QueryPort={{QPORT}} -Port={{SERVER_PORT}} -CubePort={{CUBEPORT}} -cubeworld={{SRV_NAME}} -nosteamclient -NoHangDetection",
+    "startup": "wine64 ./ShooterGame/Binaries/Win64/PixARKServer.exe \"CubeWorld_Light?listen?DelayRegisterServer=True?bRawSockets=True?SessionName=\"{{SRV_NAME}}\"?AltSaveDirectoryName=PeliPixArk?ServerPassword={{ARK_PASSWORD}}?ServerAdminPassword={{ARK_ADMIN_PASSWORD}}?MaxPlayers={{MAX_PLAYERS}}?RCONEnabled=True?RCONPort={{RCPORT}}\" -Seed=12345 -OreSeed=1234 -ConfigsUseAltDir -server -gameplaylogging -log -CULTUREFORCOOKING=en -NoBattlEye -QueryPort={{QPORT}} -Port={{SERVER_PORT}} -CubePort={{CUBEPORT}} -cubeworld={{SRV_NAME}} -nosteamclient -NoHangDetection",
     "config": {
         "files": "{}",
         "logs": "{}",
@@ -114,7 +114,7 @@
             "name": "Server Name",
             "description": "Name of the Server !!!! NO SPACES ALLOWED !!!!",
             "env_variable": "SRV_NAME",
-            "default_value": "PteroPixARKServer",
+            "default_value": "PeliPixARKServer",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:30",

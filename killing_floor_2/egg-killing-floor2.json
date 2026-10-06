@@ -137,7 +137,7 @@
             "name": "Server Name",
             "description": "This is the displayed server name to all players in the server and the server browser",
             "env_variable": "SERVER_NAME",
-            "default_value": "A Pterodactyl Hosted Server",
+            "default_value": "A Pelican Hosted Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",

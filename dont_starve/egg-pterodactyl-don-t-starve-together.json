@@ -1,5 +1,5 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PELICAN PANEL - PELICAN.DEV",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
@@ -94,7 +94,7 @@
             "name": "Cluster Description",
             "description": "This will show up in the server details area on the “Browse Games” screen.",
             "env_variable": "CLUSTER_DESC",
-            "default_value": "A Pterodactyl Hosted Server",
+            "default_value": "A Pelican Hosted Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",

@@ -150,7 +150,7 @@ variables:
     name: Description
     description: 'The description under your server title. Commonly used for rules & info. Use \n for newlines.'
     env_variable: DESCRIPTION
-    default_value: 'Powered by Pterodactyl'
+    default_value: 'Powered by Pelican'
     user_viewable: true
     user_editable: true
     rules:
@@ -161,7 +161,7 @@ variables:
     name: URL
     description: 'The URL for your server. This is what comes up when clicking the "Visit Website" button.'
     env_variable: SERVER_URL
-    default_value: 'http://pterodactyl.io'
+    default_value: 'http://pelican.dev'
     user_viewable: true
     user_editable: true
     rules:

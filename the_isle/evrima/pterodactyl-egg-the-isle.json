@@ -1,5 +1,5 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PELICAN PANEL - PELICAN.DEV",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
@@ -145,7 +145,7 @@
             "name": "Server Name",
             "description": "Sets the name for the server",
             "env_variable": "SERVER_NAME",
-            "default_value": "A Pterodactyl server",
+            "default_value": "A Pelican server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:70",

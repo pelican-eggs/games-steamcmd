@@ -1,12 +1,12 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PELICAN PANEL - PELICAN.DEV",
     "meta": {
         "version": "PTDL_v2",
         "update_url": null
     },
     "exported_at": "2026-05-10T02:18:05+00:00",
     "name": "Rust Autowipe",
-    "author": "support@pterodactyl.io",
+    "author": "team@pelican.dev",
     "description": "The only aim in Rust is to survive. To do this you will need to overcome struggles such as hunger, thirst and cold. Build a fire. Build a shelter. Kill animals for meat. Protect yourself from other players, and kill them for meat. Create alliances with other players and form a town. Do whatever it takes to survive.",
     "features": [
         "steam_disk_space"
@@ -64,7 +64,7 @@
             "name": "Description",
             "description": "The description under your server title. Commonly used for rules & info. Use \\n for newlines.",
             "env_variable": "DESCRIPTION",
-            "default_value": "Powered by Pterodactyl",
+            "default_value": "Powered by Pelican",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
@@ -74,7 +74,7 @@
             "name": "URL",
             "description": "The URL for your server. This is what comes up when clicking the \"Visit Website\" button.",
             "env_variable": "SERVER_URL",
-            "default_value": "http:\/\/pterodactyl.io",
+            "default_value": "http:\/\/pelican.dev",
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|url",

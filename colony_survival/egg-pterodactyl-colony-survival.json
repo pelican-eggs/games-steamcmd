@@ -1,5 +1,5 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
         "update_url": null,
         "version": "PTDL_v2"
@@ -52,7 +52,7 @@
             "name": "World name",
             "description": "",
             "env_variable": "WORLD_NAME",
-            "default_value": "Pelican",
+            "default_value": "world",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:32",
@@ -62,7 +62,7 @@
             "name": "Server name",
             "description": "",
             "env_variable": "SERVER_NAME",
-            "default_value": "Pelican",
+            "default_value": "Colony Survival",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:32",

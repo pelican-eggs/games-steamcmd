@@ -108,7 +108,7 @@ scripts:
       echo "Installation completed..."
       echo "-----------------------------------------"
 
-      ## seed server.cfg for Pelican config.files parser.
+      ## seed server.cfg for config.files parser.
       ## the parser overrides existing lines but does NOT append missing ones,
       ## so we have to seed placeholder lines on first install.
       mkdir -p /mnt/server/server/rust/cfg
@@ -126,7 +126,7 @@ scripts:
       server.tags ""
       server.levelurl ""
       SEED_EOF
-        echo "  [seed] server.cfg pre-populated for Pelican file parser"
+        echo "  [seed] server.cfg pre-populated for file parser"
       else
         echo "  [seed] server.cfg already has hostname line; skip"
       fi

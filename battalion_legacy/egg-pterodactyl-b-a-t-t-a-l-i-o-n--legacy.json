@@ -1,5 +1,5 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
         "update_url": null,
         "version": "PTDL_v2"
@@ -64,7 +64,7 @@
             "name": "Server Name",
             "description": "",
             "env_variable": "SERVER_NAME",
-            "default_value": "Pelican hosted Server",
+            "default_value": "BATTALION Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:60",

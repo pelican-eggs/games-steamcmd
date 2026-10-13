@@ -199,7 +199,7 @@
             "name": "Station Name",
             "description": "Name of the save of your world.\r\nAuto save & auto load worlds on server startup.",
             "env_variable": "STATION_NAME",
-            "default_value": "Pelican Hosted Server",
+            "default_value": "Stationeers Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": [

@@ -1,5 +1,5 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
         "update_url": null,
         "version": "PTDL_v2"
@@ -124,7 +124,7 @@
             "name": "Server Name",
             "description": "This is the displayed server name to all players in the server and the server browser",
             "env_variable": "SERVER_NAME",
-            "default_value": "A Pterodactyl Hosted Server",
+            "default_value": "Killing Floor 2 Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",

@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2026-10-13T10:42:50+00:00",
+    "exported_at": "2026-10-14T15:52:41+00:00",
     "name": "Windrose",
     "author": "nezorflame@gmail.com",
     "description": "Windrose is a survival adventure set in an alternative Age of Piracy. It features the classic \"build, craft, survive\" formula along with intense combat and engaging exploration on land and sea.",
@@ -158,6 +158,26 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "[STEAM] Windows Install",
+            "description": "",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "boolean|in:1",
+            "field_type": "text"
+        },
+        {
+            "name": "[STEAM] Auto Update",
+            "description": "Automatically update the server on startup",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "boolean",
             "field_type": "text"
         }
     ]

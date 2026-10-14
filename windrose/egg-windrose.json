@@ -4,12 +4,12 @@
         "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2026-10-13T10:42:47+00:00",
+    "exported_at": "2026-10-14T15:52:38+00:00",
     "name": "Windrose",
     "author": "nezorflame@gmail.com",
     "uuid": "bfb5da30-2c05-4e11-b05a-d1f1da31b279",
     "description": "Windrose is a survival adventure set in an alternative Age of Piracy.\nIt features the classic \"build, craft, survive\" formula along with intense combat and engaging exploration on land and sea.",
-    "image": null,
+    "icon": null,
     "tags": [],
     "features": [
         "steam_disk_space"
@@ -35,6 +35,18 @@
         }
     },
     "variables": [
+        {
+            "sort": 15,
+            "name": "[STEAM] Auto Update",
+            "description": "Automatically update the server on startup",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "boolean"
+            ]
+        },
         {
             "sort": 4,
             "name": "[SERVER] Direct Connection Port",
@@ -188,6 +200,19 @@
                 "required",
                 "string",
                 "in:true,false"
+            ]
+        },
+        {
+            "sort": 14,
+            "name": "[STEAM] Windows Install",
+            "description": "",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "boolean",
+                "in:1"
             ]
         },
         {

@@ -72,3 +72,7 @@ The fact that the server is not displayed in the server list is a known problem.
 
 As a workaround, you can add the server as a favourite via IP:port in the Steam server browser.
 The server should then be at the top of the ingame server list
+
+### License
+
+This egg is licensed under the GNU Affero General Public License (AGPL), which differs from the license used by other eggs.

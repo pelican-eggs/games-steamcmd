@@ -1,0 +1,285 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: null
+exported_at: '2026-07-11T22:05:42+00:00'
+name: HumanitZ
+author: engels74@cccp.ps
+uuid: 8b0f6f01-ec9e-4bc9-b341-6e0425894847
+description: |-
+  HumanitZ is a co-op, isometric, open world survival game in a world ended by the zombie outbreak. As
+  one of the few human survivors, try to last as long as “humanly” possible. The past can’t be
+  changed, but you can make a difference today for the future of humanity.
+icon: null
+tags:
+  - steamcmd
+features: null
+docker_images:
+  'ghcr.io/parkervcp/steamcmd:debian': 'ghcr.io/parkervcp/steamcmd:debian'
+file_denylist:
+  - ini-merge.sh
+startup_commands:
+  Default: '[ -f ./ini-merge.sh ] && bash ./ini-merge.sh HumanitZServer/REF_GameServerSettings.ini HumanitZServer/GameServerSettings.ini || true; ./HumanitZServer/Binaries/Linux/HumanitZServer-Linux-Shipping HumanitZServer -log -port={{SERVER_PORT}} -queryport={{QUERY_PORT}} -steamservername="{{SERVER_NAME}}"'
+config:
+  files:
+    HumanitZServer/GameServerSettings.ini:
+      parser: ini
+      find:
+        '[Host Settings].ServerName': '{{server.environment.SERVER_NAME}}'
+        '[Host Settings].Password': '{{server.environment.PASSWORD}}'
+        '[Host Settings].SaveName': '{{server.environment.SAVE_NAME}}'
+        '[Host Settings].SearchID': '{{server.environment.SEARCH_ID}}'
+        '[Host Settings].AdminPass': '{{server.environment.ADMIN_PASS}}'
+        '[Host Settings].MaxPlayers': '{{server.environment.MAX_PLAYERS}}'
+        '[Host Settings].ReserveSlots': '{{server.environment.RESERVE_SLOTS}}'
+        '[Host Settings].RCONEnabled': '{{server.environment.RCON_ENABLED}}'
+        '[Host Settings].RConPort': '{{server.environment.RCON_PORT}}'
+        '[Host Settings].RCONPass': '{{server.environment.RCON_PASS}}'
+  startup:
+    done: 'Session created!'
+  logs: {  }
+  stop: ^C
+scripts:
+  installation:
+    script: |-
+      #!/bin/bash
+      # steamcmd Base Installation Script
+      #
+      # Server Files: /mnt/server
+      # Image to install with is 'ghcr.io/parkervcp/installers:debian'
+
+      ##
+      #
+      # Variables
+      # STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.
+      # WINDOWS_INSTALL - if it's a windows server you want to install set to 1
+      # SRCDS_APPID - steam app id found here - https://developer.valvesoftware.com/wiki/Dedicated_Servers_List
+      # SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch
+      # SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.
+      # INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.
+      # AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.
+      #
+       ##
+
+      # Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.
+      #apt -y update
+      #apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates
+
+      ## just in case someone removed the defaults.
+      if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
+          echo -e "steam user is not set.\n"
+          echo -e "Using anonymous user.\n"
+          STEAM_USER=anonymous
+          STEAM_PASS=""
+          STEAM_AUTH=""
+      else
+          echo -e "user set to ${STEAM_USER}"
+      fi
+
+      ## download and install steamcmd
+      cd /tmp
+      mkdir -p /mnt/server/steamcmd
+      curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+      tar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd
+      mkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing
+      cd /mnt/server/steamcmd
+
+      # SteamCMD fails otherwise for some reason, even running as root.
+      # This is changed at the end of the install process anyways.
+      chown -R root:root /mnt
+      export HOME=/mnt/server
+
+      ## install game using steamcmd
+      ./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ "${WINDOWS_INSTALL}" == "1" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s "-beta ${SRCDS_BETAID}" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s "-betapassword ${SRCDS_BETAPASS}" ) ${INSTALL_FLAGS} validate +quit 
+
+      ## set up 32 bit libraries
+      mkdir -p /mnt/server/.steam/sdk32
+      cp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so
+
+      ## set up 64 bit libraries
+      mkdir -p /mnt/server/.steam/sdk64
+      cp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so
+
+      ## making server files executable
+      chmod +x /mnt/server/HumanitZServer/Binaries/Linux/HumanitZServer-Linux-Shipping
+
+      ## fetch the additive ini-merge helper maintained alongside this egg.
+      ## It runs on every boot via the startup command; running it here keeps
+      ## installs and reinstalls in sync immediately.
+      INI_MERGE_TMP="$(mktemp)" || { echo "Failed to create temporary file for ini-merge.sh"; exit 1; }
+      if ! curl -fsSL --retry 3 -o "$INI_MERGE_TMP" https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/humanitz/ini-merge.sh; then
+          echo "Failed to download ini-merge.sh"
+          rm -f "$INI_MERGE_TMP"
+          exit 1
+      fi
+      chmod +x "$INI_MERGE_TMP"
+      mv -f "$INI_MERGE_TMP" /mnt/server/ini-merge.sh
+      bash /mnt/server/ini-merge.sh /mnt/server/HumanitZServer/REF_GameServerSettings.ini /mnt/server/HumanitZServer/GameServerSettings.ini || true
+
+      ## install end
+      echo "-----------------------------------------"
+      echo "Installation completed..."
+      echo "-----------------------------------------"
+    container: 'ghcr.io/parkervcp/installers:debian'
+    entrypoint: bash
+variables:
+  -
+    sort: 10
+    name: '[RCON] RCON Enabled'
+    description: 'Enable RCON. Also enables server ping display in the browser.'
+    env_variable: RCON_ENABLED
+    default_value: false
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'in:true,false'
+  -
+    sort: 12
+    name: '[RCON] RCON Password'
+    description: 'RCON password'
+    env_variable: RCON_PASS
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+  -
+    sort: 11
+    name: '[RCON] RCON Port'
+    description: 'TCP port for RCON'
+    env_variable: RCON_PORT
+    default_value: 8888
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - numeric
+  -
+    sort: 13
+    name: '[REQUIRED] Steam App ID'
+    description: 'Steam App ID of HumanitZ Server'
+    env_variable: SRCDS_APPID
+    default_value: 2728330
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - 'in:2728330'
+  -
+    sort: 14
+    name: '[REQUIRED] Steam Beta Branch'
+    description: |-
+      Required: app 2728330 has NO public-branch depot; the Linux server files are only published on the
+      'linuxbranch' beta. Do not change.
+    env_variable: SRCDS_BETAID
+    default_value: linuxbranch
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - 'in:linuxbranch'
+  -
+    sort: 7
+    name: '[Server] Admin Password'
+    description: 'Admin password. Use /adminaccess <password> in game.'
+    env_variable: ADMIN_PASS
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+  -
+    sort: 1
+    name: '[Server] Auto Update'
+    description: 'Enable automatic updates on boot'
+    env_variable: AUTO_UPDATE
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - boolean
+  -
+    sort: 8
+    name: '[Server] Max Players'
+    description: 'Maximum number of players allowed'
+    env_variable: MAX_PLAYERS
+    default_value: 16
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - numeric
+  -
+    sort: 9
+    name: '[Server] Reserved Slots'
+    description: 'Slots reserved for players listed in F_ReservedSlots.txt. 0 disables.'
+    env_variable: RESERVE_SLOTS
+    default_value: 0
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - numeric
+  -
+    sort: 5
+    name: '[Server] Save Name'
+    description: 'Name of the save file for the server'
+    env_variable: SAVE_NAME
+    default_value: DedicatedSaveMP
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+  -
+    sort: 6
+    name: '[Server] Search ID'
+    description: |-
+      Server pool/search bucket. 'HumanitZ_Dedicated' is the default public pool. A custom value hides the
+      server from default listings (find via Search ID).
+    env_variable: SEARCH_ID
+    default_value: HumanitZ_Dedicated
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+  -
+    sort: 3
+    name: '[Server] Server Name'
+    description: "In-game/browser server name. Avoid the word 'Official' or the server may not list."
+    env_variable: SERVER_NAME
+    default_value: 'HumanitZ [Dedicated]'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+  -
+    sort: 4
+    name: '[Server] Server Password'
+    description: 'Server join password (leave blank for none)'
+    env_variable: PASSWORD
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+  -
+    sort: 2
+    name: '[Server] Steam Query Port'
+    description: 'Steam Query Port'
+    env_variable: QUERY_PORT
+    default_value: 27015
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - numeric

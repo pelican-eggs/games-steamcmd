@@ -15,9 +15,9 @@
     "file_denylist": [],
     "startup": "proton run ./Astro/Binaries/Win64/AstroServer-Win64-Shipping.exe",
     "config": {
-        "files": "{\r\n    \"Astro/Saved/Config/WindowsServer/Engine.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"url.Port\": \"{{server.build.default.port}}\",\r\n            \"[SystemSettings].net.AllowEncryption\":\"false\"\r\n        }\r\n    },\r\n    \"Astro/Saved/Config/WindowsServer/AstroServerSettings.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"[/Script/Astro.AstroServerSettings].PublicIP\": \"{{env.PUBLIC_IP}}\",\r\n            \"[/Script/Astro.AstroServerSettings].OwnerName\": \"{{env.OWNER_NAME}}\",\r\n            \"[/Script/Astro.AstroServerSettings].OwnerGuid\": \"{{env.OWNER_GUID}}\",\r\n            \"[/Script/Astro.AstroServerSettings].PlayerProperties\": \"(PlayerFirstJoinName=\\\"{{env.OWNER_NAME}}\\\",PlayerCategory=Admin,PlayerGuid=\\\"{{env.OWNER_GUID}}\\\",PlayerRecentJoinName=\\\"\\\")\",\r\n            \"[/Script/Astro.AstroServerSettings].ServerPassword\": \"{{env.SERVER_PWD}}\",\r\n            \"[/Script/Astro.AstroServerSettings].ServerName\": \"{{env.SERVER_NAME}}\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"Astro/Saved/Config/WindowsServer/Engine.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"url.Port\": \"{{server.build.default.port}}\",\r\n            \"[SystemSettings].net.AllowEncryption\": \"{{env.ALLOW_ENCRYPTION}}\"\r\n        }\r\n    },\r\n    \"Astro/Saved/Config/WindowsServer/AstroServerSettings.ini\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"[/Script/Astro.AstroServerSettings].PublicIP\": \"{{env.PUBLIC_IP}}\",\r\n            \"[/Script/Astro.AstroServerSettings].OwnerName\": \"{{env.OWNER_NAME}}\",\r\n            \"[/Script/Astro.AstroServerSettings].OwnerGuid\": \"{{env.OWNER_GUID}}\",\r\n            \"[/Script/Astro.AstroServerSettings].PlayerProperties\": \"(PlayerFirstJoinName=\\\"{{env.OWNER_NAME}}\\\",PlayerCategory=Admin,PlayerGuid=\\\"{{env.OWNER_GUID}}\\\",PlayerRecentJoinName=\\\"\\\")\",\r\n            \"[/Script/Astro.AstroServerSettings].ServerPassword\": \"{{env.SERVER_PWD}}\",\r\n            \"[/Script/Astro.AstroServerSettings].ServerName\": \"{{env.SERVER_NAME}}\"\r\n        }\r\n    }\r\n}",
         "logs": "{}",
-        "startup": "{\r\n    \"done\": \"nable to use setpriority safely\"\r\n}",
+        "startup": "{\r\n    \"done\": [\r\n        \"nable to use setpriority safely\",\r\n        \"fsync: up and running\"\r\n    ]\r\n}",
         "stop": "^C"
     },
     "scripts": {
@@ -116,6 +116,16 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:60",
+            "field_type": "text"
+        },
+        {
+            "name": "Allow Encryption",
+            "description": "Sets net.AllowEncryption in Engine.ini. True needs a current GE-Proton; with False every player must also set net.AllowEncryption=False in their client Engine.ini.",
+            "env_variable": "ALLOW_ENCRYPTION",
+            "default_value": "True",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:True,False",
             "field_type": "text"
         }
     ]

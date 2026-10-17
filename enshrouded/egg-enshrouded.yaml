@@ -2,7 +2,7 @@ _comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
 meta:
   version: PLCN_v3
   update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/enshrouded/egg-enshrouded.yaml'
-exported_at: '2026-10-16T08:33:53+00:00'
+exported_at: '2026-10-17T10:33:53+00:00'
 name: Enshrouded
 author: eggs@goover.dev
 uuid: c3693923-5f13-44b7-8a46-b563f0f93d93
@@ -27,6 +27,7 @@ config:
         name: '{{server.environment.SRV_NAME}}'
         slotCount: '{{server.environment.MAX_PLAYERS}}'
         queryPort: '{{server.environment.QUERY_PORT}}'
+        gameSettingsPreset: '{{server.environment.DIFFICULT_PRESET}}'        
   startup:
     done: "[Session] 'HostOnline' (up)!"
   logs: {  }
@@ -208,3 +209,15 @@ variables:
       - required
       - boolean
     sort: 8
+  - 
+    name: '[SERVER] Difficult Preset'
+    description: The Default difficulty setting configures all values to default. It is the direct continuation of how Enshrouded was configured up until update 0.7.3.0 and is the recommended setting for first-time players.
+    env_variable: DIFFICULT_PRESET
+    default_value: Default
+    user_viewable: true
+    user_editable: true
+    rules:
+    - required
+    - string
+    - 'in:Default,Relaxed,Hard,Survival,Custom'
+    sort: 9

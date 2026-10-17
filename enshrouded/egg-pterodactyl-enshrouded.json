@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2026-10-16T08:33:53+00:00",
+    "exported_at": "2026-10-17T10:33:53+00:00",
     "name": "Enshrouded",
     "author": "eggs@goover.dev",
     "description": "Enshrouded is a game of survival, crafting, and Action RPG combat, set within a sprawling voxel-based continent. As you journey across the mountains and deserts of an open world, you are free to choose your path and shape your destiny.",
@@ -17,7 +17,7 @@
     "file_denylist": [],
     "startup": "proton run .\/enshrouded_server.exe & ENS_PID=$! ; tail -c0 -F .\/logs\/enshrouded_server.log --pid=$ENS_PID",
     "config": {
-        "files": "{\n    \"enshrouded_server.json\": {\n        \"parser\": \"json\",\n        \"find\": {\n            \"name\": \"{{server.build.env.SRV_NAME}}\",\n            \"slotCount\": \"{{server.build.env.MAX_PLAYERS}}\",\n            \"queryPort\": \"{{server.build.env.QUERY_PORT}}\"\n        }\n    }\n}",
+        "files": "{\n    \"enshrouded_server.json\": {\n        \"parser\": \"json\",\n        \"find\": {\n            \"name\": \"{{server.build.env.SRV_NAME}}\",\n            \"slotCount\": \"{{server.build.env.MAX_PLAYERS}}\",\n            \"queryPort\": \"{{server.build.env.QUERY_PORT}}\",\n            \"gameSettingsPreset\": \"{{server.build.env.DIFFICULT_PRESET}}\"\n        }\n    }\n}",
         "startup": "{\n    \"done\": \"[Session] 'HostOnline' (up)!\"\n}",
         "logs": "{}",
         "stop": "^C"
@@ -108,6 +108,16 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "[SERVER] Difficult Preset",
+            "description": "The Default difficulty setting configures all values to default. It is the direct continuation of how Enshrouded was configured up until update 0.7.3.0 and is the recommended setting for first-time players.",
+            "env_variable": "DIFFICULT_PRESET",
+            "default_value": "Default",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:Default,Relaxed,Hard,Survival,Custom",
             "field_type": "text"
         }
     ]

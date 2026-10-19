@@ -30,9 +30,11 @@ Astroneer requires a single port to run.
 27000 is the default port, but any port can be used.
 
 
-## Client Configuration
+## Encryption
 
-To be able to connect to the server you need to edit Engine.ini (located at %LocalAppData%\Astro\Saved\Config\WindowsNoEditor\Engine.ini) on every player's computer by adding the following :
+Encryption is enabled by default (`ALLOW_ENCRYPTION=True`); this needs a recent GE-Proton, which the current `steamcmd:proton` image ships. Players don't need to change anything.
+
+If you set `ALLOW_ENCRYPTION` to `False`, every player must add the following to `%LocalAppData%\Astro\Saved\Config\WindowsNoEditor\Engine.ini`:
 
 ```
 [SystemSettings]

@@ -62,6 +62,7 @@
 * [Longvinter](longvinter)
 * [The Lord of the Rings: Return to Moria](lotr_moria)
 * [Midnight Ghost Hunt](midnight_ghost_hunt/)
+* [Military Conflict: Vietnam](military_conflict_vietnam)
 * [Modiverse](modiverse)
 * [Mordhau](mordhau)
 * [Mount & Blade II: Bannerlord](mount_blade_II_bannerlord)

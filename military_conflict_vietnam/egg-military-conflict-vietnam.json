@@ -1,0 +1,140 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "version": "PLCN_v3",
+        "update_url": null
+    },
+    "exported_at": "2026-09-05T05:46:49+00:00",
+    "name": "Military Conflict: Vietnam",
+    "author": "Skila",
+    "uuid": "2edd8d27-7de5-4005-952d-a10ed665c2de",
+    "description": "Military Conflict: Vietnam dedicated server for Pelican using the native Linux 64-bit Source server.",
+    "image": null,
+    "tags": [
+        "steamcmd",
+        "srcds"
+    ],
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "ghcr.io/parkervcp/games:source": "ghcr.io/parkervcp/games:source"
+    },
+    "file_denylist": [],
+    "startup_commands": {
+        "Default": "./srcds_run_x64 -game vietnam -console -port {{SERVER_PORT}} +ip 0.0.0.0 -strictportbind -norestart -maxplayers_override {{PLAYERS}} +map {{START_MAP}}"
+    },
+    "config": {
+        "files": "{\n    \"./vietnam/cfg/server.cfg\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"hostname\": \"hostname \\\"{{server.environment.SERVER_HOSTNAME}}\\\";\",\n            \"sv_password\": \"sv_password \\\"{{server.environment.PASSWORD}}\\\";\",\n            \"rcon_password\": \"rcon_password \\\"{{server.environment.RCON_PASSWORD}}\\\";\"\n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"Connection to Steam servers successful.\"\n}",
+        "logs": "{}",
+        "stop": "quit"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/bash\n# Military Conflict: Vietnam - SteamCMD Linux installation\n# Server Files: /mnt/server\n\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\n    echo -e \"steam user is not set.\\n\"\n    echo -e \"Using anonymous user.\\n\"\n    STEAM_USER=anonymous\n    STEAM_PASS=\"\"\n    STEAM_AUTH=\"\"\nelse\n    echo -e \"user set to ${STEAM_USER}\"\nfi\n\n## download and install steamcmd\ncd /tmp\nmkdir -p /mnt/server/steamcmd\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\nmkdir -p /mnt/server/steamapps\ncd /mnt/server/steamcmd\n\nchown -R root:root /mnt\nexport HOME=/mnt/server\n\n## install Military Conflict: Vietnam Dedicated Server\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} +app_update ${SRCDS_APPID} validate +quit\n\n## set up Steam client libraries\nmkdir -p /mnt/server/.steam/sdk32\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\n\nmkdir -p /mnt/server/.steam/sdk64\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\n\n## create the config Pelican will manage\nmkdir -p /mnt/server/vietnam/cfg\ncat > /mnt/server/vietnam/cfg/server.cfg <<'EOF'\nhostname \"Military Conflict Vietnam Server\";\nsv_password \"\";\nrcon_password \"change-me-rcon\";\nEOF\n\n## make Linux launchers executable\nchmod +x /mnt/server/srcds_run_x64 /mnt/server/srcds_linux64 2>/dev/null || true\n\necho \"-----------------------------------------\"\necho \"Installation completed...\"\necho \"-----------------------------------------\"\n",
+            "container": "ghcr.io/parkervcp/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "sort": 6,
+            "name": "Auto Update",
+            "description": "Automatically check for Steam updates when the container starts.",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "boolean"
+            ]
+        },
+        {
+            "sort": 2,
+            "name": "Server Password",
+            "description": "Password required to join the server. Leave empty for no password.",
+            "env_variable": "PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string",
+                "max:40"
+            ]
+        },
+        {
+            "sort": 4,
+            "name": "Max Players",
+            "description": "Maximum number of player slots.",
+            "env_variable": "PLAYERS",
+            "default_value": "24",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "integer",
+                "min:1",
+                "max:64"
+            ]
+        },
+        {
+            "sort": 3,
+            "name": "RCON Password",
+            "description": "Password used for Source RCON remote administration.",
+            "env_variable": "RCON_PASSWORD",
+            "default_value": "change-me-rcon",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "min:8",
+                "max:64"
+            ]
+        },
+        {
+            "sort": 1,
+            "name": "Server Hostname",
+            "description": "The name shown in the server browser.",
+            "env_variable": "SERVER_HOSTNAME",
+            "default_value": "Military Conflict Vietnam Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:64"
+            ]
+        },
+        {
+            "sort": 7,
+            "name": "Steam App ID",
+            "description": "Military Conflict: Vietnam Dedicated Server Steam App ID.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "1136190",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "in:1136190"
+            ]
+        },
+        {
+            "sort": 5,
+            "name": "Default Map",
+            "description": "Map loaded when the server starts.",
+            "env_variable": "START_MAP",
+            "default_value": "mcv_bunkerhill",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "alpha_dash",
+                "max:64"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,163 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "version": "PLCN_v3",
+        "update_url": null
+    },
+    "exported_at": "2026-01-04T14:47:19+00:00",
+    "name": "Automobilista 2",
+    "author": "admin@theorderofdarkness.eu",
+    "uuid": "1d013000-1cd9-4cc7-ba73-2d19a459292d",
+    "description": "Automobilista 2 is all the racing simulators you ever wanted - in just one. An incredibly diverse collection of cars and tracks cohesively simulated, featuring incredible graphics and audio quality, dynamic weather and track conditions and the best VR support for a racing experience like no other.",
+    "image": "data:image/jpeg;base64,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",
+    "tags": [],
+    "features": [],
+    "docker_images": {
+        "Wine (Latest)": "ghcr.io/pelican-eggs/yolks:wine_latest"
+    },
+    "file_denylist": [],
+    "startup_commands": {
+        "Default": "wine ./DedicatedServerCmd.exe"
+    },
+    "config": {
+        "files": "{\n    \"server.cfg\": {\n        \"parser\": \"file\",\n        \"find\": {\n            \"name :\": \"name : \\\"{{server.environment.SERVER_NAME}}\\\"\",\n            \"steamPort :\": \"steamPort : {{server.environment.STEAM_PORT}}\",\n            \"hostPort :\": \"hostPort : {{server.allocations.default.port}}\",\n            \"queryPort :\": \"queryPort : {{server.environment.QUERY_PORT}}\",\n            \"password :\": \"password : \\\"{{server.environment.SERVER_PASSWORD}}\\\"\",\n            \"maxPlayerCount :\": \"maxPlayerCount : {{server.environment.MAX_PLAYERS}}\"\n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"\\u001b[?25h\\u001b[?25l\\u001b[K\\u001b[1C\\u001b[?25h\\u001b[?25ls\\u001b[?25h\\u001b[?25lw\\u001b[?25h\\u001b[?25li\\u001b[?25h\\u001b[?25lt\\u001b[?25h\\u001b[?25lc\\u001b[?25h\\u001b[?25lh\\u001b[?25h\\u001b[?25li\\u001b[?25h\\u001b[?25ln\\u001b[?25h\\u001b[?25lg\\u001b[?25h\\u001b[?25l\\u001b[K\\u001b[1C\\u001b[?25h\\u001b[?25lt\\u001b[?25h\\u001b[?25lo\\u001b[?25h\\u001b[?25l\\u001b[K\\u001b[1C\\u001b[?25h\\u001b[?25lr\\u001b[?25h\\u001b[?25lu\\u001b[?25h\\u001b[?25ln\\u001b[?25h\\u001b[?25ln\\u001b[?25h\\u001b[?25li\\u001b[?25h\\u001b[?25ln\\u001b[?25h\\u001b[?25lg\\u001b[?25h\\u001b[?25l\\u001b[K\\u001b[1C\\u001b[?25h\\u001b[?25ls\\u001b[?25h\\u001b[?25lt\\u001b[?25h\\u001b[?25la\\u001b[?25h\\u001b[?25lt\\u001b[?25h\\u001b[?25le\\u001b[?25h\"\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/bash\r\n# steamcmd Base Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n# Image to install with is 'ghcr.io/parkervcp/installers:debian'\r\n\r\n##\r\n#\r\n# Variables\r\n# STEAM_USER, STEAM_PASS, STEAM_AUTH - Steam user setup. If a user has 2fa enabled it will most likely fail due to timeout. Leave blank for anon install.\r\n# WINDOWS_INSTALL - if it's a windows server you want to install set to 1\r\n# SRCDS_APPID - steam app id found here - https://developer.valvesoftware.com/wiki/Dedicated_Servers_List\r\n# SRCDS_BETAID - beta branch of a steam app. Leave blank to install normal branch\r\n# SRCDS_BETAPASS - password for a beta branch should one be required during private or closed testing phases.. Leave blank for no password.\r\n# INSTALL_FLAGS - Any additional SteamCMD  flags to pass during install.. Keep in mind that steamcmd auto update process in the docker image might overwrite or ignore these when it performs update on server boot.\r\n# AUTO_UPDATE - Adding this variable to the egg allows disabling or enabling automated updates on boot. Boolean value. 0 to disable and 1 to enable.\r\n#\r\n ##\r\n\r\n# Install packages. Default packages below are not required if using our existing install image thus speeding up the install process.\r\n#apt -y update\r\n#apt -y --no-install-recommends install curl lib32gcc-s1 ca-certificates\r\n\r\n## just in case someone removed the defaults.\r\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\r\n    echo -e \"steam user is not set.\\n\"\r\n    echo -e \"Using anonymous user.\\n\"\r\n    STEAM_USER=anonymous\r\n    STEAM_PASS=\"\"\r\n    STEAM_AUTH=\"\"\r\nelse\r\n    echo -e \"user set to ${STEAM_USER}\"\r\nfi\r\n\r\n## download and install steamcmd\r\ncd /tmp\r\nmkdir -p /mnt/server/steamcmd\r\ncurl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz\r\ntar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd\r\nmkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing\r\ncd /mnt/server/steamcmd\r\n\r\n# SteamCMD fails otherwise for some reason, even running as root.\r\n# This is changed at the end of the install process anyways.\r\nchown -R root:root /mnt\r\nexport HOME=/mnt/server\r\n\r\n## install game using steamcmd\r\n./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} +@sSteamCmdForcePlatformType windows +app_update 1007 +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\r\n\r\n## set up 32 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk32\r\ncp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so\r\n\r\n## set up 64 bit libraries\r\nmkdir -p /mnt/server/.steam/sdk64\r\ncp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so\r\n\r\n## add below your custom commands if needed\r\n\r\n\r\nSERVER_DIR=\"/mnt/server\"\r\nCONFIG_SAMPLE=\"$SERVER_DIR/config_sample/server_with_lists.cfg\"\r\nCONFIG_FILE=\"$SERVER_DIR/server.cfg\"\r\n\r\ncd \"$SERVER_DIR\"\r\n\r\nif [ ! -f \"$CONFIG_FILE\" ]; then\r\n    echo \"Installing default config file\"\r\n    cp \"$CONFIG_SAMPLE\" \"$CONFIG_FILE\"\r\nfi\r\n\r\n## install end\r\necho \"-----------------------------------------\"\r\necho \"Installation completed...\"\r\necho \"-----------------------------------------\"",
+            "container": "ghcr.io/pelican-eggs/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "sort": 9,
+            "name": "Auto Update",
+            "description": "Decide if you want to update your server",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "boolean"
+            ]
+        },
+        {
+            "sort": 2,
+            "name": "Max Players",
+            "description": "",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "16",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "int",
+                "max:32"
+            ]
+        },
+        {
+            "sort": 5,
+            "name": "Query Port",
+            "description": "",
+            "env_variable": "QUERY_PORT",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "string",
+                "required",
+                "max:20",
+                "between:1024,65656"
+            ]
+        },
+        {
+            "sort": 1,
+            "name": "Server Name",
+            "description": "",
+            "env_variable": "SERVER_NAME",
+            "default_value": "Pelican Default",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string",
+                "max:100"
+            ]
+        },
+        {
+            "sort": 3,
+            "name": "Server Password",
+            "description": "",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "nullable",
+                "string",
+                "max:32"
+            ]
+        },
+        {
+            "sort": 6,
+            "name": "App ID",
+            "description": "",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "1338040",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "in:1338040"
+            ]
+        },
+        {
+            "sort": 4,
+            "name": "Steam Port",
+            "description": "",
+            "env_variable": "STEAM_PORT",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "max:20",
+                "between:1024,65656"
+            ]
+        },
+        {
+            "sort": 7,
+            "name": "Windows",
+            "description": "",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "boolean"
+            ]
+        },
+        {
+            "sort": 8,
+            "name": "Wine Debug",
+            "description": "",
+            "env_variable": "WINEDEBUG",
+            "default_value": "-all",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": [
+                "required",
+                "string",
+                "max:20"
+            ]
+        }
+    ]
+}

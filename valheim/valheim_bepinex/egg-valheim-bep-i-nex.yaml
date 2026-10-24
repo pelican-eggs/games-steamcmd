@@ -84,13 +84,35 @@ scripts:
       download_url=$(jq -r  ".latest.download_url" <<< "$api_response" )
       version_number=$(jq -r  ".latest.version_number" <<< "$api_response" )
 
+      #Look up a Dependency String (Namespace-Name-Version) on Hexium first, then fall back to Thunderstore.
+      #Prints the package version JSON, or returns 1 if it is found on neither.
+      get_package() {
+        local namespace="${1%%-*}"
+        local name_version="${1#*-}"
+        local name="${name_version%%-*}"
+        local version="${name_version#*-}"
+        local package_json
+
+        if package_json=$(curl -sfL -H "accept: application/json" "https://hexium.gg/api/experimental/package/${namespace}/${name}/${version}/"); then
+          echo "Found $1 on Hexium" >&2
+        elif package_json=$(curl -sfL -H "accept: application/json" "https://thunderstore.io/api/experimental/package/${namespace}/${name}/${version}/"); then
+          echo "$1 not found on Hexium, using Thunderstore" >&2
+        else
+          echo "Warning: $1 not found on Hexium or Thunderstore" >&2
+          return 1
+        fi
+        echo "$package_json"
+      }
+
       if [ ! -z "$V_MODPACK" ]
       then
-      #Modpack Name dashes to slashes for URL
-      V_MODPACK=$(echo "$V_MODPACK" | sed 's/-/\//g')
-
       #Extract dependencies from ModPack JSON data
-      V_MODPACK_DEPENDENCIES=$(curl -sfSL -H "accept: application/json" "https://thunderstore.io/api/experimental/package/${V_MODPACK}" | jq -r '.dependencies[]')
+      if V_MODPACK_JSON=$(get_package "$V_MODPACK"); then
+        V_MODPACK_DEPENDENCIES=$(jq -r '.dependencies[]' <<< "$V_MODPACK_JSON")
+      else
+        echo "Error: could not find ModPack $V_MODPACK, skipping mod installation"
+        V_MODPACK=""
+      fi
       fi
 
       cd /mnt/server
@@ -111,11 +133,12 @@ scripts:
           continue  # Skip this dependency
         fi
         
-        #replace dashes with slashes for url
-        V_MODPACK_DEPENDENCY_WITH_SLASH=$(echo "$V_MODPACK_DEPENDENCY" | sed 's/-/\//g')
-        
-        #download dependencies
-        wget -O "$V_MODPACK_DEPENDENCY.zip" "https://thunderstore.io/package/download/$V_MODPACK_DEPENDENCY_WITH_SLASH"
+        #download dependencies from Hexium, or Thunderstore if Hexium does not have them
+        if ! V_MODPACK_DEPENDENCY_JSON=$(get_package "$V_MODPACK_DEPENDENCY"); then
+          V_MODPACK_MISSING+=("$V_MODPACK_DEPENDENCY")
+          continue
+        fi
+        wget -O "$V_MODPACK_DEPENDENCY.zip" "$(jq -r '.download_url' <<< "$V_MODPACK_DEPENDENCY_JSON")"
 
         #Set the destination directory and ensure it exists
         destination_directory="/mnt/server/BepInEx/plugins"
@@ -129,6 +152,11 @@ scripts:
         #Cleanup
         rm $V_MODPACK_DEPENDENCY.zip
       done
+
+      if [ ${#V_MODPACK_MISSING[@]} -gt 0 ]; then
+        echo "Warning: these mods could not be found on Hexium or Thunderstore and were not installed:"
+        printf '  %s\n' "${V_MODPACK_MISSING[@]}"
+      fi
       fi
 
       ##cleanup
@@ -321,7 +349,7 @@ variables:
   -
     sort: 13
     name: ModPack
-    description: "Enter the Dependency String name for a ModPack to automatically be installed\r\nNOTE: If the modpack Updates, you will need to update this variable with the new Dependency String.\nThis is done to allow Old Versions to be used.\r\nCHANGING THIS REQUIRES A SERVER REINSTALL"
+    description: "Enter the Dependency String name for a ModPack to automatically be installed. Mods are downloaded from Hexium, falling back to Thunderstore for any mod not on Hexium.\r\nNOTE: If the modpack Updates, you will need to update this variable with the new Dependency String.\nThis is done to allow Old Versions to be used.\r\nCHANGING THIS REQUIRES A SERVER REINSTALL"
     env_variable: V_MODPACK
     default_value: ''
     user_viewable: true

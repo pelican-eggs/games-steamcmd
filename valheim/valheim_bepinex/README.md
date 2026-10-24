@@ -29,7 +29,8 @@ In particular, the changes from base BepInEx releases are:
 - Added scripts necessary to run both game and dedicated server on Linux machines
 
 ## Automatic Mod Downloading
-Mods can be downloaded from modpacks automatically by entering the "dependency string" for the modpack from https://valheim.thunderstore.io/
+Mods can be downloaded from modpacks automatically by entering the "dependency string" for the modpack (e.g. `Namespace-ModpackName-1.0.0`).
+The modpack and each of its mods are looked up on [Hexium](https://valheim.hexium.gg/) first, and anything not found there is downloaded from [Thunderstore](https://valheim.thunderstore.io/) instead.
 
 ## Server Ports
 

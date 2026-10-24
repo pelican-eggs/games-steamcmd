@@ -2,14 +2,14 @@ _comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
 meta:
   version: PLCN_v3
   update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/valheim/valheim_bepinex/egg-valheim-bep-i-nex.json'
-exported_at: '2026-01-03T15:22:56+00:00'
+exported_at: '2026-10-24T11:25:39+00:00'
 name: 'Valheim BepINex'
 author: eggs@goover.dev
 uuid: 7cf84d70-b857-4167-b051-ca3e3855c5d7
 description: |-
   A brutal exploration and survival game for 1-10 players, set in a procedurally-generated purgatory
   inspired by viking culture incl the Plugin Framework BepInEx
-image: null
+icon: null
 tags: {  }
 features:
   - steam_disk_space
@@ -349,7 +349,7 @@ variables:
   -
     sort: 13
     name: ModPack
-    description: "Enter the Dependency String name for a ModPack to automatically be installed. Mods are downloaded from Hexium, falling back to Thunderstore for any mod not on Hexium.\r\nNOTE: If the modpack Updates, you will need to update this variable with the new Dependency String.\nThis is done to allow Old Versions to be used.\r\nCHANGING THIS REQUIRES A SERVER REINSTALL"
+    description: "Enter the Dependency String name for a ModPack to automatically be installed. Mods are downloaded\nfrom Hexium, falling back to Thunderstore for any mod not on Hexium.\r\nNOTE: If the modpack Updates, you will need to update this variable with the new Dependency String.\nThis is done to allow Old Versions to be used.\r\nCHANGING THIS REQUIRES A SERVER REINSTALL"
     env_variable: V_MODPACK
     default_value: ''
     user_viewable: true

@@ -25,6 +25,7 @@
 * [Banana Shooter](banana_shooter)
 * [Barotrauma](barotrauma)
 * [BATTALION: Legacy](/battalion_legacy)
+* [Battlefront Eternal](battlefront_eternal)
 * [Black Mesa](black_mesa)
 * [Brickadia](brickadia)
 * [Citadel: Forged with Fire](citadel)

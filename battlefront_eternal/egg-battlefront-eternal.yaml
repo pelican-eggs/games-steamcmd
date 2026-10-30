@@ -1,0 +1,204 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/battlefront_eternal/egg-battlefront-eternal.yaml'
+exported_at: '2026-10-30T19:03:50+00:00'
+name: 'Battlefront Eternal'
+author: josh@lambertmail.xyz
+uuid: f92af188-749b-422f-a746-a234c628c032
+description: |-
+  Battlefront Eternal is a GPL-3.0 engine for STAR WARS Battlefront (Classic, 2004). This is its
+  headless dedicated server. It prepares its game data from your own copy of the game: set a Steam
+  account that owns it, or upload the game's GameData folder to game/ and reinstall.
+icon: 'data:image/png;base64,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'
+tags:
+  - steamcmd
+features: null
+docker_images:
+  'Node.js 24': 'ghcr.io/pelican-eggs/yolks:nodejs_24'
+file_denylist: {  }
+startup_commands:
+  Default: 'if [ ! -f bfe-data/.bfe-data-key ]; then echo "No prepared game data. Set a Steam account in Startup, or upload the game''s GameData folder to game/, then reinstall the server."; exit 1; fi; BFE_STATE_DIR=/home/container/bfe-state BFE_ENGINE_DIR=/home/container/bfe/host-runtime/engine BFE_DATA_DIR=/home/container/bfe-data PORT=0 node /home/container/bfe/host-runtime/server/src/main.js --serve'
+config:
+  files:
+    bfe-state/config.json:
+      parser: json
+      find:
+        name: '{{server.environment.SERVER_NAME}}'
+        gamePort: '{{server.allocations.default.port}}'
+        maxPlayers: '{{server.environment.MAX_PLAYERS}}'
+  startup:
+    done: 'bfeserver service started'
+  logs: {  }
+  stop: ^C
+scripts:
+  installation:
+    script: |
+      #!/bin/bash
+      # Battlefront Eternal dedicated server (bfeserver)
+      #
+      # Server files: /mnt/server
+      #   bfe/        the newest release's server, engine and preparation tools
+      #   bfe-data/   game data, prepared from the owned game by those tools
+      #   bfe-state/  config.json, the server's identity and its player statistics
+      #   game/       the owned game: the folder that holds GameData
+
+      cd /mnt/server || exit 1
+      mkdir -p bfe-state game
+
+      if [ "$(uname -m)" = "aarch64" ]; then ARCH=arm64; else ARCH=amd64; fi
+
+      ## The owned game, STAR WARS Battlefront (Classic, 2004), from Steam when an account is set
+      if [ -n "${STEAM_USER}" ] && [ "${ARCH}" != "amd64" ]; then
+          echo "SteamCMD needs an x86_64 node. Upload the game's GameData folder to game/ instead."
+      elif [ -n "${STEAM_USER}" ]; then
+          mkdir -p steamcmd
+          curl -fsSL https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz | tar -xz -C steamcmd || exit 1
+          # SteamCMD keeps its login in /mnt/server/Steam, so a Steam Guard code is only needed once.
+          chown -R root:root /mnt/server
+          export HOME=/mnt/server
+          ./steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir /mnt/server/game +login "${STEAM_USER}" "${STEAM_PASS}" ${STEAM_AUTH} +app_update 1058020 validate +quit
+      fi
+
+      ## Battlefront Eternal: the server, engine and preparation tools of the newest release
+      FEED=https://get.battlefronteternal.com/downloads/latest
+      SUMS=$(curl -fsSL "${FEED}/SHA256SUMS") || { echo "Could not reach ${FEED}"; exit 1; }
+      DEB=$(echo "${SUMS}" | grep -o "battlefront-eternal_[^ ]*_${ARCH}\.deb" | head -n 1)
+      [ -n "${DEB}" ] || { echo "No ${ARCH} release in ${FEED}"; exit 1; }
+      echo "Downloading Battlefront Eternal $(echo "${DEB}" | cut -d _ -f 2)"
+      # The package is bigger than the installer's /tmp, so it is downloaded here and removed after.
+      curl -fsSL --retry 3 -o "${DEB}" "${FEED}/${DEB}" && echo "${SUMS}" | grep " ${DEB}$" | sha256sum -c - || { rm -f "${DEB}"; exit 1; }
+      rm -rf bfe && mkdir bfe
+      dpkg-deb --fsys-tarfile "${DEB}" | tar -x -C bfe --strip-components=4 \
+          "./opt/Battlefront Eternal/resources/host-runtime" "./opt/Battlefront Eternal/resources/tools" \
+          "./opt/Battlefront Eternal/resources/toolchain" "./opt/Battlefront Eternal/resources/bfe-tree.json" || { rm -f "${DEB}"; exit 1; }
+      rm -f "${DEB}"
+
+      ## Server configuration, kept on reinstall
+      if [ ! -f bfe-state/config.json ]; then
+          cat > bfe-state/config.json << 'EOF'
+      {
+        "name": "Battlefront Eternal server",
+        "gamePort": 18451,
+        "maxPlayers": 64,
+        "rotation": [
+          "swbf1/nab2:rep:conquest",
+          "swbf1/hot1:imp:conquest",
+          "swbf1/kas2:rep:conquest",
+          "swbf1/tat2:imp:conquest",
+          "swbf1/bes2:rep:conquest",
+          "swbf1/end1:imp:conquest"
+        ],
+        "discovery": false,
+        "onlineNoticeAccepted": false,
+        "relayPolicy": "auto",
+        "honorGlobalBans": true
+      }
+      EOF
+      fi
+
+      ## Game data, prepared again only when the release's tools or their Python change
+      KEY=$(jq -r '.files[] | select((.path | startswith("resources/tools/")) or (.path | startswith("resources/toolchain/python/"))) | "\(.path) \(.sha256)"' bfe/bfe-tree.json | LC_ALL=C sort | sha256sum | cut -c 1-32)
+      GAMEDATA=$(find /mnt/server/game -maxdepth 2 -type d -name GameData -print -quit)
+      if [ "$(cat bfe-data/.bfe-data-key 2>/dev/null)" = "${KEY}" ]; then
+          echo "The prepared game data is current"
+      elif [ -z "${GAMEDATA}" ] && [ -n "${STEAM_USER}" ]; then
+          echo "SteamCMD did not install the game. Check the Steam username, password and Steam Guard code, then reinstall the server."
+      elif [ -z "${GAMEDATA}" ]; then
+          echo "No game found. Set a Steam account that owns STAR WARS Battlefront (Classic, 2004),"
+          echo "or upload the game's GameData folder to game/, then reinstall the server."
+      else
+          # One job takes up to 1.5 GB of memory and each further job up to 0.5 GB more.
+          JOBS=$(nproc)
+          MEMORY=$(cat /sys/fs/cgroup/memory.max /sys/fs/cgroup/memory/memory.limit_in_bytes 2>/dev/null | grep -m 1 -x '[0-9]*')
+          MEMORY=$(( ${MEMORY:-0} / 1048576 ))
+          if [ "${MEMORY}" -gt 0 ] && [ "${MEMORY}" -lt 1536 ]; then
+              echo "Preparing the game data needs 1.5 GB of memory, and the installer has ${MEMORY} MB. Give the server more memory, then reinstall it."
+              exit 1
+          elif [ "${MEMORY}" -gt 0 ] && [ $(( 1 + (MEMORY - 1536) / 512 )) -lt "${JOBS}" ]; then
+              JOBS=$(( 1 + (MEMORY - 1536) / 512 ))
+          fi
+          echo "Preparing the game data, ${JOBS} job(s) at a time. This takes a few minutes."
+          rm -rf bfe-data.new bfe-tmp && mkdir bfe-data.new bfe-tmp
+          # prepare.py exits 0 when only a map or an army failed, so its record is checked too.
+          if ! (cd bfe/tools && env -i PATH=/mnt/server/bfe/toolchain/bin:/usr/bin:/bin HOME=/mnt/server/bfe-tmp TMPDIR=/mnt/server/bfe-tmp LANG=C.UTF-8 \
+              BFE_GAME_DIR="$(dirname "${GAMEDATA}")" BFE_CONTENT_DIR=/mnt/server/bfe-data.new KTX2_ENCODER=off \
+              PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PYTHONIOENCODING=utf-8 \
+              ../toolchain/python/bin/python3 -u prepare.py --core-only --jobs "${JOBS}") \
+              || [ "$(jq '.failed | length' bfe-data.new/.prepare.json 2>/dev/null)" != 0 ]; then
+              jq -r '.failures[]? | "\(.label): \(.reason)"' bfe-data.new/.prepare.json 2>/dev/null
+              rm -rf bfe-data.new bfe-tmp
+              echo "Preparing the game data failed. Check the game files, or give the server more memory, then reinstall it."
+              exit 1
+          fi
+          echo "${KEY}" > bfe-data.new/.bfe-data-key
+          rm -rf bfe-data bfe-tmp && mv bfe-data.new bfe-data
+      fi
+
+      echo "Battlefront Eternal installed"
+    container: 'ghcr.io/pelican-eggs/installers:debian'
+    entrypoint: bash
+variables:
+  -
+    name: 'Max Players'
+    description: 'How many people can join, up to 64 (32 a side). Bots fill the rest of each army.'
+    env_variable: MAX_PLAYERS
+    default_value: 64
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - integer
+      - 'between:1,64'
+    sort: 2
+  -
+    name: 'Server Name'
+    description: 'The name players see in the server browser and when they join.'
+    env_variable: SERVER_NAME
+    default_value: 'Battlefront Eternal server'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:80'
+    sort: 1
+  -
+    name: 'Steam Guard Code'
+    description: |-
+      A current Steam Guard code, if the account asks for one. SteamCMD remembers the login after it
+      succeeds.
+    env_variable: STEAM_AUTH
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+      - 'max:8'
+    sort: 5
+  -
+    name: 'Steam Password'
+    description: "The Steam account's password. Only the installation uses it."
+    env_variable: STEAM_PASS
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+    sort: 4
+  -
+    name: 'Steam Username'
+    description: |-
+      A Steam account that owns STAR WARS Battlefront (Classic, 2004), to download the game during
+      installation. Leave empty to upload the game's GameData folder to game/ yourself (a Steam or GOG
+      copy).
+    env_variable: STEAM_USER
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+    sort: 3

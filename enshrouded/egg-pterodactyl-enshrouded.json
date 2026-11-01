@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2026-10-17T10:33:53+00:00",
+    "exported_at": "2026-11-01T09:17:52+00:00",
     "name": "Enshrouded",
     "author": "eggs@goover.dev",
     "description": "Enshrouded is a game of survival, crafting, and Action RPG combat, set within a sprawling voxel-based continent. As you journey across the mountains and deserts of an open world, you are free to choose your path and shape your destiny.",
@@ -36,7 +36,7 @@
             "env_variable": "QUERY_PORT",
             "default_value": "",
             "user_viewable": true,
-            "user_editable": true,
+            "user_editable": false,
             "rules": "required|numeric",
             "field_type": "text"
         },
@@ -47,7 +47,7 @@
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
+            "rules": "boolean",
             "field_type": "text"
         },
         {
@@ -97,7 +97,7 @@
             "default_value": "1",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|boolean",
+            "rules": "in:1",
             "field_type": "text"
         },
         {
@@ -107,7 +107,7 @@
             "default_value": "0",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
+            "rules": "boolean",
             "field_type": "text"
         },
         {

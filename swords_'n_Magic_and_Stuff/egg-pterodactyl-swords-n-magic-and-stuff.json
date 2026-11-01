@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2026-06-10T13:16:03+00:00",
+    "exported_at": "2026-11-01T10:06:29+00:00",
     "name": "Swords 'n Magic and Stuff",
     "author": "josdekurk@gmail.com",
-    "description": "Grab your friends and set out for adventure in a world of swords, magic, and stuff. Discover tons of\ncool loot, uncover hidden secrets, and meet new friends and foes along the way. Make your mark and\nfind a place to call home in this cute, multiplayer, open world RPG",
+    "description": "Grab your friends and set out for adventure in a world of swords, magic, and stuff. Discover tons of cool loot, uncover hidden secrets, and meet new friends and foes along the way. Make your mark and find a place to call home in this cute, multiplayer, open world RPG",
     "features": [
         "steam_disk_space"
     ],
@@ -15,12 +15,12 @@
         "Wine Latest": "ghcr.io\/pelican-eggs\/yolks:wine_latest"
     },
     "file_denylist": [],
-    "startup": "wine \/home\/container\/SNM2020\/Binaries\/Win64\/SNMASServer-Win64-Shipping.exe -port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -log & SNM_PID=$!; until [ -f \/home\/container\/SNM2020\/Saved\/Logs\/SNM2020.log ]; do sleep 1; done; tail -f -n +1 \/home\/container\/SNM2020\/Saved\/Logs\/SNM2020.log --pid=$SNM_PID",
+    "startup": "rm \/home\/container\/SNM2020\/Saved\/Logs\/SNM2020.log; sleep 1; wine \/home\/container\/SNM2020\/Binaries\/Win64\/SNMASServer-Win64-Shipping.exe -port={{SERVER_PORT}} -QueryPort={{QUERY_PORT}} -log & SNM_PID=$!; until [ -f \/home\/container\/SNM2020\/Saved\/Logs\/SNM2020.log ]; do sleep 1; done; tail -f -n +1 \/home\/container\/SNM2020\/Saved\/Logs\/SNM2020.log --pid=$SNM_PID",
     "config": {
         "files": "{}",
         "startup": "{\n    \"done\": \"Succeeded to create Steam session with ID\"\n}",
         "logs": "{}",
-        "stop": "^^C"
+        "stop": "^C"
     },
     "scripts": {
         "installation": {
@@ -31,13 +31,13 @@
     },
     "variables": [
         {
-            "name": "WINDOWS_INSTALL",
-            "description": "",
-            "env_variable": "WINDOWS_INSTALL",
-            "default_value": "1",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|boolean",
+            "name": "Admin steam id",
+            "description": "This the Steam ID of the owner\/admin of this server.",
+            "env_variable": "SNM_OWNER_STEAM_ID",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
             "field_type": "text"
         },
         {
@@ -47,7 +47,7 @@
             "default_value": "2058450",
             "user_viewable": false,
             "user_editable": false,
-            "rules": "required|string|max:20",
+            "rules": "string|in:2058450",
             "field_type": "text"
         },
         {
@@ -58,6 +58,76 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Max players",
+            "description": "You can specify the maximum number of players",
+            "env_variable": "SNM_MAX_PLAYERS",
+            "default_value": "16",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|string|max:16",
+            "field_type": "text"
+        },
+        {
+            "name": "Query port",
+            "description": "The port that Steam uses for clients to query the server (ping, etc)",
+            "env_variable": "QUERY_PORT",
+            "default_value": "27015",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|string|",
+            "field_type": "text"
+        },
+        {
+            "name": "Reset time",
+            "description": "This is the number of days between resets.",
+            "env_variable": "SNM_DAYS_UNTIL_RESET",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Reset time day",
+            "description": "This is the local time of day when the server will reset. The format is HH:MM, and it is 24 hour format. Midnight => 00:00, 10:30AM => 10:30, 4:30PM => 16:30",
+            "env_variable": "SNM_RESET_TIME_OF_DAY",
+            "default_value": "00:00",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Server name",
+            "description": "This is the server name used for your server. You must pick between 2 and 5 UNIQUE words (no duplicate words). The words are case insensitive The list of approved words changes can be found: `SNM2020\/Saved\/Logs\/Allowed-Words.txt`",
+            "env_variable": "SNM_NAME",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:64",
+            "field_type": "text"
+        },
+        {
+            "name": "Server password",
+            "description": "This is the server password; it is disabled by default.",
+            "env_variable": "SNM_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:32",
+            "field_type": "text"
+        },
+        {
+            "name": "WINDOWS_INSTALL",
+            "description": "",
+            "env_variable": "WINDOWS_INSTALL",
+            "default_value": "1",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "in:1",
             "field_type": "text"
         },
         {
@@ -88,76 +158,6 @@
             "user_viewable": false,
             "user_editable": false,
             "rules": "required|string|max:64",
-            "field_type": "text"
-        },
-        {
-            "name": "Query port",
-            "description": "The port that Steam uses for clients to query the server (ping, etc)",
-            "env_variable": "QUERY_PORT",
-            "default_value": "27015",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Server name",
-            "description": "This is the server name used for your server.\r\n\r\nYou must pick between 2 and 5 UNIQUE words (no duplicate words).\r\nThe words are case insensitive \r\nThe list of approved words changes can be found: `SNM2020\/Saved\/Logs\/Allowed-Words.txt`",
-            "env_variable": "SNM_NAME",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string|max:64",
-            "field_type": "text"
-        },
-        {
-            "name": "Admin steam id",
-            "description": "This the Steam ID of the owner\/admin of this server.",
-            "env_variable": "SNM_OWNER_STEAM_ID",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:20",
-            "field_type": "text"
-        },
-        {
-            "name": "Server password",
-            "description": "This is the server password; it is disabled by default.",
-            "env_variable": "SNM_PASSWORD",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string|max:32",
-            "field_type": "text"
-        },
-        {
-            "name": "Max players",
-            "description": "You can specify the maximum number of players",
-            "env_variable": "SNM_MAX_PLAYERS",
-            "default_value": "16",
-            "user_viewable": true,
-            "user_editable": false,
-            "rules": "required|string|max:16",
-            "field_type": "text"
-        },
-        {
-            "name": "Reset time",
-            "description": "This is the number of days between resets.",
-            "env_variable": "SNM_DAYS_UNTIL_RESET",
-            "default_value": "1",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:20",
-            "field_type": "text"
-        },
-        {
-            "name": "Reset time day",
-            "description": "This is the local time of day when the server will\r\nreset. The format is HH:MM, and it is 24 hour format.\r\nMidnight => 00:00, 10:30AM => 10:30, 4:30PM => 16:30",
-            "env_variable": "SNM_RESET_TIME_OF_DAY",
-            "default_value": "00:00",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:20",
             "field_type": "text"
         }
     ]

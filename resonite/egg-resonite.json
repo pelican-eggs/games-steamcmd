@@ -4,11 +4,14 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-01-07T09:19:17+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Resonite",
     "author": "espeon@espeon.dev",
     "uuid": "3e156e2f-9046-4eba-8da2-8968e6045294",
     "description": "Enter a novel digital universe with infinite possibilities. Whether you resonate with people around the world in a casual conversation, playing games and socializing or you riff off each other when creating anything from art to programming complex games, you'll find your place here.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [],
     "docker_images": {
         "dotnet": "ghcr.io\/pelican-eggs\/steamcmd:dotnet"

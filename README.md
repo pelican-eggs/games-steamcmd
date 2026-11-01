@@ -1,6 +1,6 @@
 # Game Eggs (SteamCMD)
 
-#### This is a collection of Eggs for game servers that use SteamCMD to install.
+#### This is a collection of Eggs for game servers that use SteamCMD to install
 
 > [!NOTE]
 >
@@ -10,7 +10,7 @@
 
 ---
 
-### Collection Directory (Alphabetical):
+### Collection Directory (Alphabetical)
 
 * [7 Days To Die](7_days_to_die)
 * [Abiotic Factor](abiotic_factor/)
@@ -22,13 +22,14 @@
 * [Assetto Corsa](assetto_corsa)
 * [Astro Colony](astro_colony)
 * [Avorion](avorion)
+* [Banana Shooter](banana_shooter)
 * [Barotrauma](barotrauma)
 * [BATTALION: Legacy](/battalion_legacy)
 * [Black Mesa](black_mesa)
 * [Brickadia](brickadia)
 * [Citadel: Forged with Fire](citadel)
 * [Colony Survival](colony_survival)
-* [Conan Exiles](conan_exiles)
+* [Conan Exiles / Enhanced](conan_exiles)
 * [Core Keeper](core_keeper)
 * [Counter-Strike](counter_strike)
 * [Craftopia](craftopia)
@@ -79,6 +80,7 @@
 * [Palworld](palworld)
 * [Pavlov VR](pavlov_vr)
 * [PixARK](pixark)
+* [Plains Of Pain](plains_of_pain)
 * [Portal Knights](portal_knights)
 * [Post Scriptum](post_scriptum)
 * [Project Zomboid](project_zomboid)
@@ -90,6 +92,7 @@
   * [Legacy Java](rising_world/legacy)
   * [Unity](rising_world/unity)
 * [Risk Of Rain 2](risk_of_rain_2)
+* [RuneScape: Dragonwilds](runescape_dragonwilds)
 * [Rust](rust)
   * [Autowipe](rust/rust_autowipe)
   * [Staging](rust/rust_staging)
@@ -114,6 +117,7 @@
   * [BepInEx](stationeers/stationeers_bepinex)
 * [Stormworks: Build and Rescue](stormworks)
 * [Subnautica: Nitrox Mod](subnautica_nitrox_mod)
+* [Subsistence](subsistence)
 * [Sven Co-op](svencoop)
 * [Swords 'n Magic and Stuff](swords_'n_Magic_and_Stuff)
 * [Team Fortress 2 Classic](team_fortress_2_classic)
@@ -123,6 +127,7 @@
 * [The Isle](the_isle)
   * [Evrima](the_isle/evrima)
 * [The Front](thefront)
+* [The Ship: Murder Party](the_ship)
 * [Tower Unite](tower_unite)
 * [Truck Simulator](truck-simulator)
   * [American Truck Simulator](truck-simulator/american-truck-simulator)
@@ -137,6 +142,8 @@
   * [Plus Mod](valheim/valheim_plus)
 * [VEIN](vein)
 * [Voyagers of Nera](voyagers_of_nera)
+* [Windrose](windrose)
 * [Wreckfest](wreckfest)
+* [Wreckfest 2](wreckfest_2)
 * [Wurm Unlimited](wurm_unlimited/)
 * [Zombie Survival Game Online](zombie_survival_game_online/)

@@ -4,12 +4,14 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2025-03-26T17:17:47+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Project Zomboid",
     "author": "iamkubi@gmail.com",
     "uuid": "b2c6d19f-3d24-41e3-802d-c2bfbe63b519",
     "description": "Project Zomboid is an open world survival horror video game in alpha stage development by British and Canadian independent developer, The Indie Stone. The game is set in a post apocalyptic, zombie infested world where the player is challenged to survive for as long as possible before inevitably dying.",
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

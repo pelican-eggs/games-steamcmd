@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:10+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Empyrion: Galactic Survival",
     "author": "eggs@goover.dev",
     "uuid": "3a1450cf-20a8-4fa9-98d1-f38c9f1b5636",
     "description": "Empyrion: Galactic Survival dedicated server",
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/yolks:wine_staging": "ghcr.io\/parkervcp\/yolks:wine_staging"
@@ -99,7 +102,7 @@
             "name": "Server Description",
             "description": "Server info between the \" \", can contain [b]bold[\/b] text or a [u][url=empyriongame.com]link[\/url][\/u] up to 127 chars.",
             "env_variable": "SRV_DESC",
-            "default_value": "Empyrion Galactic Survival Dedicated Server running on Pterodactyl Panel",
+            "default_value": "Empyrion Galactic Survival Dedicated Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string|max:127",

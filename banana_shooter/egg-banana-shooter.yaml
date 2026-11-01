@@ -1,0 +1,192 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/banana_shooter/egg-banana-shooter.yaml'
+exported_at: '2026-06-08T08:04:58+00:00'
+name: 'Banana Shooter'
+author: sem@osesem.xyz
+uuid: 07fed3b4-9188-4b2f-a12c-2c28b1e6d23c
+description: |-
+  Dave is the banana man who is keep shooting enemies and get their banana, and use some cool mechanic
+  such as dash, double jump, grapple hook and rocket jump. If you are finding fast paced shooter game,
+  this is what you need
+icon: 'data:image/jpeg;base64,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'
+tags: {  }
+features:
+  - steam_disk_space
+docker_images:
+  'SteamCMD Debian': 'ghcr.io/pelican-eggs/steamcmd:debian'
+file_denylist: {  }
+startup_commands:
+  Default: 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/linux64 && export TERM=dumb && ./BSDS.x86_64 -batchmode -nographics -logFile - +Server {{SERVER_NAME}} +maxplayercount {{MAX_PLAYERS}} +port {{SERVER_PORT}}'
+config:
+  files: {  }
+  startup:
+    done: 'Started on port'
+  logs: {  }
+  stop: quit
+scripts:
+  installation:
+    script: |-
+      #!/bin/bash
+      # Banana Shooter Dedicated Server Installation Script
+      #
+      # Server Files: /mnt/server
+      # Image to install with is 'ghcr.io/parkervcp/installers:debian'
+
+
+      if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
+          echo -e "\n--- ERROR ---"
+          echo -e "Banana Shooter Dedicated Server requires a Steam account that owns the game."
+          echo -e "Anonymous login will NOT work. Please set STEAM_USER and STEAM_PASS.\n"
+          exit 1
+      else
+          echo -e "user set to ${STEAM_USER}"
+      fi
+
+      ## download and install steamcmd
+      cd /tmp
+      mkdir -p /mnt/server/steamcmd
+      curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+      tar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd
+      mkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing
+      cd /mnt/server/steamcmd
+
+      # SteamCMD fails otherwise for some reason, even running as root.
+      # This is changed at the end of the install process anyways.
+      chown -R root:root /mnt
+      export HOME=/mnt/server
+
+      ## install game using steamcmd
+      ./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s "-beta ${SRCDS_BETAID}" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s "-betapassword ${SRCDS_BETAPASS}" ) validate +quit
+
+      ## set up 32 bit libraries
+      mkdir -p /mnt/server/.steam/sdk32
+      cp -v linux32/steamclient.so ../../.steam/sdk32/steamclient.so
+
+      ## set up 64 bit libraries
+      mkdir -p /mnt/server/.steam/sdk64
+      cp -v linux64/steamclient.so ../../.steam/sdk64/steamclient.so
+
+      chmod +x /mnt/server/BSDS.x86_64 2>/dev/null
+
+      echo -e "\n--- Banana Shooter Dedicated Server installed successfully ---\n"
+      echo -e "Config.json will be generated on first launch in Servers/{ServerName}/"
+      echo -e "Set Login_Token in Config.json for community server list visibility."
+      echo -e "Create a GSLT at: https://steamcommunity.com/dev/managegameservers using AppID 1949740\n"
+      echo "-----------------------------------------"
+      echo "Installation completed..."
+      echo "-----------------------------------------"
+    container: 'ghcr.io/pelican-eggs/installers:debian'
+    entrypoint: bash
+variables:
+  -
+    name: 'Server Name'
+    description: |-
+      The server identity name. This determines the folder name in Servers/ where config and savedata are
+      stored. Avoid spaces.
+    env_variable: SERVER_NAME
+    default_value: BananaServer
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:64'
+    sort: 1
+  -
+    name: 'Max Players'
+    description: 'The maximum number of players allowed on the server.'
+    env_variable: MAX_PLAYERS
+    default_value: 40
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - integer
+      - 'between:2,40'
+    sort: 2
+  -
+    name: 'App ID'
+    description: 'The Steam App ID for the Banana Shooter Dedicated Server. Do not change.'
+    env_variable: SRCDS_APPID
+    default_value: 2406780
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - numeric
+      - 'in:2406780'
+    sort: 3
+  -
+    name: 'Steam User'
+    description: 'REQUIRED - Steam account that owns Banana Shooter. Anonymous login will not work.'
+    env_variable: STEAM_USER
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:64'
+    sort: 4
+  -
+    name: 'Steam Password'
+    description: 'REQUIRED - Password for the Steam account.'
+    env_variable: STEAM_PASS
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:64'
+    sort: 5
+  -
+    name: 'Steam Auth Code'
+    description: 'Steam Guard 2FA code if needed. May need to reinstall to enter a new code.'
+    env_variable: STEAM_AUTH
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+      - 'max:10'
+    sort: 6
+  -
+    name: 'Beta Branch'
+    description: 'Beta branch of a steam app. Leave blank to install normal branch.'
+    env_variable: SRCDS_BETAID
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+      - 'max:64'
+    sort: 7
+  -
+    name: 'Beta Branch Password'
+    description: |-
+      Password for a beta branch should one be required during private or closed testing phases. Leave
+      blank for no password.
+    env_variable: SRCDS_BETAPASS
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+      - 'max:64'
+    sort: 8
+  -
+    name: 'Auto Update'
+    description: 'Auto Update the server on startup'
+    env_variable: AUTO_UPDATE
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - boolean
+    sort: 9

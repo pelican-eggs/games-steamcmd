@@ -1,0 +1,148 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/the_ship/egg-the-ship.yaml
+exported_at: '2026-07-02T22:01:05+02:00'
+name: 'The Ship: Murder Party'
+author: noreply@zyiks.eu
+uuid: 18113094-8f05-4657-9eff-ab1e86b2f1bb
+description: 'The Ship: Murder Party dedicated server. The native Linux server is broken on modern systems, so this runs the Windows dedicated server under Wine. Requires a licensed Steam account (anonymous is refused).'
+icon: null
+tags:
+  - steamcmd
+features:
+  - steam_disk_space
+docker_images:
+  ghcr.io/parkervcp/yolks:wine_latest: ghcr.io/parkervcp/yolks:wine_latest
+file_denylist: []
+startup_commands:
+  Default: wine srcds.exe -console -condebug -conclearlog -game ship +log on +map {{SRCDS_MAP}} +maxplayers {{MAX_PLAYERS}} -port {{SERVER_PORT}} +ip 0.0.0.0 -strictportbind & SRVPID=$!; tail -c0 -F /home/container/ship/console.log --pid=$SRVPID
+config:
+  files: {}
+  startup:
+    done: Started map
+  logs: {}
+  stop: ^C
+scripts:
+  installation:
+    script: |
+      #!/bin/bash
+      # The Ship dedicated server install. Runs the Windows server under Wine, the native Linux build is broken.
+
+      ## just in case someone removed the defaults.
+      if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
+          echo -e "steam user is not set.\n"
+          echo -e "Using anonymous user (app 2403 needs a licensed account though).\n"
+          STEAM_USER=anonymous
+          STEAM_PASS=""
+          STEAM_AUTH=""
+      else
+          echo -e "user set to ${STEAM_USER}"
+      fi
+
+      ## download and install steamcmd
+      cd /tmp
+      mkdir -p /mnt/server/steamcmd
+      curl -sSL -o steamcmd.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+      tar -xzvf steamcmd.tar.gz -C /mnt/server/steamcmd
+      mkdir -p /mnt/server/steamapps # Fix steamcmd disk write error when this folder is missing
+      cd /mnt/server/steamcmd
+
+      chown -R root:root /mnt
+      export HOME=/mnt/server
+
+      ## install game using steamcmd, forcing the windows platform
+      ./steamcmd.sh +force_install_dir /mnt/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ "${WINDOWS_INSTALL}" == "1" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} ${INSTALL_FLAGS} validate +quit
+
+      ## set up steam client libraries
+      mkdir -p /mnt/server/.steam/sdk32
+      cp -v linux32/steamclient.so ../.steam/sdk32/steamclient.so 2>/dev/null || true
+      mkdir -p /mnt/server/.steam/sdk64
+      cp -v linux64/steamclient.so ../.steam/sdk64/steamclient.so 2>/dev/null || true
+
+      echo "install complete"
+    container: ghcr.io/parkervcp/installers:debian
+    entrypoint: /bin/bash
+variables:
+  - name: Auto-update server
+    description: Enable / disable auto-updating the server on restart.
+    env_variable: AUTO_UPDATE
+    default_value: '1'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - boolean
+    sort: 1
+  - name: Windows install
+    description: Forces SteamCMD to install/update the Windows server files (run under Wine). Do not change - the native Linux server is broken.
+    env_variable: WINDOWS_INSTALL
+    default_value: '1'
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - in:1
+    sort: 2
+  - name: Steam User
+    description: Steam account that OWNS The Ship. Anonymous is refused (No subscription).
+    env_variable: STEAM_USER
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+    sort: 3
+  - name: Steam Password
+    description: Password for the Steam account. Steam Guard must be OFF (headless SteamCMD cannot complete email Guard).
+    env_variable: STEAM_PASS
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+    sort: 4
+  - name: Steam Auth (Guard code)
+    description: Steam Guard code if required. Normally left blank with Guard off.
+    env_variable: STEAM_AUTH
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+    sort: 5
+  - name: Map
+    description: Default map to load on start (e.g. batavier, atalanta, huronian).
+    env_variable: SRCDS_MAP
+    default_value: batavier
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+    sort: 6
+  - name: Max Players
+    description: Maximum player slots.
+    env_variable: MAX_PLAYERS
+    default_value: '8'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - integer
+      - between:1,32
+    sort: 7
+  - name: App ID
+    description: Steam app id for The Ship Dedicated Server. Do not modify.
+    env_variable: SRCDS_APPID
+    default_value: '2403'
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - string
+      - in:2403
+    sort: 8

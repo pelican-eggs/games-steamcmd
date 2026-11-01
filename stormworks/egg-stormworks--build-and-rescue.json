@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:05:10+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Stormworks: Build and Rescue",
     "author": "iamkubi@gmail.com",
     "uuid": "f717abc8-3ff1-469f-8b6c-e1e4688aea79",
     "description": "Join a world where you design, create and pilot your own air sea rescue service. Release your inner hero as you battle fierce storms out at sea to rescue those in need.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

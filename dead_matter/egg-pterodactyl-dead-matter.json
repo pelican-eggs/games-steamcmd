@@ -1,5 +1,5 @@
 {
-    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
         "update_url": null,
         "version": "PTDL_v2"
@@ -62,7 +62,7 @@
             "name": "Server Name",
             "description": "The name of the server",
             "env_variable": "SERVER_NAME",
-            "default_value": "A Pterodactyl hosted server",
+            "default_value": "Dead Matter server",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:128",

@@ -4,13 +4,14 @@
         "version": "PLCN_v3",
         "update_url": null
     },
-    "exported_at": "2026-01-25T16:04:27+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Stationeers",
     "author": "eggs@goover.dev",
     "uuid": "25563afc-89db-4e03-8dc2-cfd6571e6fb6",
     "description": "Stationeers Server",
-    "image": null,
-    "tags": [],
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],
@@ -198,7 +199,7 @@
             "name": "Station Name",
             "description": "Name of the save of your world.\r\nAuto save & auto load worlds on server startup.",
             "env_variable": "STATION_NAME",
-            "default_value": "Pelican Hosted Server",
+            "default_value": "Stationeers Server",
             "user_viewable": true,
             "user_editable": true,
             "rules": [

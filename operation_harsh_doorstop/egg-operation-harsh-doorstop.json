@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:32+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Operation Harsh Doorstop",
     "author": "josdekurk@gmail.com",
     "uuid": "593bfe27-f1bb-4713-b032-61d4ec53318e",
     "description": "Operation: Harsh Doorstop is an Unreal Engine powered shooter sandbox similar to mod-friendly games like Ravenfield and Garry's Mod but with roots in tactical shooters like Squad and Arma III. Our game is entirely donation funded, completely free, and has full Steam workshop support!",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

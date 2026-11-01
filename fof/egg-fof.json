@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:13+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Fof",
     "author": "avalongamecs@gmail.com",
     "uuid": "bf18486b-8770-49f2-8944-f85e708a31ee",
     "description": "Fistful of Frags",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

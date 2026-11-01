@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:03:42+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Avorion",
     "author": "iamkubi@gmail.com",
     "uuid": "0bb93b68-51c0-492f-a8fb-f2e6ce5ab892",
     "description": "A procedural co-op space sandbox where players can build their own space ships out of dynamically scalable blocks. Fight epic space battles, explore, mine, trade, wage wars and build your own empire to save your galaxy from being torn apart by an unknown enemy.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

@@ -4,11 +4,14 @@
         "version": "PLCN_v1",
         "update_url": null
     },
-    "exported_at": "2024-12-25T11:05:05+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Astro Colony",
     "author": "limmek@swedon.se",
     "uuid": "4d507bc2-78ab-4669-b6c4-df631463e623",
     "description": "Explore endless Universe and create the most efficient constellation of colonies. Build conveyor systems to automate production. Take care of Astronauts and their needs! Establish new colonies as part of intergalactic simulation.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [],
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"

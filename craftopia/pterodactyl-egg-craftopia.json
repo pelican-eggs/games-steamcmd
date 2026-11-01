@@ -1,0 +1,64 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-06-08T08:13:53+00:00",
+    "name": "Craftopia",
+    "author": "eggs@goover.dev",
+    "description": "Craftopia is the brand new multiplayer survival action game made in Japan. We combined many features we find enjoyable, such as hunting, farming, hack-and-slash, building, automation to develop this game.",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "SteamCMD Debian": "ghcr.io\/pelican-egggs\/steamcmd:debian"
+    },
+    "file_denylist": [],
+    "startup": ".\/Craftopia.x86_64",
+    "config": {
+        "files": "{\n    \"ServerSetting.ini\": {\n        \"parser\": \"ini\",\n        \"find\": {\n            \"GameWorld.name\": \"{{server.build.env.WORLD_NAME}}\",\n            \"Host.port\": \"{{server.build.default.port}}\"\n        }\n    }\n}",
+        "startup": "{\r\n    \"done\": \"World is loaded!\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\n# steamcmd Base Installation Script\n#\n# Server Files: \/mnt\/server\n# Image to install with is 'ghcr.io\/parkervcp\/installers:debian'\n\n##\n\n## just in case someone removed the defaults.\nif [[ \"${STEAM_USER}\" == \"\" ]] || [[ \"${STEAM_PASS}\" == \"\" ]]; then\n    echo -e \"steam user is not set.\\n\"\n    echo -e \"Using anonymous user.\\n\"\n    STEAM_USER=anonymous\n    STEAM_PASS=\"\"\n    STEAM_AUTH=\"\"\nelse\n    echo -e \"user set to ${STEAM_USER}\"\nfi\n\n## download and install steamcmd\ncd \/tmp\nmkdir -p \/mnt\/server\/steamcmd\ncurl -sSL -o steamcmd.tar.gz https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz\ntar -xzvf steamcmd.tar.gz -C \/mnt\/server\/steamcmd\nmkdir -p \/mnt\/server\/steamapps # Fix steamcmd disk write error when this folder is missing\ncd \/mnt\/server\/steamcmd\n\n# SteamCMD fails otherwise for some reason, even running as root.\n# This is changed at the end of the install process anyways.\nchown -R root:root \/mnt\nexport HOME=\/mnt\/server\n\n## install game using steamcmd\n.\/steamcmd.sh +force_install_dir \/mnt\/server +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ \"${WINDOWS_INSTALL}\" == \"1\" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s \"-beta ${SRCDS_BETAID}\" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s \"-betapassword ${SRCDS_BETAPASS}\" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6\n\n## set up 32 bit libraries\nmkdir -p \/mnt\/server\/.steam\/sdk32\ncp -v linux32\/steamclient.so ..\/.steam\/sdk32\/steamclient.so\n\n## set up 64 bit libraries\nmkdir -p \/mnt\/server\/.steam\/sdk64\ncp -v linux64\/steamclient.so ..\/.steam\/sdk64\/steamclient.so\n\ncd \/mnt\/server\nFILE=\/mnt\/server\/ServerSetting.ini\nif [ -f \"$FILE\" ]; then\n    echo \"Config file exist\"\nelse \n    echo \"Config file does not exist, making one\"\n    cd \/mnt\/server\n    curl -sSL -o ServerSetting.ini https:\/\/raw.githubusercontent.com\/pelican-eggs\/games-steamcmd\/refs\/heads\/main\/craftopia\/ServerSetting.ini\nfi\n\necho \"install finished\"",
+            "container": "ghcr.io\/pelican-eggs\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "SRCDS_APPID",
+            "description": "",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "1670340",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|in:1670340",
+            "field_type": "text"
+        },
+        {
+            "name": "Auto Update",
+            "description": "",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "World Name",
+            "description": "",
+            "env_variable": "WORLD_NAME",
+            "default_value": "Panel Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:50",
+            "field_type": "text"
+        }
+    ]
+}

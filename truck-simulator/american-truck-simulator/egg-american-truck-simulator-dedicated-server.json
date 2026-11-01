@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:03:47+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "American Truck Simulator Dedicated Server",
     "author": "chase@cstmgames.com",
     "uuid": "a38a961b-6a02-41fd-ad6c-6ed7833d4e9d",
     "description": "This will set up SteamCMD and all the required files for the newly released American Truck Simulator Dedicated server.  Simply placed the exported server config from your ATS instance to the .local\/share\/American Truck Simulator\/ folder and select start.  Make sure that auto start is off on server creation to allow you to upload your config files.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

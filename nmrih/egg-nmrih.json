@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:26+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "nmrih",
     "author": "avalongamecs@gmail.com",
     "uuid": "30eaf1c9-e5e0-4fc3-9a4b-1390de54dc0e",
     "description": "No More Room In Hell",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

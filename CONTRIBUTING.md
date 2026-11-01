@@ -26,7 +26,7 @@ You can contribute by either creating a new pull request or testing [existing pu
 
 ### Sources for working on a new egg
 
-Look at existing eggs to see how they work. In most cases, you can take the existing egg as your new template. There's a brief documentation on how to [create eggs](https://pelican.dev/community/config/eggs/creating_a_custom_egg.html) and [Docker images](https://pelican.dev/community/config/eggs/creating_a_custom_image.html).
+Look at existing eggs to see how they work. In most cases, you can take the existing egg as your new template. There's a brief documentation on how to [create eggs](https://pelican.dev/docs/eggs/creating-a-custom-egg) and [Docker images](https://pelican.dev/docs/eggs/creating-a-custom-yolk).
 
 Use existing Docker images for your egg. You can find them in [Pelican Yolks](https://github.com/pelican-eggs/yolks).
 

@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:14+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Frozen Flame",
     "author": "theblitzbat@gmail.com",
     "uuid": "e3986111-0725-4ccd-b131-528873df84df",
     "description": "Frozen Flame Dedicated Server",
+    "tags": [
+        "steamcmd"
+    ],
     "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/steamcmd:debian": "ghcr.io\/parkervcp\/steamcmd:debian"

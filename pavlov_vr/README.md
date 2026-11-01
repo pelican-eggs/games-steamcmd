@@ -26,8 +26,7 @@ When downloading a large map from the steam workshop make sure your node has eno
 Additionally, due to the way Pavlov stores workshop maps in the temp directory, the only way to persistently keep workshop maps is to create a mount for /tmp/workshop.
 
 For assistance with mounts, please visit the following links  
-[Using Mounts in Pelican](https://pelican.dev/docs/guides/mounts)  
-[Using Mounts in Pterodactyl](https://pterodactyl.io/guides/mounts.html)
+[Using Mounts in Pelican](https://pelican.dev/docs/guides/mounts)
 
 For additional help, please see the following - [Dedicated Server Wiki](http://wiki.pavlov-vr.com/index.php?title=Dedicated_server)
 

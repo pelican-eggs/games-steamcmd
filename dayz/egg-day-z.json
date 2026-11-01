@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-13T12:52:57+07:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "DayZ",
     "author": "red_thirten@yahoo.com",
     "uuid": "ef7d4603-175b-4c7c-a827-516a6c19c101",
     "description": "How long can you survive a post-apocalyptic world? A land overrun with an infected \"zombie\" population, where you compete with other survivors for limited resources. Will you team up with strangers and stay strong together? Or play as a lone wolf to avoid betrayal? This is DayZ \u2013 this is your story.",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

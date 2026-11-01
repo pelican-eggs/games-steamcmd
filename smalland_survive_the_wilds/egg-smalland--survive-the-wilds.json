@@ -4,11 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-01T00:04:47+00:00",
+    "exported_at": "2026-04-06T02:01:23+00:00",
     "name": "Smalland: Survive the Wilds",
     "author": "git@robsti.dev",
     "uuid": "acd827ab-cfb3-471d-9e19-6a995541ee9b",
     "description": "Experience a big adventure on a tiny scale! Enjoy multiplayer survival in a vast, hazardous world. Preparation is key when you're this small & at the bottom of the food chain. Craft weapons & armour, tame & ride creatures, build encampments & explore a strange new land.\r\n\r\nSteam: https:\/\/store.steampowered.com\/app\/768200\/Smalland_Survive_the_Wilds\/",
+    "tags": [
+        "steamcmd"
+    ],
     "features": [
         "steam_disk_space"
     ],

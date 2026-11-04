@@ -1,10 +1,9 @@
 # Satisfactory
 
-> [!IMPORTANT]
-> ***Updating for v1.1?***
-> - Ensure any existing servers have the updated Startup Command applied!
-> - A new TCP port is now required! (See [Server Ports](#server-ports) for details)
-> - While not required, it's recommended existing servers delete the `LinuxServer` directory under `~/FactoryGame/Saved/Config/` to remove depreciated settings, and reconfigure the settings via the in-game Server Manager.
+> [!NOTE]
+> ###### November 4, 2026
+>
+> Crossplay with consoles is not yet supported by Coffee Stain on **dedicated servers** for v1.2.5.0 - Build 517554. This may change in the future.
 ___
 
 ### Authors / Contributors

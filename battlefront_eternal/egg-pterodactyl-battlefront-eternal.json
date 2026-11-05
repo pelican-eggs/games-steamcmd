@@ -1,0 +1,82 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-10-30T19:03:51+00:00",
+    "name": "Battlefront Eternal",
+    "author": "josh@lambertmail.xyz",
+    "description": "Battlefront Eternal is a GPL-3.0 engine for STAR WARS Battlefront (Classic, 2004). This is its headless dedicated server. It prepares its game data from your own copy of the game: set a Steam account that owns it, or upload the game's GameData folder to game\/ and reinstall.",
+    "features": null,
+    "docker_images": {
+        "Node.js 24": "ghcr.io\/pelican-eggs\/yolks:nodejs_24"
+    },
+    "file_denylist": [],
+    "startup": "if [ ! -f bfe-data\/.bfe-data-key ]; then echo \"No prepared game data. Set a Steam account in Startup, or upload the game's GameData folder to game\/, then reinstall the server.\"; exit 1; fi; BFE_STATE_DIR=\/home\/container\/bfe-state BFE_ENGINE_DIR=\/home\/container\/bfe\/host-runtime\/engine BFE_DATA_DIR=\/home\/container\/bfe-data PORT=0 node \/home\/container\/bfe\/host-runtime\/server\/src\/main.js --serve",
+    "config": {
+        "files": "{\n    \"bfe-state\/config.json\": {\n        \"parser\": \"json\",\n        \"find\": {\n            \"name\": \"{{server.build.env.SERVER_NAME}}\",\n            \"gamePort\": \"{{server.build.default.port}}\",\n            \"maxPlayers\": \"{{server.build.env.MAX_PLAYERS}}\"\n        }\n    }\n}",
+        "startup": "{\n    \"done\": \"bfeserver service started\"\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\n# Battlefront Eternal dedicated server (bfeserver)\n#\n# Server files: \/mnt\/server\n#   bfe\/        the newest release's server, engine and preparation tools\n#   bfe-data\/   game data, prepared from the owned game by those tools\n#   bfe-state\/  config.json, the server's identity and its player statistics\n#   game\/       the owned game: the folder that holds GameData\n\ncd \/mnt\/server || exit 1\nmkdir -p bfe-state game\n\nif [ \"$(uname -m)\" = \"aarch64\" ]; then ARCH=arm64; else ARCH=amd64; fi\n\n## The owned game, STAR WARS Battlefront (Classic, 2004), from Steam when an account is set\nif [ -n \"${STEAM_USER}\" ] && [ \"${ARCH}\" != \"amd64\" ]; then\n    echo \"SteamCMD needs an x86_64 node. Upload the game's GameData folder to game\/ instead.\"\nelif [ -n \"${STEAM_USER}\" ]; then\n    mkdir -p steamcmd\n    curl -fsSL https:\/\/steamcdn-a.akamaihd.net\/client\/installer\/steamcmd_linux.tar.gz | tar -xz -C steamcmd || exit 1\n    # SteamCMD keeps its login in \/mnt\/server\/Steam, so a Steam Guard code is only needed once.\n    chown -R root:root \/mnt\/server\n    export HOME=\/mnt\/server\n    .\/steamcmd\/steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir \/mnt\/server\/game +login \"${STEAM_USER}\" \"${STEAM_PASS}\" ${STEAM_AUTH} +app_update 1058020 validate +quit\nfi\n\n## Battlefront Eternal: the server, engine and preparation tools of the newest release\nFEED=https:\/\/get.battlefronteternal.com\/downloads\/latest\nSUMS=$(curl -fsSL \"${FEED}\/SHA256SUMS\") || { echo \"Could not reach ${FEED}\"; exit 1; }\nDEB=$(echo \"${SUMS}\" | grep -o \"battlefront-eternal_[^ ]*_${ARCH}\\.deb\" | head -n 1)\n[ -n \"${DEB}\" ] || { echo \"No ${ARCH} release in ${FEED}\"; exit 1; }\necho \"Downloading Battlefront Eternal $(echo \"${DEB}\" | cut -d _ -f 2)\"\n# The package is bigger than the installer's \/tmp, so it is downloaded here and removed after.\ncurl -fsSL --retry 3 -o \"${DEB}\" \"${FEED}\/${DEB}\" && echo \"${SUMS}\" | grep \" ${DEB}$\" | sha256sum -c - || { rm -f \"${DEB}\"; exit 1; }\nrm -rf bfe && mkdir bfe\ndpkg-deb --fsys-tarfile \"${DEB}\" | tar -x -C bfe --strip-components=4 \\\n    \".\/opt\/Battlefront Eternal\/resources\/host-runtime\" \".\/opt\/Battlefront Eternal\/resources\/tools\" \\\n    \".\/opt\/Battlefront Eternal\/resources\/toolchain\" \".\/opt\/Battlefront Eternal\/resources\/bfe-tree.json\" || { rm -f \"${DEB}\"; exit 1; }\nrm -f \"${DEB}\"\n\n## Server configuration, kept on reinstall\nif [ ! -f bfe-state\/config.json ]; then\n    cat > bfe-state\/config.json << 'EOF'\n{\n  \"name\": \"Battlefront Eternal server\",\n  \"gamePort\": 18451,\n  \"maxPlayers\": 64,\n  \"rotation\": [\n    \"swbf1\/nab2:rep:conquest\",\n    \"swbf1\/hot1:imp:conquest\",\n    \"swbf1\/kas2:rep:conquest\",\n    \"swbf1\/tat2:imp:conquest\",\n    \"swbf1\/bes2:rep:conquest\",\n    \"swbf1\/end1:imp:conquest\"\n  ],\n  \"discovery\": false,\n  \"onlineNoticeAccepted\": false,\n  \"relayPolicy\": \"auto\",\n  \"honorGlobalBans\": true\n}\nEOF\nfi\n\n## Game data, prepared again only when the release's tools or their Python change\nKEY=$(jq -r '.files[] | select((.path | startswith(\"resources\/tools\/\")) or (.path | startswith(\"resources\/toolchain\/python\/\"))) | \"\\(.path) \\(.sha256)\"' bfe\/bfe-tree.json | LC_ALL=C sort | sha256sum | cut -c 1-32)\nGAMEDATA=$(find \/mnt\/server\/game -maxdepth 2 -type d -name GameData -print -quit)\nif [ \"$(cat bfe-data\/.bfe-data-key 2>\/dev\/null)\" = \"${KEY}\" ]; then\n    echo \"The prepared game data is current\"\nelif [ -z \"${GAMEDATA}\" ] && [ -n \"${STEAM_USER}\" ]; then\n    echo \"SteamCMD did not install the game. Check the Steam username, password and Steam Guard code, then reinstall the server.\"\nelif [ -z \"${GAMEDATA}\" ]; then\n    echo \"No game found. Set a Steam account that owns STAR WARS Battlefront (Classic, 2004),\"\n    echo \"or upload the game's GameData folder to game\/, then reinstall the server.\"\nelse\n    # One job takes up to 1.5 GB of memory and each further job up to 0.5 GB more.\n    JOBS=$(nproc)\n    MEMORY=$(cat \/sys\/fs\/cgroup\/memory.max \/sys\/fs\/cgroup\/memory\/memory.limit_in_bytes 2>\/dev\/null | grep -m 1 -x '[0-9]*')\n    MEMORY=$(( ${MEMORY:-0} \/ 1048576 ))\n    if [ \"${MEMORY}\" -gt 0 ] && [ \"${MEMORY}\" -lt 1536 ]; then\n        echo \"Preparing the game data needs 1.5 GB of memory, and the installer has ${MEMORY} MB. Give the server more memory, then reinstall it.\"\n        exit 1\n    elif [ \"${MEMORY}\" -gt 0 ] && [ $(( 1 + (MEMORY - 1536) \/ 512 )) -lt \"${JOBS}\" ]; then\n        JOBS=$(( 1 + (MEMORY - 1536) \/ 512 ))\n    fi\n    echo \"Preparing the game data, ${JOBS} job(s) at a time. This takes a few minutes.\"\n    rm -rf bfe-data.new bfe-tmp && mkdir bfe-data.new bfe-tmp\n    # prepare.py exits 0 when only a map or an army failed, so its record is checked too.\n    if ! (cd bfe\/tools && env -i PATH=\/mnt\/server\/bfe\/toolchain\/bin:\/usr\/bin:\/bin HOME=\/mnt\/server\/bfe-tmp TMPDIR=\/mnt\/server\/bfe-tmp LANG=C.UTF-8 \\\n        BFE_GAME_DIR=\"$(dirname \"${GAMEDATA}\")\" BFE_CONTENT_DIR=\/mnt\/server\/bfe-data.new KTX2_ENCODER=off \\\n        PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 PYTHONIOENCODING=utf-8 \\\n        ..\/toolchain\/python\/bin\/python3 -u prepare.py --core-only --jobs \"${JOBS}\") \\\n        || [ \"$(jq '.failed | length' bfe-data.new\/.prepare.json 2>\/dev\/null)\" != 0 ]; then\n        jq -r '.failures[]? | \"\\(.label): \\(.reason)\"' bfe-data.new\/.prepare.json 2>\/dev\/null\n        rm -rf bfe-data.new bfe-tmp\n        echo \"Preparing the game data failed. Check the game files, or give the server more memory, then reinstall it.\"\n        exit 1\n    fi\n    echo \"${KEY}\" > bfe-data.new\/.bfe-data-key\n    rm -rf bfe-data bfe-tmp && mv bfe-data.new bfe-data\nfi\n\necho \"Battlefront Eternal installed\"\n",
+            "container": "ghcr.io\/pelican-eggs\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Server Name",
+            "description": "The name players see in the server browser and when they join.",
+            "env_variable": "SERVER_NAME",
+            "default_value": "Battlefront Eternal server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:80",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Players",
+            "description": "How many people can join, up to 64 (32 a side). Bots fill the rest of each army.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "64",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|integer|between:1,64",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Username",
+            "description": "A Steam account that owns STAR WARS Battlefront (Classic, 2004), to download the game during installation. Leave empty to upload the game's GameData folder to game\/ yourself (a Steam or GOG copy).",
+            "env_variable": "STEAM_USER",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Password",
+            "description": "The Steam account's password. Only the installation uses it.",
+            "env_variable": "STEAM_PASS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Guard Code",
+            "description": "A current Steam Guard code, if the account asks for one. SteamCMD remembers the login after it succeeds.",
+            "env_variable": "STEAM_AUTH",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:8",
+            "field_type": "text"
+        }
+    ]
+}

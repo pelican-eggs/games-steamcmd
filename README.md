@@ -14,6 +14,7 @@
 
 * [7 Days To Die](7_days_to_die)
 * [Abiotic Factor](abiotic_factor/)
+* [Alchemy Factory](alchemy_factory/)
 * [ARK: Survival Ascended](ark_survival_ascended)
 * [ARK: Survival Evolved](ark_survival_evolved)
 * [Arma](arma)

@@ -1,0 +1,187 @@
+_comment: 'DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL'
+meta:
+  version: PLCN_v3
+  update_url: 'https://raw.githubusercontent.com/pelican-eggs/games-steamcmd/refs/heads/main/alchemy_factory/egg-alchemy-factory.yaml'
+exported_at: '2026-10-25T09:39:40+00:00'
+name: 'Alchemy Factory'
+author: mika.bomm@outlook.com
+uuid: e27a66da-c351-4838-a358-9f292c28b03b
+description: |-
+  Alchemy Factory dedicated server (experimental Windows server running through Proton).
+
+  Steam relay requires a primary game allocation between 1024 and 32767. Higher ports fail to accept
+  relay connections.
+icon: null
+tags:
+  - steamcmd
+features:
+  - steam_disk_space
+docker_images:
+  Proton: 'ghcr.io/pelican-eggs/steamcmd:proton'
+file_denylist: {  }
+startup_commands:
+  Default: |-
+    PROTON_USE_XALIA=0 xvfb-run -a proton run ./AlchemyFactory/Binaries/Win64/AlchemyFactoryServer-Win64-Shipping.exe -log -unattended & ALF_PID=$!;
+    tail -c0 -F AlchemyFactory/Saved/Logs/AlchemyFactory.log --pid=$ALF_PID;
+    wait $ALF_PID
+config:
+  files:
+    ServerConfig.ini:
+      parser: ini
+      find:
+        ServerSettings.server_port: '{{server.allocations.default.port}}'
+        ServerSettings.server_name: '{{server.environment.SERVER_NAME}}'
+        ServerSettings.server_password: '{{server.environment.SERVER_PASSWORD}}'
+        ServerSettings.admin_password: '{{server.environment.ADMIN_PASSWORD}}'
+        ServerSettings.query_port: '{{server.environment.QUERY_PORT}}'
+        ServerSettings.max_clients: '{{server.environment.MAX_CLIENTS}}'
+        ServerSettings.server_public: '{{server.environment.SERVER_PUBLIC}}'
+        ServerSettings.server_relay: '{{server.environment.SERVER_RELAY}}'
+  startup:
+    done: 'join code:'
+  logs: {  }
+  stop: ^C
+scripts:
+  installation:
+    script: |
+      #!/bin/bash
+      set -euo pipefail
+      mkdir -p /mnt/server/steamcmd /mnt/server/steamapps
+      chown -R root:root /mnt/server
+      cd /mnt/server/steamcmd
+      curl -fsSL https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz | tar -xz
+      ./steamcmd.sh +@sSteamCmdForcePlatformType windows +@sSteamCmdForcePlatformBitness 64 +force_install_dir /mnt/server +login anonymous +app_update 1007 validate +app_update 4550060 validate +quit
+      test -f /mnt/server/AlchemyFactoryServer.exe
+      mkdir -p /mnt/server/.steam/sdk32 /mnt/server/.steam/sdk64
+      cp linux32/steamclient.so /mnt/server/.steam/sdk32/steamclient.so
+      cp linux64/steamclient.so /mnt/server/.steam/sdk64/steamclient.so
+
+      # Preserve existing settings and saves when reinstalling.
+      if [ ! -f /mnt/server/ServerConfig.ini ]; then
+          printf "[ServerSettings]\n" > /mnt/server/ServerConfig.ini
+      fi
+
+      mkdir -p /mnt/server/AlchemyFactory/Saved/Logs
+      touch /mnt/server/AlchemyFactory/Saved/Logs/AlchemyFactory.log
+    container: 'ghcr.io/pelican-eggs/installers:debian'
+    entrypoint: bash
+variables:
+  -
+    sort: 3
+    name: 'Admin password'
+    description: 'Set a password for /admin <password> in game chat.'
+    env_variable: ADMIN_PASSWORD
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+      - 'max:128'
+  -
+    sort: 8
+    name: 'Auto update on startup'
+    description: |-
+      1: check for Steam server updates before starting. 0: skip the update check. Does not update a
+      running server.
+    env_variable: AUTO_UPDATE
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - boolean
+  -
+    sort: 4
+    name: 'Maximum players'
+    description: 'Maximum number of connected players.'
+    env_variable: MAX_CLIENTS
+    default_value: 4
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - integer
+      - 'min:1'
+  -
+    sort: 5
+    name: 'Steam query port'
+    description: 'UDP port for Steam server queries. Optional allocation.'
+    env_variable: QUERY_PORT
+    default_value: 9878
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - integer
+      - 'between:1024,65535'
+  -
+    sort: 1
+    name: 'Server name'
+    description: 'Name shown to players.'
+    env_variable: SERVER_NAME
+    default_value: 'Alchemy Factory'
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - string
+      - 'max:64'
+  -
+    sort: 2
+    name: 'Server password'
+    description: 'Password required to join. Leave empty for no password.'
+    env_variable: SERVER_PASSWORD
+    default_value: ''
+    user_viewable: true
+    user_editable: true
+    rules:
+      - nullable
+      - string
+      - 'max:128'
+  -
+    sort: 6
+    name: 'Public listing'
+    description: '1: visible in the public server browser. 0: unlisted. Independent of Steam relay.'
+    env_variable: SERVER_PUBLIC
+    default_value: 0
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - boolean
+  -
+    sort: 7
+    name: 'Steam relay'
+    description: |-
+      Steam relay without port forwarding. Primary game allocation must be 1024-32767. Disable for direct
+      IP.
+    env_variable: SERVER_RELAY
+    default_value: 1
+    user_viewable: true
+    user_editable: true
+    rules:
+      - required
+      - boolean
+  -
+    sort: 9
+    name: 'Steam App ID'
+    description: 'Dedicated server App ID. Do not change.'
+    env_variable: SRCDS_APPID
+    default_value: 4550060
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - 'in:4550060'
+  -
+    sort: 10
+    name: 'Windows install'
+    description: 'Download the Windows server files for Proton.'
+    env_variable: WINDOWS_INSTALL
+    default_value: 1
+    user_viewable: false
+    user_editable: false
+    rules:
+      - required
+      - 'in:1'
